@@ -1,4 +1,11 @@
 .btn{
+  padding:18px 30px;
+  min-width:220px;
+  box-shadow:0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  border-radius: 12px;
+  font-size:18px;
+  text-transform: uppercase;
+  font-weight:500;
   &-block{
     display: block;
     width:100%;
@@ -33,5 +40,17 @@
       background-color:#F4AB00;
     }
   }
+
+  &-primary{
+    background-color: $green_primary;
+    color:#fff;
+    border-color:$green_primary;
+    &:hover{
+      background-color: $green_dark;
+      border-color: $green_dark;
+      color:#fff;
+    }
+  }
+
 }
 

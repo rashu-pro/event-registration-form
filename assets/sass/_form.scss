@@ -5,6 +5,7 @@
 .form{
   &-group{
     //padding-bottom:20px;
+    padding-bottom:20px;
     &.last{
       margin:0;
     }
@@ -25,9 +26,16 @@
   }
   &-control{
     line-height: 2rem;
-    border:0.15rem solid #8B8B8B;
+    border:0.12rem solid #8B8B8B;
+
+    &-label{
+      font-size:18px;
+      font-weight:500;
+      margin-bottom:3px;
+    }
+
     @media (min-width:768px){
-      line-height: 2.5rem;
+      line-height: 2.2rem;
     }
   }
 
@@ -43,6 +51,7 @@ select.form-control:not([size]):not([multiple]){
 
 .select-wrapper{
   position: relative;
+  background-color: #fff;
   .drop-down-arrow{
     width: 50px;
     height: 50px;
