@@ -1,12 +1,14 @@
 .header{
   border-bottom:1px solid #ddd;
   //margin-left:-15px;
+  background-color: #fff;
+  padding:10px 0;
   .logo-wrapper{
     img{
       height:auto;
       max-width:128px;
       @media (min-width:768px){
-        height:auto;
+        height:55px;
         max-height:100px;
         max-width:none;
       }
@@ -21,8 +23,13 @@
       padding-left:5px;
       padding-right:5px;
       @media (min-width:768px){
-        padding-left:10px;
-        padding-right:10px;
+        padding-left:20px;
+        padding-right:20px;
+      }
+
+      &:hover{
+        color:$green_primary;
+        text-decoration: underline;
       }
       img{
         max-width:100px;
