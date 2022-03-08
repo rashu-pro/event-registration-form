@@ -446,6 +446,9 @@ a {
 .ticket-summary-table th {
   text-align: right;
 }
+.ticket-summary-table tfoot {
+  font-size: 18px;
+}
 
 .cart-table .table td, .cart-table .table th {
   vertical-align: middle;
@@ -455,6 +458,7 @@ a {
   font-size: 30px;
   line-height: 1;
   padding: 0 15px;
+  cursor: pointer;
 }
 .quantity-wrap .input-group .form-control {
   max-width: 70px;
