@@ -10,13 +10,20 @@
   }
   &-wrapper{
     background-color: #fff;
-    border-radius:15px;
-    padding:25px;
+    padding:30px 20px 30px 20px;
     max-width: 1150px;
-    margin: 60px auto;
   }
 
   &-body{
+
+  }
+
+  @media (min-width: 768px){
+    &-wrapper{
+      margin: 60px auto;
+      border-radius:15px;
+      padding:25px;
+    }
 
   }
 }

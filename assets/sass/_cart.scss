@@ -8,8 +8,29 @@
     }
 
     .table{
+      width:550px;
+      max-width:none;
       td,th{
         vertical-align: middle;
+      }
+      tr{
+        td{
+          &:first-child{
+            width:20%;
+          }
+        }
+      }
+      @media(min-width:768px){
+        width:100%;
+        max-width:100%;
+
+        tr{
+          td{
+            &:first-child{
+              width:auto;
+            }
+          }
+        }
       }
     }
   }
