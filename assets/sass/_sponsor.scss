@@ -1,0 +1,123 @@
+.sponsor{
+  &-wrapper{
+    background: #FBF8F8;
+    //padding:
+    border-radius:15px;
+    border:1px solid #ddd;
+    margin-bottom: 30px;
+    h4{
+      padding-bottom:10px;
+      margin:0;
+    }
+
+    .col-md-9{
+      @media (min-width:768px) {
+        border-left:1px solid #ddd;
+      }
+    }
+
+  }
+  &-heading{
+    position: relative;
+    padding:10px 15px;
+     margin-bottom:30px;
+    &:after{
+      content:'';
+      position: absolute;
+      left:0;
+      right:0;
+      bottom:0;
+      height:1px;
+      background-color: #8b8b8b;
+      @media (min-width:768px){
+        right:-15px;
+      }
+    }
+  }
+  &-single{
+    padding:15px;
+    h4{
+      //text-align: center;
+    }
+  }
+  &-image{
+    padding-bottom: 6px;
+    text-align: center;
+    img{
+      border-radius: 50%;
+      width: 120px;
+      height: 120px;
+    }
+  }
+  &-details{
+    text-align: center;
+  }
+  &-name{
+    font-size:18px;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  &-list{
+    padding:15px;
+    padding-left:0;
+    border-top:1px solid #ddd;
+    h4{
+      padding-left:15px;
+    }
+    @media (min-width: 768px) {
+      border:0;
+      h4{
+        padding-left:0px;
+      }
+    }
+    .sponsor{
+      &-single{
+        padding:5px;
+        background: #ffffff;
+        border-radius:8px;
+        border:1px solid #ddd;
+        margin-bottom:10px;
+      }
+      &-image{
+        padding-bottom:3px;
+        img{
+          width:45px;
+          height:45px;
+        }
+      }
+      &-name{
+        font-size: 14px;
+      }
+    }
+
+    .row{
+      margin-left:4px;
+      margin-right:4px;
+
+      [class*='col-']{
+        padding-left:4px;
+        padding-right:4px;
+
+        //flex:0 0 20%;
+        //max-width:20%;
+      }
+
+
+      @media (min-width:992px) {
+        margin-left:-4px;
+        margin-right:-4px;
+
+        [class*='col-']{
+          padding-left:4px;
+          padding-right:4px;
+          //flex:0 0 16.6666%;
+          //max-width:16.6666%;
+
+          flex:0 0 20%;
+          max-width:20%;
+        }
+      }
+    }
+  }
+}

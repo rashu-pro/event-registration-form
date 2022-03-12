@@ -350,6 +350,11 @@ a {
   text-decoration: none;
 }
 
+h4 {
+  font-weight: 600;
+  font-size: 22px;
+}
+
 .title {
   font-weight: 600;
   margin-bottom: 15px;
@@ -492,6 +497,114 @@ a {
 .quantity-wrap .input-group .form-control:focus {
   outline: 5px auto -webkit-focus-ring-color;
   box-shadow: none;
+}
+
+.sponsor-wrapper {
+  background: #FBF8F8;
+  border-radius: 15px;
+  border: 1px solid #ddd;
+  margin-bottom: 30px;
+}
+.sponsor-wrapper h4 {
+  padding-bottom: 10px;
+  margin: 0;
+}
+@media (min-width: 768px) {
+  .sponsor-wrapper .col-md-9 {
+    border-left: 1px solid #ddd;
+  }
+}
+.sponsor-heading {
+  position: relative;
+  padding: 10px 15px;
+  margin-bottom: 30px;
+}
+.sponsor-heading:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background-color: #8b8b8b;
+}
+@media (min-width: 768px) {
+  .sponsor-heading:after {
+    right: -15px;
+  }
+}
+.sponsor-single {
+  padding: 15px;
+}
+.sponsor-image {
+  padding-bottom: 6px;
+  text-align: center;
+}
+.sponsor-image img {
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+}
+.sponsor-details {
+  text-align: center;
+}
+.sponsor-name {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+}
+.sponsor-list {
+  padding: 15px;
+  padding-left: 0;
+  border-top: 1px solid #ddd;
+}
+.sponsor-list h4 {
+  padding-left: 15px;
+}
+@media (min-width: 768px) {
+  .sponsor-list {
+    border: 0;
+  }
+  .sponsor-list h4 {
+    padding-left: 0px;
+  }
+}
+.sponsor-list .sponsor-single {
+  padding: 5px;
+  background: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+}
+.sponsor-list .sponsor-image {
+  padding-bottom: 3px;
+}
+.sponsor-list .sponsor-image img {
+  width: 45px;
+  height: 45px;
+}
+.sponsor-list .sponsor-name {
+  font-size: 14px;
+}
+.sponsor-list .row {
+  margin-left: 4px;
+  margin-right: 4px;
+}
+.sponsor-list .row [class*=col-] {
+  padding-left: 4px;
+  padding-right: 4px;
+}
+@media (min-width: 992px) {
+  .sponsor-list .row {
+    margin-left: -4px;
+    margin-right: -4px;
+  }
+  .sponsor-list .row [class*=col-] {
+    padding-left: 4px;
+    padding-right: 4px;
+    flex: 0 0 20%;
+    max-width: 20%;
+  }
 }
 
 .main {
