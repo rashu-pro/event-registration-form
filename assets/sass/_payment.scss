@@ -1,0 +1,31 @@
+.card-info-area .card-image {
+  padding: 15px 0;
+}
+
+.card-info-area .card-image img {
+  height: 30px;
+  margin-right: 5px;
+}
+/*payment info*/
+.card-info-area {
+  background: #d1f6e5;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.card-info-area .row.no-gutters .col-sm-6:first-child {
+  padding-right: 8px;
+}
+
+.card-info-area .row.no-gutters .col-sm-6:last-child {
+  padding-left: 8px;
+}
+
+.card-info-area .form-control {
+  background-color: transparent;
+  border-color: rgba(32, 32, 32, 0.6);
+}
+
+.card-info-area .form-control:focus {
+  background-color: #fff;
+}

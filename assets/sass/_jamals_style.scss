@@ -1,0 +1,53 @@
+.form-row-booth{
+  .form-fields-wrapper{
+    .btn {
+      padding: 15px 10px;
+      //box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+      border-radius: 12px;
+      font-size: 16px;
+      text-transform: uppercase;
+      font-weight: 500;
+      &-sm{
+        width:100%;
+      }
+
+    }
+    @media (min-width: 768px) {
+      .btn {
+        min-width: 100px;
+        padding: 18px 10px;
+        &-sm{
+          width:auto;
+        }
+      }
+    }
+  }
+
+}
+
+
+.selected {
+  background-color: lightgray;
+  border: 1px lightgray;
+  color:#202020;
+  &.btn{
+    &:hover{
+      background-color: lightgray;
+      border: 1px lightgray;
+      color:#202020;
+    }
+  }
+}
+
+.js-timer-block {
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.js-timer {
+  font-size: 30px;
+}
+
+.form-group {
+  margin-bottom: 0;
+}

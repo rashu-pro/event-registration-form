@@ -2,8 +2,6 @@
  * Created by Rashu on 07-03-22.
  */
 
-console.log('way to go!');
-
 $('.quantity-increase').on('click',function () {
     let self = $(this),
         quantitySelector = self.closest('.quantity-wrap').find('.form-control'),
@@ -34,6 +32,33 @@ $('.quantity-wrap .form-control').on('keyup',function () {
     let self = $(this);
     collectData(self);
 });
+
+$('.btn-event-register').on('click',function () {
+    // let self = $(this);
+    // $('.loader-div').addClass('active');
+    // setTimeout(function () {
+    //     self.closest('.registration-form-wrapper').hide();
+    //     $('.loader-div').removeClass('active');
+    //     $('.thank-wrapper').addClass('active');
+    // },800);
+    $('#confirm-modal').modal('show');
+});
+
+function fixHeight(){
+    let headerHeight = parseFloat($('.header').css('height')),
+        footerHeight = parseFloat($('.footer').css('height')),
+        mainWrapperMarginTop = parseFloat($('.main-wrapper').css('margin-top')),
+        mainWrapperMarginBottom = parseFloat($('.main-wrapper').css('margin-bottom')),
+        heightToMinusReady = headerHeight + footerHeight + mainWrapperMarginTop + mainWrapperMarginBottom,
+        heightToMinus = "calc(100vh - "+heightToMinusReady+"px)";
+    $('.main-wrapper').css('min-height',heightToMinus);
+
+}
+fixHeight();
+
+//MODAL
+
+
 
 
 function collectData(self){

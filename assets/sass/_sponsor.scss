@@ -60,7 +60,7 @@
 
   &-list{
     padding:15px;
-    padding-left:0;
+    //padding-left:0;
     border-top:1px solid #ddd;
     h4{
       padding-left:15px;
@@ -68,7 +68,7 @@
     @media (min-width: 768px) {
       border:0;
       h4{
-        padding-left:0px;
+        padding-left:0;
       }
     }
     .sponsor{
