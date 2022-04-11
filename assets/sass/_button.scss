@@ -123,9 +123,9 @@
 
   &.selected{
     color:#202020;
-    &:focus,&:active{
-      background:lightgray!important;
-    }
+    //&:focus,&:active{
+    //  background:lightgray!important;
+    //}
   }
 
 }

@@ -171,6 +171,7 @@
           display: block;
           .form-row-head{
             display: block;
+            border-radius:15px 15px 0 0;
           }
           .form-row-body{
             display: block;
@@ -188,6 +189,11 @@
             border:1px solid #ddd;
             .form-row-head-inner{
               border:0;
+            }
+          }
+          &.active{
+            .form-row-head{
+              border-radius:15px 15px 0 0;
             }
           }
         }

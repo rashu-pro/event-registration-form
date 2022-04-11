@@ -215,9 +215,6 @@
 .btn.selected {
   color: #202020;
 }
-.btn.selected:focus, .btn.selected:active {
-  background: lightgray !important;
-}
 
 .loader-div {
   position: fixed;
@@ -1090,6 +1087,7 @@ h4 {
 }
 .main.style-2 .form-row.active .form-row-head {
   display: block;
+  border-radius: 15px 15px 0 0;
 }
 .main.style-2 .form-row.active .form-row-body {
   display: block;
@@ -1104,6 +1102,9 @@ h4 {
 }
 .main.style-2 .form-row.edited .form-row-head .form-row-head-inner {
   border: 0;
+}
+.main.style-2 .form-row.edited.active .form-row-head {
+  border-radius: 15px 15px 0 0;
 }
 .main.style-2 .form-fields-wrapper.booth-selected .btn {
   display: none;
