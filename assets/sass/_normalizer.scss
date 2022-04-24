@@ -56,6 +56,7 @@ h4{
   }
 
   &.alert-border-top{
+    border-left:0;
     border-top:4px solid;
   }
 
@@ -71,6 +72,18 @@ h4{
 
   &-warning{
     border-left-color:#664d03
+  }
+
+  .tag{
+    border: 1px solid #8b8b8b;
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 7px;
+    font-size: 15px;
+    position: relative;
+    top: -6px;
+    background: #fff;
+    line-height: 1;
   }
 }
 

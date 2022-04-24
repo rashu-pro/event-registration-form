@@ -32,6 +32,12 @@
       }
     }
 
+    &.field-validated{
+      .form-control{
+        border-color:#28a745;
+      }
+    }
+
   }
   &-control{
     line-height: 2rem;

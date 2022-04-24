@@ -79,7 +79,7 @@
 
                                 <!-- ====== SELECT TICKET TYPE ====== -->
 
-                                <div class="form-row form-row-ticket-individual active" data-row="1">
+                                <div class="form-row form-row-ticket-individual active first-row" data-row="1">
                                     <div class="form-row-head">
                                         <div class="form-row-head-inner">
                                             <h3 class="form-row-title">Ticket #<span class="ticket-row">1</span></h3>
@@ -263,14 +263,14 @@ Access to most of ISNA convention.">College Student Ticket (18+) ($89)</option>
                                                         <div class="col-6 col-sm-6 col-md-6 col-lg-6">
                                                             <div class="form-group required-group">
                                                                 <label class="form-control-label">First Name <span class="required-mark">*</span></label>
-                                                                <input type="text" class="form-control">
+                                                                <input type="text" class="form-control first-name" data-validation="text">
                                                             </div>
                                                         </div>
 
                                                         <div class="col-6 col-sm-6 col-md-6 col-lg-6">
                                                             <div class="form-group required-group">
                                                                 <label class="form-control-label">Last Name <span class="required-mark">*</span></label>
-                                                                <input type="text" class="form-control">
+                                                                <input type="text" class="form-control last-name" data-validation="text">
                                                             </div>
                                                         </div>
 
@@ -293,9 +293,9 @@ Access to most of ISNA convention.">College Student Ticket (18+) ($89)</option>
                                                         </div>
 
                                                         <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                            <div class="form-group email-field required-group">
+                                                            <div class="form-group email-field">
                                                                 <label class="form-control-label">Email <span class="required-mark">*</span></label>
-                                                                <input type="email" class="form-control">
+                                                                <input type="email" class="form-control email" data-validation="email">
                                                             </div>
                                                         </div>
 
@@ -317,14 +317,14 @@ Access to most of ISNA convention.">College Student Ticket (18+) ($89)</option>
                                                         <div class="col-12 col-sm-6 col-md-6 col-lg-6">
                                                             <div class="form-group">
                                                                 <label class="form-control-label">Country <span class="required-mark">*</span></label>
-                                                                <input type="text" class="form-control">
+                                                                <input type="text" class="form-control country">
                                                             </div>
                                                         </div>
 
                                                         <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                                                             <div class="form-group">
                                                                 <label class="form-control-label">Street Address <span class="required-mark">*</span></label>
-                                                                <input type="text" class="form-control">
+                                                                <input type="text" class="form-control address">
                                                             </div>
                                                         </div>
 
@@ -338,21 +338,21 @@ Access to most of ISNA convention.">College Student Ticket (18+) ($89)</option>
                                                         <div class="col-6 col-sm-6 col-md-6 col-lg-6">
                                                             <div class="form-group zip-code-field">
                                                                 <label class="form-control-label">ZIP Code <span class="required-mark">*</span></label>
-                                                                <input type="text" class="form-control">
+                                                                <input type="text" class="form-control zip-code" data-validation="zipcode">
                                                             </div>
                                                         </div>
 
                                                         <div class="col-6 col-sm-6 col-md-6 col-lg-6">
                                                             <div class="form-group">
                                                                 <label class="form-control-label">State <span class="required-mark">*</span></label>
-                                                                <input type="text" class="form-control">
+                                                                <input type="text" class="form-control state">
                                                             </div>
                                                         </div>
 
                                                         <div class="col-6 col-sm-6 col-md-6 col-lg-6">
                                                             <div class="form-group">
                                                                 <label class="form-control-label">City <span class="required-mark">*</span></label>
-                                                                <input type="text" class="form-control">
+                                                                <input type="text" class="form-control city">
                                                             </div>
                                                         </div>
 
@@ -362,19 +362,108 @@ Access to most of ISNA convention.">College Student Ticket (18+) ($89)</option>
                                         </div>
 
                                         <div class="form-row-foot">
-                                            <div class="text-right">
+                                            <div class="text-center">
                                                 <a href="javascript:void(0)" class="btn btn-dark btn-add-another-js disabled">
                                                     <img src="assets/images/plus_circle.png" class="img-left">
                                                     <span class="btn-text">Add Another Ticket</span>
                                                 </a>
-
-                                                <button type="button" class="btn btn-primary btn-pay-direction-js ml-4">Pay Now</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
                             </div>
+
+                            <div class="form-row billing-information-wrapper active mt-4">
+
+                                <div class="form-row-head">
+                                    <div class="form-row-head-inner">
+                                        <h3 class="form-row-title text-center"><span>Billing Information</span></h3>
+                                    </div>
+                                </div>
+
+                                <div class="form-row-body">
+                                    <div class="form-fields-wrapper">
+                                        <div class="billing-information">
+
+                                            <div class="checkbox-holder alert alert-success copy-information">
+                                                <input type="checkbox" id="copy-information" class="regular-checkbox">
+                                                <label for="copy-information" class="m-0">Copy <span class="name"></span>'s information below</label>
+                                            </div>
+
+                                            <div class="row mt-3">
+                                                <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+                                                    <div class="form-group required-group">
+                                                        <label class="form-control-label">First Name <span class="required-mark">*</span></label>
+                                                        <input type="text" class="form-control first-name">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+                                                    <div class="form-group required-group">
+                                                        <label class="form-control-label">Last Name <span class="required-mark">*</span></label>
+                                                        <input type="text" class="form-control last-name">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+                                                    <div class="form-group required-group">
+                                                        <label class="form-control-label">Email <span class="required-mark">*</span></label>
+                                                        <input type="email" class="form-control email" data-validation="email">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                                    <div class="form-group required-group">
+                                                        <label class="form-control-label">Street Address <span class="required-mark">*</span></label>
+                                                        <input type="text" class="form-control address">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+                                                    <div class="form-group required-group">
+                                                        <label class="form-control-label">Country <span class="required-mark">*</span></label>
+                                                        <input type="text" class="form-control country">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                                    <div class="form-group required-group zip-code-field">
+                                                        <label class="form-control-label">ZIP Code <span class="required-mark">*</span></label>
+                                                        <input type="text" class="form-control zip-code" data-validation="zipcode">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                                    <div class="form-group required-group">
+                                                        <label class="form-control-label">State <span class="required-mark">*</span></label>
+                                                        <input type="text" class="form-control state">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                                    <div class="form-group required-group">
+                                                        <label class="form-control-label">City <span class="required-mark">*</span></label>
+                                                        <input type="text" class="form-control city">
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row-foot">
+                                        <div class="alert alert-danger">
+                                            <p class="price-note">Your current total for <span class="ticket-count"></span> tickets is: $<span class="total-price"></span> </p>
+                                        </div>
+                                        <div class="text-left">
+                                            <button type="button" class="btn btn-primary btn-pay-direction-js"><img class="img-left" src="assets/images/credit-card.png"> Pay Now</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
                         </div>
 
                         <div class="col-12 col-sm-4 col-md-4 col-lg-4">
@@ -408,7 +497,7 @@ Access to most of ISNA convention.">College Student Ticket (18+) ($89)</option>
 
                                 <div class="sidebar-block" id="payment-information">
                                     <h3 class="sidebar-block-title">Payment Information</h3>
-                                    <div class="sidebar-block-description">
+                                    <div class="sidebar-block-description disabled-block">
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="form-group">
@@ -641,10 +730,11 @@ Access to most of ISNA convention.">College Student Ticket (18+) ($89)</option>
 
 
 
-<script src="assets/plugins/jquery-3.6.0.slim.min.js"></script>
+<script src="assets/plugins/jquery-3.6.0.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 <script src="assets/plugins/card_validation.js"></script>
 <script src="assets/js/custom.js?1.0.1"></script>
+<!--<script src="assets/js/autofill_state_city.js"></script>-->
 </body>
 </html>

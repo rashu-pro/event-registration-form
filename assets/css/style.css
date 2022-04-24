@@ -390,6 +390,9 @@
 .form-group.field-invalid .form-control {
   border-color: #dc3545;
 }
+.form-group.field-validated .form-control {
+  border-color: #28a745;
+}
 .form-control {
   line-height: 2rem;
   border: 0.15rem solid #8B8B8B;
@@ -504,6 +507,7 @@ h4 {
   margin: 0;
 }
 .alert.alert-border-top {
+  border-left: 0;
   border-top: 4px solid;
 }
 .alert-primary {
@@ -517,6 +521,17 @@ h4 {
 }
 .alert-warning {
   border-left-color: #664d03;
+}
+.alert .tag {
+  border: 1px solid #8b8b8b;
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 7px;
+  font-size: 15px;
+  position: relative;
+  top: -6px;
+  background: #fff;
+  line-height: 1;
 }
 
 .step {
@@ -1367,6 +1382,32 @@ h4 {
   transform: translateY(-50%);
 }
 
+.disabled-block {
+  opacity: 0.4;
+  pointer-events: none;
+  filter: blur(2px);
+}
+
+.billing-information-wrapper {
+  display: none;
+}
+.billing-information-wrapper.active {
+  display: block;
+}
+.billing-information-wrapper .form-row-head {
+  background-color: #198248;
+  color: #fff;
+}
+.billing-information-wrapper .form-row-foot .btn .img-left {
+  max-height: 32px;
+}
+.billing-information-wrapper .regular-checkbox + label {
+  font-size: 16px;
+}
+.billing-information-wrapper .regular-checkbox:checked + label:after {
+  font-size: 13px;
+}
+
 .card-info-area .card-image {
   padding: 15px 0;
 }
@@ -1522,6 +1563,7 @@ h4 {
 }
 .checkbox-holder.radiobox label {
   font-weight: 400;
+  margin: 0;
 }
 
 .text-normal {

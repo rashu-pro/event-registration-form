@@ -502,3 +502,45 @@
     transform:translateY(-50%);
   }
 }
+
+.disabled-block{
+  opacity: 0.4;
+  pointer-events: none;
+  filter: blur(2px);
+}
+
+.billing-information{
+  &-wrapper{
+
+    display: none;
+
+    &.active{
+      display: block;
+    }
+
+    .form{
+      &-row{
+        &-head{
+          background-color: $green_dark;
+          color:#fff;
+        }
+        &-foot{
+          .btn{
+            .img-left{
+              max-height: 32px;
+            }
+          }
+        }
+      }
+    }
+
+
+    .regular-checkbox + label{
+      font-size:16px;
+    }
+    .regular-checkbox:checked + label:after{
+      font-size: 13px;
+    }
+  }
+
+}
