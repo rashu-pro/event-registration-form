@@ -47,16 +47,26 @@ h4{
 
 .alert{
   border-left:4px solid;
-  font-size: 15px;
+  font-size: 16px;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   padding: 10px;
   p{
     margin:0;
   }
+
+  &.alert-border-top{
+    border-top:4px solid;
+  }
+
   &-primary{
     border-left-color:#084298;
     padding: 10px;
+    &.alert-border-top{
+      border-left:1px solid;
+      border-left-color:#b8daff;
+      border-top-color:#084298;
+    }
   }
 
   &-warning{

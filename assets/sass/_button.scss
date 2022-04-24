@@ -11,6 +11,11 @@
     margin-right:5px;
   }
 
+  &-text{
+    position: relative;
+    top:2px;
+  }
+
   img{
     max-height: 16px;
   }
@@ -126,6 +131,11 @@
     //&:focus,&:active{
     //  background:lightgray!important;
     //}
+  }
+
+  &.disabled{
+    cursor: not-allowed;
+    opacity: 0.4;
   }
 
 }

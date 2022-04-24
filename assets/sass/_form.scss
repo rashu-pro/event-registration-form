@@ -5,7 +5,7 @@
 .form{
   &-group{
     //padding-bottom:20px;
-    padding-bottom:20px;
+    padding-bottom:30px;
     margin-bottom:0;
     &.last{
       margin:0;
@@ -24,6 +24,14 @@
         }
       }
     }
+
+    &.field-invalid{
+      //color:#dc3545;
+      .form-control{
+        border-color:#dc3545;
+      }
+    }
+
   }
   &-control{
     line-height: 2rem;
@@ -46,9 +54,9 @@
 select.form-control:not([size]):not([multiple]){
   height:54px;
   position: relative;
-  background: transparent;
+  //background: transparent;
   z-index: 99;
-  -webkit-appearance: none;
+  //-webkit-appearance: none;
 }
 
 .select-wrapper{
@@ -80,4 +88,8 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+.error-message{
+  position: absolute;
 }

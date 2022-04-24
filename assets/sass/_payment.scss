@@ -29,3 +29,18 @@
 .card-info-area .form-control:focus {
   background-color: #fff;
 }
+
+.cc{
+  &-number{
+    &-holder{
+      position: relative;
+    }
+  }
+  &-card{
+    &-identity{
+      position: absolute;
+      top:7px;
+      right:6px;
+    }
+  }
+}

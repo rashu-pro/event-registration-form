@@ -1,3 +1,19 @@
+$color_sponsorship_aisle:#c42090;
+$color_sponsorship_aisle_dark:#631049;
+
+$color_prime_a:#73D39E;
+$color_prime_a_dark:#2D8E58;
+
+$color_prime_b:#fabf8e;
+$color_prime_b_dark:#D76609;
+
+$color_prime_c:#6fcaf2;
+$color_prime_c_dark:#1186B8;
+
+$color_standard:#f8f49c;
+$color_standard:#f8f49c;
+
+
 .main{
   &.style-2{
     background: #fff;
@@ -92,6 +108,7 @@
     .ticket{
       &-map{
         overflow: auto;
+        position: relative;
 
         .btn{
           border: 1px solid #202020;
@@ -116,6 +133,7 @@
 
         &-left{
           //margin:0 auto;
+          padding-left:100px;
         }
 
         &-right{
@@ -149,7 +167,7 @@
           align-items: flex-end;
           &-wrapper{
             //width:2400px;
-            min-width: 2500px;
+            min-width: 2600px;
             padding:30px 30px;
             display: flex;
             align-items: flex-end;
@@ -383,20 +401,77 @@
       display: inline-block;
     }
   }
+
+  &-color{
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    background: #fff;
+    padding: 10px;
+    border-radius: 12px;
+    border: 1px solid #8b8b8b;
+    &-title{
+
+    }
+    &-row{
+      .table{
+        max-width:400px;
+        td,th{
+          font-size: 15px;
+          line-height: 1;
+          vertical-align: middle;
+          padding: 5px 5px 11px;
+        }
+      }
+    }
+  }
+
+  &-details{
+    .booth-type-holder{
+      border-bottom: 0;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+
+  }
+}
+
+.color-box{
+display: inline-block;
+width: 20px;
+height: 20px;
+border: 1px solid #202020;
+position: relative;
+top: 4px;
+&.sponsorship-aisle{
+background-color: $color_sponsorship_aisle;
+}
+&.prime-a{
+background-color: $color_prime_a;
+}
+&.prime-b{
+background-color: $color_prime_b;
+}
+&.prime-c{
+background-color: $color_prime_c;
+}
+&.standard{
+background-color: $color_standard;
+}
 }
 
 .fire-exits{
-  width:15px;
-  height:15px;
-  background: #202020;
+width:15px;
+height:15px;
+background: #202020;
 }
 
 
 .confirm-modal{
-  p{
-    font-size:1.4em;
-    &.booth-type-holder{
-      font-size: 1.6em;
-    }
-  }
+p{
+font-size:1.4em;
+&.booth-type-holder{
+  font-size: 1.6em;
+}
+}
 }
