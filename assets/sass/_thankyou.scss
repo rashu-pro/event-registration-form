@@ -1,7 +1,7 @@
 .thank{
   &-wrapper{
     //padding:
-    display: none;
+    //display: none;
     padding-bottom:0;
 
     &.active{
@@ -150,4 +150,57 @@
   //max-width: 550px;
   top: 44%;
   transform: translateY(-50%) !important;
+}
+
+.registration-info-table{
+  .table-holder{
+    @media (min-width:768px){
+      //max-width:85%;
+    }
+  }
+}
+
+.event{
+  &-info{
+    &-box{
+      padding: 30px 25px;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      margin-bottom:20px;
+      &-head{
+
+      }
+      &-image{
+        width: 80px;
+        height: 80px;
+        border-radius: 8px;
+        background-color: #dae6df;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        img{
+          max-width:60%;
+        }
+      }
+      &-body{
+        padding: 15px 0;
+        padding-bottom: 0;
+      }
+
+      @media (min-width:768px){
+        margin-bottom:0;
+        height: 100%;
+      }
+    }
+  }
+}
+
+.text-black{
+  color:#202020;
+}
+.text-medium{
+  font-size: 18px;
+}
+.font-600{
+  font-weight: 600;
 }

@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="assets/css/style.css?v=1.0.5">
+    <link rel="stylesheet" href="assets/css/style.css?v=1.0.6">
 </head>
 <body>
 
@@ -30,11 +30,11 @@
                     <div class="col-9">
                         <ul class="nav">
                             <!--<li class="nav-item">-->
-                                <!--<a class="nav-link" href="#">Contact Us</a>-->
+                            <!--<a class="nav-link" href="#">Contact Us</a>-->
                             <!--</li>-->
 
                             <!--<li class="nav-item">-->
-                                <!--<a class="nav-link" href="tel:317 644 6538"> 317 644 6538 </a>-->
+                            <!--<a class="nav-link" href="tel:317 644 6538"> 317 644 6538 </a>-->
                             <!--</li>-->
                         </ul>
                     </div>
@@ -99,21 +99,29 @@
                                     <div class="form-row-body">
                                         <div class="form-fields-wrapper">
                                             <div class="ticket-type">
-                                                <h4 class="pb-2">Select Ticket Type:</h4>
-                                                <select class="form-control ticket-type-js">
-                                                    <option value="0">Select Ticket Type</option>
-                                                    <option value="60" data-text="Sunday Only" data-description="This ticket provides admission to ISNACON for SUNDAY ONLY.
+                                                <div class="form-group required-group m-0 p-0">
+                                                    <h4 class="pb-2">Select Ticket Type:
+                                                        <span class="required-mark">*</span>
+                                                    </h4>
+                                                    <select class="form-control ticket-type-js">
+                                                        <option value="0" data-price="0">Select Ticket Type</option>
+                                                        <option value="60" data-price="60" data-group="0" data-text="Sunday Only" data-description="This ticket provides admission to ISNACON for SUNDAY ONLY.
 Access to most of ISNA convention.">Sunday Only Ticket ($60)</option>
-                                                    <option value="109" data-text="Individual Adult Ticket" data-description="Access to most of ISNA convention.">Individual Adult Ticket ($109)</option>
-                                                    <option value="89" data-text="College Student Ticket" data-description="Reduced Price Ticket for grads and undergrads.
+                                                        <option value="109" data-price="109" data-group="0" data-text="Individual Adult Ticket" data-description="Access to most of ISNA convention.">Individual Adult Ticket ($109)</option>
+                                                        <option value="89" data-price="89" data-text="College Student Ticket" data-description="Reduced Price Ticket for grads and undergrads.
 Access to most of ISNA convention.">College Student Ticket (18+) ($89)</option>
-                                                    <option value="59" data-text="Young Adult Ticket" data-description="Access to MYNA Convention at ISNACON.">Young Adult Ticket (12-17 MYNA) ($59)</option>
-                                                    <option value="49" data-text="Childcare Ticket" data-description="Childcare Ticket: Access to Childcare Program and third party child care service (i.e. babysitting).
+                                                        <option value="59" data-price="59" data-text="Young Adult Ticket" data-description="Access to MYNA Convention at ISNACON.">Young Adult Ticket (12-17 MYNA) ($59)</option>
+                                                        <option value="49" data-price="49" data-text="Childcare Ticket" data-description="Childcare Ticket: Access to Childcare Program and third party child care service (i.e. babysitting).
 **Please read note below regarding childcare hours and breaks.">Child Ticket (6-11) ($49)</option>
-                                                    <option value="85" data-text="Childcare Ticket" data-description="Childcare Ticket: Access to Childcare Program and third party child care service (i.e. babysitting).
+                                                        <option value="85" data-price="85" data-text="Childcare Ticket" data-description="Childcare Ticket: Access to Childcare Program and third party child care service (i.e. babysitting).
 **Please read note below regarding childcare hours and breaks.">Childcare Ticket (2-5) ($85)</option>
-                                                    <option value="89" data-text="Senior Ticket" data-description="Reduced price ticket. Access to most of ISNA convention.">Senior Ticket (60+) ($89)</option>
-                                                </select>
+                                                        <option value="89" data-price="89" data-text="Senior Ticket" data-description="Reduced price ticket. Access to most of ISNA convention.">Senior Ticket (60+) ($89)</option>
+                                                        <option value="120" data-price="120" data-group="couple" data-text="Couple Ticket" data-description="Couple Ticket">Grouped Ticket (60+) ($150)</option>
+                                                        <option value="130" data-price="130" data-group="3" data-text="Couple Ticket" data-description="Couple Ticket">Grouped Ticket (60+) ($150)</option>
+                                                        <option value="150" data-price="150" data-group="4" data-text="Grouped Ticket" data-description="Grouped Ticket">Grouped Ticket (60+) ($150)</option>
+                                                    </select>
+                                                </div>
+
 
                                                 <div class="ticket-type-details pt-3">
                                                     <p class="mb-2"><strong>Ticket: </strong> <span class="ticket-type-text"></span> </p>
@@ -307,14 +315,16 @@ Access to most of ISNA convention.">College Student Ticket (18+) ($89)</option>
 
                                             <!-- //=== CONTACT INFORMATION -->
                                             <div class="contact-information-wrapper b-t-1 mt-4 pt-3">
-                                                <div class="contact-information-inner">
+
+                                                <!-- //=== CONTACT INFORMATION SINGLE -->
+                                                <div class="contact-information-inner contact-information-single">
                                                     <h3 class="text-center font-bold section-title"><span>Contact Information</span></h3>
 
                                                     <div class="row mt-3">
                                                         <div class="col-6 col-sm-6 col-md-6 col-lg-6">
                                                             <div class="form-group required-group">
                                                                 <label class="form-control-label">First Name <span class="required-mark">*</span></label>
-                                                                <input type="text" class="form-control first-name">
+                                                                <input type="text" class="form-control first-name mask-text">
                                                             </div>
                                                         </div>
 
@@ -340,25 +350,206 @@ Access to most of ISNA convention.">College Student Ticket (18+) ($89)</option>
                                                                     </div>
                                                                 </div>
 
-                                                                <input type="text" class="form-control gender-value hidden-field" value="">
+                                                                <p class="error-message text-danger m-0">Choose an option</p>
                                                             </div>
                                                         </div>
 
                                                         <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                            <div class="form-group email-field required-group">
+                                                            <div class="form-group email-field">
                                                                 <label class="form-control-label">Email <span class="required-mark">*</span></label>
-                                                                <input type="email" class="form-control email" data-validation="email">
+                                                                <input type="email" class="form-control email mask-email" data-validation="email">
                                                             </div>
                                                         </div>
 
                                                         <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                            <div class="form-group required-group">
+                                                            <div class="form-group">
                                                                 <label class="form-control-label">Phone Number <span class="required-mark">*</span></label>
                                                                 <input type="text" class="form-control phone-number-mask">
                                                             </div>
                                                         </div>
 
                                                     </div>
+                                                </div>
+
+
+                                                <!-- //=== CONTACT INFORMATION GROUPED -->
+                                                <div class="contact-information-inner contact-information-grouped">
+
+                                                    <!-- //=== CONTACT INFORMATION GROUPED SINGLE -->
+                                                    <div class="contact-information-grouped-wrapper" data-grouped="1">
+
+                                                        <div class="contact-information-grouped-single" data-contact="1">
+                                                            <h3 class="text-center font-bold section-title"><span>Contact Information #1</span></h3>
+
+                                                            <div class="row mt-3">
+                                                                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                                                    <div class="form-group required-group">
+                                                                        <label class="form-control-label">First Name <span class="required-mark">*</span></label>
+                                                                        <input type="text" class="form-control first-name mask-text" name="grouped-first-name[]">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                                                    <div class="form-group required-group">
+                                                                        <label class="form-control-label">Last Name <span class="required-mark">*</span></label>
+                                                                        <input type="text" class="form-control last-name" name="grouped-last-name[]">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-12 col-sm-12">
+                                                                    <div class="form-group radiobox gender-radio required-group">
+                                                                        <label class="form-control-label"> Gender <span class="required-mark">*</span> </label>
+                                                                        <div class="pt-2">
+                                                                            <div class="checkbox-holder radiobox radio-male text-normal m-0 d-inline-flex mr-4">
+                                                                                <input type="radio" name="grouped-gender-1" id="grouped-gender-male-1-1" class="regular-checkbox" value="male">
+                                                                                <label for="grouped-gender-male-1-1" class="text-dark">Male</label>
+                                                                            </div>
+
+                                                                            <div class="checkbox-holder d-inline-flex radiobox radio-female text-normal">
+                                                                                <input type="radio" name="grouped-gender-1" id="grouped-gender-female-1-1" class="regular-checkbox" value="female">
+                                                                                <label for="grouped-gender-female-1-1" class="text-dark">Female</label>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <p class="error-message text-danger m-0">Choose an option</p>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+                                                                    <div class="form-group email-field">
+                                                                        <label class="form-control-label">Email <span class="required-mark">*</span></label>
+                                                                        <input type="email" name="grouped-email[]" class="form-control email mask-email" data-validation="email">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+                                                                    <div class="form-group">
+                                                                        <label class="form-control-label">Phone Number <span class="required-mark">*</span></label>
+                                                                        <input type="text" name="grouped-phone[]" class="form-control phone-number-mask">
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="contact-information-grouped-single" data-contact="2">
+                                                            <h3 class="text-center font-bold section-title"><span>Contact Information #2</span></h3>
+
+                                                            <div class="row mt-3">
+                                                                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                                                    <div class="form-group required-group">
+                                                                        <label class="form-control-label">First Name <span class="required-mark">*</span></label>
+                                                                        <input type="text" name="grouped-first-name[]" class="form-control first-name mask-text">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                                                    <div class="form-group required-group">
+                                                                        <label class="form-control-label">Last Name <span class="required-mark">*</span></label>
+                                                                        <input type="text" name="grouped-last-name[]" class="form-control last-name">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-12 col-sm-12">
+                                                                    <div class="form-group radiobox gender-radio required-group">
+                                                                        <label class="form-control-label"> Gender <span class="required-mark">*</span> </label>
+                                                                        <div class="pt-2">
+                                                                            <div class="checkbox-holder radiobox radio-male text-normal m-0 d-inline-flex mr-4">
+                                                                                <input type="radio" name="grouped-gender-2" id="grouped-gender-male-2-1" class="regular-checkbox" value="male">
+                                                                                <label for="grouped-gender-male-2-1" class="text-dark">Male</label>
+                                                                            </div>
+
+                                                                            <div class="checkbox-holder d-inline-flex radiobox radio-female text-normal">
+                                                                                <input type="radio" name="grouped-gender-2" id="grouped-gender-female-2-1" class="regular-checkbox" value="female">
+                                                                                <label for="grouped-gender-female-2-1" class="text-dark">Female</label>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <p class="error-message text-danger m-0">Choose an option</p>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+                                                                    <div class="form-group email-field">
+                                                                        <label class="form-control-label">Email <span class="required-mark">*</span></label>
+                                                                        <input type="email" name="grouped-email[]" class="form-control email mask-email" data-validation="email">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+                                                                    <div class="form-group">
+                                                                        <label class="form-control-label">Phone Number <span class="required-mark">*</span></label>
+                                                                        <input type="text" name="grouped-phone[]" class="form-control phone-number-mask">
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="contact-information-grouped-single" data-contact="3">
+                                                            <h3 class="text-center font-bold section-title"><span>Contact Information #3</span></h3>
+
+                                                            <div class="row mt-3">
+                                                                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                                                    <div class="form-group required-group">
+                                                                        <label class="form-control-label">First Name <span class="required-mark">*</span></label>
+                                                                        <input type="text" name="grouped-first-name[]" class="form-control first-name mask-text">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                                                    <div class="form-group required-group">
+                                                                        <label class="form-control-label">Last Name <span class="required-mark">*</span></label>
+                                                                        <input type="text" name="grouped-last-name[]" class="form-control last-name">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-12 col-sm-12">
+                                                                    <div class="form-group radiobox radio-male gender-radio required-group">
+                                                                        <label class="form-control-label"> Gender <span class="required-mark">*</span> </label>
+                                                                        <div class="pt-2">
+                                                                            <div class="checkbox-holder radiobox radio-male text-normal m-0 d-inline-flex mr-4">
+                                                                                <input type="radio" name="grouped-gender-3" id="grouped-gender-male-3-1" class="regular-checkbox" value="male">
+                                                                                <label for="grouped-gender-male-3-1" class="text-dark">Male</label>
+                                                                            </div>
+
+                                                                            <div class="checkbox-holder d-inline-flex radiobox radio-female text-normal">
+                                                                                <input type="radio" name="grouped-gender-3" id="grouped-gender-female-3-1" class="regular-checkbox" value="female">
+                                                                                <label for="grouped-gender-female-3-1" class="text-dark">Female</label>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <p class="error-message text-danger m-0">Choose an option</p>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+                                                                    <div class="form-group email-field">
+                                                                        <label class="form-control-label">Email <span class="required-mark">*</span></label>
+                                                                        <input type="email" name="grouped-email[]" class="form-control email mask-email" data-validation="email">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+                                                                    <div class="form-group">
+                                                                        <label class="form-control-label">Phone Number <span class="required-mark">*</span></label>
+                                                                        <input type="text" name="grouped-phone[]" class="form-control phone-number-mask">
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="btn-holder">
+                                                            <a href="javascript:void(0)" class="btn btn-dark btn-add-group-js">
+                                                                <img src="assets/images/plus_circle.png" class="img-left">
+                                                                <span class="btn-text">Add Another Group</span>
+                                                            </a>
+                                                        </div>
+
+                                                    </div>
+
+
                                                 </div>
 
                                                 <div class="address-inner b-t-1 mt-4 pt-3">
@@ -377,7 +568,7 @@ Access to most of ISNA convention.">College Student Ticket (18+) ($89)</option>
                                                         </div>
 
                                                         <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                                                            <div class="form-group required-group">
+                                                            <div class="form-group">
                                                                 <label class="form-control-label">Street Address <span class="required-mark">*</span></label>
                                                                 <input type="text" class="form-control address">
                                                             </div>
@@ -391,20 +582,20 @@ Access to most of ISNA convention.">College Student Ticket (18+) ($89)</option>
                                                         </div>
 
                                                         <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                                                            <div class="form-group required-group zip-code-field">
+                                                            <div class="form-group zip-code-field">
                                                                 <label class="form-control-label">ZIP Code <span class="required-mark">*</span></label>
                                                                 <input type="text" class="form-control zip-code mask-zipcode" data-validation="zipcode">
                                                             </div>
                                                         </div>
 
                                                         <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                                                            <div class="form-group required-group state-field-group">
+                                                            <div class="form-group state-field-group">
                                                                 <label class="form-control-label">State <span class="required-mark">*</span></label>
                                                             </div>
                                                         </div>
 
                                                         <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                                                            <div class="form-group required-group">
+                                                            <div class="form-group">
                                                                 <label class="form-control-label">City <span class="required-mark">*</span></label>
                                                                 <input type="text" class="form-control city">
                                                             </div>
@@ -415,23 +606,25 @@ Access to most of ISNA convention.">College Student Ticket (18+) ($89)</option>
 
                                                 <div class="tc-wrapper">
                                                     <div class="alert alert-primary alert-round-border">
-                                                        <p>
+                                                        <p style="font-size:12px">
                                                             <strong>Disclaimer:</strong>
-                                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab autem debitis facere mollitia nostrum odit provident quas quasi recusandae, reiciendis, reprehenderit rerum suscipit veritatis. Atque ea iusto mollitia temporibus ullam?
+                                                            WE ARE COMMITTED TO PROVIDING A SAFE,  ENJOYABLE, AND LEARNING ENVIRONMENT TO ALL CONVENTION ATTENDEES. TO ENSURE THIS, ISNA HOLDS THE RIGHT TO CANCEL ANY REGISTRATION. BY REGISTERING FOR THIS CONVENTION YOU AGREE TO ITS POLICIES AND PROCEDURES.  IF YOU OR A MEMBER OF YOUR GROUP CAUSES ANY DISTURBANCE, YOUR REGISTRATION WILL BE CANCELED WITHOUT REFUND.  THE JUDGMENT OF TERM "DISTURBANCE" WILL BE DETERMINED SOLELY BY ISNA.YOUR EMAIL WILL BE AUTOMATICALLY INCLUDED IN THE ISNA E-LISTSERV.  YOU WILL HAVE THE OPTION TO OPT-OUT FROM THIS LIST.
                                                         </p>
 
                                                         <div class="checkbox-holder mt-3 mb-0">
                                                             <input type="checkbox" id="tc" class="regular-checkbox tc">
-                                                            <label for="tc" class="text-dark"><span>I have read and agree to the terms above. </span></label>
+                                                            <label for="tc" class="text-dark">I have read and agree to the terms above. </label>
                                                         </div>
                                                     </div>
                                                 </div>
+
+
                                             </div>
                                         </div>
 
                                         <div class="form-row-foot">
                                             <div class="text-center">
-                                                <a href="javascript:void(0)" class="btn btn-dark btn-add-another-js disabled">
+                                                <a href="javascript:void(0)" class="btn btn-dark btn-add-another-js">
                                                     <img src="assets/images/plus_circle.png" class="img-left">
                                                     <span class="btn-text">Add Another Ticket</span>
                                                 </a>
@@ -442,99 +635,6 @@ Access to most of ISNA convention.">College Student Ticket (18+) ($89)</option>
 
                             </div>
 
-                            <div class="form-row billing-information-wrapper mt-4">
-
-                                <div class="form-row-head">
-                                    <div class="form-row-head-inner">
-                                        <h3 class="form-row-title text-center"><span>Billing Information</span></h3>
-                                    </div>
-                                </div>
-
-                                <div class="form-row-body">
-                                    <div class="form-fields-wrapper">
-                                        <div class="billing-information">
-
-                                            <div class="checkbox-holder alert alert-success copy-information">
-                                                <input type="checkbox" id="copy-information" class="regular-checkbox">
-                                                <label for="copy-information" class="m-0">Copy &nbsp; <span class="name"></span>'s information below</label>
-                                            </div>
-
-                                            <div class="row mt-3">
-                                                <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                    <div class="form-group required-group">
-                                                        <label class="form-control-label">First Name <span class="required-mark">*</span></label>
-                                                        <input type="text" class="form-control first-name">
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                    <div class="form-group required-group">
-                                                        <label class="form-control-label">Last Name <span class="required-mark">*</span></label>
-                                                        <input type="text" class="form-control last-name">
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                    <div class="form-group required-group">
-                                                        <label class="form-control-label">Email <span class="required-mark">*</span></label>
-                                                        <input type="email" class="form-control email" data-validation="email">
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                                                    <div class="form-group required-group">
-                                                        <label class="form-control-label">Street Address <span class="required-mark">*</span></label>
-                                                        <input type="text" class="form-control address">
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                    <div class="form-group required-group">
-                                                        <label class="form-control-label">Country <span class="required-mark">*</span></label>
-                                                        <select class="form-control country">
-                                                            <option value="USA">USA</option>
-                                                            <option value="Canada">Canada</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                                                    <div class="form-group required-group zip-code-field">
-                                                        <label class="form-control-label">ZIP Code <span class="required-mark">*</span></label>
-                                                        <input type="text" class="form-control zip-code" data-validation="zipcode">
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                                                    <div class="form-group required-group state-field-group">
-                                                        <label class="form-control-label">State <span class="required-mark">*</span></label>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                                                    <div class="form-group required-group">
-                                                        <label class="form-control-label">City <span class="required-mark">*</span></label>
-                                                        <input type="text" class="form-control city">
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-row-foot">
-                                        <div class="alert alert-danger">
-                                            <p class="price-note">Your current total for <span class="ticket-count"></span> tickets is: $<span class="total-price"></span> </p>
-                                        </div>
-
-                                        <div class="text-right">
-                                            <button type="button" class="btn btn-primary btn-pay-direction-js ml-4">Pay Now</button>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
 
                         </div>
 
@@ -542,15 +642,6 @@ Access to most of ISNA convention.">College Student Ticket (18+) ($89)</option>
 
                             <!-- ====== SIDEBAR ====== -->
                             <div class="sidebar">
-
-                                <div class="sidebar-block">
-                                    <h3 class="sidebar-block-title">Event Information</h3>
-                                    <div class="sidebar-block-description">
-
-                                        <h4 class="text-info mb-3">Cancels Before June</h4>
-                                        <h4 class="text-info">Refund Before July</h4>
-                                    </div>
-                                </div>
 
                                 <div class="sidebar-block">
                                     <h3 class="sidebar-block-title">Ticket Summary</h3>
@@ -579,7 +670,7 @@ Access to most of ISNA convention.">College Student Ticket (18+) ($89)</option>
 
                                 <div class="sidebar-block" id="payment-information">
                                     <h3 class="sidebar-block-title">Payment Information</h3>
-                                    <div class="sidebar-block-description payment-information disabled-block">
+                                    <div class="sidebar-block-description payment-information">
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="form-group">
@@ -680,7 +771,7 @@ Access to most of ISNA convention.">College Student Ticket (18+) ($89)</option>
                                         <div class="pb-3">
                                             <img src="assets/images/recaptcha_screenshot.png" class="img-fluid" style="border-right:1px solid #ddd">
                                         </div>
-                                        <button type="button" class="btn btn-primary btn-block btn-event-register disabled" disabled>Register</button>
+                                        <button type="button" class="btn btn-primary btn-block btn-event-register">Register</button>
                                     </div>
                                 </div>
                             </div>
@@ -814,7 +905,9 @@ Access to most of ISNA convention.">College Student Ticket (18+) ($89)</option>
 
 <script src="assets/plugins/card_validation.js"></script>
 <script src="assets/plugins/input_mask/jquery.inputmask.min.js"></script>
-<script src="assets/js/custom.js?1.0.5"></script>
+<script src="assets/js/custom.js?1.0.6"></script>
+
+
 
 </body>
 </html>

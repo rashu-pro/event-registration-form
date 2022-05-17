@@ -1,0 +1,24 @@
+.modal{
+  &-confirm{
+    h3{
+      font-size:22px;
+    }
+    img{
+      margin:10px 0 30px;
+      max-width:90px;
+    }
+
+    .modal{
+      &-content{
+        border-radius:12px;
+      }
+    }
+  }
+
+  @media (min-width:576px){
+    &-dialog{
+      max-width:550px;
+    }
+
+  }
+}

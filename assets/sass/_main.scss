@@ -13,9 +13,11 @@
       padding-bottom: 0;
       max-height: 450px;
       overflow: hidden;
+
       img{
         width:100%;
       }
+
       .main{
         &-banner{
           &-content{
@@ -26,6 +28,12 @@
             bottom: 0;
             display: flex;
             align-items: flex-end;
+
+            @media (max-width: 767px){
+              position: static;
+              margin-top:-60px;
+            }
+
             &-wrapper{
               color: #fff;
               font-size: 20px;
@@ -34,6 +42,12 @@
               background: #000000a6;
               padding-top: 20px;
               width: 100%;
+              @media (max-width: 767px){
+                font-size:16px;
+                margin:0 15px;
+                border-radius:8px;
+                background-color: #202020;
+              }
             }
 
             .banner-title{
@@ -42,11 +56,39 @@
               font-weight: 700;
               color: #fff;
               text-shadow: 2px 2px rgb(0 0 0 / 31%);
+              @media (max-width: 767px){
+                font-size:18px;
+              }
             }
 
             p{
               margin-bottom:6px;
             }
+          }
+        }
+      }
+
+      &.no-infobar{
+        max-height: none;
+        .main{
+          &-banner{
+            &-content{
+              display: none;
+            }
+          }
+        }
+      }
+
+      @media (max-width:768px){
+        img{
+          height:250px;
+          object-fit: cover;
+          border-radius: 0;
+        }
+
+        &.no-infobar{
+          img{
+            height:auto;
           }
         }
       }
@@ -93,6 +135,22 @@
     //border:1px solid #ddd;
     display: block;
 
+    .special-ticket-wrapper{
+      display: none;
+    }
+
+    &.first-row{
+      .special-ticket-wrapper{
+        display: block;
+      }
+      .form-row-head-btn{
+        display: none;
+      }
+      .btn-delete-ticket-js{
+        display: none;
+      }
+    }
+
     &-head{
       border:1px solid #ddd;
       border-bottom:0;
@@ -122,6 +180,10 @@
 
           &-default{
             border:1px solid #ddd;
+          }
+
+          &-ticket-collapse{
+            display: none;
           }
 
           &:not(:last-child){
@@ -187,6 +249,13 @@
     &-foot{
       padding:15px;
       border-top:1px solid #ddd;
+      .btn{
+        &-add-another-js{
+          &.disabled{
+            //pointer-events: all;
+          }
+        }
+      }
     }
 
     &-ticket-individual{
@@ -199,7 +268,7 @@
 
             }
             &-btn{
-              display: none;
+              //display: none;
             }
           }
         }
@@ -229,6 +298,11 @@
 
               &-btn{
                 display: block;
+                .btn{
+                  &-ticket-collapse{
+                    display: inline-block;
+                  }
+                }
               }
             }
 
@@ -264,6 +338,34 @@
 
               &-foot{
                 display: none;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &.edited{
+      .form{
+        &-row{
+          &-head{
+            border-radius:15px;
+            border-bottom:1px solid #ddd;
+            &-inner{
+              border-bottom:0;
+            }
+          }
+        }
+      }
+
+      &.active{
+        .form{
+          &-row{
+            &-head{
+              border-radius:15px 15px 0 0;
+              border-bottom:0;
+              &-inner{
+                border-bottom:1px solid rgba(0, 0, 0, 0.4);
               }
             }
           }
@@ -392,10 +494,6 @@
   }
 }
 
-
-
-
-
 .ad-type{
   display: none;
   margin-top: 15px;
@@ -481,25 +579,33 @@
 
 .section-title{
   position: relative;
-  text-transform: uppercase;
-  font-size: 26px;
+  //text-transform: uppercase;
+  font-size: 20px;
   margin:0;
   padding:15px 0;
+  font-weight: 600;
+  text-align:left!important;
+
   span{
     position: relative;
     padding: 0 8px;
     z-index: 9;
     background: #fff;
+    padding-left:0;
   }
   &:before{
-    content:'';
+    //content:'';
     position: absolute;
     left:0;
     right:0;
-    height:5px;
+    height:3px;
     background-color: #202020;
     top:50%;
     transform:translateY(-50%);
+  }
+
+  @media (min-width:768px){
+    font-size: 22px;
   }
 }
 
@@ -512,8 +618,6 @@
 .billing-information{
   &-wrapper{
 
-    display: none;
-
     &.active{
       display: block;
     }
@@ -521,9 +625,17 @@
     .form{
       &-row{
         &-head{
-          background-color: $green_dark;
+          //background-color: $green_dark;
           color:#fff;
         }
+
+        &-title{
+          font-size: 20px;
+          font-weight: 600;
+          color: #000;
+          line-height: 30px;
+        }
+
         &-foot{
           .btn{
             .img-left{
@@ -544,3 +656,108 @@
   }
 
 }
+
+.hidden-field{
+  visibility: hidden;
+  position: absolute;
+  opacity: 0;
+}
+
+.payment-information{
+  .form-control{
+    &.invalid{
+      border-color:#dc3545;
+    }
+    &.valid{
+      border-color:#28a745;
+    }
+  }
+}
+
+.badge-fee-row{
+  border:0;
+  td,th{
+    padding: 2px 0.7rem 2px 0.7rem;
+    border-top: 0;
+    font-size: 15px;
+    background: #fff;
+  }
+}
+
+
+.contact{
+  &-information{
+    &-inner{
+
+    }
+    &-grouped{
+      display: none;
+      &.active{
+        display: block;
+      }
+      &-single{
+        border-bottom:1px solid #ddd;
+      }
+
+      &-wrapper{
+        &:not(:first-child){
+          border-bottom:1px solid #ddd;
+        }
+
+        margin-bottom:20px;
+      }
+    }
+  }
+}
+
+.addon{
+  &-ticket{
+    &-details{
+      position: relative;
+      padding: 20px 20px 0 20px;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      margin-top: 30px;
+      background: #fff;
+      &-head{
+        position: absolute;
+        top: -18px;
+        right: 23px;
+        background: #fff;
+        padding: 6px 10px;
+        border: 1px solid#ddd;
+        border-radius: 6px;
+      }
+      .badge{
+        margin-left:45px;
+        font-size: 15px;
+        padding: 6px 10px;
+        font-weight: 500;
+        //transition:0.3s all linear;
+        cursor: pointer;
+        &:hover{
+          //transform:translateY(-2px);
+          //transition:0.3s all linear;
+          background-color: #C92334;
+        }
+      }
+    }
+  }
+}
+
+
+.event-single{
+  .title{
+    font-size: 20px;
+  }
+  p{
+    font-size: 15px;
+  }
+}
+
+.csrl-field{
+  min-width: 60px;
+  width: 75px;
+  height: 45px!important;
+}
+

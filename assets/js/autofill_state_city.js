@@ -72,6 +72,96 @@ zipCodeField.on("keyup change", function() {
 }).trigger("change");
 
 
+function calculateTotalPrice(mainParent) {
+
+    let ticketText = mainParent.find('.ticket-type-js').children(':selected').attr('data-text'),
+        ticketDescription = mainParent.find('.ticket-type-js').children(':selected').attr('data-description'),
+        price = mainParent.find('.ticket-type-js').val(),
+        dataRow = mainParent.attr('data-row'),
+        lostBadge = mainParent.find('.lost-badge-check'),
+        isLostBadgeChecked = lostBadge.prop('checked');
+
+    let row = `<tr id='row-${ticketText}' class='price-row price-${dataRow}' data-row="${dataRow}">
+                                    <td class="tr-ticket-text">
+                                        ${ticketText}
+                                    </td>
+                                    <th>
+                                        <span class="">
+                                            <span class="currency">$</span>
+                                            <span class="amount">${price}</span>
+                                        </span>
+                                    </th>
+                                </tr>
+`;
+
+    if(isLostBadgeChecked){
+        let lostBadgePrice = parseInt(lostBadge.val());
+
+        row = `<tr id='row-${ticketText}' class='price-row price-${dataRow}' data-row="${dataRow}">
+                                    <td class="tr-ticket-text">
+                                        ${ticketText}
+                                    </td>
+                                    <th>
+                                        <span class="">
+                                            <span class="currency">$</span>
+                                            <span class="amount">${price}</span>
+                                        </span>
+                                    </th>
+                                </tr>
+                                <tr class='price-row badge-fee-row price-badge-${dataRow}'>
+                                    <td>
+                                    Lost Badge Fee
+                                    </td>
+                                    
+                                    <th>
+                                        <span class="">
+                                            <span class="currency">$</span>
+                                            <span class="amount">${lostBadgePrice}</span>
+                                        </span>
+                                    </th>
+                                </tr>
+`;
+    }else{
+        lostBadgeFee = lostBadgeFee + 0;
+    }
+
+
+
+    if($('.price-'+dataRow).length>0){
+        if(price==0){
+            console.log('no data');
+            $('.price-'+dataRow).hide();
+        }else{
+            $('.price-'+dataRow).show();
+            $('.price-'+dataRow).find('.tr-ticket-text').text(ticketText);
+            $('.price-'+dataRow).find('.amount').text(price);
+        }
+
+    }else{
+        $(".ticket-summary-table table tbody").append(row);
+    }
+
+
+    let totalPrice = 0,
+        totalTicketPrice = 0,
+        lostBadgeFee = parseInt($('.ticket-summary-table .badge-fee .amount').text()),
+        sidebarPriceRow = $('.sidebar-block .price-row'),
+        ticketCount = sidebarPriceRow.length;
+
+    sidebarPriceRow.each(function (i, obj) {
+        totalTicketPrice = totalTicketPrice + parseInt($(obj).find('.amount').text());
+    });
+    totalPrice = totalTicketPrice + lostBadgeFee;
+    $('.ticket-summary-table .ticket-price .amount').html(totalTicketPrice);
+    $('.ticket-summary-table .badge-fee .amount').html(lostBadgeFee);
+    $('.ticket-summary-table .total-price .amount').html(totalPrice);
+
+    $('.billing-information-wrapper .price-note .ticket-count').html(ticketCount);
+    $('.billing-information-wrapper .price-note .total-price').html(totalPrice);
+    console.log('total price: '+ totalPrice);
+}
+
+
 
 
 

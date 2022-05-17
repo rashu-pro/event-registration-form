@@ -1,12 +1,22 @@
 .required-mark{
   color:$red_primary;
+  display: none;
+}
+.required-group{
+  .required-mark{
+    display: inline-block;
+  }
 }
 
 .form{
   &-group{
     //padding-bottom:20px;
-    padding-bottom:30px;
+    padding-bottom:15px;
     margin-bottom:0;
+
+    @media (min-width:768px){
+      padding-bottom:30px;
+    }
     &.last{
       margin:0;
     }
@@ -44,14 +54,19 @@
     border: 0.15rem solid #8B8B8B;
     border-radius: 8px;
 
+
+
     &-label{
-      font-size:18px;
+      font-size:16px;
       font-weight:500;
       margin-bottom:3px;
     }
 
     @media (min-width:768px){
       line-height: 2.2rem;
+      &-label{
+        font-size: 18px;
+      }
     }
   }
 
@@ -98,4 +113,48 @@ input::-webkit-inner-spin-button {
 
 .error-message{
   position: absolute;
+}
+.radiobox{
+  .error-message{
+    display: none;
+  }
+  &.focused{
+    .error-message{
+      display: block;
+    }
+  }
+}
+
+.add-another-link{
+  transition: 0.3s all linear;
+  background: #505050;
+  color: #fff;
+  padding: 15px 15px 18px;
+  border-radius: 12px;
+  display: inline-block;
+  margin-bottom: 25px;
+  &:hover{
+    color:#fff;
+    background-color: #3C3C3C;
+    text-decoration: underline;
+    transition: 0.3s all linear;
+  }
+}
+
+.sidebar-block{
+  .error-message{
+    display: none!important;
+  }
+}
+
+.person-close{
+  background: red;
+  color: #fff;
+  border-radius: 12px;
+  padding: 5px 10px;
+  position: absolute;
+  right: 0;
+  z-index: 22;
+  top: 13px;
+  cursor: pointer;
 }

@@ -68,10 +68,26 @@ h4{
       border-left-color:#b8daff;
       border-top-color:#084298;
     }
+
+    &.alert-round-border{
+      border:1px solid #084298;
+      border-radius:8px;
+      .checkbox-holder{
+        border-top: 1px solid;
+        padding-top: 14px;
+        margin-left: -10px;
+        margin-right: -10px;
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+    }
   }
 
   &-warning{
-    border-left-color:#664d03
+    border-left-color:#664d03;
+    &.alert-border-top{
+      border-left:1px solid #ffeeba;
+    }
   }
 
   .tag{
