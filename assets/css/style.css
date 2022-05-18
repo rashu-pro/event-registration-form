@@ -708,6 +708,45 @@ h4 {
   font-size: 16px;
   margin-bottom: 5px;
 }
+.sidebar-block-ticket-summary .sidebar-block-title {
+  margin: 0;
+}
+.sidebar-block-ticket-summary .sidebar-block-description {
+  padding: 0;
+  border-radius: 15px;
+  overflow: hidden;
+}
+.sidebar-block-ticket-summary .sidebar-block-description .table {
+  margin: 0;
+}
+.sidebar-block-ticket-summary .sidebar-block-description .table td, .sidebar-block-ticket-summary .sidebar-block-description .table th {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.sidebar-block-ticket-summary .sidebar-block-description .table td .row-number, .sidebar-block-ticket-summary .sidebar-block-description .table th .row-number {
+  padding-right: 5px;
+}
+.sidebar-block-ticket-summary .sidebar-block-description .table thead td, .sidebar-block-ticket-summary .sidebar-block-description .table thead th {
+  font-weight: 600;
+  border-bottom: 2px solid #359660ba;
+  text-transform: uppercase;
+  font-size: 15px;
+}
+.sidebar-block-ticket-summary .sidebar-block-description .table tbody tr:nth-of-type(odd) {
+  background: #fff;
+}
+.sidebar-block-ticket-summary .sidebar-block-description .table tbody th {
+  font-weight: 600;
+}
+.sidebar-block-ticket-summary .sidebar-block-description .table tfoot tr {
+  background-color: #d4edda;
+  text-transform: uppercase;
+  color: #202020;
+  font-weight: 600;
+}
+.sidebar-block-ticket-summary .sidebar-block-description .table tfoot th {
+  font-weight: 600;
+}
 
 .ticket-summary-table th {
   text-align: right;
@@ -1641,6 +1680,9 @@ h4 {
 .contact-information-grouped-wrapper {
   margin-bottom: 20px;
 }
+.contact-information-grouped-wrapper .contact-information-grouped-single:last-child {
+  border-bottom: 0;
+}
 .contact-information-grouped-wrapper:not(:first-child) {
   border-bottom: 1px solid #ddd;
 }
@@ -1686,6 +1728,11 @@ h4 {
   height: 45px !important;
 }
 
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1180px;
+  }
+}
 .modal-confirm h3 {
   font-size: 22px;
 }

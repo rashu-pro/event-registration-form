@@ -52,6 +52,67 @@
         margin-bottom: 5px;
       }
     }
+
+
+    &-ticket{
+      &-summary{
+        .sidebar{
+          &-block{
+            &-title{
+              margin:0;
+              //border-bottom:4px solid #359660ba;
+            }
+            &-description{
+              padding:0;
+              border-radius: 15px;
+              overflow: hidden;
+              .table{
+                margin:0;
+                td,th{
+                  padding-left:20px;
+                  padding-right:20px;
+
+                  .row-number{
+                    padding-right:5px;
+
+                  }
+                }
+                thead{
+                  td,th{
+                    font-weight: 600;
+                    border-bottom:2px solid #359660ba;
+                    text-transform: uppercase;
+                    font-size:15px;
+                  }
+                }
+                tbody{
+                  tr{
+                    &:nth-of-type(odd){
+                      background: #fff;
+                    }
+                  }
+                  th{
+                    font-weight: 600;
+                  }
+                }
+                tfoot{
+                  tr{
+                    background-color: #d4edda;
+                    text-transform: uppercase;
+                    color:#202020;
+                    font-weight: 600;
+                  }
+                  th{
+                    //color:#28a745;
+                    font-weight: 600;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
 

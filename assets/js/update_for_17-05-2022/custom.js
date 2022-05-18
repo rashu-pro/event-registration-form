@@ -739,12 +739,16 @@ function calculateTotalPrice(mainParent) {
 
     let ticketText = mainParent.find('.ticket-type-js').children('option:selected').attr('data-text'),
         ticketDescription = mainParent.find('.ticket-type-js').children('option:selected').attr('data-description'),
+        ticketDataGroup = mainParent.find('.ticket-type-js').children('option:selected').data('group'),
         price = mainParent.find('.ticket-type-js option:selected').attr('data-price'),
         // price = mainParent.find('.ticket-type-js').val(),
         dataRow = mainParent.attr('data-row'),
         lostBadge = mainParent.find('.lost-badge-check'),
         isLostBadgeChecked = lostBadge.prop('checked'),
         lostBadgePrice = parseInt(lostBadge.data('value'));
+    // if(ticketDataGroup<1){
+    //     ticketDataGroup = 1;
+    // }
 
     console.log("data-row: " + dataRow);
 
@@ -783,8 +787,9 @@ function calculateTotalPrice(mainParent) {
                 console.log('no data');
                 $('.price-' + dataRow).hide();
             } else {
+                console.log('row found');
                 $('.price-' + dataRow).show();
-                $('.price-' + dataRow).find('.tr-ticket-text').text(ticketText);
+                $('.price-' + dataRow).find('.tr-ticket-text').html(ticketText+" X "+ticketDataGroup);
                 $('.price-' + dataRow).find('.amount').text(price);
             }
 

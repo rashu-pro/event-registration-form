@@ -1,7 +1,7 @@
 /**
  * Created by Rashu on 07-03-22.
  */
-
+calculateTotal();
 let J = Payment.J,
     creditCardField = $('.cc-number'),
     creditCardHolder = $('.cc-number-holder'),
@@ -14,7 +14,7 @@ let ticketHtml = `
 <div class="form-row form-row-ticket-individual active">
     <div class="form-row-head">
         <div class="form-row-head-inner">
-            <h3 class="form-row-title">Ticket #<span class="ticket-row">1</span></h3>
+            <h3 class="form-row-title">Registration Ticket #<span class="ticket-row">1</span></h3>
 
             <div class="form-row-head-btn">
                 <button type="button" class="btn btn-dark btn-collapse btn-ticket-collapse">
@@ -31,173 +31,6 @@ let ticketHtml = `
     <div class="form-row-body">
         <div class="form-fields-wrapper">
 
-            <!-- //=== CHILD CARE SECTION -->
-            <div class="mt-4 pt-3 child-care-wrapper">
-                <h3 class="text-center font-bold section-title"><span>Childcare Information</span></h3>
-                <div class="form-group">
-                    <div class="label-field-sidebyside">
-                        <label class="form-control-label">Child's Age:</label>
-                        <input type="text" class="form-control">
-                    </div>
-
-                </div>
-
-                <div class="alert alert-primary alert-border-top">
-                    <h3 class="text-center text-uppercase font-bold pt-3 pb-3">Childcare Hours</h3>
-                    <div class="table-responsive">
-                        <table class="table table-striped table-bordered">
-                            <thead>
-                            <tr>
-                                <td>Date</td>
-                                <td>Time</td>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>Friday, August 30, 2022</td>
-                                <td>
-                                    <p class="time-slot"> 3:30 - 7:00 pm </p>
-                                    <p class="time-slot"> 8:00 - 10:30 pm </p>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>Saturday, August 31, 2022</td>
-                                <td>
-                                    <p class="time-slot"> 10:00am - 12:30pm </p>
-                                    <p class="time-slot"> 2:00 - 7:30pm </p>
-                                    <p class="time-slot"> 9:00 - 10:30pm </p>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>Sunday, September 01, 2022</td>
-                                <td>
-                                    <p class="time-slot"> 10:00am - 12:30pm </p>
-                                    <p class="time-slot"> 2:00 - 6:30pm </p>
-                                    <p class="time-slot"> 8:00 - 10:30pm </p>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="b-t-1 border-dark mt-4 pt-3">
-                        <h3 class="text-center text-uppercase font-bold pb-3">Breaks <br>
-                            <span class="font-medium text-medium">(Lunch & Dinner Breaks)</span>
-                        </h3>
-
-                        <div class="table-responsive">
-                            <table class="table table-striped table-bordered">
-                                <thead>
-                                <tr>
-                                    <td>Date</td>
-                                    <td>Time</td>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>Friday, August 30, 2022</td>
-                                    <td>
-                                        <div>
-                                            <p class="time-slot">Dinner: 7:00 - 8:00 pm </p>
-                                        </div>
-
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>Saturday, August 31, 2022</td>
-                                    <td>
-                                        <div>
-                                            <p class="time-slot">Lunch: 12:30 - 2:00 pm </p>
-                                        </div>
-                                        <div>
-                                            <p class="time-slot">Dinner: 7:30 - 9:00 pm </p>
-                                        </div>
-
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>Sunday, September 01, 2022</td>
-                                    <td>
-                                        <div>
-                                            <p class="time-slot">Lunch: 12:30 - 2:00 pm </p>
-                                        </div>
-                                        <div>
-                                            <p class="time-slot">Dinner: 6:30 - 8:00 pm </p>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <div class="alert alert-warning">
-                        <p>
-                            <strong>Note: </strong>Childcare will not be provided during the following lunch and dinner breaks.  Parents are required to pick up children during these times.  (Break times coincide with ISNA Programming breaks.).
-                        </p>
-                        <p class="text-danger font-medium">Meals are not served in childcare.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- //=== SPECIAL EVENT LIST -->
-            <div class="special-ticket-wrapper b-t-1 mt-4 pt-3">
-                <h3 class="">Special Events Tickets</h3>
-                <div class="event-single">
-                    <div class="alert alert-info">
-                        <h3>Presidential Forum</h3>
-                        <p class="tag">Saturday, August 31, 2022</p>
-                        <p>Thank you Senator Bernie Sanders and Mr. Julián Castro for speaking at ISNACON19.</p>
-                    </div>
-                </div>
-
-
-                <div class="event-single">
-                    <div class="alert alert-info">
-                        <h3>A Conversation with Trevor Noah</h3>
-                        <p class="tag">Friday, August 30, 2022</p>
-                        <p>Thank you Trevor Noah for coming to speak at  ISNACON19!</p>
-                    </div>
-                </div>
-
-
-                <div class="event-single">
-                    <div class="alert alert-success">
-                        <h3>Matrimonial Events:</h3>
-                        <p class="tag">Friday, August 30, 2022</p>
-                        <p>This year we are proud to collaborate with Half Our Deen (HOD)  who will be facilitating the matrimonial events at the convention.</p>
-                        <p class="pt-2">To register for the matrimonial events you MUST click <a href="http://hodoffline.com/isna" target="_blank">HERE</a> .</p>
-                    </div>
-                </div>
-
-
-                <div class="event-single">
-                    <div class="alert alert-danger">
-                        <h3>Community Service Recognition Luncheon (CSRL)</h3>
-                        <p class="tag bg-danger text-white">Closed</p>
-                        <p>Registration for this event is closed.</p>
-                    </div>
-                </div>
-
-                <div class="event-single">
-                    <div class="alert alert-danger">
-                        <h3>5K Run for Meals on Wheels</h3>
-                        <p class="tag mr-2">Sunday, 1st September, 2022</p>
-                        <p class="tag bg-danger text-white">Closed</p>
-                        <p>Online registration is now closed</p>
-                        <p class="text-dark text-medium">Limited on-site registration.</p>
-                    </div>
-                </div>
-
-
-
-            </div>
-
             <!-- //=== CONTACT INFORMATION -->
             <div class="contact-information-wrapper b-t-1 mt-4 pt-3">
             
@@ -205,43 +38,35 @@ let ticketHtml = `
                 <div class="contact-information-inner contact-information-single">
                     <div class="contact-information-grouped-wrapper" data-grouped="1">
                     <div class="contact-information-grouped-single" data-contact="1">
-                    <h3 class="text-center font-bold section-title"><span>Contact Information <p style="display:inline-block;margin:0; padding-left:10px;" class="contact-number"></p></span></h3>
+                    <h3 class="text-center font-bold section-title"><span>Primary Registrant <p style="display:inline-block;margin:0; padding-left:10px;" class="contact-number"></p></span></h3>
 
                     <div class="row mt-3">
-                        <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                            <div class="form-group required-group">
-                                <label class="form-control-label">First Name <span class="required-mark">*</span></label>
-                                <input type="text" name="TicketHolderFirstName[]" class="form-control first-name">
-                            </div>
-                        </div>
+                        <div class="col-12 col-sm-9">
+                                                                    <div class="row">
+                                                                        <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                                                            <div class="form-group required-group">
+                                                                                <label class="form-control-label">First Name <span class="required-mark">*</span></label>
+                                                                                <input type="text" name="TicketHolderFirstName[]" class="form-control first-name mask-text">
+                                                                            </div>
+                                                                        </div>
 
-                        <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                            <div class="form-group required-group">
-                                <label class="form-control-label">Last Name <span class="required-mark">*</span></label>
-                                <input type="text" name="TicketHolderLastName[]" class="form-control last-name">
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-sm-12">
-                            <div class="form-group radiobox gender-radio field-validated">
-                                <label class="form-control-label"> Gender <span class="required-mark">*</span> </label>
-                                <div class="pt-2">
-                                    <div class="checkbox-holder d-inline-flex">
-                            <input type="radio" name="gender" class="" value="male" checked>
-                            <span style="margin-left:6px">Male</span>
-                        </div>
-
-                        <div class="checkbox-holder d-inline-flex pl-3">
-                            <input type="radio" name="gender"  class="" value="female">
-                            <span style="margin-left:6px">Female</span>
-                        </div>
-                                   
-                                </div>
-
-                                <input type="text" name="TicketHolderGender[]" class="form-control gender-value hidden-field" value="">
-
-                            </div>
-                        </div>
+                                                                        <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                                                            <div class="form-group required-group">
+                                                                                <label class="form-control-label">Last Name <span class="required-mark">*</span></label>
+                                                                                <input type="text" name="TicketHolderLastName[]" class="form-control last-name">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-12 col-sm-3">
+                                                                    <div class="form-group required-group field-validated">
+                                                                        <label>Gender <span class="required-mark">*</span></label>
+                                                                        <select class="form-control gender-selector" name="TicketHolderGender[]">
+                                                                            <option value="male">Male</option>
+                                                                            <option value="female">Female</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
 
                         <div class="col-12 col-sm-6 col-md-6 col-lg-6">
                             <div class="form-group email-field required-group">
@@ -281,7 +106,7 @@ let ticketHtml = `
             <div class="text-center">
                 <a href="javascript:void(0)" class="btn btn-dark btn-add-another-js">
                     <img src="https://res.cloudinary.com/secure-api/image/upload/v1652709692/secure-api/Common/assets/plus_circle.png" class="img-left">
-                    <span class="btn-text">Add Another Ticket</span>
+                    <span class="btn-text">Save and Add Another Ticket</span>
                 </a>
             </div>
         </div>
@@ -289,36 +114,246 @@ let ticketHtml = `
 </div>
 `;
 
-$('.quantity-increase').on('click', function () {
-    let self = $(this),
-        quantitySelector = self.closest('.quantity-wrap').find('.form-control'),
-        quantityValue = quantitySelector.val();
 
-    if (quantityValue < 10) {
-        quantitySelector.val(parseInt(quantityValue) + 1);
+//===== TICKET TYPE SELECT ACTION
+$(document).on('change', '.ticket-type-js', function (e) {
+    e.preventDefault();
+    let self = $(this),
+        mainParent = self.closest('.form-row-ticket-individual'),
+        ticketText = self.children(':selected').attr('data-text'),
+        ticketDataGroup = self.children(':selected').attr('data-group'),
+        ticketDataAddon = self.children(':selected').attr('data-addon'),
+        ticketDescription = self.children(':selected').attr('data-description'),
+        //change made by Emdad
+        //price = self.val(),
+        price = self.children(':selected').attr('data-price'),
+        unitPrice = self.children(':selected').attr('data-unitPrice'),
+        dataRow = mainParent.attr('data-row');
+    let contactInformationHtml = $('.contact-information-html .contact-information-grouped-single-copy').clone();
+
+    if (self.val() != 0) {
+        self.closest('.ticket-type').find('.ticket-type-details').show();
+        self.closest('.ticket-type').find('.ticket-type-text').text(ticketText);
+        self.closest('.ticket-type').find('.ticket-type-price').text(unitPrice);
+        self.closest('.ticket-type').find('.ticket-type-description').text(ticketDescription);
+    } else {
+        self.closest('.ticket-type').find('.ticket-type-details').hide();
     }
 
-    collectData(self);
-});
-
-$('.quantity-decrease').on('click', function () {
-    let self = $(this),
-        quantitySelector = self.closest('.quantity-wrap').find('.form-control'),
-        quantityValue = quantitySelector.val();
-
-    if (quantityValue > 0) {
-        quantitySelector.val(parseInt(quantityValue) - 1);
+    if (ticketText == 'Childcare Ticket') {
+        $('.child-care-wrapper').show();
+    } else {
+        $('.child-care-wrapper').hide();
     }
 
-    collectData(self);
+
+    if(parseInt(ticketDataGroup)!=0){
+        ticketGroupManipulation(ticketDataGroup, ticketDataGroup, self);
+    }else{
+        self.closest('.form-row-ticket-individual').find('.contact-information-inner.contact-information-grouped .contact-information-grouped-single').remove();
+        self.closest('.form-row-ticket-individual').find('.contact-information-inner.contact-information-grouped').hide();
+        self.closest('.form-row-ticket-individual').find('.contact-information-inner.contact-information-single').show();
+        self.closest('.form-row-ticket-individual').find('.contact-information-inner.contact-information-single .contact-information-grouped-wrapper').html(contactInformationHtml);
+
+        self.closest('.form-row-ticket-individual').find('.contact-information-grouped-single-copy').addClass('contact-information-grouped-single');
+        self.closest('.form-row-ticket-individual').find('.contact-information-grouped-single-copy').find('.section-title span').html('Primary Registrant');
+        registrantTextChanging(mainParent);
+    }
+
+    self.closest('.form-row-ticket-individual').find('.contact-information-grouped-wrapper .contact-information-grouped-single').find('.gender-selector').closest('.form-group.required-group').addClass('field-validated');
+
+    //=== WHEN DATA-ADDON IS TRUE
+    if(parseInt(ticketDataAddon)===1){
+        // removeContactFields(mainParent);
+        let addonTicketQuantityCloned = $('.addon-ticket-quantity-wrapper .addon-ticket-quantity').clone();
+        $('.contact-information-inner .contact-information-grouped-single').remove();
+        mainParent.find('.contact-information-single .contact-information-grouped-wrapper').html(addonTicketQuantityCloned);
+        // mainParent.find('.contact-information-inner.contact-information-single').html(addonTicketQuantityCloned);
+        $('.addon-ticket-quantity-field').trigger('change');
+    }
+
+    calculateTotalPrice(mainParent);
+
 });
 
-$('.quantity-wrap .form-control').on('keyup', function () {
+
+//==== ADDING ANOTHER GROUP OF TICKETS
+$(document).on('click','.btn-add-group-js',function (e) {
+    e.preventDefault();
+
+    let self = $(this),
+        parent = self.closest('.contact-information-inner'),
+        dataRow = self.closest('.form-row').attr('data-row'),
+        unitPrice = self.closest('.form-row').find('.ticket-type-js option:selected').attr('data-unitPrice'),
+        uniqueKeys = self.closest('.form-row').find('.ticket-type-js').val(),
+        invalidField = parent.find('.form-group.required-group'),
+        validField = parent.find('.form-group.required-group.field-validated'),
+        notValidatedField = parent.find('.contact-information-grouped-single').find('.required-group:not(.field-validated)');
+
+    if(notValidatedField.length>0){
+        notValidatedField.first().find('input').focus();
+        if(notValidatedField.hasClass('radiobox')){
+            notValidatedField.first().find('input').focus();
+            notValidatedField.first().addClass('focused');
+        }
+
+    }else{
+        let dataContactNumber = parseInt(parent.find('.contact-information-grouped-single').length)+1,
+            clonedFields = parent.find('.contact-information-grouped-single').first().clone();
+
+
+        clonedFields.find('.section-title p').html('#'+dataContactNumber);
+        clonedFields.attr('data-contact',dataContactNumber);
+        let attrName = "grouped-gender-"+dataContactNumber+"-"+dataRow;
+        clonedFields.find('.required-group').removeClass('field-validated');
+        clonedFields.find('.required-group.radiobox').addClass('field-validated');
+        clonedFields.find('.form-control').val('');
+        clonedFields.find('.checkbox-holder input').attr('name',attrName);
+        clonedFields.append("<input type='hidden' value='"+uniqueKeys+"' class='ticket-category-keys' name='TicketCategoryKeys[]'>");
+        updateTotalOnAddPerson(dataRow, unitPrice, "add");
+        clonedFields.find('.checkbox-holder').first().find('input').prop('checked', true);
+        // radioFieldNameAndId(clonedFields, dataContactNumber, "dataRow");
+        clonedFields.prepend("<span class='person-close'>Delete</span>");
+        self.closest('.contact-information-inner').find('.contact-information-grouped-wrapper').append(clonedFields);
+        let contactNumber = self.closest('.contact-information-inner').find('.contact-information-grouped-wrapper .contact-information-grouped-single').last().attr('data-contact');
+        self.closest('.contact-information-inner').find('.contact-information-grouped-wrapper .contact-information-grouped-single').last().find('.section-title').html("<span>Registrant <p style='display:inline-block;margin:0; padding-left:10px;' class='contact-number'># "+contactNumber+"</p>");
+        self.closest('.contact-information-inner').find('.contact-information-grouped-wrapper .contact-information-grouped-single').last().find('.gender-selector').val('male');
+        self.closest('.contact-information-inner').find('.contact-information-grouped-wrapper .contact-information-grouped-single').last().find('.gender-selector').closest('.form-group.required-group').addClass('field-validated');
+    }
+
+});
+
+
+//===== FUNCTION WHEN ADD ADDON TICKET BUTTON CLICKED
+$(document).on('change','.addon-ticket-quantity-field',function (e) {
+    e.preventDefault();
+    let self = $(this),
+        mainParent = self.closest('.form-row-ticket-individual'),
+        quantity = self.val(),
+        addTicketDetailsCloned = $('.addon-ticket-details-wrapper .addon-ticket-details').clone();
+
+    mainParent.find('.contact-information-inner.contact-information-single .addon-ticket-details').remove();
+
+    for(let i=0; i<quantity; i++){
+        mainParent.find('.contact-information-inner.contact-information-single').append(addTicketDetailsCloned.clone());
+    }
+    addonTicketCounter(mainParent);
+
+    ticketSummaryRowUpdate(self);
+
+});
+
+
+$(document).on('click','.addon-ticket-close',function (e) {
+    e.preventDefault();
+    let self = $(this),
+        mainParent = self.closest('.form-row-ticket-individual');
+    self.closest('.addon-ticket-details').slideUp();
+    setTimeout(function () {
+        self.closest('.addon-ticket-details').remove();
+
+        addonTicketCounter(mainParent);
+        let addonCounter = mainParent.find('.addon-ticket-details').length;
+        mainParent.find('.addon-ticket-quantity-field').val(addonCounter);
+    },400);
+});
+
+//===== ADD ANOTHER TICKET ACTION
+$(document).on('click', '.btn-add-another-js', function (e) {
+    e.preventDefault();
+    // REQUIRED FIELD CHECKING
+    let self = $(this),
+        invalidField = self.closest('.form-row-body').find('.form-group.required-group'),
+        validField = self.closest('.form-row-body').find('.form-group.field-validated'),
+        notValidatedField = $('.form-row-ticket-individual.active .required-group:not(.field-validated)');
+    let isChecked = self.closest('.form-row-body').find('.tc').prop('checked');
+    let isTicket = self.closest('.form-row-body').find('.ticket-type-js').val();
+
+    console.log('invalid field: '+invalidField.length);
+    console.log('valid field: '+validField.length);
+    console.log('not valid field: '+notValidatedField.length);
+    if (invalidField.length === validField.length) {
+
+        let mainParent = self.closest('.form-row-ticket-individual'),
+            dataRow = parseInt(mainParent.attr('data-row')) + 1,
+            genderName = "gender-name" + dataRow,
+            genderMaleRadioId = "gender-male" + dataRow,
+            genderFemaleRadioId = "gender-female" + dataRow,
+            lostBadgeId = "lostBadge-" + dataRow;
+        let clonedHtml = mainParent.clone();
+        // let clonedTicketCategory = mainParent.find('.ticket-type').clone();
+        let clonedTicketCategory = $('.ticket-type-new .ticket-type').clone();
+        // clonedTicketCategory.find('.required-group').removeClass('field-validated');
+        // clonedTicketCategory.find('.lost-badge-check').prop('checked', false);
+        // clonedTicketCategory.find('.ticket-type-details').hide();
+
+        //changed by Emdad
+        updateTicketQuantity(dataRow);
+        //if (parseInt(mainParent.find('.ticket-type-js').val()) != 0) {
+
+        if (parseInt(mainParent.find('.ticket-type-js option:selected').attr('data-price')) != 0) {
+
+            pageLoader.addClass('active');
+            mainParent.removeClass('active').addClass('edited');
+            setTimeout(function () {
+                self.closest('.form-body').append(ticketHtml);
+                // self.closest('.form-body').append(clonedHtml);
+                mainParent.next().find('.form-fields-wrapper').prepend(clonedTicketCategory);
+                mainParent.next().attr('data-row', dataRow);
+                mainParent.next().find('.ticket-row').html(dataRow);
+                // mainParent.next().find('.gender-male').attr('name', genderName);
+                // mainParent.next().find('.gender-female').attr('name', genderName);
+                // mainParent.next().find('.gender-male').attr('id', genderMaleRadioId);
+                // mainParent.next().find('.gender-male').next().attr('for', genderMaleRadioId);
+                // mainParent.next().find('.gender-female').attr('id', genderFemaleRadioId);
+                // mainParent.next().find('.gender-female').next().attr('for', genderFemaleRadioId);
+                // mainParent.next().find('.tc').attr('id', dataRow);
+                // mainParent.next().find('.tc').next().attr('for', dataRow);
+                mainParent.next().find('.lost-badge-check').attr('id', lostBadgeId);
+                mainParent.next().find('.lost-badge-check').next().attr('for', lostBadgeId);
+                registrantTextChanging(mainParent);
+
+
+                pageLoader.removeClass('active');
+                window.scrollTo({ top: bannerHeight, behavior: 'smooth' });
+            }, 1000);
+        } else {
+            mainParent.find('.ticket-type-js').focus();
+        }
+
+    }else{
+        notValidatedField.first().find('.form-control').focus();
+        if(notValidatedField.hasClass('radiobox')){
+            notValidatedField.first().find('input').focus();
+            notValidatedField.first().addClass('focused');
+        }
+    }
+});
+
+
+//===== PAY NOW BUTTON CLICK ACTION
+$(document).on('click', '.btn-pay-direction-js', function (e) {
+    e.preventDefault();
     let self = $(this);
-    collectData(self);
+    fieldValidation(self);
+
+    let invalidField = self.closest('.form-row-body').find('.form-group.required-group'),
+        validField = self.closest('.form-row-body').find('.form-group.field-validated');
+    console.log('required-field: ' + invalidField.length);
+    console.log('validated-field: ' + validField.length);
+    if (invalidField.length === validField.length) {
+        $('.btn-event-register').removeClass('disabled');
+        $('.btn-event-register').prop('disabled', false);
+        let paymentInformationHeight = $('#payment-information').height();
+        window.scrollTo({ top: paymentInformationHeight, behavior: 'smooth' });
+        $('#payment-information .sidebar-block-description').removeClass('disabled-block');
+        $('.cc-name').focus();
+    }
 });
 
-$('.btn-event-register').on('click', function () {
+
+//===== EVENT REGISTER BUTTON ACTION
+$(document).on('click', '.btn-event-register', function () {
     let self = $(this),
         paymentFieldsSelector = $('.payment-information .form-control'),
         paymentFields = paymentFieldsSelector.length,
@@ -414,83 +449,11 @@ $('.cc-number-holder .cc-card-identity').on('click', function (e) {
     $(this).parent().find('input').focus();
 });
 
-//===== ADD ANOTHER TICKET ACTION
-$(document).on('click', '.btn-add-another-js', function (e) {
-    e.preventDefault();
-    // REQUIRED FIELD CHECKING
-    let self = $(this),
-        invalidField = self.closest('.form-row-body').find('.form-group.required-group'),
-        validField = self.closest('.form-row-body').find('.form-group.field-validated'),
-        notValidatedField = $('.form-row-ticket-individual.active .required-group:not(.field-validated)');
-    let isChecked = self.closest('.form-row-body').find('.tc').prop('checked');
-    let isTicket = self.closest('.form-row-body').find('.ticket-type-js').val();
 
-    console.log('invalid field: '+invalidField.length);
-    console.log('valid field: '+validField.length);
-    console.log('not valid field: '+notValidatedField.length);
-    if (invalidField.length === validField.length) {
-
-        let mainParent = self.closest('.form-row-ticket-individual'),
-            dataRow = parseInt(mainParent.attr('data-row')) + 1,
-            genderName = "gender-name" + dataRow,
-            genderMaleRadioId = "gender-male" + dataRow,
-            genderFemaleRadioId = "gender-female" + dataRow,
-            lostBadgeId = "lostBadge-" + dataRow;
-        let clonedHtml = mainParent.clone();
-        // let clonedTicketCategory = mainParent.find('.ticket-type').clone();
-        let clonedTicketCategory = $('.ticket-type-new .ticket-type').clone();
-        // clonedTicketCategory.find('.required-group').removeClass('field-validated');
-        // clonedTicketCategory.find('.lost-badge-check').prop('checked', false);
-        // clonedTicketCategory.find('.ticket-type-details').hide();
-
-        //changed by Emdad
-        updateTicketQuantity(dataRow);
-        //if (parseInt(mainParent.find('.ticket-type-js').val()) != 0) {
-
-        if (parseInt(mainParent.find('.ticket-type-js option:selected').attr('data-price')) != 0) {
-
-            pageLoader.addClass('active');
-            mainParent.removeClass('active').addClass('edited');
-            setTimeout(function () {
-                self.closest('.form-body').append(ticketHtml);
-                // self.closest('.form-body').append(clonedHtml);
-                mainParent.next().find('.form-fields-wrapper').prepend(clonedTicketCategory);
-                mainParent.next().attr('data-row', dataRow);
-                mainParent.next().find('.ticket-row').html(dataRow);
-                // mainParent.next().find('.gender-male').attr('name', genderName);
-                // mainParent.next().find('.gender-female').attr('name', genderName);
-                // mainParent.next().find('.gender-male').attr('id', genderMaleRadioId);
-                // mainParent.next().find('.gender-male').next().attr('for', genderMaleRadioId);
-                // mainParent.next().find('.gender-female').attr('id', genderFemaleRadioId);
-                // mainParent.next().find('.gender-female').next().attr('for', genderFemaleRadioId);
-                // mainParent.next().find('.tc').attr('id', dataRow);
-                // mainParent.next().find('.tc').next().attr('for', dataRow);
-
-                mainParent.next().find('.lost-badge-check').attr('id', lostBadgeId);
-                mainParent.next().find('.lost-badge-check').next().attr('for', lostBadgeId);
-
-                pageLoader.removeClass('active');
-                window.scrollTo({ top: bannerHeight, behavior: 'smooth' });
-            }, 1000);
-        } else {
-            mainParent.find('.ticket-type-js').focus();
-        }
-        // if(isChecked){
-        //
-        // }else{
-        //     self.closest('.form-row-body').find('.tc-wrapper').addClass('focused');
-        //     setTimeout(function () {
-        //         self.closest('.form-row-body').find('.tc-wrapper').removeClass('focused');
-        //     },300);
-        // }
-    }else{
-        notValidatedField.first().find('.form-control').focus();
-        if(notValidatedField.hasClass('radiobox')){
-            notValidatedField.first().find('input').focus();
-            notValidatedField.first().addClass('focused');
-        }
-    }
-});
+//==== PRIMARY REGISTRANT CHANGING FROM SECOND ROW
+function registrantTextChanging(mainParent){
+    mainParent.closest('.form-body').find('.form-row-ticket-individual:not(.first-row)').find('.contact-information-grouped-single').first().find('.section-title').html("<span>Registrant</span>");
+}
 
 $(document).on('click', '.btn-ticket-collapse', function (e) {
     e.preventDefault();
@@ -508,6 +471,7 @@ $(document).on('click', '.btn-delete-ticket-js', function (e) {
     $('#confirm-modal-delete .modal-confirm').attr('data-row', dataRow);
     $('#confirm-modal-delete').modal('show');
 });
+
 $('.btn-delete-row-confirm').on('click', function () {
     let self = $(this);
     deleteRow(self.closest('.modal-confirm').attr('data-row'));
@@ -515,95 +479,6 @@ $('.btn-delete-row-confirm').on('click', function () {
 });
 
 
-//===== TICKET TYPE SELECT ACTION
-$(document).on('change', '.ticket-type-js', function (e) {
-    e.preventDefault();
-    let self = $(this),
-        mainParent = self.closest('.form-row-ticket-individual'),
-        ticketText = self.children(':selected').attr('data-text'),
-        ticketDataGroup = self.children(':selected').attr('data-group'),
-        ticketDataAddon = self.children(':selected').attr('data-addon'),
-        ticketDescription = self.children(':selected').attr('data-description'),
-        //change made by Emdad
-        //price = self.val(),
-        price = self.children(':selected').attr('data-price'),
-        unitPrice = self.children(':selected').attr('data-unitPrice'),
-        dataRow = mainParent.attr('data-row');
-    let contactInformationHtml = $('.contact-information-html .contact-information-grouped-single-copy').clone();
-
-    if (self.val() != 0) {
-        self.closest('.ticket-type').find('.ticket-type-details').show();
-        self.closest('.ticket-type').find('.ticket-type-text').text(ticketText);
-        self.closest('.ticket-type').find('.ticket-type-price').text(unitPrice);
-        self.closest('.ticket-type').find('.ticket-type-description').text(ticketDescription);
-    } else {
-        self.closest('.ticket-type').find('.ticket-type-details').hide();
-    }
-
-    if (ticketText == 'Childcare Ticket') {
-        $('.child-care-wrapper').show();
-    } else {
-        $('.child-care-wrapper').hide();
-    }
-
-
-    if(parseInt(ticketDataGroup)!=0){
-        ticketGroupManipulation(ticketDataGroup, ticketDataGroup, self);
-    }else{
-        self.closest('.form-row-ticket-individual').find('.contact-information-inner.contact-information-grouped .contact-information-grouped-single').remove();
-        self.closest('.form-row-ticket-individual').find('.contact-information-inner.contact-information-grouped').hide();
-        self.closest('.form-row-ticket-individual').find('.contact-information-inner.contact-information-single').show();
-        self.closest('.form-row-ticket-individual').find('.contact-information-inner.contact-information-single .contact-information-grouped-wrapper').html(contactInformationHtml);
-        let radioHolder = self.closest('.form-row-ticket-individual').find('.contact-information-inner.contact-information-single .contact-information-grouped-wrapper .checkbox-holder');
-        radioBoxIdGenerating(radioHolder);
-
-        $('.form-row .contact-information-grouped-single-copy').addClass('contact-information-grouped-single');
-        $('.contact-information-grouped-single-copy').find('.section-title span').html('Contact Information');
-    }
-
-    //=== WHEN DATA-ADDON IS TRUE
-    if(parseInt(ticketDataAddon)===1){
-        // removeContactFields(mainParent);
-        let addonTicketQuantityCloned = $('.addon-ticket-quantity-wrapper .addon-ticket-quantity').clone();
-        mainParent.find('.contact-information-grouped-wrapper').remove();
-        mainParent.find('.contact-information-inner.contact-information-single').html(addonTicketQuantityCloned);
-    }
-
-    calculateTotalPrice(mainParent);
-});
-
-
-//===== FUNCTION WHEN ADD ADDON TICKET BUTTON CLICKED
-$(document).on('click','.btn-add-addon-ticket',function (e) {
-    e.preventDefault();
-    let self = $(this),
-        mainParent = self.closest('.form-row-ticket-individual'),
-        quantity = parseInt(self.closest('.addon-ticket-quantity').find('.addon-ticket-quantity-field').val()),
-        addTicketDetailsCloned = $('.addon-ticket-details-wrapper .addon-ticket-details').clone();
-
-    mainParent.find('.contact-information-inner.contact-information-single .addon-ticket-details').remove();
-
-    for(let i=0; i<quantity; i++){
-        mainParent.find('.contact-information-inner.contact-information-single').append(addTicketDetailsCloned.clone());
-    }
-    addonTicketCounter(mainParent);
-
-});
-
-function addonTicketCounter(mainParent){
-    mainParent.find('.addon-ticket-details').each(function (i, element) {
-        $(element).find('.addon-ticket-counter').html('# '+(i+1));
-    });
-}
-
-$(document).on('click','.addon-ticket-close',function (e) {
-    e.preventDefault();
-    let self = $(this),
-        mainParent = self.closest('.form-row-ticket-individual');
-    self.closest('.addon-ticket-details').remove();
-    addonTicketCounter(mainParent);
-    $('.addon-ticket-quantity .addon-ticket-quantity-field').val();
-});
 
 //===== REMOVE CONTACT FIELDS BASED ON ADDON
 function removeContactFields(mainParent){
@@ -612,90 +487,10 @@ function removeContactFields(mainParent){
 }
 
 
-
-
-//===== PAY NOW BUTTON CLICK ACTION
-$(document).on('click', '.btn-pay-direction-js', function (e) {
-    e.preventDefault();
-    let self = $(this);
-    fieldValidation(self);
-
-    let invalidField = self.closest('.form-row-body').find('.form-group.required-group'),
-        validField = self.closest('.form-row-body').find('.form-group.field-validated');
-    console.log('required-field: ' + invalidField.length);
-    console.log('validated-field: ' + validField.length);
-    if (invalidField.length === validField.length) {
-        $('.btn-event-register').removeClass('disabled');
-        $('.btn-event-register').prop('disabled', false);
-        let paymentInformationHeight = $('#payment-information').height();
-        window.scrollTo({ top: paymentInformationHeight, behavior: 'smooth' });
-        $('#payment-information .sidebar-block-description').removeClass('disabled-block');
-        $('.cc-name').focus();
-    }
-});
-
 $(document).on('keyup blur change', '.form-group.required-group .form-control', function (e) {
     let self = $(this);
     singleValidation(self, self.parent());
     // activateButtons(self);
-});
-
-$(document).on('change', '.gender-radio.required-group input[name=gender]', function (e) {
-    let self = $(this);
-    self.closest('.form-group').find('.form-control').val(self.val());
-    singleValidation(self.closest('.form-group').find('.form-control'), self.parent());
-    activateButtons(self.closest('.form-group').find('.form-control'));
-});
-
-
-$(document).on('change', '.tc', function (e) {
-    let self = $(this);
-    singleValidation(self, self.parent());
-    // activateButtons(self);
-});
-
-$(document).on('change', '.copy-information input[type=checkbox]', function (e) {
-    let self = $(this);
-    if (self.prop('checked')) {
-        let firstName = $('.form-row.first-row .first-name').val(),
-            lastName = $('.form-row.first-row .last-name').val(),
-            email = $('.form-row.first-row .email').val(),
-            phone = $('.form-row.first-row .phone').val(),
-            address = $('.form-row.first-row .address').val(),
-            country = $('.form-row.first-row .country').val(),
-            zipCode = $('.form-row.first-row .zip-code').val(),
-            state = $('.form-row.first-row .state').val(),
-            city = $('.form-row.first-row .city').val();
-
-        $('.billing-information .first-name').val(firstName);
-        $('.billing-information .last-name').val(lastName);
-        $('.billing-information .email').val(email);
-        $('.billing-information .phone').val(phone);
-        $('.billing-information .address').val(address);
-        $('.billing-information .country').val(country);
-        $('.billing-information .zip-code').val(zipCode);
-        $('.billing-information .state').val(state);
-        $('.billing-information .city').val(city);
-        fieldValidation(self);
-    } else {
-        $('.billing-information .first-name').val('');
-        $('.billing-information .last-name').val('');
-        $('.billing-information .email').val('');
-        $('.billing-information .phone').val('');
-        $('.billing-information .address').val('');
-        $('.billing-information .country').val('');
-        $('.billing-information .zip-code').val('');
-        $('.billing-information .state').val('');
-        $('.billing-information .city').val('');
-    }
-});
-
-//===== ON LOST BADGE FEE CHANGE
-$(document).on('change', '.lost-badge-check', function (e) {
-    console.log('checked');
-    let self = $(this),
-        mainParent = self.closest('.form-row-ticket-individual');
-    calculateTotalPrice(mainParent);
 });
 
 
@@ -789,30 +584,6 @@ function card_validation() {
     }
 }
 
-function collectData(self) {
-    let ticketNumber = parseInt(self.closest('.quantity-wrap').find('.form-control').val()) ? parseInt(self.closest('.quantity-wrap').find('.form-control').val()) : 0,
-        ticketPrice = parseInt(self.closest('tr').find('.per-price .amount').text()),
-        ticketType = self.closest('.quantity-wrap').attr('ticket-type');
-
-    console.log('ticket number: ' + ticketNumber);
-    console.log('ticket price: ' + ticketPrice);
-    console.log('ticket type: ' + ticketType);
-
-    updateTicketData(ticketNumber, ticketPrice, ticketType);
-}
-
-function updateTicketData(ticketNumber, ticketPrice, ticketType) {
-    $('.' + ticketType + '-quantity').text(ticketNumber);
-    $('.' + ticketType + '-price .amount').text(ticketNumber * ticketPrice);
-
-    //PRICE ADDITION
-    let belowPrice = parseInt($('.ticket-summary-table .below-10-price .amount').text()),
-        abovePrice = parseInt($('.ticket-summary-table .above-10-price .amount').text()),
-        adultPrice = parseInt($('.ticket-summary-table .adult-price .amount').text()),
-        totalPrice = belowPrice + abovePrice + adultPrice;
-    $('.total-price .amount').text(totalPrice);
-}
-
 function fixHeight() {
     let headerHeight = parseFloat($('.header').css('height')),
         footerHeight = parseFloat($('.footer').css('height')),
@@ -822,35 +593,6 @@ function fixHeight() {
         heightToMinus = "calc(100vh - " + heightToMinusReady + "px)";
     $('.main-wrapper').css('min-height', heightToMinus);
 
-}
-
-function activateButtons(self) {
-    let invalidField = self.closest('.form-row-body').find('.form-group.required-group'),
-        validField = self.closest('.form-row-body').find('.form-group.field-validated');
-    // console.log("invalid fields: "+invalidField.length);
-    // console.log("valid fields: "+validField.length);
-    let isChecked = self.closest('.form-row-body').find('.tc').prop('checked');
-    let isTicket = self.closest('.form-row-body').find('.ticket-type-js').val();
-    if (invalidField.length === validField.length && isChecked) {
-        self.closest('.form-row-body').find('.btn-add-another-js').removeClass('disabled');
-        if ($('.billing-information-wrapper').hasClass('active')) {
-
-        } else {
-            let firstName = $('.form-row.first-row .first-name').val(),
-                lastName = $('.form-row.first-row .last-name').val(),
-                fullName = firstName + " " + lastName;
-            $('.copy-information .name').text(fullName);
-            $('.billing-information-wrapper').addClass('active');
-        }
-
-    } else {
-        self.closest('.form-row-body').find('.btn-add-another-js').addClass('disabled');
-        if ($('.billing-information-wrapper').hasClass('active')) {
-
-        } else {
-            $('.billing-information-wrapper').removeClass('active');
-        }
-    }
 }
 
 function fieldValidation(clickedElement) {
@@ -1083,22 +825,42 @@ function deleteRow(dataRow) {
     }, 600)
 }
 
-//=== RADIO FIELD ID GENERATOR FUNCTION
-function radioFieldNameAndId(clonedFields, addontext, dataRow){
-    let attrName = "grouped-gender-"+addontext+dataRow,
-        genderMaleId = "grouped-gender-male-"+addontext+dataRow,
-        genderFemaleId = "grouped-gender-female-"+addontext+dataRow;
-    clonedFields.attr('data-contact',1);
-
-    clonedFields.find('.form-control').val('');
-    // clonedFields.find('.checkbox-holder input').prop('checked', false);
-    // clonedFields.find('.checkbox-holder input').attr('name',attrName);
-    // clonedFields.find('.checkbox-holder.radio-male input').attr('id',genderMaleId);
-    // clonedFields.find('.checkbox-holder.radio-male label').attr('for',genderMaleId);
-
-    clonedFields.find('.checkbox-holder.radio-female input').attr('id',genderFemaleId);
-    clonedFields.find('.checkbox-holder.radio-female label').attr('for',genderFemaleId);
+function addonTicketCounter(mainParent){
+    let counter = 0;
+    mainParent.find('.addon-ticket-details').each(function (i, element) {
+        $(element).find('.addon-ticket-counter').html('# '+(i+1));
+        counter = counter+(i+1);
+    });
 }
+
+//=== CSRL TICKET SELECT FUNCTIONALITY
+$(document).on('change','.csrl-field',function (e) {
+    e.preventDefault();
+    let self = $(this),
+        mainParent = self.closest('.form-row-ticket-individual'),
+        dataRow = mainParent.attr('data-row'),
+        totalCsrlTicketPrice = parseInt(self.attr('data-price'))*parseInt(self.val());
+
+    let clonedCsrlSummaryRow = $('.csrl-price-html-wrapper .csrl-price').clone();
+    clonedCsrlSummaryRow.addClass('csrl-price-'+dataRow);
+    clonedCsrlSummaryRow.find('.csrl-quantity').html(self.val());
+    clonedCsrlSummaryRow.find('.amount').html(totalCsrlTicketPrice);
+
+    if (parseInt(self.val())>0) {
+
+        $('.csrl-price-'+dataRow).remove();
+        if($('.ticket-summary-table .price-'+dataRow).length>0){
+            $('.ticket-summary-table .price-'+dataRow).after(clonedCsrlSummaryRow);
+        }else{
+            $('.ticket-summary-table tbody').append(clonedCsrlSummaryRow);
+        }
+
+    } else {
+        $('.csrl-price-'+dataRow).remove();
+    }
+    console.log("csrl quantity", self.val());
+    calculateTotal();
+});
 
 
 //==== USA STATE FILLER
@@ -1156,6 +918,21 @@ let countryField = $('.country'),
         "Wisconsin": "Wisconsin",
         "Wyoming": "Wyoming",
         "zUnknown": "zUnknown"
+    },
+    statesCanadaJson = {
+        "Alberta": "Alberta",
+        "British Columbia": "British Columbia",
+        "Manitoba": "Manitoba",
+        "New Brunswick": "New Brunswick",
+        "Newfoundland and Labrador": "Newfoundland and Labrador",
+        "Northwest Territories": "Northwest Territories",
+        "Nova Scotia": "Nova Scotia",
+        "Nunavut": "Nunavut",
+        "Ontario": "Ontario",
+        "Prince Edward Island": "Prince Edward Island",
+        "Quebec": "Quebec",
+        "Saskatchewan": "Saskatchewan",
+        "Yukon":"Yukon"
     };
 
 statesFiller(countryField);
@@ -1167,13 +944,17 @@ countryField.on('change',function (e) {
 
 function statesFiller(countryFieldSelector){
     if(countryFieldSelector.val()=="USA"){
-        countryFieldSelector.closest('.form-row').find('.state-field-group .state-holder').html("<select class='form-control state'></select>");
+        countryFieldSelector.closest('.form-row').find('.state-field-group .state-holder').html("<select class='form-control state' name='State'></select>");
         countryFieldSelector.closest('.form-row').find('.state-field-group').find('select').append("<option value='0'>Select a State</option>");
         for (let key in statesJson){
             countryFieldSelector.closest('.form-row').find('.state-field-group').find('select').append("<option value='"+statesJson[key]+"'>"+statesJson[key]+"</option>")
         }
     }else{
-        countryFieldSelector.closest('.form-row').find('.state-field-group .state-holder').html("<input type='text' class='form-control state'>");
+        countryFieldSelector.closest('.form-row').find('.state-field-group .state-holder').html("<select class='form-control state' name='State'></select>");
+        countryFieldSelector.closest('.form-row').find('.state-field-group').find('select').append("<option value='0'>Select a State</option>");
+        for (let key in statesCanadaJson){
+            countryFieldSelector.closest('.form-row').find('.state-field-group').find('select').append("<option value='"+statesCanadaJson[key]+"'>"+statesCanadaJson[key]+"</option>")
+        }
     }
 }
 
@@ -1185,49 +966,12 @@ $(document).on('change','.radiobox.required-group input',function (e) {
     self.closest('.form-group.radiobox').removeClass('focused');
 });
 
-//==== ADDING ANOTHER GROUP OF TICKETS
-$(document).on('click','.btn-add-group-js',function (e) {
-    e.preventDefault();
-
-    let self = $(this),
-        parent = self.closest('.contact-information-inner'),
-        dataRow = self.closest('.form-row').attr('data-row'),
-        unitPrice = self.closest('.form-row').find('.ticket-type-js option:selected').attr('data-unitPrice'),
-        invalidField = parent.find('.form-group.required-group'),
-        validField = parent.find('.form-group.required-group.field-validated'),
-        notValidatedField = parent.find('.contact-information-grouped-single').find('.required-group:not(.field-validated)');
-
-    if(notValidatedField.length>0){
-        notValidatedField.first().find('input').focus();
-        if(notValidatedField.hasClass('radiobox')){
-            notValidatedField.first().find('input').focus();
-            notValidatedField.first().addClass('focused');
-        }
-
-    }else{
-        let dataContactNumber = parseInt(parent.find('.contact-information-grouped-single').length)+1,
-            clonedFields = parent.find('.contact-information-grouped-single').first().clone();
-
-        clonedFields.find('.section-title p').html('#'+dataContactNumber);
-        clonedFields.attr('data-contact',dataContactNumber);
-        clonedFields.find('.required-group').removeClass('field-validated');
-        clonedFields.find('.form-control').val('');
-        clonedFields.append("<input type='hidden' value='"+unitPrice+"' class='ticket-category-keys' name='TicketCategoryKeys[]'>");
-        updateTotalOnAddPerson(dataRow, unitPrice, "add");
-        clonedFields.find('.checkbox-holder').first().find('input').prop('checked', true);
-        // radioFieldNameAndId(clonedFields, dataContactNumber, "dataRow");
-        clonedFields.prepend("<span class='person-close'>Delete</span>");
-        self.closest('.contact-information-inner').find('.contact-information-grouped-wrapper').append(clonedFields);
-        let radioHolder = self.closest('.form-row-ticket-individual').find('.contact-information-inner .contact-information-grouped-wrapper .checkbox-holder');
-        radioBoxIdGenerating(radioHolder);
-    }
-
-});
-
 function ticketGroupManipulation(ticketDataGroup, ticketDataGroup2, typeSelector){
     let clonedFields = $('.contact-information-html .contact-information-grouped-single-copy');
+    let mainParent = typeSelector.closest('.form-row-ticket-individual');
     let dataRow = typeSelector.closest('.form-row-ticket-individual').data('row');
     let unitPrice = typeSelector.closest('.form-row').find('.ticket-type-js option:selected').attr('data-unitPrice');
+    let uniqueKeys = typeSelector.closest('.form-row').find('.ticket-type-js').val();
     let ticketDataAddon = typeSelector.children(':selected').attr('data-addon');
     // clonedFields.removeClass('contact-information-inner contact-information-single');
     // clonedFields.addClass('contact-information-grouped-single');
@@ -1261,15 +1005,11 @@ function ticketGroupManipulation(ticketDataGroup, ticketDataGroup2, typeSelector
 
         // clonedFields.find('.checkbox-holder.radio-female input').attr('id',genderFemaleId);
         // clonedFields.find('.checkbox-holder.radio-female label').attr('for',genderFemaleId);
-        //=== RADIOID GENERATION
-        let radioHolder = clonedFields.find('.checkbox-holder');
-        radioBoxIdGenerating(radioHolder);
 
         if(clonedFields.find('.contact-number').length>0){
-            clonedFields.find('.contact-number').html("#"+i);
-        }else{
-            clonedFields.find('.section-title span').append("<p style='display:inline-block;margin:0; padding-left:10px;' class='contact-number'>"+i+"</p>");
+            clonedFields.find('.section-title').html("<span>Registrant <p style='display:inline-block;margin:0; padding-left:10px;' class='contact-number'># "+i+"</p></span>");
         }
+        // typeSelector.closest('.form-row-ticket-individual').find('.contact-information-grouped-single-copy.contact-information-grouped-single').first().find('.section-title').html("<span>Primary Registrant</span>");
 
         typeSelector.closest('.form-row-ticket-individual').find('.contact-information-grouped .contact-information-grouped-wrapper').append(clonedFields.clone());
         $('.form-row .contact-information-grouped-single-copy').addClass('contact-information-grouped-single');
@@ -1280,17 +1020,48 @@ function ticketGroupManipulation(ticketDataGroup, ticketDataGroup2, typeSelector
             typeSelector.closest('.form-row-ticket-individual').find('.contact-information-inner .btn-holder').hide();
             typeSelector.closest('.form-row-ticket-individual').find('.contact-information-grouped-wrapper .contact-information-grouped-single').first().find('.checkbox-holder').first().find('input').prop('checked', true);
             typeSelector.closest('.form-row-ticket-individual').find('.contact-information-grouped-wrapper .contact-information-grouped-single').last().find('.checkbox-holder').last().find('input').prop('checked', true);
+
+            typeSelector.closest('.form-row-ticket-individual').find('.contact-information-grouped-wrapper .contact-information-grouped-single').last().find('.gender-selector').val('female');
+            typeSelector.closest('.form-row-ticket-individual').find('.contact-information-grouped-wrapper .contact-information-grouped-single').first().find('.gender-selector').val('male');
+
         }else{
             typeSelector.closest('.form-row-ticket-individual').find('.contact-information-inner .btn-holder').show();
         }
 
     }
-    typeSelector.closest('.form-row-ticket-individual').find('.contact-information-grouped .contact-information-grouped-wrapper .contact-information-grouped-single').append("<input type='hidden' value='"+unitPrice+"' class='ticket-category-keys' name='TicketCategoryKeys[]'>");
+    typeSelector.closest('.form-row-ticket-individual').find('.contact-information-grouped-single-copy.contact-information-grouped-single').first().find('.section-title').html("<span>Primary Registrant</span>");
+    typeSelector.closest('.form-row-ticket-individual').find('.contact-information-grouped .contact-information-grouped-wrapper .contact-information-grouped-single').append("<input type='hidden' value='"+uniqueKeys+"' class='ticket-category-keys' name='TicketCategoryKeys[]'>");
     typeSelector.closest('.form-row-ticket-individual').find('.contact-information-grouped .contact-information-grouped-wrapper .contact-information-grouped-single').first().find('.ticket-category-keys').remove();
+    registrantTextChanging(mainParent);
+    typeSelector.closest('.form-row-ticket-individual').find('.contact-information-grouped-wrapper .contact-information-grouped-single').find('.gender-selector').closest('.form-group.required-group').addClass('field-validated');
 
     typeSelector.closest('.form-row-ticket-individual').find('.contact-information-grouped .contact-information-grouped-single').show();
 
 }
+
+function ticketSummaryRowUpdate(self){
+    let mainParent = self.closest('.form-row-ticket-individual'),
+        dataRow = mainParent.attr('data-row'),
+        totalPrice = parseInt(self.attr('data-price'))*parseInt(self.val());
+
+    if (parseInt(self.val())>0) {
+
+        $('.csrl-price-'+dataRow).remove();
+        if($('.ticket-summary-table .price-'+dataRow).length>0){
+            let currentText = mainParent.find('.ticket-type-js option:selected').data("text");
+            $('.ticket-summary-table .price-'+dataRow).find('.tr-ticket-text').html(currentText+" X "+self.val());
+            $('.ticket-summary-table .price-'+dataRow).find('.amount').html(totalPrice);
+        }else{
+            // $('.ticket-summary-table tbody').append(clonedCsrlSummaryRow);
+        }
+
+    } else {
+        $('.csrl-price-'+dataRow).remove();
+    }
+    console.log("csrl quantity", self.val());
+    calculateTotal();
+}
+
 
 $(document).on('click','.person-close',function (e) {
     let self = $(this),
@@ -1301,21 +1072,6 @@ $(document).on('click','.person-close',function (e) {
     self.parent().remove();
 
 });
-
-//=== RADIOBOX ID GENERATING
-function radioBoxIdGenerating(radioHolder) {
-    let randomUniqueIdMale = (Math.random() + 1).toString(36).substring(4,7);
-    radioHolder.first().find('input').attr('id',randomUniqueIdMale);
-    radioHolder.first().find('label').attr('for',randomUniqueIdMale);
-
-    radioHolder.first().find('input').prop('checked', true);
-
-    let randomUniqueIdFemale = (Math.random() + 1).toString(36).substring(4,7);
-    radioHolder.last().find('input').attr('id',randomUniqueIdFemale);
-    radioHolder.last().find('label').attr('for',randomUniqueIdFemale);
-}
-let radioHolder = $('.contact-information-inner.contact-information-single .contact-information-grouped-wrapper .checkbox-holder');
-radioBoxIdGenerating(radioHolder);
 
 //==== GIVING FOCUS TO THE INVALID FIELDS
 function focusToNotValidFields(notValidatedFields){
@@ -1334,4 +1090,3 @@ function focusToNotValidFields(notValidatedFields){
 function updateTicketQuantity(dataRow) {
     $('#ticket-quantity').val(dataRow);
 }
-

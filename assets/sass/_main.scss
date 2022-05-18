@@ -700,6 +700,11 @@
       }
 
       &-wrapper{
+        .contact-information-grouped-single{
+          &:last-child{
+            border-bottom: 0;
+          }
+        }
         &:not(:first-child){
           border-bottom:1px solid #ddd;
         }
@@ -761,3 +766,8 @@
   height: 45px!important;
 }
 
+@media (min-width: 1200px){
+  .container{
+    max-width:1180px;
+  }
+}
