@@ -4,8 +4,11 @@
     //display: none;
     padding-bottom:0;
 
-    &.active{
-      display: block;
+    &-inpage{
+      display: none;
+      &.active{
+        display: block;
+      }
     }
 
     @media (min-width:768px){

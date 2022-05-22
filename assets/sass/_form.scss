@@ -145,6 +145,11 @@ input::-webkit-inner-spin-button {
   .error-message{
     display: none!important;
   }
+  .form-group{
+    .error-message{
+      display: block!important;
+    }
+  }
 }
 
 .person-close{
@@ -157,4 +162,14 @@ input::-webkit-inner-spin-button {
   z-index: 22;
   top: 13px;
   cursor: pointer;
+}
+
+.cart-table{
+  position: relative;
+  .error-message{
+    margin: 0;
+    position: absolute;
+    left: 12px;
+    top: 115px;
+  }
 }

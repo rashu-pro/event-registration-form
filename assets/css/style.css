@@ -506,6 +506,9 @@ input::-webkit-inner-spin-button {
 .sidebar-block .error-message {
   display: none !important;
 }
+.sidebar-block .form-group .error-message {
+  display: block !important;
+}
 
 .person-close {
   background: red;
@@ -517,6 +520,16 @@ input::-webkit-inner-spin-button {
   z-index: 22;
   top: 13px;
   cursor: pointer;
+}
+
+.cart-table {
+  position: relative;
+}
+.cart-table .error-message {
+  margin: 0;
+  position: absolute;
+  left: 12px;
+  top: 115px;
 }
 
 body, html {
@@ -904,7 +917,10 @@ h4 {
 .thank-wrapper {
   padding-bottom: 0;
 }
-.thank-wrapper.active {
+.thank-wrapper-inpage {
+  display: none;
+}
+.thank-wrapper-inpage.active {
   display: block;
 }
 @media (min-width: 768px) {
