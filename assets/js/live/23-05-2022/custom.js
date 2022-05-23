@@ -121,19 +121,16 @@ $(document).on('focus', '.form-body', function (e) {
     });
 
     $('.mask-zipcode').inputmask({
-        "mask": "99999",
-        placeholder: ""
+        "mask": "99999"
     });
 });
 
 $('#card-info-area .mask-zipcode').inputmask({
-    "mask": "99999",
-    placeholder: ""
+    "mask": "99999"
 });
 
 $('.mask-cvv').inputmask({
-    "mask": "9999",
-    placeholder: ""
+    "mask": "9999"
 });
 
 $('.mask-cvv').on('keyup', function () {

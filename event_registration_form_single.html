@@ -8,7 +8,7 @@
     <link rel="icon" href="assets/images/site_icon.png">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css?1.0.1">
 </head>
 <body>
 
@@ -325,38 +325,39 @@
                                                 </span>
                                                         </td>
                                                     </tr>
+
                                                     <tr>
-                                                        <td>RSVP - Above 10</td>
+                                                        <td>RSVP - Below 10</td>
                                                         <td class="per-price">
                                                             <span class="currency">$</span>
-                                                            <span class="amount">25</span>
+                                                            <span class="amount">20</span>
                                                         </td>
                                                         <td>
-                                                            <div class="quantity-wrap" ticket-type="above-10">
+                                                            <div class="quantity-wrap" ticket-type="below-10">
                                                                 <div class="input-group mb-3">
                                                                     <div class="input-group-prepend">
                                                                         <button type="button" class="input-group-text quantity-decrease">-</button>
                                                                     </div>
-                                                                    <input type="text" class="form-control ticket-field" value="0">
+                                                                    <input type="number" class="form-control ticket-field" value="0">
                                                                     <div class="input-group-append">
                                                                         <button type="button" class="input-group-text quantity-increase">+</button>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </td>
-                                                        <td><span class="price-subtotal">
-                                                <span class="above-10-price">
+                                                        <td>
+                                                <span class="below-10-price">
                                                     <span class="currency">$</span>
                                                     <span class="amount">0</span>
                                                 </span>
-                                            </span> </td>
+                                                        </td>
                                                     </tr>
 
                                                     <tr>
                                                         <td>RSVP - Adult</td>
                                                         <td class="per-price">
                                                             <span class="currency">$</span>
-                                                            <span class="amount">0</span>
+                                                            <span class="amount">30</span>
                                                         </td>
                                                         <td>
                                                             <div class="quantity-wrap" ticket-type="adult">
@@ -555,7 +556,7 @@
                                     </div>
                                 </div>
 
-                                <div class="sidebar-block" id="card-info-area">
+                                <div class="sidebar-block payment-information-div" id="card-info-area" style="display: none">
                                     <h3 class="sidebar-block-title">Payment Information</h3>
                                     <div class="sidebar-block-description">
                                         <div class="row">
@@ -793,13 +794,13 @@
 
 <script src="assets/plugins/input_mask/jquery.inputmask.min.js"></script>
 <script src="assets/plugins/card_validation.js"></script>
-<script src="assets/js/event_single/custom.js"></script>
+<script src="assets/js/event_single/custom.js?v=1.0.1"></script>
 <script>
     function allFieldsValidated(status) {
         if(status){
             $('.loader-div').addClass('active');
             setTimeout(function () {
-                self.closest('.registration-form-wrapper').hide();
+                $('.registration-form-wrapper').hide();
                 $('.loader-div').removeClass('active');
                 $('.thank-wrapper').addClass('active');
             }, 800);
