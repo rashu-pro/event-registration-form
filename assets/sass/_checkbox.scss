@@ -111,3 +111,28 @@
     }
   }
 }
+
+.checkbox{
+  &-wrapper{
+    margin-bottom:20px;
+    .check-info-more{
+      padding-left:0;
+      p{
+        margin-bottom:5px;
+
+      }
+      @media (min-width:768px){
+        padding-left:32px;
+      }
+    }
+    label{
+      margin:0;
+    }
+    .checkbox{
+      &-holder{
+        margin:0;
+      }
+
+    }
+  }
+}

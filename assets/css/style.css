@@ -679,6 +679,10 @@ h4 {
   color: #1D9854;
 }
 
+.text-semibold {
+  font-weight: 600;
+}
+
 @media (max-width: 767px) {
   .hidden-xs {
     display: none;
@@ -1770,12 +1774,6 @@ h4 {
 .modal-confirm .modal-content {
   border-radius: 12px;
 }
-@media (min-width: 576px) {
-  .modal-dialog {
-    max-width: 550px;
-  }
-}
-
 .card-info-area .card-image {
   padding: 15px 0;
 }
@@ -1953,6 +1951,27 @@ h4 {
 }
 .tc-wrapper.focused .alert {
   border: 3px solid #E83908;
+}
+
+.checkbox-wrapper {
+  margin-bottom: 20px;
+}
+.checkbox-wrapper .check-info-more {
+  padding-left: 0;
+}
+.checkbox-wrapper .check-info-more p {
+  margin-bottom: 5px;
+}
+@media (min-width: 768px) {
+  .checkbox-wrapper .check-info-more {
+    padding-left: 32px;
+  }
+}
+.checkbox-wrapper label {
+  margin: 0;
+}
+.checkbox-wrapper .checkbox-holder {
+  margin: 0;
 }
 
 /*# sourceMappingURL=style.css.map */
