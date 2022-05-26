@@ -29,6 +29,7 @@ ul{
 
     .main-wrapper{
       padding:0;
+      margin-bottom:0;
     }
 
     .header{
@@ -218,7 +219,7 @@ ul{
           &-wrapper{
             //width:2400px;
             min-width: 2600px;
-            padding:30px 30px;
+            padding:45px 30px 30px;
             display: flex;
             align-items: flex-end;
             cursor: e-resize;
@@ -727,4 +728,10 @@ p{
 
 .terms-wrapper{
 
+}
+.footer{
+  margin-top:50px;
+}
+.thank-wrapper{
+  display: none;
 }

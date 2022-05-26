@@ -330,6 +330,7 @@
                                                             <option value="0">Select Country</option>
                                                             <option value="USA">USA</option>
                                                             <option value="Canada">Canada</option>
+                                                            <option value="Other">Other</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -354,9 +355,7 @@
                                                     <div class="form-group required-group zip-code-field">
                                                         <label class="form-control-label">ZIP Code <span
                                                                 class="required-mark">*</span></label>
-                                                        <input name="ZipCode" type="text"
-                                                               class="form-control zip-code mask-zipcode"
-                                                               data-validation="zipcode">
+                                                        <input name="ZipCode" type="text" class="form-control">
                                                     </div>
                                                 </div>
 
@@ -404,7 +403,7 @@
                             <!-- ====== SIDEBAR ====== -->
                             <div class="sidebar">
 
-                                <div class="sidebar-block">
+                                <div class="sidebar-block sidebar-block-ticket-summary">
                                     <h3 class="sidebar-block-title">Ticket Summary</h3>
                                     <div class="sidebar-block-description">
                                         <div class="table-responsive ticket-summary-table">
@@ -419,7 +418,20 @@
                                                 </thead>
                                                 <tbody>
 
-                                                </tbody>
+                                                <tr id="row-d91903fe-eda2-44e1-824e-a4e54af5acc5-1" class="price-row ticket-price-row price-1" data-row="1">
+                                                    <td class="tr-ticket-text">
+                                                        <span class="row-number">1.</span>
+                                                        <span class="row-text">Adult</span>
+                                                        <span> X </span>
+                                                        <span class="row-quantity">1</span>
+                                                    </td>
+                                                    <th>
+                                        <span class="">
+                                            <span class="currency">$</span>
+                                            <span class="amount">89</span>
+                                        </span>
+                                                    </th>
+                                                </tr></tbody>
                                                 <tfoot>
 
                                                 <tr>
@@ -427,7 +439,7 @@
                                                     <th class="">
                                                         <span class="total-price">
                                                             <span class="currency">$</span>
-                                                            <span class="amount">0</span>
+                                                            <span class="amount">89</span>
                                                         </span>
                                                     </th>
                                                 </tr>
@@ -436,7 +448,13 @@
 
                                             <div class="ticket-summary-input-fields">
 
-                                            </div>
+                                                <div class="hidden-input-field summary-row-1">
+                                                    <input type="hidden" name="TicketReceiptCategoryName[]" class="ticket-receipt-category-name" value="Adult">
+                                                    <input type="hidden" name="TicketReceiptCategoryKey[]" class="ticket-receipt-category-key" value="d91903fe-eda2-44e1-824e-a4e54af5acc5">
+                                                    <input type="hidden" name="TicketReceiptCategoryQuantity[]" class="ticket-receipt-category-quantity" value="1">
+                                                    <input type="hidden" name="TicketReceiptTicketQuantity[]" class="ticket-receipt-ticket-quantity" value="1">
+                                                    <input type="hidden" name="TicketReceiptCategoryPrice[]" class="ticket-receipt-category-price" value="89">
+                                                </div></div>
                                         </div>
 
                                     </div>
@@ -551,7 +569,7 @@
                                                 <div class="form-group zip-code-field">
                                                     <label class="form-control-label">ZIP Code <span
                                                             class="required-mark">*</span></label>
-                                                    <input type="text" class="form-control zip-code mask-zipcode">
+                                                    <input type="text" class="form-control zip-code-plain">
                                                 </div>
                                             </div>
                                         </div>

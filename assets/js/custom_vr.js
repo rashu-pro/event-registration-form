@@ -133,8 +133,13 @@ $(function ($) {
             let item = $(this).data("id");
             tickets.push(item);
 
-            let row = `<tr id='row-${item}'>
-                                    <td>${item} - ${boothType}</td>
+            let row = `<tr id='row-${item}' class="price-row ticket-price-row booth-row row-${item}">
+                                    <td>
+                                        <span class="row-number">1.</span>
+                                        <span class="ticket-text"> ${item} - ${boothType} </span>
+                                        <span> X </span>
+                                        <span class="row-quantity">1</span>
+                                    </td>
                                     <th>
                                         <span class="">
                                             <span class="currency">$</span>
@@ -142,7 +147,12 @@ $(function ($) {
                                         </span>
                                     </th>
                                 </tr>`;
-            $(".ticket-summary-table table tbody").html(row);
+            $(".ticket-summary-table table tbody .booth-row").remove();
+            $(".ticket-summary-table table tbody").prepend(row);
+            serialTicketSummary();
+            calculateTotal();
+
+
             let tenMinutes = 60 * 10;
             display = document.querySelector('.js-timer');
             clearInterval(timerFunction);

@@ -393,7 +393,7 @@ $(document).on('change', '.ticket-type-js', function (e) {
         removeContactFields(mainParent);
     }
 
-    calculateTotalPrice(mainParent, self);
+    calculateTotalPrice(mainParent);
 
 });
 
@@ -487,7 +487,7 @@ $(document).on('change', '.lost-badge-check', function (e) {
     console.log('checked');
     let self = $(this),
         mainParent = self.closest('.form-row-ticket-individual');
-    calculateTotalPrice(mainParent, self);
+    calculateTotalPrice(mainParent);
 });
 
 
@@ -507,16 +507,13 @@ $(document).on('focus', '.form-body', function (e) {
     });
 
     $('.mask-zipcode').inputmask({
-        "mask": "99999",
-        placeholder: ""
+        "mask": "99999"
     });
 });
 
 $('.payment-information .mask-zipcode').inputmask({
-    "mask": "99999",
-    placeholder: ""
+    "mask": "99999"
 });
-
 $('.mask-cvv').inputmask({
     "mask": "9999",
     placeholder: ""
@@ -544,10 +541,9 @@ $('.payment-information .mask-zipcode').on('keyup',function (e) {
     }
 });
 
-$('.payment-information .zip-code-plain').on('keyup',function (e) {
+$('.cc-year, .cc-month').on('change', function (e) {
     let self = $(this);
-
-    if ($('.payment-information .zip-code-plain').val()!=='') {
+    if (parseInt(self.val()) != 0) {
         self.addClass('valid');
         self.removeClass('invalid');
     } else {
@@ -556,9 +552,10 @@ $('.payment-information .zip-code-plain').on('keyup',function (e) {
     }
 });
 
-$('.cc-year, .cc-month').on('change', function (e) {
+$('.payment-information .zip-code-plain').on('keyup',function (e) {
     let self = $(this);
-    if (parseInt(self.val()) != 0) {
+
+    if ($('.payment-information .zip-code-plain').val()!=='') {
         self.addClass('valid');
         self.removeClass('invalid');
     } else {
@@ -750,39 +747,24 @@ function singleValidation(formControl, formGroup) {
     }
 }
 
-function calculateTotalPrice(mainParent, self) {
+function calculateTotalPrice(mainParent) {
 
     let ticketText = mainParent.find('.ticket-type-js').children('option:selected').attr('data-text'),
-        ticketKey = mainParent.find('.ticket-type-js').val(),
-        // ticketDataGroup = mainParent.find('.ticket-type-js').children('option:selected').attr('data-group'),
-        ticketDataGroup = 1,
         ticketDescription = mainParent.find('.ticket-type-js').children('option:selected').attr('data-description'),
         price = mainParent.find('.ticket-type-js option:selected').attr('data-price'),
         // price = mainParent.find('.ticket-type-js').val(),
         dataRow = mainParent.attr('data-row'),
-        trRowId = mainParent.find('.ticket-type-js').val()+"-"+dataRow,
         lostBadge = mainParent.find('.lost-badge-check'),
         isLostBadgeChecked = lostBadge.prop('checked'),
         lostBadgePrice = parseInt(lostBadge.data('value'));
 
-    if(parseInt(ticketDataGroup)<1) {
-        ticketDataGroup = 1;
-    }
-
-    if(ticketDataGroup == 'couple') {
-        ticketDataGroup = 1;
-    }
-
-    console.log("data-group: " + ticketDataGroup);
+    console.log("data-row: " + dataRow);
 
     //Have to call
 
-    let row = `<tr id='row-${trRowId}' class='price-row ticket-price-row price-${dataRow}' data-row="${dataRow}">
+    let row = `<tr id='row-${ticketText}' class='price-row ticket-price-row price-${dataRow}' data-row="${dataRow}">
                                     <td class="tr-ticket-text">
-                                        <span class="row-number"></span>
-                                        <span class="row-text">${ticketText}</span>
-                                        <span> X </span>
-                                        <span class="row-quantity">${ticketDataGroup}</span>
+                                        ${ticketText}
                                     </td>
                                     <th>
                                         <span class="">
@@ -792,90 +774,59 @@ function calculateTotalPrice(mainParent, self) {
                                     </th>
                                 </tr>`;
 
+    let badgeRow = `<tr class='price-row badge-fee-row price-badge-${dataRow}'>
+                                    <td>
+                                    Lost Badge Fee
+                                    </td>
+                                    
+                                    <th>
+                                        <span class="">
+                                            <span class="currency">$</span>
+                                            <span class="amount">${lostBadgePrice}</span>
+                                        </span>
+                                    </th>
+                                </tr>`;
+
     //changed by emdad
     //changed to attr from value
-    if (parseInt(mainParent.find('.ticket-type-js option:selected').attr('data-price')) != 0) {
-        /*
+    if (mainParent.find('.ticket-type-js option:selected').attr('data-price') != '0') {
         if ($('.price-' + dataRow).length > 0) {
             if (price == 0) {
                 console.log('no data');
                 $('.price-' + dataRow).hide();
-                $('.price-' + dataRow).find('.amount').html('');
             } else {
                 $('.price-' + dataRow).show();
-                // $('.price-' + dataRow).next().show();
-                $('.price-' + dataRow).attr('id','row-'+trRowId);
-                $('.price-' + dataRow).find('.tr-ticket-text .row-text').html(ticketText);
-                $('.price-' + dataRow).find('.tr-ticket-text .row-quantity').html(ticketDataGroup);
-                $('.price-' + dataRow).find('.amount').html(price);
-
-                // $('.price-' + dataRow).next().remove();
-                // $(".ticket-summary-table table tbody").append(row);
-                // $('.price-' + dataRow).next().remove();
-                ticketSummaryInputField(mainParent, self);
-
+                $('.price-' + dataRow).find('.tr-ticket-text').text(ticketText);
+                $('.price-' + dataRow).find('.amount').text(price);
             }
 
         } else {
             $(".ticket-summary-table table tbody").append(row);
-            ticketSummaryInputField(mainParent, self);
-        }*/
-        $('.price-' + dataRow).remove();
-        if(mainParent.next().hasClass('form-row-ticket-individual')){
-            let dataRowNext = mainParent.next().data('row'),
-                isAddonPriceRow = $('.addon-price-'+dataRow);
-            if(isAddonPriceRow.length>0){
-                console.log('addon exist');
-                isAddonPriceRow.first().before(row);
-                ticketSummaryInputField(mainParent, self);
-            }else{
-                console.log('addon does not exist');
-                $('.price-' + dataRowNext).before(row);
-                ticketSummaryInputField(mainParent, self);
-            }
-        }else{
-            console.log('no next ticket');
-            console.log('data row', dataRow);
-            let isAddonPriceRow = $('.addon-price-'+dataRow);
-            $('.price-' + dataRow).remove();
-            if(isAddonPriceRow.length>0){
-                isAddonPriceRow.first().before(row);
-            }else{
-                $(".ticket-summary-table table tbody").append(row);
-            }
-            ticketSummaryInputField(mainParent, self);
         }
 
-    } else {
-        //=== WHEN TICKET TYPE IS NONE
-        $('.price-' + dataRow).remove();
-        $('.ticket-summary-input-fields .summary-row-'+ dataRow).remove();
-
-
-        /**
-        if ($('.price-' + dataRow).length > 0) {
-            $('.price-' + dataRow).hide();
-            $('.price-' + dataRow).find('.amount').html(price);
-            // $('.price-' + dataRow).find('.tr-ticket-text .row-text').html(ticketText);
-            // $('.price-' + dataRow).find('.tr-ticket-text .row-quantity').html(ticketDataGroup);
-            // $('.price-' + dataRow).find('.amount').html(price);
-
-            // $('.price-' + dataRow).next().remove();
-            // $(".ticket-summary-table table tbody").append(row);
-            // $('.price-' + dataRow).next().remove();
-            $('.ticket-summary-input-fields .summary-row-'+ dataRow).remove();
+        if (isLostBadgeChecked) {
+            if ($('.price-' + dataRow).length > 0 && !$('.price-badge-' + dataRow).length > 0) {
+                $('.price-' + dataRow).after(badgeRow);
+            }
 
         } else {
-            $(".ticket-summary-table table tbody").append(row);
-            ticketSummaryInputField(mainParent, self);
-        }**/
+            if ($('.price-badge-' + dataRow).length > 0) {
+                $('.price-badge-' + dataRow).remove();
+            }
+        }
+    } else {
+        if ($('.price-' + dataRow).length > 0) {
+            $('.price-' + dataRow).find('.amount').text(0);
+            $('.price-' + dataRow).hide();
+        }
+        if ($('.price-' + dataRow).next().length > 0) {
+            $('.price-' + dataRow).next().remove();
+        }
     }
 
-    ticketSummaryRowNumber(mainParent, self);
     calculateTotal();
 }
 
-//=== CALCULATING TICKET SUMMARY TABLE
 function calculateTotal() {
     let totalPrice = 0,
         sidebarPriceRow = $('.sidebar-block .price-row'),
@@ -894,74 +845,6 @@ function calculateTotal() {
     //changed by Emdad
     //Update total price hidden field
     $('#total-price').val(totalPrice);
-}
-
-//=== GENERATING INPUT FIELD FOR TICKET SUMMARY
-function ticketSummaryInputField(mainParent, self){
-    let ticketText = mainParent.find('.ticket-type-js').children('option:selected').attr('data-text'),
-        ticketKey = mainParent.find('.ticket-type-js').val(),
-        ticketDataGroup = mainParent.find('.ticket-type-js').children('option:selected').attr('data-group'),
-        ticketPersonQuantity = mainParent.find('.ticket-type-js').children('option:selected').attr('data-group'),
-        isAddOnTicket = self.closest('.addon-ticket-holder').length,
-        ticketDescription = mainParent.find('.ticket-type-js').children('option:selected').attr('data-description'),
-        price = mainParent.find('.ticket-type-js option:selected').attr('data-unitprice'),
-        dataRow = mainParent.attr('data-row'),
-        currentQuantity = parseInt($('.ticket-summary-input-fields .summary-row-'+dataRow).find('.ticket-receipt-ticket-quantity').val()),
-        divClass = "summary-row-"+dataRow;
-
-    price = parseInt($('.ticket-summary-table .price-'+dataRow).find('.amount').text());
-
-    if(isAddOnTicket>0){
-        ticketText = self.closest('.addon-ticket-holder').find('.addon-ticket-input').data('text');
-        ticketKey = self.closest('.addon-ticket-holder').find('.addon-ticket-input').val();
-        ticketDataGroup = self.val();
-        ticketPersonQuantity = self.val();
-        price = self.data('price');
-        divClass = "summary-row-csrl-"+dataRow;
-        price = parseInt($('.ticket-summary-table .addon-price-'+dataRow).find('.amount').text());
-    }else{
-        if(ticketDataGroup>1){
-            ticketDataGroup = parseInt($('.ticket-summary-table .price-'+dataRow).find('.row-quantity').text());
-        }else if(ticketDataGroup == "couple"){
-            ticketDataGroup = 1;
-            ticketPersonQuantity = 2;
-        }else{
-            ticketDataGroup = 1;
-            ticketPersonQuantity = 1;
-        }
-    }
-
-    if(self.hasClass('btn-add-group-js')){
-        ticketPersonQuantity = currentQuantity + 1;
-    }
-
-    if(self.hasClass('person-close')){
-        ticketPersonQuantity = currentQuantity - 1;
-    }
-
-
-    let clonedInputFieldHidden = $('.hidden-field-receipt-html-wrapper .hidden-input-field').clone();
-    clonedInputFieldHidden.addClass(divClass);
-    clonedInputFieldHidden.find('.ticket-receipt-category-name').val(ticketText);
-    clonedInputFieldHidden.find('.ticket-receipt-category-key').val(ticketKey);
-    clonedInputFieldHidden.find('.ticket-receipt-category-quantity').val(ticketDataGroup);
-    clonedInputFieldHidden.find('.ticket-receipt-ticket-quantity').val(ticketPersonQuantity);
-    clonedInputFieldHidden.find('.ticket-receipt-category-price').val(price);
-
-    if(isAddOnTicket>0){
-        $('.ticket-summary-input-fields .summary-row-csrl-'+ dataRow).remove();
-        $('.ticket-summary-input-fields').append(clonedInputFieldHidden);
-    }else{
-        $('.ticket-summary-input-fields .summary-row-' + dataRow).remove();
-        $('.ticket-summary-input-fields').append(clonedInputFieldHidden);
-    }
-}
-
-//=== GIVING ROW NUMBER TO THE TICKET SUMMARY TABLE
-function ticketSummaryRowNumber(){
-    $('.ticket-summary-table tbody tr').each(function(i, element){
-        $(element).find('.row-number').text((i+1)+".");
-    });
 }
 
 //=== UPDATE TICKET PRICE AFTER ADD ANOTHER PERSON ACTION
@@ -989,9 +872,6 @@ function deleteRow(dataRow) {
         mainParent.remove();
         $('.ticket-summary-table .price-' + dataRow).remove();
         $('.ticket-summary-table .price-badge-' + dataRow).remove();
-        $('.ticket-summary-input-fields .summary-row-'+ dataRow).remove();
-        $('.ticket-summary-input-fields .summary-row-csrl-'+ dataRow).remove();
-        ticketSummaryRowNumber();
         calculateTotal();
 
         $('.form-row-ticket-individual').each(function (i, element) {
@@ -1035,13 +915,11 @@ $(document).on('change','.csrl-field',function (e) {
     let clonedCsrlSummaryRow = $('.csrl-price-html-wrapper .csrl-price').clone();
     console.log(clonedCsrlSummaryRow);
     clonedCsrlSummaryRow.addClass('csrl-price-'+dataRow);
-    clonedCsrlSummaryRow.addClass('addon-price-'+dataRow);
-    clonedCsrlSummaryRow.find('.row-quantity').html(self.val());
+    clonedCsrlSummaryRow.find('.csrl-quantity').html(self.val());
     clonedCsrlSummaryRow.find('.amount').html(totalCsrlTicketPrice);
 
     if (parseInt(self.val())!=0) {
 
-        $('.ticket-summary-input-fields .summary-row-csrl-'+ dataRow).remove();
         $('.csrl-price-'+dataRow).remove();
         if($('.ticket-summary-table .price-'+dataRow).length>0){
             console.log('csrl quantity', self.val());
@@ -1049,13 +927,10 @@ $(document).on('change','.csrl-field',function (e) {
         }else{
             $('.ticket-summary-table tbody').append(clonedCsrlSummaryRow);
         }
-        ticketSummaryInputField(mainParent, self);
 
     } else {
-        $('.ticket-summary-input-fields .summary-row-csrl-'+ dataRow).remove();
         $('.csrl-price-'+dataRow).remove();
     }
-    ticketSummaryRowNumber();
     calculateTotal();
 });
 
@@ -1170,7 +1045,6 @@ $(document).on('click','.btn-add-group-js',function (e) {
     e.preventDefault();
 
     let self = $(this),
-        mainParent = self.closest('.form-row-ticket-individual'),
         parent = self.closest('.contact-information-inner'),
         dataRow = self.closest('.form-row').attr('data-row'),
         unitPrice = self.closest('.form-row').find('.ticket-type-js option:selected').attr('data-unitPrice'),
@@ -1204,27 +1078,16 @@ $(document).on('click','.btn-add-group-js',function (e) {
         // radioFieldNameAndId(clonedFields, dataContactNumber, "dataRow");
         clonedFields.prepend("<span class='person-close'>Delete</span>");
         self.closest('.contact-information-inner').find('.contact-information-grouped-wrapper').append(clonedFields);
-        ticketQuantityUpdate(dataRow, "add");
-        ticketSummaryInputField(mainParent, self);
         let contactNumber = self.closest('.contact-information-inner').find('.contact-information-grouped-wrapper .contact-information-grouped-single').last().attr('data-contact');
         self.closest('.contact-information-inner').find('.contact-information-grouped-wrapper .contact-information-grouped-single').last().find('.section-title').html("<span>Registrant <p style='display:inline-block;margin:0; padding-left:10px;' class='contact-number'># "+contactNumber+"</p>");
         self.closest('.contact-information-inner').find('.contact-information-grouped-wrapper .contact-information-grouped-single').last().find('.gender-selector').val('male');
         self.closest('.contact-information-inner').find('.contact-information-grouped-wrapper .contact-information-grouped-single').last().find('.gender-selector').closest('.form-group.required-group').addClass('field-validated');
+
+        let radioHolder = self.closest('.form-row-ticket-individual').find('.contact-information-inner .contact-information-grouped-wrapper .checkbox-holder');
+        radioBoxIdGenerating(radioHolder);
     }
 
 });
-
-//=== TICKET QUANTITY UPDATE ON TICKET SUMMARY TABLE
-function ticketQuantityUpdate(dataRow, calculationMethod){
-    let ticketQuantity = parseInt($('.ticket-summary-table .price-'+dataRow).find('.row-quantity').text());
-
-    if(calculationMethod=="add"){
-        ticketQuantity = ticketQuantity + 1;
-    }else{
-        ticketQuantity = ticketQuantity - 1;
-    }
-    // $('.ticket-summary-table .price-'+dataRow).find('.row-quantity').html(ticketQuantity);
-}
 
 function ticketGroupManipulation(ticketDataGroup, ticketDataGroup2, typeSelector){
     let clonedFields = $('.contact-information-html .contact-information-grouped-single-copy');
@@ -1304,14 +1167,11 @@ function ticketGroupManipulation(ticketDataGroup, ticketDataGroup2, typeSelector
 
 $(document).on('click','.person-close',function (e) {
     let self = $(this),
-        mainParent = self.closest('.form-row-ticket-individual'),
         dataRow = self.closest('.form-row').attr('data-row'),
         unitPrice = self.closest('.form-row').find('.ticket-type-js option:selected').attr('data-unitPrice');
     updateTotalOnAddPerson(dataRow, unitPrice, "remove");
 
     self.parent().remove();
-    ticketQuantityUpdate(dataRow, "subtract");
-    ticketSummaryInputField(mainParent, self)
 
 });
 
@@ -1340,10 +1200,6 @@ function focusToNotValidFields(notValidatedFields){
     if(notValidatedFields.hasClass('radiobox')){
         notValidatedFields.first().addClass('focused');
     }
-}
-
-if ($('.ticket-summary-table').length > 0) {
-    $('.ticket-summary-table').closest('.sidebar-block').addClass('sidebar-block-ticket-summary');
 }
 
 // created by Emdad

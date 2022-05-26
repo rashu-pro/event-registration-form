@@ -13,6 +13,7 @@ ul li {
 }
 .main.style-2 .main-wrapper {
   padding: 0;
+  margin-bottom: 0;
 }
 .main.style-2 .header {
   position: absolute;
@@ -157,7 +158,7 @@ ul li {
 }
 .main.style-2 .ticket-map-row-wrapper {
   min-width: 2600px;
-  padding: 30px 30px;
+  padding: 45px 30px 30px;
   display: flex;
   align-items: flex-end;
   cursor: e-resize;
@@ -519,6 +520,14 @@ ul li {
     font-size: 22px;
     padding: 0;
   }
+}
+
+.footer {
+  margin-top: 50px;
+}
+
+.thank-wrapper {
+  display: none;
 }
 
 /*# sourceMappingURL=booth_layout.css.map */
