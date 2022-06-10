@@ -60,25 +60,28 @@ $(document).on('click', '.btn-reg-js', function (e) {
     console.log('not validated form field',notValidatedField.length);
     console.log('not validated payment fields',paymentFormGroupNotValidatedSelector.length);
 
-    ticketFieldSelector.each(function (i, object) {
-        if($(object).val()>0){
-            ticketFieldValidated = true;
-        }
-    });
+    if(ticketFieldSelector.length>0){
+        ticketFieldSelector.each(function (i, object) {
+            if($(object).val()>0){
+                ticketFieldValidated = true;
+            }
+        });
 
-    if(!ticketFieldValidated){
-        ticketFieldSelector.first().focus();
-        if(ticketFieldSelector.closest('.cart-table').find('.error-message')){
-            ticketFieldSelector.closest('.cart-table').find('.error-message').remove();
-            setTimeout(function (e) {
+        if(!ticketFieldValidated){
+            ticketFieldSelector.first().focus();
+            if(ticketFieldSelector.closest('.cart-table').find('.error-message')){
+                ticketFieldSelector.closest('.cart-table').find('.error-message').remove();
+                setTimeout(function (e) {
+                    ticketFieldSelector.first().closest('tr').after("<p class='error-message text-danger'>Please select a ticket</p>");
+                },300);
+            }else{
                 ticketFieldSelector.first().closest('tr').after("<p class='error-message text-danger'>Please select a ticket</p>");
-            },300);
-        }else{
-            ticketFieldSelector.first().closest('tr').after("<p class='error-message text-danger'>Please select a ticket</p>");
-        }
+            }
 
-        return;
+            return;
+        }
     }
+
 
     if(notValidatedField.length>0){
         notValidatedField.first().find('.form-control').focus();
@@ -141,7 +144,6 @@ $('.mask-cvv').on('keyup', function () {
         formGroup = self.closest('.form-group');
     cvvValidate(self, formGroup)
 });
-
 
 $('#card-info-area .mask-zipcode').on('keyup',function (e) {
     let self = $(this);
@@ -246,7 +248,6 @@ countryField.on('change',function (e) {
 
 
 //==== FUNCTIONS DEFINITION
-
 function chooseTicketWarning(quantitySelector){
     let ticketFieldSelector = $('.ticket-field'),
         ticketFieldValidated = false;
@@ -489,10 +490,10 @@ function card_validation() {
     // J.toggleClass(number, 'invalid', !Payment.fns.validateCardNumber(J.val(number)));
     if (cardType) {
         creditCardField.addClass(cardType);
-        creditCardImageHolder.html("<img src='/Content/event-management-assets/individual-multiple-assets/images/" + cardType + ".png'>");
+        creditCardImageHolder.html("<img src='assets/images/" + cardType + ".png'>");
     } else {
         console.log('no card selected');
-        creditCardImageHolder.html("<img src='/Content/event-management-assets/individual-multiple-assets/images/unknown.png'>");
+        creditCardImageHolder.html("<img src='assets/images/unknown.png'>");
     }
     if (Payment.fns.validateCardNumber(J.val(number))) {
         creditCardField.removeClass('invalid');

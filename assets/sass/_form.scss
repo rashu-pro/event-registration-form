@@ -48,6 +48,30 @@
       }
     }
 
+    .input{
+      &-group{
+        .form{
+          &-control{
+            border-right:0;
+          }
+        }
+        &-text{
+          max-height:54px;
+          border:0.15rem solid #8B8B8B;
+          padding:5px 8px;
+          border-radius:0 0.25rem 0.25rem 0;
+          img{
+            max-height:70%;
+          }
+        }
+        @media (min-width:768px){
+          &-text{
+            border-radius:0 8px 8px 0;
+          }
+        }
+      }
+    }
+
   }
   &-control{
     line-height: 1.7rem;
@@ -118,6 +142,7 @@ input::-webkit-inner-spin-button {
 .error-message{
   position: absolute;
   font-size: 13px;
+  line-height: 1.6;
   @media (min-width:768px){
     font-size:15px;
   }

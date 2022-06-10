@@ -135,4 +135,40 @@
 
     }
   }
+
+  &-medium{
+    &.checkbox-holder{
+      margin-bottom:0;
+    }
+    .regular-checkbox{
+      &+label{
+        font-size: 18px;
+        font-weight:500;
+        display: inline-block;
+        .checkbox-text{
+          position: relative;
+          top:-6px;
+        }
+      }
+
+      &:checked{
+        &+label{
+          &:after{
+            font-size:15px;
+          }
+          &:before{
+            background-color: #1565c0;
+            border-color:#1565c0;
+          }
+        }
+      }
+
+      @media (min-width:768px) {
+        &+label{
+          font-size:18px;
+          font-weight:500;
+        }
+      }
+    }
+  }
 }

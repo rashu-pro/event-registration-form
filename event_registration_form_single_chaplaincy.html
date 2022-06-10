@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Registration</title>
+
+    <link rel="icon" href="assets/images/favicon_isna.png">
+
+    <link rel="stylesheet" href="assets/plugins/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/plugins/datepicker/jquery-ui-datepicker.min.css">
+    <link rel="stylesheet" href="assets/css/style.css?1.0.1">
+</head>
+<body>
+
+<div class="main">
+
+    <!-- ====== HEADER ====== -->
+    <header class="header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-3">
+                    <div class="logo-wrapper">
+                        <a href="javascript:void(0)">
+                            <img src="assets/images/logo_isna_black.png" class="img-fluid" alt="ISNA">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-9">
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript:void(0)"><img src="assets/images/sectigo_trust_seal_sm_2x.png"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-wrapper container">
+
+        <!-- FORM WRAPPER -->
+        <div class="registration-form-wrapper">
+            <!-- ====== BANNER ====== -->
+            <div class="main-banner style-new">
+                <img src="assets/images/banner_event_cropped_compressed_.jpg" alt="ISNA Convention">
+
+                <div class="main-banner-content">
+                    <div class="main-banner-content-wrapper">
+                        <div class="container">
+                            <div class="main-banner-content-section">
+                                <h3 class="banner-title">59th Annual Isna Convention</h3>
+                                <div class="banner-details">
+                                    <p>Donald E. Stephens Convention Center, 5555 N River Rd, Rosemont, IL 60018</p>
+                                    <p>2022 ISNA CHAPLAINCY TRAINING</p>
+                                    <span class="badge badge-secondary text-medium">September 3 - 4, 2022</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- ====== MAIN BODY ====== -->
+            <div class="main-body">
+                <form method="post" id="event-reg-form">
+                    <div class="row">
+
+                        <div class="col-12 col-sm-8 col-md-8 col-lg-8">
+                            <!-- ====== FORM BODY ====== -->
+                            <div class="form-body">
+
+
+                                <!-- ====== CHOOSE TICKET ====== -->
+                                <div class="form-row">
+                                    <div class="form-row-head">
+                                        <div class="form-row-head-inner">
+                                            <h3 class="form-row-title">Chaplaincy Training</h3>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row-body">
+                                        <div class="form-fields-wrapper">
+                                            <div class="form-group required-group">
+                                                <label>Registration Type</label>
+                                                <select class="form-control ticket-category-js">
+                                                    <option value="registration" data-price="99">Registration Fee (includes lunch) - $99</option>
+                                                    <option value="registration" data-price="79">Early Bird Registration (Deadline July 8th) - $79</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <div class="alert alert-primary">
+                                                    <p>Cancellation & Refund deadline: July 15th, 2022</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                                <!-- ====== CONTACT INFORMATION ====== -->
+                                <div class="form-row form-row-contact">
+                                    <div class="form-row-head">
+                                        <div class="form-row-head-inner">
+                                            <h3 class="form-row-title">Contact Information</h3>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row-body">
+                                        <div class="form-fields-wrapper">
+                                            <div class="row">
+                                                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                                    <div class="form-group required-group">
+                                                        <label class="form-control-label">First Name <span class="required-mark">*</span></label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                                    <div class="form-group required-group">
+                                                        <label class="form-control-label">Last Name <span class="required-mark">*</span></label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+                                                    <div class="form-group required-group">
+                                                        <label class="form-control-label">Email (Personal) <span class="required-mark">*</span></label>
+                                                        <input type="email" class="form-control" data-validation="email">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+                                                    <div class="form-group required-group">
+                                                        <label class="form-control-label">Email (work) <span class="required-mark">*</span></label>
+                                                        <input type="email" class="form-control" data-validation="email">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+                                                    <div class="form-group required-group">
+                                                        <label class="form-control-label">Phone Number (Cell Phone) <span class="required-mark">*</span></label>
+                                                        <input type="text" class="form-control phone-number-mask" data-validation="phone-number">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label">Phone Number (Work) <span class="required-mark">*</span></label>
+                                                        <input type="text" class="form-control phone-number-mask" data-validation="phone-number">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+                                                    <div class="form-group required-group">
+                                                        <label class="form-control-label">Mailing Address <span class="required-mark">*</span></label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label">Address Line 2 </label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                                    <div class="form-group required-group field-validated">
+                                                        <label class="form-control-label">Country <span
+                                                                class="required-mark">*</span></label>
+                                                        <select type="text" name="Country" class="form-control country">
+                                                            <option value="USA">USA</option>
+                                                            <option value="Canada">Canada</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                                    <div class="form-group required-group state-field-group">
+                                                        <label class="form-control-label">State <span class="required-mark">*</span></label>
+                                                        <div class="state-holder">
+                                                            <select class="form-control state"></select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                                    <div class="form-group required-group">
+                                                        <label class="form-control-label">ZIP Code <span class="required-mark">*</span></label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label">City <span class="required-mark">*</span></label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                                    <div class="form-group required-group">
+                                                        <label>Chaplaincy</label>
+                                                        <select class="form-control select-with-other-js">
+                                                            <option value="military">Military</option>
+                                                            <option value="hospital">Hospital</option>
+                                                            <option value="correctional Facility">Correctional Facility</option>
+                                                            <option value="University">University</option>
+                                                            <option value="other">Other</option>
+                                                        </select>
+                                                        <div class="other-wrapper mt-2">
+                                                            <input type="text" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-sm-4 col-md-4 col-lg-4">
+
+                            <!-- ====== SIDEBAR ====== -->
+                            <div class="sidebar">
+
+                                <div class="sidebar-block">
+                                    <h3 class="sidebar-block-title">Ticket Summary</h3>
+                                    <div class="sidebar-block-description">
+                                        <div class="table-responsive ticket-summary-table pb-3">
+                                            <table class="table">
+                                                <tbody>
+                                                <tr>
+                                                    <td><span><span class="">1</span> x Saturday</span></td>
+                                                    <th>
+                                                <span class="below-10-price">
+                                                    <span class="currency">$</span>
+                                                    <span class="amount">100</span>
+                                                </span>
+                                                    </th>
+                                                </tr>
+
+                                                <tr>
+                                                    <td><span><span class="">1</span> x Wali - Sunday</span></td>
+                                                    <th>
+                                                <span class="">
+                                                    <span class="currency">$</span>
+                                                    <span class="amount">200</span>
+                                                </span>
+                                                    </th>
+                                                </tr>
+
+
+
+                                                </tbody>
+                                                <tfoot>
+                                                <tr>
+                                                    <td>Total</td>
+                                                    <th><span class="total-price">
+                                                <span class="currency">$</span>
+                                                <span class="amount">300</span>
+                                            </span> </th>
+                                                </tr>
+                                                </tfoot>
+                                            </table>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="sidebar-block payment-information-div" id="card-info-area" style="display: none">
+                                    <h3 class="sidebar-block-title">Payment Information</h3>
+                                    <div class="sidebar-block-description">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <div class="card-image">
+                                                        <img src="assets/images/credit_card_all_.png" class="img-fluid">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group required-group">
+                                                    <label for="txtCardHolderName" class="field-label form-control-label required-sign"> <span class="lable-text">Name on Card</span> <span class="text-danger">*</span></label>
+                                                    <input id="txtCardHolderName" name="CardHolderName" type="text" class="form-control field-normal cc-name">
+                                                    <span class="text-warning card-holder-name-validation validation"></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12">
+                                                <div class="form-group required-group">
+                                                    <label class="field-label form-control-label required-sign" for="creditcardnumber">
+                                                        <span class="lable-text">Card Number</span>
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="cc-number-holder">
+                                                        <input type="text" name="CardNumber" maxlength="" class="form-control field-normal format-card-number cc-number" id="creditcardnumber" required="" data-validation="credit-card">
+                                                        <div class="cc-card-identity">
+                                                            <img src="assets/images/card_mockup.png">
+                                                        </div>
+                                                    </div>
+
+                                                    <span class="text-warning card-number-validation validation"></span>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-6">
+                                                <div class="form-group required-group">
+                                                    <label for="txtExpiryMonth" class="field-label">
+                                                        <span class="lable-text">Exp MM</span>
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <select id="txtExpiryMonth" class="form-control field-normal cc-month" required="">
+                                                        <option value="0">Select Month</option>
+                                                        <option value="01">01</option>
+                                                        <option value="02">02</option>
+                                                        <option value="03">03</option>
+                                                        <option value="04">04</option>
+                                                        <option value="05">05</option>
+                                                        <option value="06">06</option>
+                                                        <option value="07">07</option>
+                                                        <option value="08">08</option>
+                                                        <option value="09">09</option>
+                                                        <option value="10">10</option>
+                                                        <option value="11">11</option>
+                                                        <option value="12">12</option>
+                                                    </select>
+                                                </div>
+                                                <span class="text-warning expiry-month-validation validation"></span>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="form-group required-group">
+                                                    <label for="txtExpiryYear" class="field-label form-control-label">
+                                                        <span class="lable-text">Exp YY</span>
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <select id="txtExpiryYear" class="form-control field-normal cc-year" required="">
+                                                        <option value="0">Select Year</option>
+                                                        <option value="2022">2022</option>
+                                                        <option value="2023">2023</option>
+                                                        <option value="2024">2024</option>
+                                                        <option value="2025">2025</option>
+                                                        <option value="2026">2026</option>
+                                                        <option value="2027">2027</option>
+                                                        <option value="2028">2028</option>
+                                                        <option value="2029">2029</option>
+                                                        <option value="2030">2030</option>
+                                                        <option value="2031">2031</option>
+                                                        <option value="2032">2032</option>
+                                                    </select>
+                                                    <span class="text-warning expiry-year-validation validation"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group required-group">
+                                                    <label for="txtCvc" class="field-label required-sign">
+                                                        <span class="lable-text">CVV</span>
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <input id="txtCvc" type="text" class="form-control field-normal format-cvv cc-cvc mask-cvv" data-validation="cvv">
+                                                    <span class="text-warning cvv-validation validation"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="sidebar-block">
+                                    <div class="sidebar-block-description">
+                                        <button type="button" class="btn btn-primary btn-block btn-reg btn-reg-js">Register</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+        <!-- THANK YOU WRAPPER -->
+        <div class="thank-wrapper thank-wrapper-inpage">
+            <div class="container">
+                <div class="thank-body">
+                    <div class="thank-message">
+                        <div class="icon-holder text-center pb-2">
+                            <img src="assets/images/check-mark_70.png">
+                        </div>
+                        <div class="thank-message-text">
+                            <h3 class="thank-text text-center m-0">Thank You</h3>
+                            <p class="m-0 order-number text-center">Order number: <span>#30395456454</span></p>
+                        </div>
+                    </div>
+
+                    <!-- EVENT DETAILS -->
+                    <div class="thank-details pt-3 pb-5 pt-sm-5 ">
+                        <p class="m-0 title-indication text-medium text-green text-uppercase">You are going to:</p>
+                        <h3 class="event-title">ISLAMIC LIFE CENTER GRAND FUNDRAISER GALA</h3>
+
+                        <div class="row justify-content-between pt-4 pt-sm-5">
+                            <div class="col-md-4">
+                                <div class="sidebar-block mb-4 mb-sm-3">
+                                    <h3 class="sidebar-block-title">Ticket Quantity</h3>
+                                    <div class="sidebar-block-description">
+                                        <h5 class="pb-2 m-0">1 Ticket Sent to:</h5>
+                                        <p class="text-medium">example@mail.com</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="sidebar-block mb-4 mb-sm-3">
+                                    <h3 class="sidebar-block-title">Event Date</h3>
+                                    <div class="sidebar-block-description">
+                                        <p class="text-medium">Saturday, 16th April, 2022</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="sidebar-block">
+                                    <h3 class="sidebar-block-title">Event Location</h3>
+                                    <div class="sidebar-block-description">
+                                        <p class="text-medium">502 East Event Center,<br>
+                                            Carmel, IN46032</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- THANK FOOT -->
+                    <div class="thank-foot">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <button type="button" class="btn btn-default btn-print"><img class="img-left" src="assets/images/printer_white.png"> Print Ticket </button>
+                            </div>
+
+                            <div class="share-wrapper">
+                                <div class="social-share">
+                                    <span>Share <span class="hidden-xs">Event</span>: </span>
+                                    <ul class="social-share-ul">
+                                        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://alsalamfoundation.org/grand-fundraiser-gala/" target="_blank"><img src="https://alsalamfoundation.org/wp-content/uploads/2022/03/Facebook.png" class="lazyloaded" data-ll-status="loaded"><noscript><img src="https://alsalamfoundation.org/wp-content/uploads/2022/03/Facebook.png"></noscript> </a> </li>
+                                        <li><a href="http://www.twitter.com/share?url=https://alsalamfoundation.org/grand-fundraiser-gala/" target="_blank"><img src="https://alsalamfoundation.org/wp-content/uploads/2022/03/Twitter.png" class="lazyloaded" data-ll-status="loaded"><noscript><img src="https://alsalamfoundation.org/wp-content/uploads/2022/03/Twitter.png"></noscript> </a> </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ====== FOOTER ====== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <p class="m-0 text-center text-md-left pb-2 pb-md-0"><a href="htttps://masjidsolutions.net" target="_blank"> masjidsolutions.net</a> (317) 854 0207 </p>
+                </div>
+                <div class="col-12 col-md-6">
+                    <p class="text-center text-md-right m-0">&copy; ISNA. All Rights Reserved, 2022 </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL -->
+    <div class="modal" id="confirm-modal" tabindex="-1" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-confirm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Are you sure?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h4 class="text-medium">You are about to complete the registration</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Proceed</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LOADER -->
+    <div class="loader-div">
+        <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    </div>
+</div>
+
+
+
+<script src="assets/plugins/jquery-3.6.0.min.js"></script>
+<script src="assets/plugins/bootstrap.min.js"></script>
+<script src="assets/plugins/datepicker/jquery-ui-datepicker.min.js"></script>
+<script src="assets/plugins/input_mask/jquery.inputmask.min.js"></script>
+<script src="assets/plugins/card_validation.js"></script>
+<script src="assets/js/event_single/custom.js?v=1.0.1"></script>
+<script>
+    function allFieldsValidated(status) {
+        if(status){
+            $('.loader-div').addClass('active');
+            setTimeout(function () {
+                $('.registration-form-wrapper').hide();
+                $('.loader-div').removeClass('active');
+                $('.thank-wrapper').addClass('active');
+            }, 800);
+        }
+    }
+
+    //======== DATE OF BIRTH PICKER ==============//
+    const currentYear = new Date().getFullYear();
+    $(document).on('focus','.date-picker-js',function (e) {
+        $(this).datepicker({
+            dateFormat: "dd/mm/yy",
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "1990:"+currentYear
+        });
+    });
+
+
+    //======== Matrimonial Category Selection ==============//
+    function matrimonialCategory(selector){
+        let matrimonialCategory = selector.val(),
+            matrimonialCategoryPrice = selector.find('option:selected').data('price');
+        console.log(matrimonialCategoryPrice);
+        if(parseInt(matrimonialCategoryPrice)>0){
+            $('.payment-information-div').show();
+        }
+    }
+    matrimonialCategory($('.ticket-category-js'));
+
+
+    $(document).on('change','.ticket-category-js',function (e) {
+        matrimonialCategory($(this))
+    });
+
+    selectWithOtherOption($('.select-with-other-js'));
+    $(document).on('change','.select-with-other-js',function (e) {
+        selectWithOtherOption($(this));
+    });
+
+    function selectWithOtherOption(selector) {
+        if(selector.val()==="other"){
+            selector.closest('.form-group').find('.other-wrapper').show();
+        }else{
+            selector.closest('.form-group').find('.other-wrapper').hide();
+        }
+    }
+
+
+</script>
+</body>
+</html>

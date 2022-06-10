@@ -95,6 +95,17 @@ ul li {
   max-height: none;
   overflow: auto;
 }
+.main.style-2 .form-row-terms .form-row-foot .checkbox-wrapper {
+  margin: 0 auto;
+  background-color: transparent;
+  padding: 0;
+  border: 0;
+}
+@media (min-width: 1200px) {
+  .main.style-2 .form-row-terms .form-row-foot .checkbox-wrapper {
+    max-width: 1000px;
+  }
+}
 @media (min-width: 1200px) {
   .main.style-2 .form-row-terms {
     padding: 0 50px;
@@ -102,13 +113,6 @@ ul li {
   .main.style-2 .form-row-terms .form-fields-wrapper {
     max-width: 1000px;
     margin: 0 auto;
-  }
-  .main.style-2 .form-row-terms .form-row-foot .checkbox-wrapper {
-    max-width: 1000px;
-    margin: 0 auto;
-    background-color: transparent;
-    padding: 0;
-    border: 0;
   }
 }
 .main.style-2 .form-row-head-inner {
@@ -158,7 +162,7 @@ ul li {
 }
 .main.style-2 .ticket-map-row-wrapper {
   min-width: 2600px;
-  padding: 45px 30px 30px;
+  padding: 85px 30px 50px;
   display: flex;
   align-items: flex-end;
   cursor: e-resize;
@@ -207,9 +211,6 @@ ul li {
   border-right: 1px solid #202020;
 }
 @media (min-width: 1200px) {
-  .main.style-2 .ticket-map {
-    overflow: hidden;
-  }
   .main.style-2 .ticket-map-left {
     padding-left: 100px;
   }
@@ -235,6 +236,23 @@ ul li {
   }
   .main.style-2 .confirm-modal .btn {
     padding: 16px 30px;
+  }
+  .main.style-2 .confirm-modal .btn-sm {
+    padding: 5px 10px;
+    border-radius: 4px;
+  }
+  .main.style-2 .confirm-modal .btn-md {
+    padding: 12px 15px;
+    font-size: 16px;
+    border-radius: 8px;
+  }
+  .main.style-2 .confirm-modal .btn-md:not(:last-child) {
+    margin-right: 10px;
+  }
+}
+@media (min-width: 768px) and (min-width: 768px) {
+  .main.style-2 .confirm-modal .btn-md {
+    min-width: 120px;
   }
 }
 
@@ -353,10 +371,12 @@ ul li {
   line-height: 1;
   display: inline-block;
 }
-.booth-color {
+.booth-info-wrapper {
   position: absolute;
   top: 10px;
   left: 15px;
+}
+.booth-color {
   background: #fff;
   padding: 0px;
   border-radius: 12px;
@@ -377,6 +397,23 @@ ul li {
   .booth-color {
     padding: 10px;
   }
+}
+.booth-thumb {
+  max-width: 120px;
+  border-radius: 10px;
+  border: 1px solid #8b8b8b;
+  box-shadow: -1px 5px 10px #00000038;
+}
+.booth-thumb-wrapper {
+  padding: 15px 0 0 0;
+}
+.booth-thumb-wrapper:hover {
+  cursor: pointer;
+}
+.booth-image-big {
+  border: 1px solid #ddd;
+  border-radius: 15px;
+  box-shadow: 0px 6px 10px #00000029;
 }
 .booth-details .booth-type-holder {
   border-bottom: 0;
@@ -406,6 +443,9 @@ ul li {
 }
 .color-box.standard {
   background-color: #f8f49c;
+}
+.color-box.pillars {
+  background-color: #202020;
 }
 .color-box.reserved {
   background-color: #d02d3d;
@@ -499,14 +539,14 @@ ul li {
 .booth-info p img {
   max-height: 18px;
   position: relative;
-  top: 3px;
+  top: 6px;
 }
 .booth-image img {
   border: 1px solid #ddd;
   border-radius: 15px;
   box-shadow: 0px 6px 10px #00000029;
   max-width: calc(100% - 30px);
-  margin: 15px 0;
+  margin: 15px 0 0;
 }
 .booth-color-title {
   font-size: 16px;
@@ -528,6 +568,197 @@ ul li {
 
 .thank-wrapper {
   display: none;
+}
+
+.go-down {
+  position: fixed;
+  bottom: 6px;
+  right: 0;
+  background: #fff;
+  border: 2px solid;
+  border-radius: 30px;
+  font-size: 14px;
+  padding: 2px 4px 2px 10px;
+  cursor: pointer;
+  transition: 0.1s all linear;
+  display: none;
+}
+.go-down .image-white {
+  display: none;
+}
+.go-down img {
+  max-height: 26px;
+}
+@media (min-width: 768px) {
+  .go-down {
+    right: 61px;
+    font-size: 16px;
+    padding: 5px 5px 5px 11px;
+  }
+  .go-down img {
+    max-height: 32px;
+  }
+}
+.go-down:hover {
+  background-color: #202020;
+  color: #fff;
+  border-color: #fff;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.29);
+  transition: 0.1s all linear;
+}
+.go-down:hover .image-white {
+  display: inline-block;
+}
+.go-down:hover .image-black {
+  display: none;
+}
+
+.terms-wrapper .regular-checkbox + label {
+  color: #28a745;
+}
+.terms-wrapper .checkbox-holder {
+  margin-bottom: 0px;
+}
+.terms-wrapper .checkbox-holder label {
+  font-size: 20px;
+}
+.terms-wrapper .checkbox-holder .regular-checkbox:checked + label:after {
+  font-size: 14px;
+}
+.terms-wrapper .checkbox-holder .regular-checkbox + label:after, .terms-wrapper .checkbox-holder .regular-checkbox + label:before {
+  display: none;
+}
+.terms-wrapper .checkbox-holder .regular-checkbox + label .checkbox-text:before {
+  content: "";
+  background-color: #fafafa;
+  border: 2px solid #28a745;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+  padding: 0.6em;
+  border-radius: 3px;
+  display: inline-block;
+  position: relative;
+  margin-right: 10px;
+  font-size: 20px;
+  line-height: 1.4;
+  top: 6px;
+}
+.terms-wrapper .checkbox-holder .regular-checkbox:checked + label .checkbox-text {
+  position: relative;
+}
+.terms-wrapper .checkbox-holder .regular-checkbox:checked + label .checkbox-text:before {
+  background-color: #28a745;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05), inset 15px 10px -12px rgba(255, 255, 255, 0.1);
+  color: #99a1a7;
+}
+.terms-wrapper .checkbox-holder .regular-checkbox:checked + label .checkbox-text:after {
+  content: "✔";
+  font-size: 18px;
+  position: absolute;
+  top: 12px;
+  left: 8px;
+  color: #ffffff;
+  line-height: 1;
+}
+@media (min-width: 768px) {
+  .terms-wrapper .checkbox-holder label {
+    font-size: 20px;
+  }
+}
+.btn-mini-booth {
+  background-color: #202020;
+  color: #202020;
+  font-size: 20px;
+  font-weight: 600;
+  position: fixed;
+  top: 30px;
+  right: 10px;
+  border-radius: 6px;
+  padding: 10px;
+  z-index: 999;
+  cursor: pointer;
+  border: 0;
+}
+.btn-mini-booth img {
+  max-width: 45px;
+}
+.btn-mini-booth span {
+  position: absolute;
+  top: 15%;
+  left: 46%;
+  color: #d48715;
+}
+@media (min-width: 768px) {
+  .btn-mini-booth {
+    top: 30px;
+    right: 30px;
+    padding: 10px 15px;
+  }
+  .btn-mini-booth img {
+    max-width: 55px;
+  }
+  .btn-mini-booth span {
+    top: 20%;
+    left: 50%;
+  }
+}
+.btn-mini-booth:hover {
+  background: #a22222;
+}
+.sidebar {
+  overflow: auto;
+  z-index: 9;
+}
+.sidebar-block {
+  overflow: hidden;
+}
+.sidebar-block-description {
+  background-color: #f4f3f3;
+}
+
+.sidebar-block-ticket-summary .sidebar-block-description .table tbody tr:nth-of-type(even) {
+  background-color: #f4f3f3;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+.reservation-legend-title {
+  font-size: 18px;
+  font-weight: 600;
+  background: #c3c3c3;
+  padding: 10px;
+  margin: 0;
+  color: #000;
+  border: 0;
+}
+
+.bg-grey {
+  background-color: #f2f2f2;
+}
+
+.border-grey {
+  border: 1px solid #ddd;
+}
+
+@media (min-width: 768px) {
+  .main-wrapper {
+    margin: 30px 0 50px;
+  }
+}
+
+#confirmation-modal .booth-info {
+  padding-top: 20px;
+  border-top: 1px solid #ddd;
+}
+
+.cart-text {
+  padding: 0;
+  margin: 0;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  font-size: 18px;
 }
 
 /*# sourceMappingURL=booth_layout.css.map */
