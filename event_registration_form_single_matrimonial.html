@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" href="assets/plugins/bootstrap.min.css">
     <link rel="stylesheet" href="assets/plugins/datepicker/jquery-ui-datepicker.min.css">
-    <link rel="stylesheet" href="assets/css/style.css?1.0.1">
+    <link rel="stylesheet" href="assets/css/style.css?1.0.2">
 </head>
 <body>
 
@@ -82,9 +82,10 @@
 
                                     <div class="form-row-body">
                                         <div class="form-fields-wrapper">
-                                            <div class="form-group">
+                                            <div class="form-group required-group">
                                                 <label>Registration Type</label>
                                                 <select class="form-control ticket-category-js">
+                                                    <option value="0" data-price="0">Select Day</option>
                                                     <option value="saturday" data-price="100">Saturday ($100)</option>
                                                     <option value="sunday" data-price="100">Sunday ($100)</option>
                                                     <option value="both" data-price="175">Both Days ($175)</option>
@@ -162,10 +163,11 @@
                                                 </div>
 
                                                 <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                                                    <div class="form-group required-group field-validated">
+                                                    <div class="form-group required-group">
                                                         <label class="form-control-label">Country <span
                                                                 class="required-mark">*</span></label>
                                                         <select type="text" name="Country" class="form-control country">
+                                                            <option value="0">Select Country</option>
                                                             <option value="USA">USA</option>
                                                             <option value="Canada">Canada</option>
                                                         </select>
@@ -258,19 +260,25 @@
                                                 <div class="col-12">
                                                     <div class="alert alert-primary alert-round-border">
                                                         <h4>Acknowledgements and Agreements</h4>
-                                                        <div class="checkbox-holder checkbox-medium">
-                                                            <input type="checkbox" id="agreement-1" class="regular-checkbox">
-                                                            <label for="agreement-1"> <span class="checkbox-text"> I acknowledge that ISNA matrimonials and ISNA is not responsible for any loss or theft during this event.</span></label>
+                                                        <div class="form-group required-group">
+                                                            <div class="checkbox-holder checkbox-medium">
+                                                                <input type="checkbox" id="agreement-1" class="regular-checkbox">
+                                                                <label for="agreement-1"> <span class="checkbox-text"> I acknowledge that ISNA matrimonials and ISNA is not responsible for any loss or theft during this event.</span></label>
+                                                            </div>
                                                         </div>
 
-                                                        <div class="checkbox-holder checkbox-medium">
-                                                            <input type="checkbox" id="agreement-2" class="regular-checkbox">
-                                                            <label for="agreement-2"> <span class="checkbox-text"> I acknowledge and agree that any behavior ISNA matrimonial determines is disruptive is cause for immediate removal from the event.</span></label>
+                                                        <div class="form-group required-group">
+                                                            <div class="checkbox-holder checkbox-medium">
+                                                                <input type="checkbox" id="agreement-2" class="regular-checkbox">
+                                                                <label for="agreement-2"> <span class="checkbox-text"> I acknowledge and agree that any behavior ISNA matrimonial determines is disruptive is cause for immediate removal from the event.</span></label>
+                                                            </div>
                                                         </div>
 
-                                                        <div class="checkbox-holder checkbox-medium">
-                                                            <input type="checkbox" id="agreement-3" class="regular-checkbox">
-                                                            <label for="agreement-3"> <span class="checkbox-text">I acknowledge that ISNA matrimonial does not guarantee a match during their events.</span></label>
+                                                        <div class="form-group required-group">
+                                                            <div class="checkbox-holder checkbox-medium">
+                                                                <input type="checkbox" id="agreement-3" class="regular-checkbox">
+                                                                <label for="agreement-3"> <span class="checkbox-text">I acknowledge that ISNA matrimonial does not guarantee a match during their events.</span></label>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -294,26 +302,6 @@
                                         <div class="table-responsive ticket-summary-table pb-3">
                                             <table class="table">
                                                 <tbody>
-                                                <tr>
-                                                    <td><span><span class="">1</span> x Saturday</span></td>
-                                                    <th>
-                                                <span class="below-10-price">
-                                                    <span class="currency">$</span>
-                                                    <span class="amount">100</span>
-                                                </span>
-                                                    </th>
-                                                </tr>
-
-                                                <tr>
-                                                    <td><span><span class="">1</span> x Wali - Sunday</span></td>
-                                                    <th>
-                                                <span class="">
-                                                    <span class="currency">$</span>
-                                                    <span class="amount">200</span>
-                                                </span>
-                                                    </th>
-                                                </tr>
-
 
 
                                                 </tbody>
@@ -322,7 +310,7 @@
                                                     <td>Total</td>
                                                     <th><span class="total-price">
                                                 <span class="currency">$</span>
-                                                <span class="amount">300</span>
+                                                <span class="amount">0</span>
                                             </span> </th>
                                                 </tr>
                                                 </tfoot>
@@ -568,8 +556,9 @@
 <script src="assets/plugins/datepicker/jquery-ui-datepicker.min.js"></script>
 <script src="assets/plugins/input_mask/jquery.inputmask.min.js"></script>
 <script src="assets/plugins/card_validation.js"></script>
-<script src="assets/js/event_single/custom.js?v=1.0.1"></script>
+<script src="assets/js/live/event_single/custom.js?v=1.0.2"></script>
 <script>
+    //=== THIS FUNCTION WILL EXECUTE AFTER SUCCESSFUL VALIDATION
     function allFieldsValidated(status) {
         if(status){
             $('.loader-div').addClass('active');
@@ -580,36 +569,6 @@
             }, 800);
         }
     }
-
-    //======== DATE OF BIRTH PICKER ==============//
-    const currentYear = new Date().getFullYear();
-    $(document).on('focus','.date-picker-js',function (e) {
-        $(this).datepicker({
-            dateFormat: "dd/mm/yy",
-            changeMonth: true,
-            changeYear: true,
-            yearRange: "1990:"+currentYear
-        });
-    });
-
-
-    //======== Matrimonial Category Selection ==============//
-    function matrimonialCategory(selector){
-        let matrimonialCategory = selector.val(),
-            matrimonialCategoryPrice = selector.find('option:selected').data('price');
-        console.log(matrimonialCategoryPrice);
-        if(parseInt(matrimonialCategoryPrice)>0){
-            $('.payment-information-div').show();
-        }
-    }
-    matrimonialCategory($('.ticket-category-js'));
-
-
-    $(document).on('change','.ticket-category-js',function (e) {
-        matrimonialCategory($(this))
-    })
-
-
 </script>
 </body>
 </html>

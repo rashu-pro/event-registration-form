@@ -1782,6 +1782,28 @@ h4 {
     max-width: 1180px;
   }
 }
+.alert .checkbox-holder {
+  z-index: 0;
+}
+.alert .form-group {
+  padding-bottom: 8px;
+  position: relative;
+}
+.alert .form-group .error-message {
+  bottom: 0;
+}
+
+.field-invalid .regular-checkbox + label:before {
+  border-color: #dc3545;
+}
+.field-invalid .checkbox-group .regular-checkbox + label:before {
+  border-color: #202020;
+}
+
+.field-validated .error-message {
+  opacity: 0;
+}
+
 .modal-confirm h3 {
   font-size: 22px;
 }

@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" href="assets/plugins/bootstrap.min.css">
     <link rel="stylesheet" href="assets/plugins/datepicker/jquery-ui-datepicker.min.css">
-    <link rel="stylesheet" href="assets/css/style.css?1.0.1">
+    <link rel="stylesheet" href="assets/css/style.css?1.0.2">
 </head>
 <body>
 
@@ -85,6 +85,7 @@
                                             <div class="form-group required-group">
                                                 <label>Registration Type</label>
                                                 <select class="form-control ticket-category-js">
+                                                    <option value="0" data-price="0">Select Ticket Type</option>
                                                     <option value="registration" data-price="99">Registration Fee (includes lunch) - $99</option>
                                                     <option value="registration" data-price="79">Early Bird Registration (Deadline July 8th) - $79</option>
                                                 </select>
@@ -202,16 +203,48 @@
                                                     </div>
                                                 </div>
                                                 
-                                                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                                                     <div class="form-group required-group">
-                                                        <label>Chaplaincy</label>
-                                                        <select class="form-control select-with-other-js">
-                                                            <option value="military">Military</option>
-                                                            <option value="hospital">Hospital</option>
-                                                            <option value="correctional Facility">Correctional Facility</option>
-                                                            <option value="University">University</option>
-                                                            <option value="other">Other</option>
-                                                        </select>
+                                                        <label class="form-control-label">Chaplaincy <span class="required-mark">*</span> </label>
+                                                        <div class="checkbox-group mt-3">
+                                                            <div class="row">
+                                                                <div class="col-12 col-sm-6 col-md-6 col-lg-4">
+                                                                    <div class="checkbox-holder checkbox-medium">
+                                                                        <input type="checkbox" id="checkbox-group-1" class="regular-checkbox">
+                                                                        <label for="checkbox-group-1"> <span class="checkbox-text"> Military</span></label>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-12 col-sm-6 col-md-6 col-lg-4">
+                                                                    <div class="checkbox-holder checkbox-medium">
+                                                                        <input type="checkbox" id="checkbox-group-2" class="regular-checkbox">
+                                                                        <label for="checkbox-group-2"> <span class="checkbox-text"> Hospital </span></label>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-12 col-sm-6 col-md-6 col-lg-4">
+                                                                    <div class="checkbox-holder checkbox-medium">
+                                                                        <input type="checkbox" id="checkbox-group-3" class="regular-checkbox">
+                                                                        <label for="checkbox-group-3"> <span class="checkbox-text"> Correction Facility</span></label>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-12 col-sm-6 col-md-6 col-lg-4">
+                                                                    <div class="checkbox-holder checkbox-medium">
+                                                                        <input type="checkbox" id="checkbox-group-4" class="regular-checkbox">
+                                                                        <label for="checkbox-group-4"> <span class="checkbox-text"> University </span></label>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-12 col-sm-6 col-md-6 col-lg-4">
+                                                                    <div class="checkbox-holder checkbox-medium">
+                                                                        <input type="checkbox" id="checkbox-group-5" class="regular-checkbox select-with-other-js" data-value="0">
+                                                                        <label for="checkbox-group-5"> <span class="checkbox-text"> Other </span></label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
                                                         <div class="other-wrapper mt-2">
                                                             <input type="text" class="form-control">
                                                         </div>
@@ -239,27 +272,6 @@
                                         <div class="table-responsive ticket-summary-table pb-3">
                                             <table class="table">
                                                 <tbody>
-                                                <tr>
-                                                    <td><span><span class="">1</span> x Saturday</span></td>
-                                                    <th>
-                                                <span class="below-10-price">
-                                                    <span class="currency">$</span>
-                                                    <span class="amount">100</span>
-                                                </span>
-                                                    </th>
-                                                </tr>
-
-                                                <tr>
-                                                    <td><span><span class="">1</span> x Wali - Sunday</span></td>
-                                                    <th>
-                                                <span class="">
-                                                    <span class="currency">$</span>
-                                                    <span class="amount">200</span>
-                                                </span>
-                                                    </th>
-                                                </tr>
-
-
 
                                                 </tbody>
                                                 <tfoot>
@@ -513,8 +525,9 @@
 <script src="assets/plugins/datepicker/jquery-ui-datepicker.min.js"></script>
 <script src="assets/plugins/input_mask/jquery.inputmask.min.js"></script>
 <script src="assets/plugins/card_validation.js"></script>
-<script src="assets/js/event_single/custom.js?v=1.0.1"></script>
+<script src="assets/js/live/event_single/custom.js?v=1.0.2"></script>
 <script>
+    //=== THIS FUNCTION WILL EXECUTE AFTER SUCCESSFUL VALIDATION
     function allFieldsValidated(status) {
         if(status){
             $('.loader-div').addClass('active');
@@ -525,48 +538,6 @@
             }, 800);
         }
     }
-
-    //======== DATE OF BIRTH PICKER ==============//
-    const currentYear = new Date().getFullYear();
-    $(document).on('focus','.date-picker-js',function (e) {
-        $(this).datepicker({
-            dateFormat: "dd/mm/yy",
-            changeMonth: true,
-            changeYear: true,
-            yearRange: "1990:"+currentYear
-        });
-    });
-
-
-    //======== Matrimonial Category Selection ==============//
-    function matrimonialCategory(selector){
-        let matrimonialCategory = selector.val(),
-            matrimonialCategoryPrice = selector.find('option:selected').data('price');
-        console.log(matrimonialCategoryPrice);
-        if(parseInt(matrimonialCategoryPrice)>0){
-            $('.payment-information-div').show();
-        }
-    }
-    matrimonialCategory($('.ticket-category-js'));
-
-
-    $(document).on('change','.ticket-category-js',function (e) {
-        matrimonialCategory($(this))
-    });
-
-    selectWithOtherOption($('.select-with-other-js'));
-    $(document).on('change','.select-with-other-js',function (e) {
-        selectWithOtherOption($(this));
-    });
-
-    function selectWithOtherOption(selector) {
-        if(selector.val()==="other"){
-            selector.closest('.form-group').find('.other-wrapper').show();
-        }else{
-            selector.closest('.form-group').find('.other-wrapper').hide();
-        }
-    }
-
 
 </script>
 </body>
