@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" href="assets/plugins/bootstrap.min.css">
     <link rel="stylesheet" href="assets/plugins/datepicker/jquery-ui-datepicker.min.css">
-    <link rel="stylesheet" href="assets/css/style.css?1.0.2">
+    <link rel="stylesheet" href="assets/css/style.css?1.0.7">
 </head>
 <body>
 
@@ -53,6 +53,15 @@
                                 <div class="banner-details">
                                     <p>Donald E. Stephens Convention Center, 5555 N River Rd, Rosemont, IL 60018</p>
                                     <p>2022 ISNA CHAPLAINCY TRAINING</p>
+                                    <div class="contact-info d-block d-sm-flex">
+                                        <p class="mr-3">Contact Us:</p>
+                                        <div class="d-block d-sm-flex">
+                                            <a href="mailto:chaplaincy@isna.net" class="mr-3">
+                                                <img src="assets/images/email_blue.png" alt="email" class="icon-24">
+                                                chaplaincy@isna.net
+                                            </a>
+                                        </div>
+                                    </div>
                                     <span class="badge badge-secondary text-medium">September 3 - 4, 2022</span>
                                 </div>
                             </div>
@@ -67,7 +76,7 @@
                 <form method="post" id="event-reg-form">
                     <div class="row">
 
-                        <div class="col-12 col-sm-8 col-md-8 col-lg-8">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-8">
                             <!-- ====== FORM BODY ====== -->
                             <div class="form-body">
 
@@ -76,7 +85,10 @@
                                 <div class="form-row">
                                     <div class="form-row-head">
                                         <div class="form-row-head-inner">
-                                            <h3 class="form-row-title">Chaplaincy Training</h3>
+                                            <h3 class="form-row-title">
+                                                CHAPLAINCY TRAINING AND MILITARY CHAPLAIN ONLY SYMPOSIUM
+                                                <span class="d-block font-medium" style="font-size:16px;text-transform:none;color:#60ad81;border-top: 1px solid #ddd;margin-top: 10px;padding-top: 10px;">Military chaplains must attend both days.</span>
+                                            </h3>
                                         </div>
                                     </div>
 
@@ -85,15 +97,30 @@
                                             <div class="form-group required-group">
                                                 <label>Registration Type</label>
                                                 <select class="form-control ticket-category-js">
-                                                    <option value="0" data-price="0">Select Ticket Type</option>
-                                                    <option value="registration" data-price="99">Registration Fee (includes lunch) - $99</option>
-                                                    <option value="registration" data-price="79">Early Bird Registration (Deadline July 8th) - $79</option>
+                                                    <option value="0" data-text="0" data-price="0">Select Ticket Type</option>
+                                                    <option value="abe153ff-ca89-4c3d-a0df-d2dfe09dfd53" data-price="99" data-text="Registration">Registration Fee (includes lunch) - $99</option>
+                                                    <option value="abe153ff-ca89-4c3d-a0df-d2dfe09dfd54" data-price="79" data-text="Early Bird Registration">Early Bird Registration (Deadline July 8th) - $79</option>
                                                 </select>
                                             </div>
 
                                             <div class="mb-3">
-                                                <div class="alert alert-primary">
-                                                    <p>Cancellation & Refund deadline: July 15th, 2022</p>
+                                                <div class="event-single addon-ticket-holder">
+                                                    <div class="alert alert-info">
+                                                        <div class="form-group">
+                                                            <h4 class="pb-1 mb-2 text-dark title">Donate</h4>
+                                                            <div class="row">
+                                                                <div class="col-12 col-sm-6 col-md-6 col-lg-5">
+                                                                    <div class="input-group">
+                                                                        <div class="input-group-prepend">
+                                                                            <span class="input-group-text">$</span>
+                                                                        </div>
+                                                                        <input type="number" data-addon-type="donation" class="form-control addon-ticket-category-js" name="AddonTicketCategory">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -176,6 +203,7 @@
                                                         <select type="text" name="Country" class="form-control country">
                                                             <option value="USA">USA</option>
                                                             <option value="Canada">Canada</option>
+                                                            <option value="Other">Other</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -257,26 +285,86 @@
                                     </div>
                                 </div>
 
+                                <!-- ====== CONTACT US ====== -->
+                                <div class="form-row">
+                                    <div class="form-row-head">
+                                        <div class="form-row-head-inner">
+                                            <h3 class="form-row-title">Contact Us</h3>
+                                        </div>
+                                    </div>
+                                    <div class="form-row-body">
+                                        <div class="form-fields-wrapper">
+                                            <h5 class="font-600 text-dark mb-3">If you have any question please contact us:</h5>
+
+                                            <div class="d-block d-sm-flex">
+                                                <p class="mb-0 text-medium">
+                                                    <a href="mailto:chaplaincy@isna.net">
+                                                        <img src="assets/images/email_blue.png" alt="email">
+                                                        chaplaincy@isna.net
+                                                    </a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
                             </div>
                         </div>
 
-                        <div class="col-12 col-sm-4 col-md-4 col-lg-4">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-4">
 
                             <!-- ====== SIDEBAR ====== -->
                             <div class="sidebar">
 
                                 <div class="sidebar-block">
+                                    <h3 class="sidebar-block-title">Important Deadline</h3>
+                                    <div class="sidebar-block-description">
+                                        <div class="info-div">
+                                            <p class="info-text m-0">Early Bird Registration</p>
+                                            <p class="info-date m-0">
+                                                <span class="icon-date">
+                                                    <svg width="20px" height="20px" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill="#454242" d="M5.67326018,0 C6.0598595,0 6.37326018,0.31324366 6.37326018,0.699649298 L6.373,2.009 L13.89,2.009 L13.8901337,0.708141199 C13.8901337,0.321735562 14.2035343,0.00849190182 14.5901337,0.00849190182 C14.976733,0.00849190182 15.2901337,0.321735562 15.2901337,0.708141199 L15.29,2.009 L18,2.00901806 C19.1045695,2.00901806 20,2.90399995 20,4.00801605 L20,18.001002 C20,19.1050181 19.1045695,20 18,20 L2,20 C0.8954305,20 0,19.1050181 0,18.001002 L0,4.00801605 C0,2.90399995 0.8954305,2.00901806 2,2.00901806 L4.973,2.009 L4.97326018,0.699649298 C4.97326018,0.31324366 5.28666085,0 5.67326018,0 Z M1.4,7.742 L1.4,18.001002 C1.4,18.3322068 1.66862915,18.6007014 2,18.6007014 L18,18.6007014 C18.3313708,18.6007014 18.6,18.3322068 18.6,18.001002 L18.6,7.756 L1.4,7.742 Z M6.66666667,14.6186466 L6.66666667,16.284778 L5,16.284778 L5,14.6186466 L6.66666667,14.6186466 Z M10.8333333,14.6186466 L10.8333333,16.284778 L9.16666667,16.284778 L9.16666667,14.6186466 L10.8333333,14.6186466 Z M15,14.6186466 L15,16.284778 L13.3333333,16.284778 L13.3333333,14.6186466 L15,14.6186466 Z M6.66666667,10.6417617 L6.66666667,12.3078931 L5,12.3078931 L5,10.6417617 L6.66666667,10.6417617 Z M10.8333333,10.6417617 L10.8333333,12.3078931 L9.16666667,12.3078931 L9.16666667,10.6417617 L10.8333333,10.6417617 Z M15,10.6417617 L15,12.3078931 L13.3333333,12.3078931 L13.3333333,10.6417617 L15,10.6417617 Z M4.973,3.408 L2,3.40831666 C1.66862915,3.40831666 1.4,3.67681122 1.4,4.00801605 L1.4,6.343 L18.6,6.357 L18.6,4.00801605 C18.6,3.67681122 18.3313708,3.40831666 18,3.40831666 L15.29,3.408 L15.2901337,4.33697436 C15.2901337,4.72338 14.976733,5.03662366 14.5901337,5.03662366 C14.2035343,5.03662366 13.8901337,4.72338 13.8901337,4.33697436 L13.89,3.408 L6.373,3.408 L6.37326018,4.32848246 C6.37326018,4.7148881 6.0598595,5.02813176 5.67326018,5.02813176 C5.28666085,5.02813176 4.97326018,4.7148881 4.97326018,4.32848246 L4.973,3.408 Z"/>
+                                                    </svg>
+                                                </span>
+                                                July 08<sup>th</sup>, 2022
+                                            </p>
+                                        </div>
+
+                                        <div class="info-div">
+                                            <p class="info-text m-0">Cancellation & Refund deadline</p>
+                                            <p class="info-date m-0">
+                                                <span class="icon-date">
+                                                    <svg width="20px" height="20px" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill="#454242" d="M5.67326018,0 C6.0598595,0 6.37326018,0.31324366 6.37326018,0.699649298 L6.373,2.009 L13.89,2.009 L13.8901337,0.708141199 C13.8901337,0.321735562 14.2035343,0.00849190182 14.5901337,0.00849190182 C14.976733,0.00849190182 15.2901337,0.321735562 15.2901337,0.708141199 L15.29,2.009 L18,2.00901806 C19.1045695,2.00901806 20,2.90399995 20,4.00801605 L20,18.001002 C20,19.1050181 19.1045695,20 18,20 L2,20 C0.8954305,20 0,19.1050181 0,18.001002 L0,4.00801605 C0,2.90399995 0.8954305,2.00901806 2,2.00901806 L4.973,2.009 L4.97326018,0.699649298 C4.97326018,0.31324366 5.28666085,0 5.67326018,0 Z M1.4,7.742 L1.4,18.001002 C1.4,18.3322068 1.66862915,18.6007014 2,18.6007014 L18,18.6007014 C18.3313708,18.6007014 18.6,18.3322068 18.6,18.001002 L18.6,7.756 L1.4,7.742 Z M6.66666667,14.6186466 L6.66666667,16.284778 L5,16.284778 L5,14.6186466 L6.66666667,14.6186466 Z M10.8333333,14.6186466 L10.8333333,16.284778 L9.16666667,16.284778 L9.16666667,14.6186466 L10.8333333,14.6186466 Z M15,14.6186466 L15,16.284778 L13.3333333,16.284778 L13.3333333,14.6186466 L15,14.6186466 Z M6.66666667,10.6417617 L6.66666667,12.3078931 L5,12.3078931 L5,10.6417617 L6.66666667,10.6417617 Z M10.8333333,10.6417617 L10.8333333,12.3078931 L9.16666667,12.3078931 L9.16666667,10.6417617 L10.8333333,10.6417617 Z M15,10.6417617 L15,12.3078931 L13.3333333,12.3078931 L13.3333333,10.6417617 L15,10.6417617 Z M4.973,3.408 L2,3.40831666 C1.66862915,3.40831666 1.4,3.67681122 1.4,4.00801605 L1.4,6.343 L18.6,6.357 L18.6,4.00801605 C18.6,3.67681122 18.3313708,3.40831666 18,3.40831666 L15.29,3.408 L15.2901337,4.33697436 C15.2901337,4.72338 14.976733,5.03662366 14.5901337,5.03662366 C14.2035343,5.03662366 13.8901337,4.72338 13.8901337,4.33697436 L13.89,3.408 L6.373,3.408 L6.37326018,4.32848246 C6.37326018,4.7148881 6.0598595,5.02813176 5.67326018,5.02813176 C5.28666085,5.02813176 4.97326018,4.7148881 4.97326018,4.32848246 L4.973,3.408 Z"/>
+                                                    </svg>
+                                                </span>
+                                                July 15<sup>th</sup>, 2022
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="sidebar-block">
                                     <h3 class="sidebar-block-title">Ticket Summary</h3>
                                     <div class="sidebar-block-description">
                                         <div class="table-responsive ticket-summary-table pb-3">
-                                            <table class="table">
+                                            <table class="table table-striped table-bordered">
+                                                <thead>
+                                                <tr>
+                                                    <th class="text-left"><span class="row-number">#</span> Ticket
+                                                        Category
+                                                    </th>
+                                                    <th class="text-right">Price</th>
+                                                </tr>
+                                                </thead>
+
                                                 <tbody>
 
                                                 </tbody>
                                                 <tfoot>
                                                 <tr>
-                                                    <td>Total</td>
+                                                    <td class="text-right">Total</td>
                                                     <th><span class="total-price">
                                                 <span class="currency">$</span>
                                                 <span class="amount">300</span>
@@ -374,7 +462,7 @@
                                                     <span class="text-warning expiry-year-validation validation"></span>
                                                 </div>
                                             </div>
-                                            <div class="col-12">
+                                            <div class="col-6">
                                                 <div class="form-group required-group">
                                                     <label for="txtCvc" class="field-label required-sign">
                                                         <span class="lable-text">CVV</span>
@@ -384,15 +472,33 @@
                                                     <span class="text-warning cvv-validation validation"></span>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
 
-                                <div class="sidebar-block">
-                                    <div class="sidebar-block-description">
+                                            <div class="col-6">
+                                                <div class="form-group required-group zip-code-field">
+                                                    <label class="form-control-label">ZIP Code <span class="required-mark">*</span></label>
+                                                    <input type="text" id="txtZipCode" name="BillingZipCode" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="tc-wrapper mt-2">
+                                            <div class="alert alert-primary alert-round-border">
+                                                <p style="font-size:12px">
+                                                    <strong>Disclaimer:</strong>
+                                                    WE ARE COMMITTED TO PROVIDING A SAFE,  ENJOYABLE, AND LEARNING ENVIRONMENT TO ALL CONVENTION ATTENDEES. TO ENSURE THIS, ISNA HOLDS THE RIGHT TO CANCEL ANY REGISTRATION. BY REGISTERING FOR THIS CONVENTION YOU AGREE TO ITS POLICIES AND PROCEDURES.  IF YOU OR A MEMBER OF YOUR GROUP CAUSES ANY DISTURBANCE, YOUR REGISTRATION WILL BE CANCELED WITHOUT REFUND.  THE JUDGMENT OF TERM "DISTURBANCE" WILL BE DETERMINED SOLELY BY ISNA.YOUR EMAIL WILL BE AUTOMATICALLY INCLUDED IN THE ISNA E-LISTSERV.  YOU WILL HAVE THE OPTION TO OPT-OUT FROM THIS LIST.
+                                                </p>
+
+                                                <div class=" mt-3 mb-0">
+                                                    <input type="checkbox" id="tc-2" class="tc">
+                                                    <label for="tc-2" style="font-size: 14px;display: inline;color: #000; font-weight: 600;">I have read and agree to the terms above. </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                         <button type="button" class="btn btn-primary btn-block btn-reg btn-reg-js">Register</button>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -480,12 +586,12 @@
     <!-- ====== FOOTER ====== -->
     <footer class="footer">
         <div class="container">
-            <div class="row">
-                <div class="col-12 col-md-6">
-                    <p class="m-0 text-center text-md-left pb-2 pb-md-0"><a href="htttps://masjidsolutions.net" target="_blank"> masjidsolutions.net</a> (317) 854 0207 </p>
+            <div class="row align-items-center">
+                <div class="col-md-12 col-lg-6">
+                    <p class="m-0 text-center text-md-center text-lg-left pb-2 pb-md-0"><a href="htttps://masjidsolutions.net" target="_blank"> masjidsolutions.net</a> (317) 854 0207 </p>
                 </div>
-                <div class="col-12 col-md-6">
-                    <p class="text-center text-md-right m-0">&copy; ISNA. All Rights Reserved, 2022 </p>
+                <div class="col-md-12 col-lg-6">
+                    <p class="text-center text-md-center text-lg-right m-0">&copy; ISNA. All Rights Reserved, 2022 </p>
                 </div>
             </div>
         </div>
@@ -525,7 +631,7 @@
 <script src="assets/plugins/datepicker/jquery-ui-datepicker.min.js"></script>
 <script src="assets/plugins/input_mask/jquery.inputmask.min.js"></script>
 <script src="assets/plugins/card_validation.js"></script>
-<script src="assets/js/live/event_single/custom.js?v=1.0.2"></script>
+<script src="assets/js/live/event_single/custom.js?v=1.0.7"></script>
 <script>
     //=== THIS FUNCTION WILL EXECUTE AFTER SUCCESSFUL VALIDATION
     function allFieldsValidated(status) {

@@ -6,9 +6,15 @@ let totalPrice = 0,
 $('.quantity-increase').on('click', function () {
     let self = $(this),
         quantitySelector = self.closest('.quantity-wrap').find('.form-control'),
-        quantityValue = quantitySelector.val();
+        ticketText = self.closest('.quantity-wrap').data('ticket-text'),
+        dataMinimum = self.closest('.quantity-wrap').data('minimum'),
+        dataMaximum = self.closest('.quantity-wrap').data('maximum');
+    if(quantitySelector.val()<=0){
+        quantitySelector.val(dataMinimum-1);
+    }
+    let quantityValue = quantitySelector.val();
 
-    if (quantityValue < 10) {
+    if (quantityValue < dataMaximum) {
         quantitySelector.val(parseInt(quantityValue) + 1);
     }
     chooseTicketWarning(quantitySelector);
@@ -18,22 +24,43 @@ $('.quantity-increase').on('click', function () {
 $('.quantity-decrease').on('click', function () {
     let self = $(this),
         quantitySelector = self.closest('.quantity-wrap').find('.form-control'),
-        quantityValue = quantitySelector.val();
+        ticketText = self.closest('.quantity-wrap').data('ticket-text'),
+        dataMinimum = self.closest('.quantity-wrap').data('minimum'),
+        dataMaximum = self.closest('.quantity-wrap').data('maximum');
+    // if(quantitySelector.val()<dataMinimum){
+    //     quantitySelector.val(0);
+    // }
 
-    if (quantityValue > 0) {
+    let quantityValue = quantitySelector.val();
+
+    if (quantityValue > dataMinimum-1) {
         quantitySelector.val(parseInt(quantityValue) - 1);
     }
+    if(quantityValue<=dataMinimum){
+        quantitySelector.val(0);
+    }
+
     chooseTicketWarning(quantitySelector);
     collectData(self);
 });
 
-$('.quantity-wrap .form-control').on('keyup', function () {
+$('.quantity-wrap .form-control').on('blur', function () {
     let self = $(this),
         quantitySelector = self.closest('.quantity-wrap').find('.form-control'),
-        quantityValue = quantitySelector.val();
-
-    if (quantityValue > 10) {
+        quantityValue = quantitySelector.val(),
+        ticketText = self.closest('.quantity-wrap').data('ticket-text'),
+        dataMinimum = self.closest('.quantity-wrap').data('minimum'),
+        dataMaximum = self.closest('.quantity-wrap').data('maximum'),
+        warningMessage = '';
+    if(parseInt(quantityValue) < parseInt(dataMinimum)){
+        warningMessage = `<p class="error-message text-danger">Select at least ${dataMinimum} ticket. </p>`;
+    }else{
+        warningMessage = `<p class="error-message text-danger">Select no more than ${dataMaximum} ticket. </p>`;
+    }
+    if (parseInt(quantityValue) < parseInt(dataMinimum) || parseInt(quantityValue) > parseInt(dataMaximum)) {
         quantitySelector.val(0);
+        self.closest('tr').find('.error-message').remove();
+        self.closest('tr').append(warningMessage);
     }
 
     chooseTicketWarning(quantitySelector);
@@ -135,17 +162,17 @@ $(document).on('click', '.btn-reg-js', function (e) {
             paymentFormGroupNotValidatedSelector.first().find('.form-control').focus();
             return;
         } else {
-            if($('#tc-2').length>0){
-                let isChecked = $('#tc-2').prop('checked');
-                if (!isChecked) {
-                    $('#tc-2').closest('.tc-wrapper').find('.alert').css('border', '2px solid #dc3545');
-                    setTimeout(function () {
-                        $('#tc-2').closest('.tc-wrapper').find('.alert').css('border', '1px solid #084298');
-                    }, 300);
-                    return;
-                }
+            let isChecked = $('#tc-2').prop('checked');
+            if (!isChecked) {
+                $('#tc-2').closest('.tc-wrapper').find('.alert').css('border', '2px solid #dc3545');
+                setTimeout(function () {
+                    $('#tc-2').closest('.tc-wrapper').find('.alert').css('border', '1px solid #084298');
+                }, 300);
+                return;
             }
+
             registrationConfirmation();
+
         }
     }
     console.log('all fields validated!');
@@ -409,6 +436,64 @@ $(document).on('change', '.checkbox-group input[type=checkbox]', function (e) {
     }
 });
 
+//===== APPLY COUPON ACTION
+$(document).on('click', '.btn-apply-voucher-js', function (e) {
+    e.preventDefault();
+
+    if(parseInt($('.subtotal-price .amount').html())<=0){
+        singleValidation($('.ticket-type-js'));
+        return;
+    }
+    let self = $(this),
+        voucherBlock = self.closest('.voucher-block'),
+        voucherCode = voucherBlock.find('input.form-control').val();
+
+    if(voucherCode === ''){
+        $('.voucher-tr').hide();
+        $('.voucher-price .amount').html(0);
+        calculateGrandTotal();
+        let errorMessage = `<p class="error-message text-danger m-0">Enter your coupon code</p>`;
+        voucherBlock.find('.error-message').remove();
+        voucherBlock.append(errorMessage);
+        return;
+    }
+
+    $('.loader-div').addClass('active');
+    let voucherPrice = 20;
+    setTimeout(function () {
+        if(voucherCode === 'coupon'){
+            errorMessage = `<p class="alert alert-success error-message m-0">Coupon Applied Successfully!</p>`;
+            voucherBlock.find('.error-message').remove();
+            voucherBlock.append(errorMessage);
+
+            $('.voucher-tr').show();
+            $('.voucher-code-text').html('- '+voucherCode);
+            $('.voucher-price .amount').html(voucherPrice);
+            calculateGrandTotal();
+        }else{
+            errorMessage = `<p class="alert alert-warning error-message m-0">Wrong Coupon Code!</p>`;
+            voucherBlock.find('.error-message').hide();
+            voucherBlock.append(errorMessage);
+
+            $('.voucher-code-text').html('- '+voucherCode);
+            $('.voucher-price .amount').html(0);
+            calculateGrandTotal();
+            $('.voucher-tr').hide();
+        }
+
+        $('.loader-div').removeClass('active');
+    },600);
+});
+
+$(document).on('keyup', '.voucher-block input.form-control', function (e) {
+    e.preventDefault();
+    let self = $(this);
+    if(self.val().length>0){
+        self.closest('.voucher-block').find('.error-message').remove();
+    }
+});
+//===== APPLY COUPON ACTION END
+
 //==== VALIDATION FOR REQUIRED FIELDS
 function singleValidation(formControl, formGroup) {
     errorMessage = "The field is required";
@@ -492,19 +577,19 @@ function singleValidation(formControl, formGroup) {
 
 function statesFiller(countryFieldSelector) {
     if(countryFieldSelector.val()=="USA"){
-        countryFieldSelector.closest('.form-row').find('.state-field-group .state-holder').html("<select class='form-control state' name='State' id='state'></select>");
+        countryFieldSelector.closest('.form-row').find('.state-field-group .state-holder').html("<select class='form-control state' name='State'></select>");
         countryFieldSelector.closest('.form-row').find('.state-field-group').find('select').append("<option value='0'>Select a State</option>");
         for (let key in statesJson){
             countryFieldSelector.closest('.form-row').find('.state-field-group').find('select').append("<option value='"+statesJson[key]+"'>"+statesJson[key]+"</option>")
         }
     }else if(countryFieldSelector.val()=="Canada"){
-        countryFieldSelector.closest('.form-row').find('.state-field-group .state-holder').html("<select class='form-control state' name='State' id='state'></select>");
+        countryFieldSelector.closest('.form-row').find('.state-field-group .state-holder').html("<select class='form-control state' name='State'></select>");
         countryFieldSelector.closest('.form-row').find('.state-field-group').find('select').append("<option value='0'>Select a State</option>");
         for (let key in statesCanadaJson){
             countryFieldSelector.closest('.form-row').find('.state-field-group').find('select').append("<option value='"+statesCanadaJson[key]+"'>"+statesCanadaJson[key]+"</option>")
         }
     }else{
-        countryFieldSelector.closest('.form-row').find('.state-field-group .state-holder').html("<input type='text' class='form-control state' id='state' name='State'>");
+        countryFieldSelector.closest('.form-row').find('.state-field-group .state-holder').html("<input type='text' class='form-control state' name='State'>");
     }
     countryFieldSelector.closest('.form-row').find('.state-field-group').removeClass('field-validated');
     countryFieldSelector.closest('.form-row').find('.state-field-group').removeClass('field-invalid');
@@ -524,6 +609,8 @@ function collectData(self) {
 
     var ticketCount = ticketNumber;
 
+
+
     if (ticketType == 'kids-11-to-20') {
         ticketCount += parseInt(self.closest('tr').next().find('.form-control').val() ? parseInt(self.closest('tr').next().find('.form-control').val()) : 0);
     }
@@ -531,8 +618,62 @@ function collectData(self) {
     if (ticketType == 'kids-under-11') {
         ticketCount += parseInt(self.closest('tr').prev().find('.form-control').val() ? parseInt(self.closest('tr').prev().find('.form-control').val()) : 0);
     }
-    updateTicketData(ticketNumber, ticketPrice, ticketType);
+
+    ticketPrice = parseInt(self.closest('tr').find('.per-price .amount').data('price')) * parseInt(ticketCount);
+    let ticketText = self.closest('.quantity-wrap').data('ticket-text'),
+        dataTicketRow = self.closest('tr').data('ticket-row');
+
+    // updateTicketData(ticketNumber, ticketPrice, ticketType);
+    self.closest('tr').find('.total-price .amount').html(ticketPrice);
+    generateTicketSummaryData(dataTicketRow, ticketText, ticketCount, ticketPrice);
+    ticketSummaryRowNumber();
+    calculateTotal();
 }
+
+function generateTicketSummaryData(dataTicketRow, ticketText, ticketCount, ticketPrice){
+    let firstTd = `<td><span class="row-number">1.&nbsp;</span> ${ticketText} X <span class="ticket-summary-count">${ticketCount}</span> </td>`,
+        secondTd = `<td class="text-right"><span class="currency">$&nbsp;</span> <span class="ticket-summary-price amount">${ticketPrice}</span></td>`,
+        ticketSummaryRow = `<tr data-summary-row="${dataTicketRow}" class="price-row ticket-price-row ticket-summary-row-${dataTicketRow}">
+                                ${firstTd} ${secondTd}
+                            </tr>`;
+    let rowExist = false;
+
+    if($('.ticket-summary-table tbody').find('tr').length>0){
+        $('.ticket-summary-table tbody').find('tr').each(function (i, element) {
+            if($(element).data('summary-row')===dataTicketRow) {
+                rowExist = true;
+            }
+        });
+    }
+
+    if(rowExist){
+        if(ticketPrice<=0){
+            $('.ticket-summary-table tbody').find('tr[data-summary-row=' + dataTicketRow + ']').remove();
+            return;
+        }
+
+        $('.ticket-summary-table tbody').find('tr[data-summary-row=' + dataTicketRow + ']').empty();
+        $('.ticket-summary-table tbody').find('tr[data-summary-row=' + dataTicketRow + ']').append(firstTd);
+        $('.ticket-summary-table tbody').find('tr[data-summary-row=' + dataTicketRow + ']').append(secondTd);
+        return;
+    }
+
+    if(ticketPrice<=0){
+        return;
+    }
+    $('.ticket-summary-table tbody').append(ticketSummaryRow);
+
+}
+
+//=== GIVING ROW NUMBER TO THE TICKET SUMMARY TABLE
+function ticketSummaryRowNumber(){
+    $('.ticket-summary-table tbody tr').each(function(i, element){
+        $(element).find('.row-number').text("("+(i+1)+")");
+    });
+}
+
+
+
 
 function updateTicketData(ticketNumber, ticketPrice, ticketType) {
     $('.' + ticketType + '-quantity').text(ticketNumber);
@@ -600,10 +741,19 @@ function calculateTotal() {
     $('.ticket-summary-table tbody tr').each(function (i, obj) {
         totalPrice = totalPrice + parseInt($(obj).find('.amount').text());
     });
-    $('.total-price .amount').text(totalPrice);
+    $('.ticket-summary-table .total-price .amount').text(totalPrice);
     $('#total-price').val(totalPrice);
+    calculateGrandTotal();
 
     showPaymentForm(totalPrice);
+}
+
+function calculateGrandTotal() {
+    let totalPrice = parseInt($('.ticket-summary-table .total-price .amount').html()),
+        voucherPrice = parseInt($('.ticket-summary-table .voucher-price .amount').html()),
+        grandTotalPrice = totalPrice - voucherPrice;
+    console.log(grandTotalPrice);
+    $('.ticket-summary-table .grand-total-price .amount').html(grandTotalPrice);
 }
 
 function ticket_row_number() {

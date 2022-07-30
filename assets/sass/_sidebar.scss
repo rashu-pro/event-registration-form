@@ -18,7 +18,7 @@
     }
 
     &-description{
-      padding:20px 15px;
+      padding:10px 15px 20px;
     }
 
     .sponsor{
@@ -69,8 +69,8 @@
               .table{
                 margin:0;
                 td,th{
-                  padding-left:20px;
-                  padding-right:20px;
+                  padding-left:10px;
+                  padding-right:10px;
 
                   .row-number{
                     padding-right:5px;
@@ -96,11 +96,14 @@
                   }
                 }
                 tfoot{
+                  border-top:2px solid #000;
                   tr{
                     background-color: #d4edda;
-                    text-transform: uppercase;
                     color:#202020;
                     font-weight: 600;
+                    &:last-child{
+                      text-transform: uppercase;
+                    }
                   }
                   th{
                     //color:#28a745;
@@ -128,4 +131,20 @@
   th,td{
     min-width:115px;
   }
+}
+
+
+.voucher{
+  &-block{
+    .btn{
+      padding:0 10px;
+      font-size:15px;
+      box-shadow:none;
+    }
+  }
+
+  &-tr{
+    display: none;
+  }
+
 }

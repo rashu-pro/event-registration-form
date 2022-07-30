@@ -39,8 +39,19 @@
   &-card{
     &-identity{
       position: absolute;
-      top:7px;
-      right:6px;
+      top: 50%;
+      right: 6px;
+      transform: translateY(-50%);
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img{
+        max-height:70%;
+      }
+      @media (min-width:768px){
+
+      }
     }
   }
 }

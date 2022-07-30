@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="assets/css/style.css?v=1.1.1">
-    <link rel="stylesheet" href="assets/css/booth_layout.css?v=1.1.5">
+    <link rel="stylesheet" href="assets/css/booth_layout.css?v=1.1.6">
 </head>
 <body>
 
@@ -255,13 +255,29 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="booth-image-wrapper">
-                                                    <div class="booth-thumb-wrapper" data-toggle="modal" data-target="#booth-image-modal">
-                                                        <p class="m-0"><strong>Booth Picture</strong></p>
-                                                        <img src="assets/images/booth_image.jpg" class="booth-thumb">
+                                                <div class="d-flex d-sm-flex align-items-end d-md-block">
+                                                    <div class="booth-image-wrapper">
+                                                        <div class="booth-thumb-wrapper" data-toggle="modal" data-target="#booth-image-modal">
+                                                            <img src="assets/images/booth_image.jpg" class="booth-thumb">
+                                                            <p class="m-0">
+                                                                <strong>Booth Picture</strong>
+                                                            </p>
+                                                        </div>
+
                                                     </div>
 
+                                                    <!-- BAZAR HALL LAYOUT -->
+                                                    <div class="booth-image-wrapper ml-3 ml-sm-3 ml-md-0">
+                                                        <div class="booth-thumb-wrapper" data-toggle="modal" data-target="#bazar-hall-image-modal">
+                                                            <img src="assets/images/bazar_hall_layout_min.jpg" class="booth-thumb">
+                                                            <p class="m-0">
+                                                                <strong>Bazar Hall Layout</strong>
+                                                            </p>
+                                                        </div>
+
+                                                    </div>
                                                 </div>
+
                                             </div>
 
 
@@ -3610,6 +3626,10 @@
                                             </div>
                                         </div>
 
+                                        <div class="alert alert-primary note-div ml-3">
+                                            <h2 class="note-text">Scroll or Drag the Window to View Full Bazar Layout.</h2>
+                                        </div>
+
                                     </div>
                                 </div>
 
@@ -3954,6 +3974,7 @@
                                                                 <span class="lable-text">Card Number</span>
                                                                 <span class="text-danger">*</span>
                                                             </label>
+
                                                             <div class="cc-number-holder">
                                                                 <input type="text" name="CardNumber" maxlength="" class="form-control field-normal format-card-number cc-number" id="creditcardnumber" required="" data-validation="credit-card">
                                                                 <div class="cc-card-identity">
@@ -4235,6 +4256,27 @@
                     <div class="text-center">
                         <img src="assets/images/booth_1000.jpg" class="img-fluid booth-image-big">
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== BAZAR HALL LAYOUT IMAGE MODAL ===== -->
+    <div class="modal extra-lg-modal bazar-layout-modal" tabindex="-1" role="dialog" id="bazar-hall-image-modal">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-success">Bazaar Hall Layout</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center bazar-layout-holder">
+                        <img src="assets/images/bazar_hall_layout_min.jpg" class="img-fluid booth-image-big">
+                    </div>
+
+                    <h2 class="note-text">Drag right and left to see the full layout.</h2>
                 </div>
             </div>
         </div>

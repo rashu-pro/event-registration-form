@@ -8,8 +8,7 @@ let J = Payment.J,
     creditCardImageHolder = $('.cc-card-identity'),
     btnAddAnotherTicket = $('.btn-add-another-js'),
     pageLoader = $('.loader-div'),
-    bannerHeight = $('.main-banner').height(),
-    errorMessage = "The field is required";
+    bannerHeight = $('.main-banner').height();
 
 let ticketHtml = `
 <div class="form-row form-row-ticket-individual active">
@@ -218,13 +217,8 @@ $(document).on('ready', function (e) {
     }
 });
 
-//====== ADDING A CLASS TO TICKET SUMMARY TABLE
-if ($('.ticket-summary-table').length > 0) {
-    $('.ticket-summary-table').closest('.sidebar-block').addClass('sidebar-block-ticket-summary');
-}
-
 //======= NAME ON CARD VALIDATION
-$('.cc-name').on('keyup blur', function (e) {
+$('.cc-name').on('keyup blur focus', function (e) {
     let self = $(this);
     // if (nameOnCardValidation(self.val())) {
     if (self.val()=='') {
@@ -338,7 +332,6 @@ $(document).on('click', '.btn-delete-ticket-js', function (e) {
     $('#confirm-modal-delete .modal-confirm').attr('data-row', dataRow);
     $('#confirm-modal-delete').modal('show');
 });
-
 $('.btn-delete-row-confirm').on('click', function () {
     let self = $(this);
     deleteRow(self.closest('.modal-confirm').attr('data-row'));
@@ -409,6 +402,9 @@ function removeContactFields(mainParent){
     mainParent.find('.contact-information-grouped-wrapper .email').closest('.form-group').remove();
     mainParent.find('.contact-information-grouped-wrapper .phone-number-mask').closest('.form-group').remove();
 }
+
+
+
 
 //===== PAY NOW BUTTON CLICK ACTION
 $(document).on('click', '.btn-pay-direction-js', function (e) {
@@ -511,13 +507,16 @@ $(document).on('focus', '.form-body', function (e) {
     });
 
     $('.mask-zipcode').inputmask({
-        "mask": "99999"
+        "mask": "99999",
+        placeholder: ""
     });
 });
 
 $('.payment-information .mask-zipcode').inputmask({
-    "mask": "99999"
+    "mask": "99999",
+    placeholder: ""
 });
+
 $('.mask-cvv').inputmask({
     "mask": "9999",
     placeholder: ""
@@ -556,59 +555,9 @@ $('.cc-year, .cc-month').on('change', function (e) {
     }
 });
 
-$('.payment-information .zip-code-plain').on('keyup',function (e) {
-    let self = $(this);
 
-    if ($('.payment-information .zip-code-plain').val()!=='') {
-        self.addClass('valid');
-        self.removeClass('invalid');
-    } else {
-        self.removeClass('valid');
-        self.addClass('invalid');
-    }
-});
 
-//===== APPLY COUPON ACTION
-$(document).on('click', '.btn-apply-voucher-js', function (e) {
-    e.preventDefault();
 
-    if(parseInt($('.subtotal-price .amount').html())<=0){
-        singleValidation($('.ticket-type-js'));
-        return;
-    }
-    let self = $(this),
-        voucherBlock = self.closest('.voucher-block'),
-        voucherCode = voucherBlock.find('input.form-control').val();
-
-    if(voucherCode === ''){
-        $('.voucher-tr').hide();
-        $('.voucher-price .amount').html(0);
-        calculateGrandTotal();
-        let errorMessage = `<p class="error-message text-danger m-0">Enter your coupon code</p>`;
-        voucherBlock.find('.error-message').remove();
-        voucherBlock.append(errorMessage);
-        return;
-    }
-
-    $('.loader-div').addClass('active');
-    let voucherPrice = 20;
-    setTimeout(function () {
-        $('.voucher-tr').show();
-        $('.voucher-code-text').html('- '+voucherCode);
-        $('.voucher-price .amount').html(voucherPrice);
-        calculateGrandTotal();
-        $('.loader-div').removeClass('active');
-    },600);
-});
-
-$(document).on('keyup', '.voucher-block input.form-control', function (e) {
-    e.preventDefault();
-    let self = $(this);
-    if(self.val().length>0){
-        self.closest('.voucher-block').find('.error-message').remove();
-    }
-});
-//===== APPLY COUPON ACTION END
 
 //===== DEFINITION FOR FUNCTIONS
 function card_validation() {
@@ -735,6 +684,7 @@ function nameOnCardValidation(name) {
     return isValidName;
 }
 
+let errorMessage = "The field is required";
 function notifyError(formControl, errorMessage) {
     formControl.parent().removeClass('field-validated');
     formControl.parent().addClass('field-invalid');
@@ -886,14 +836,6 @@ function calculateTotal() {
     //changed by Emdad
     //Update total price hidden field
     $('#total-price').val(totalPrice);
-    calculateGrandTotal();
-}
-
-function calculateGrandTotal() {
-    let totalPrice = parseInt($('.ticket-summary-table .total-price .amount').html()),
-        voucherPrice = parseInt($('.ticket-summary-table .voucher-price .amount').html()),
-        grandTotalPrice = totalPrice - voucherPrice;
-    $('.ticket-summary-table .grand-total-price .amount').html(grandTotalPrice);
 }
 
 //=== UPDATE TICKET PRICE AFTER ADD ANOTHER PERSON ACTION
@@ -1070,14 +1012,12 @@ function statesFiller(countryFieldSelector){
         for (let key in statesJson){
             countryFieldSelector.closest('.form-row').find('.state-field-group').find('select').append("<option value='"+statesJson[key]+"'>"+statesJson[key]+"</option>")
         }
-    }else if(countryFieldSelector.val()=="Canada"){
+    }else{
         countryFieldSelector.closest('.form-row').find('.state-field-group .state-holder').html("<select class='form-control state' name='State'></select>");
         countryFieldSelector.closest('.form-row').find('.state-field-group').find('select').append("<option value='0'>Select a State</option>");
         for (let key in statesCanadaJson){
             countryFieldSelector.closest('.form-row').find('.state-field-group').find('select').append("<option value='"+statesCanadaJson[key]+"'>"+statesCanadaJson[key]+"</option>")
         }
-    }else{
-        countryFieldSelector.closest('.form-row').find('.state-field-group .state-holder').html("<input type='text' class='form-control state' name='State'>");
     }
 }
 

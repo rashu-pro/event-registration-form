@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" href="assets/plugins/bootstrap.min.css">
     <link rel="stylesheet" href="assets/plugins/datepicker/jquery-ui-datepicker.min.css">
-    <link rel="stylesheet" href="assets/css/style.css?1.0.2">
+    <link rel="stylesheet" href="assets/css/style.css?1.0.7">
 </head>
 <body>
 
@@ -49,10 +49,30 @@
                     <div class="main-banner-content-wrapper">
                         <div class="container">
                             <div class="main-banner-content-section">
-                                <h3 class="banner-title">59th Annual Isna Convention</h3>
+                                <h3 class="banner-title">59th Annual ISNA Convention</h3>
                                 <div class="banner-details">
                                     <p>Donald E. Stephens Convention Center, 5555 N River Rd, Rosemont, IL 60018</p>
                                     <p>Matrimonial Registration</p>
+                                    <div class="contact-info d-block d-sm-block d-md-block d-lg-flex">
+                                        <p class="mr-3">Contact Us:</p>
+                                        <div class="d-block d-sm-block d-md-block d-lg-flex pb-2">
+                                            <p class="m-0">
+                                                <a href="mailto:matrimonialintern@isna.net" class="mr-3">
+                                                    <img src="assets/images/email_blue.png" style="height:auto;" alt="email" class="icon-24">
+                                                    matrimonialintern@isna.net
+                                                </a>
+                                            </p>
+                                            <p class="m-0">
+                                                <a href="tel:(317) 839-1824">
+                                                    <img src="assets/images/telephone_blue.png" style="height:auto;" alt="call" class="icon-24">
+                                                    (317) 839-1824
+                                                </a>
+                                            </p>
+
+
+
+                                        </div>
+                                    </div>
                                     <span class="badge badge-secondary text-medium">September 3 - 4, 2022</span>
                                 </div>
                             </div>
@@ -67,7 +87,7 @@
                 <form method="post" id="event-reg-form">
                     <div class="row">
 
-                        <div class="col-12 col-sm-8 col-md-8 col-lg-8">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-8">
                             <!-- ====== FORM BODY ====== -->
                             <div class="form-body">
 
@@ -85,14 +105,14 @@
                                             <div class="form-group required-group">
                                                 <label>Registration Type</label>
                                                 <select class="form-control ticket-category-js">
-                                                    <option value="0" data-price="0">Select Day</option>
-                                                    <option value="saturday" data-price="100">Saturday ($100)</option>
-                                                    <option value="sunday" data-price="100">Sunday ($100)</option>
-                                                    <option value="both" data-price="175">Both Days ($175)</option>
+                                                    <option value="" data-text="0" data-price="0">Select Day</option>
+                                                    <option value="abe153ff-ca89-4c3d-a0df-d2dfe09dfd55" data-text="Saturday" data-price="100">Saturday ($100)</option>
+                                                    <option value="abe153ff-ca89-4c3d-a0df-d2dfe09dfd56" data-text="Sunday" data-price="100">Sunday ($100)</option>
+                                                    <option value="abe153ff-ca89-4c3d-a0df-d2dfe09dfd57" data-text="Both" data-price="175">Both Days ($175)</option>
                                                     <optgroup label="With Parent/Wali">
-                                                        <option value="saturday-wali" data-price="200">Saturday ($200)</option>
-                                                        <option value="sunday-wali" data-price="200">Sunday ($200)</option>
-                                                        <option value="both-wali" data-price="350">Both ($200)</option>
+                                                        <option value="abe153ff-ca89-4c3d-a0df-d2dfe09dfd58" data-text="Saturday-Wali" data-price="200">Saturday ($200)</option>
+                                                        <option value="abe153ff-ca89-4c3d-a0df-d2dfe09dfd59" data-text="Sunday-Wali" data-price="200">Sunday ($200)</option>
+                                                        <option value="abe153ff-ca89-4c3d-a0df-d2dfe09dfd60" data-text="Both-Wali" data-price="350">Both ($200)</option>
                                                     </optgroup>
                                                 </select>
                                             </div>
@@ -212,7 +232,7 @@
                                     <div class="form-row-body">
                                         <div class="form-fields-wrapper">
                                             <div class="row">
-                                                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                                <div class="col-12 col-sm-6 col-md-6 col-lg-6">
                                                     <div class="form-group required-group">
                                                         <label class="form-control-label">Gender <span class="required-mark">*</span></label>
                                                         <select class="form-control">
@@ -222,12 +242,12 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                                <div class="col-12 col-sm-6 col-md-6 col-lg-6">
                                                     <div class="form-group required-group">
                                                         <label class="form-control-label">Date of Birth <span class="required-mark">*</span></label>
                                                         <div class="input-group">
                                                             <input type="text" class="form-control date-picker-js">
-                                                            <label class="input-group-append m-0 dob-addon">
+                                                            <label class="input-group-append m-0 dob-addon d-inline-block">
                                                                 <span class="input-group-text" title="Date of Birth">
                                                                     <img src="assets/images/date.png" alt="DOB">
                                                                 </span>
@@ -288,10 +308,40 @@
                                     </div>
                                 </div>
 
+                                <!-- ====== CONTACT US ====== -->
+                                <div class="form-row">
+                                    <div class="form-row-head">
+                                        <div class="form-row-head-inner">
+                                            <h3 class="form-row-title">Contact Us</h3>
+                                        </div>
+                                    </div>
+                                    <div class="form-row-body">
+                                        <div class="form-fields-wrapper">
+                                            <h5 class="font-600 text-dark mb-3">If you have any question please contact us:</h5>
+
+                                            <div class="d-block d-sm-flex">
+                                                <p class="mb-0 text-medium mr-4">
+                                                    <a href="mailto:matrimonialintern@isna.net">
+                                                        <img src="assets/images/email_blue.png" alt="email">
+                                                        matrimonialintern@isna.net
+                                                    </a>
+                                                </p>
+
+                                                <p class="mb-0 text-medium">
+                                                    <a href="tel:(317) 839-1824">
+                                                        <img src="assets/images/telephone_blue.png" alt="email">
+                                                        (317) 839-1824
+                                                    </a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
 
-                        <div class="col-12 col-sm-4 col-md-4 col-lg-4">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-4">
 
                             <!-- ====== SIDEBAR ====== -->
                             <div class="sidebar">
@@ -300,7 +350,15 @@
                                     <h3 class="sidebar-block-title">Ticket Summary</h3>
                                     <div class="sidebar-block-description">
                                         <div class="table-responsive ticket-summary-table pb-3">
-                                            <table class="table">
+                                            <table class="table table-striped table-bordered">
+                                                <thead>
+                                                <tr>
+                                                    <th class="text-left"><span class="row-number">#</span> Ticket
+                                                        Category
+                                                    </th>
+                                                    <th class="text-right">Price</th>
+                                                </tr>
+                                                </thead>
                                                 <tbody>
 
 
@@ -416,11 +474,21 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
 
-                                <div class="sidebar-block">
-                                    <div class="sidebar-block-description">
+                                        <div class="tc-wrapper mt-2">
+                                            <div class="alert alert-primary alert-round-border">
+                                                <p style="font-size:12px">
+                                                    <strong>Disclaimer:</strong>
+                                                    WE ARE COMMITTED TO PROVIDING A SAFE,  ENJOYABLE, AND LEARNING ENVIRONMENT TO ALL CONVENTION ATTENDEES. TO ENSURE THIS, ISNA HOLDS THE RIGHT TO CANCEL ANY REGISTRATION. BY REGISTERING FOR THIS CONVENTION YOU AGREE TO ITS POLICIES AND PROCEDURES.  IF YOU OR A MEMBER OF YOUR GROUP CAUSES ANY DISTURBANCE, YOUR REGISTRATION WILL BE CANCELED WITHOUT REFUND.  THE JUDGMENT OF TERM "DISTURBANCE" WILL BE DETERMINED SOLELY BY ISNA.YOUR EMAIL WILL BE AUTOMATICALLY INCLUDED IN THE ISNA E-LISTSERV.  YOU WILL HAVE THE OPTION TO OPT-OUT FROM THIS LIST.
+                                                </p>
+
+                                                <div class=" mt-3 mb-0">
+                                                    <input type="checkbox" id="tc-2" class="tc">
+                                                    <label for="tc-2" style="font-size: 14px;display: inline;color: #000; font-weight: 600;">I have read and agree to the terms above. </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                         <button type="button" class="btn btn-primary btn-block btn-reg btn-reg-js">Register</button>
                                     </div>
                                 </div>
@@ -512,11 +580,11 @@
     <footer class="footer">
         <div class="container">
             <div class="row">
-                <div class="col-12 col-md-6">
-                    <p class="m-0 text-center text-md-left pb-2 pb-md-0"><a href="htttps://masjidsolutions.net" target="_blank"> masjidsolutions.net</a> (317) 854 0207 </p>
+                <div class="col-md-12 col-lg-6">
+                    <p class="m-0 text-center text-md-center text-lg-left pb-md-2 pb-lg-0"><a href="htttps://masjidsolutions.net" target="_blank"> masjidsolutions.net</a> (317) 854 0207 </p>
                 </div>
-                <div class="col-12 col-md-6">
-                    <p class="text-center text-md-right m-0">&copy; ISNA. All Rights Reserved, 2022 </p>
+                <div class="col-md-12 col-lg-6">
+                    <p class="text-center text-md-center text-lg-right m-0">&copy; ISNA. All Rights Reserved, 2022 </p>
                 </div>
             </div>
         </div>
@@ -556,8 +624,11 @@
 <script src="assets/plugins/datepicker/jquery-ui-datepicker.min.js"></script>
 <script src="assets/plugins/input_mask/jquery.inputmask.min.js"></script>
 <script src="assets/plugins/card_validation.js"></script>
-<script src="assets/js/live/event_single/custom.js?v=1.0.2"></script>
+<script src="assets/js/live/event_single/custom.js?v=1.0.8"></script>
 <script>
+    function registrationConfirmation(){
+        allFieldsValidated(true);
+    }
     //=== THIS FUNCTION WILL EXECUTE AFTER SUCCESSFUL VALIDATION
     function allFieldsValidated(status) {
         if(status){

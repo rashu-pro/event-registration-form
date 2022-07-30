@@ -225,17 +225,17 @@ $(document).on('click', '.btn-reg-js', function (e) {
             paymentFormGroupNotValidatedSelector.first().find('.form-control').focus();
             return;
         } else {
-            if($('#tc-2').length>0){
-                let isChecked = $('#tc-2').prop('checked');
-                if (!isChecked) {
-                    $('#tc-2').closest('.tc-wrapper').find('.alert').css('border', '2px solid #dc3545');
-                    setTimeout(function () {
-                        $('#tc-2').closest('.tc-wrapper').find('.alert').css('border', '1px solid #084298');
-                    }, 300);
-                    return;
-                }
+            let isChecked = $('#tc-2').prop('checked');
+            if (!isChecked) {
+                $('#tc-2').closest('.tc-wrapper').find('.alert').css('border', '2px solid #dc3545');
+                setTimeout(function () {
+                    $('#tc-2').closest('.tc-wrapper').find('.alert').css('border', '1px solid #084298');
+                }, 300);
+                return;
             }
+
             registrationConfirmation();
+
         }
     }
     console.log('all fields validated!');
@@ -627,9 +627,9 @@ function card_validation() {
     // J.toggleClass(number, 'invalid', !Payment.fns.validateCardNumber(J.val(number)));
     if (cardType) {
         creditCardField.addClass(cardType);
-        creditCardImageHolder.html("<img src='assets/images/" + cardType + ".png'>");
+        creditCardImageHolder.html("<img src='/Content/event-management-assets/individual-multiple-assets/images/" + cardType + ".png'>");
     } else {
-        creditCardImageHolder.html("<img src='assets/images/unknown.png'>");
+        creditCardImageHolder.html("<img src='/Content/event-management-assets/individual-multiple-assets/images/unknown.png'>");
     }
     if (Payment.fns.validateCardNumber(J.val(number))) {
         creditCardField.removeClass('invalid');

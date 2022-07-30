@@ -180,6 +180,7 @@ $('.btn-event-register').on('click', function () {
         console.log('Payment Fields...');
         if ((paymentFields) == paymentValidFields) {
             console.log('payment fields validated');
+
             let isChecked = $('#tc-2').prop('checked');
             if(isChecked){
                 registrationConfirmation();
@@ -192,7 +193,7 @@ $('.btn-event-register').on('click', function () {
                 $('#tc-2').closest('.tc-wrapper').find('.alert').css('border','2px solid #dc3545');
                 setTimeout(function () {
                     $('#tc-2').closest('.tc-wrapper').find('.alert').css('border','1px solid #084298');
-                },300)
+                },300);
             }
 
             //setTimeout(function (e) {
@@ -1346,9 +1347,9 @@ if ($('.ticket-summary-table').length > 0) {
     $('.ticket-summary-table').closest('.sidebar-block').addClass('sidebar-block-ticket-summary');
 }
 
+
 // created by Emdad
 //DataRow added as ticket quantity on #ticket-quantity field
 function updateTicketQuantity(dataRow) {
     $('#ticket-quantity').val(dataRow);
 }
-
