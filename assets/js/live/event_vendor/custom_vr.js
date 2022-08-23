@@ -94,13 +94,13 @@ $(function ($) {
         // Clear temp registrations
         clearReservations()
             .then((data) => {
-                console.log(data);
                 if (data.booths.length > 0) {
                     $(data.booths).each(function (index, item) {
                         $("." + item).removeAttr("disabled");
                         $("." + item).removeClass("booth-selected");
                     });
                 }
+
                 // Add the message to the page.
                 if (clear == true) {
                     /*$("." + boothNumber).removeAttr("disabled");*/
@@ -118,12 +118,11 @@ $(function ($) {
     //    $.connection.hub.start()
     //}
 
-    //$.connection.hub.disconnected(function () {
-    //  //  alert("Ok");
-    //    //setTimeout(function () {
-    //    //    $.connection.hub.start();
-    //    //}, 5000); // Restart connection after 5 seconds.
-    //});
+    $.connection.hub.disconnected(function () {
+        setTimeout(function () {
+            $.connection.hub.start();
+        }, 1000); // Restart connection after 1 second.
+    });
 
     $.connection.hub.start().done(function () {
         // console.log("Connection Status: " + $.connection.hub.state);
@@ -157,16 +156,20 @@ $(function ($) {
 
                 boothNumber = self.text();
                 if (boothNumber != null) {
-                    booth.server.send(boothNumber, true);
-                    boothNumber = null;
-
                     // remove from reservation table
-                    removeReservation(slotKey, boothKey);
+                    removeReservation(boothKey, boothNumber).then((data) => {
+                        if (data.isSuccess) {
+                            booth.server.send(boothNumber, true);
+                            boothNumber = null;
+                        }
+                    }).catch((error) => {
+                        console.log(error);
+                    });
                 }
             } else {
                 if (selectedBooths.length < 4) { // Only allowed 4 booths
                     boothNumber = self.text();
-
+                    $('.loader-div').addClass('active');
                     // Check someone already booked the selected booth
                     checkReservation()
                         .then((data) => {
@@ -178,45 +181,78 @@ $(function ($) {
                                     confirmTemplate = `Booth No: <strong><em>${boothNumber}</em></strong> is already sold out.`
                                 }
 
-                                getReservedBooths();
+                                getReservedBooths().then((data) => {
+                                    if (data.isSuccess) {
+                                        $(data.bookedBooths).each(function (index, item) {
 
+                                            // Call the Send method on the hub.
+                                            booth.server.send(item.boothNo, false);
+
+                                            //$(`.${item.boothNo}`).removeClass("booth-selected").addClass("booth-selected");
+                                            ///*$(`.${item.boothNo}`).attr("disabled", "disabled");*/
+                                            //$(`.${item.boothNo}`).attr("title", "This booth is booked");
+                                        })
+                                    }
+                                }).catch((error) => {
+                                    console.log(error);
+                                });
+
+                                $('.loader-div').removeClass('active');
                                 // notify
                                 toastr.warning(confirmTemplate);
                                 return;
                             }
 
-                            // Call the Send method on the hub.
-                            booth.server.send(boothNumber, false);
-
-                            clearInterval(timerFunction);
-                            start_tmer(900);
-
                             // Add to Reservation table
-                            createReservation();
+                            createReservation()
+                                .then((data) => {
+                                    if (data.isSuccess) {
 
-                            selectedBooths.push({
-                                boothType: boothType,
-                                btnBooth: btnBooth,
-                                price: price,
-                                boothNumber: boothNumber,
-                                eventSlotKey: slotKey,
-                                eventBoothKey: boothKey
-                            });
+                                        // Call the Send method on the hub.
+                                        booth.server.send(boothNumber, false);
 
+                                        clearInterval(timerFunction);
+                                        start_tmer(900);
 
-                            updateMiniBooth();
+                                        selectedBooths.push({
+                                            boothType: boothType,
+                                            btnBooth: btnBooth,
+                                            price: price,
+                                            boothNumber: boothNumber,
+                                            eventSlotKey: slotKey,
+                                            eventBoothKey: boothKey
+                                        });
 
-                            //$('#confirmation-modal').modal('show');
-                            //$('.booth-type-holder .booth-type').text(boothType);
-                            //$('.booth-number').html(btnBooth);
-                            //$('.booth-price').html(price);
+                                     
+                                        // Notify
+                                        toastr.success("Booth is added into the basket, click the basket to proceed.");
 
-                            $('.js-timer-block').hide();
-                            setTimeout(function () {
-                                $(".js-timer-block").show();
-                            }, 1000);
+                                        updateMiniBooth();
 
-                            self.closest('.form-row').find('.btn-next-js').removeClass('disabled');
+                                        //// Clear temp registrations
+                                        //clearReservations()
+                                        //    .then((data) => {
+                                        //        if (data.booths.length > 0) {
+                                        //            $(data.booths).each(function (index, item) {
+                                        //                // Call the Send method on the hub.
+                                        //                booth.server.send(item, true);
+                                        //                //$("." + item).removeAttr("disabled");
+                                        //                //$("." + item).removeClass("booth-selected");
+                                        //            });
+                                        //        }
+                                        //    });
+
+                                        $('.js-timer-block').hide();
+                                        setTimeout(function () {
+                                            $(".js-timer-block").show();
+                                        }, 1000);
+
+                                        $('.loader-div').removeClass('active');
+                                        self.closest('.form-row').find('.btn-next-js').removeClass('disabled');
+                                    }
+                                }).catch((error) => {
+                                    console.log(error);
+                                });
                         })
                         .catch((error) => {
                             console.log(error);
@@ -292,7 +328,7 @@ $(function ($) {
     });
 
     btnChangeSelector.on('click', function (e) {
-        clearBooth();
+        //clearBooth();
     });
 
     $("body").on("click", '.btn-change-js', function (e) {
@@ -315,27 +351,36 @@ $(function ($) {
         e.preventDefault();
         e.stopPropagation();
 
-        var selector = $(this).data("id");
+        var selector = $(this).data("booth-key");
         var boothToRemove = $(this).data("booth");
 
         if (boothToRemove != null) {
-            booth.server.send(boothToRemove, true);
+            // remove from reservation table
+            removeReservation($(this).data("booth-key"), boothToRemove).then((data) => {
+                if (data.isSuccess) {
+                    booth.server.send(boothToRemove, true);
+                }
+            }).catch((error) => {
+                console.log(error);
+            });
+
+            // get index of object 
+            var removeIndex = selectedBooths.map(function (item) { return item.eventBoothKey; }).indexOf(selector);
+
+            // remove object
+            selectedBooths.splice(removeIndex, 1);
+
+            console.log(selectedBooths.length);
+            $("#" + selector).remove();
+
+            updateMiniBooth();
         }
 
         //selectedBooths = selectedBooths.filter(function (el) {
         //    return el.eventBoothKey != selector
         //});
 
-        // get index of object 
-        var removeIndex = selectedBooths.map(function (item) { return item.eventBoothKey; }).indexOf(selector);
 
-        // remove object
-        selectedBooths.splice(removeIndex, 1);
-
-        console.log(selectedBooths.length);
-        $("#" + selector).remove();
-
-        updateMiniBooth();
     });
 
     //$(document).on('click', '.btn-reg', function (e) {
@@ -430,7 +475,7 @@ $(function ($) {
                                           <td class="booth-type-holder"><span class="booth-type">${item.boothType}</span></td>
                                           <td class="booth-number-holder"><span class="booth-number">${item.btnBooth}</span></td>
                                           <td class="booth-name-holder">$<span class="booth-price">${item.price}</span></td>
-                                          <td class="booth-remove-js" data-booth="${item.boothNumber}" data-id='${item.eventBoothKey}' class=""><span class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></span></td>
+                                          <td class="booth-remove-js" data-booth="${item.boothNumber}" data-slot-key='${item.eventSlotKey}' data-booth-key='${item.eventBoothKey}' class=""><span class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></span></td>
                                     </tr>`;
             $("#boothTable tbody").append(boothTemplate);
         });
@@ -570,20 +615,17 @@ $(function ($) {
         if (selectedBooths.length > 0) {
             $(selectedBooths).each(function (index, item) {
                 if (item.boothNumber != null) {
-                    booth.server.send(item.boothNumber, true);
-                    // boothNumber = null;
                     $('.loader-div').addClass('active');
-
                     // remove from reservation table
-                    removeReservation(item.eventSlotKey, item.eventBoothKey);
+                    removeReservation(item.eventBoothKey, item.boothNumber).then((data) => {
+                        if (data.isSuccess) {
+                            booth.server.send(item.boothNumber, true);
+                        }
+                    }).catch((error) => {
+                        console.log(error);
+                    });
                 }
             });
-
-            $('.js-timer-block').hide();
-            $('.after-booth-selection').hide();
-            $('.booth-selection').show();
-            $('.booth-selection .form-row').addClass('active');
-
 
             updateMiniBooth();
 
@@ -591,6 +633,11 @@ $(function ($) {
             setTimeout(function (e) {
                 $('.loader-div').removeClass('active');
             }, 400);
+
+            $('.js-timer-block').hide();
+            $('.after-booth-selection').hide();
+            $('.booth-selection').show();
+            $('.booth-selection .form-row').addClass('active');
         }
 
         selectedBooths = [];

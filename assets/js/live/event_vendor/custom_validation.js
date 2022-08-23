@@ -14,12 +14,12 @@ $(document).on('click', '.btn-form-next-js', function (e) {
     isFieldsValidated(self, "btnForm");
 
     $('html, body').animate({
-        'scrollTop': $(".form-row.active").position().top,
+        // 'scrollTop': $(".form-row.active").position().top,
     });
 
     setTimeout(function (e) {
         self.closest('.form-row').next().find('.form-control').first().focus();
-    }, 500);
+    }, 0);
 });
 
 $(document).on('click', '.btn-form-complete-js', function (e) {

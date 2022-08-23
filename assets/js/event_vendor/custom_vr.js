@@ -54,6 +54,7 @@ $(function ($) {
     });
 
     btnNextSelector.on('click',function (e) {
+        console.log('next btn clicked!');
         let self = $(this);
         isFieldsValidated(self);
         $('.loader-div').addClass('active');

@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Registration</title>
+
+    <link rel="icon" href="assets/images/site_icon.png">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css?1.0.3">
+</head>
+<body>
+
+<div class="main">
+
+    <!-- ====== HEADER ====== -->
+    <header class="header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-3">
+                    <div class="logo-wrapper">
+                        <a href="javascript:void(0)">
+                            <img src="assets/images/logo.png" class="img-fluid">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-9">
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact Us</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="tel:317 644 6538"><img src="assets/images/telephone_call_resized.png"> 317 644 6538 </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-wrapper container">
+
+        <!-- FORM WRAPPER -->
+        <div class="registration-form-wrapper">
+            <!-- ====== BANNER ====== -->
+            <div class="main-banner">
+                <img src="assets/images/event_banner_fixed_compressed.png" alt="Gala Event">
+            </div>
+
+            <!-- ====== MAIN BODY ====== -->
+            <div class="main-body">
+                <form method="post" id="event-reg-form">
+                    <div class="row">
+
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-8">
+                            <!-- ====== FORM BODY ====== -->
+                            <div class="form-body">
+
+
+                                <!-- ====== CHOOSE TICKET ====== -->
+                                <div class="form-row">
+                                    <div class="form-row-head">
+                                        <div class="form-row-head-inner">
+                                            <h3 class="form-row-title">Ticket</h3>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row-body">
+                                        <div class="cart-table">
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+
+                                                    <tr>
+                                                        <th>Ticket Category</th>
+                                                        <th>Price</th>
+                                                        <th>Quantity</th>
+                                                        <th>Subtotal</th>
+                                                    </tr>
+                                                    </thead>
+
+                                                    <tbody>
+
+                                                    <tr data-ticket-row="1">
+                                                        <td>
+                                                            Adult
+                                                            <input type="hidden" name="TicketCategoryKeys[]" class="ticket-category-key" value="d91903fe-eda2-44e1-824e-a4e54af5acc5">
+                                                        </td>
+                                                        <td class="per-price">
+                                                            <span class="currency">$</span>
+                                                            <span class="amount" data-price="89">89</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="quantity-wrap" data-ticket-text="Adult" data-minimum="1" data-maximum="150" ticket-type="adult" ticket-type-key="d91903fe-eda2-44e1-824e-a4e54af5acc5">
+                                                                <div class="input-group mb-3">
+                                                                    <div class="input-group-prepend">
+                                                                        <button type="button" class="input-group-text quantity-decrease">-</button>
+                                                                    </div>
+                                                                    <input type="number" name="TicketQuantities[]" class="form-control ticket-quantity ticket-field" value="0">
+
+                                                                    <div class="input-group-append">
+                                                                        <button type="button" class="input-group-text quantity-increase">+</button>
+                                                                    </div>
+
+                                                                </div>
+                                                                <!--<span class="max-ticket" style="display:none;color:#ff0120">Maximum 10.</span>-->
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                                        <span class="total-price">
+                                                                            <span class="currency">$</span>
+                                                                            <span class="amount">0</span>
+                                                                        </span>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr data-ticket-row="2">
+                                                        <td>
+                                                            Couple
+                                                            <input type="hidden" name="TicketCategoryKeys[]" class="ticket-category-key" value="9ad6a3d0-f0e7-451e-8e0c-2c02f1a2489c">
+                                                        </td>
+                                                        <td class="per-price">
+                                                            <span class="currency">$</span>
+                                                            <span class="amount" data-price="169">169</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="quantity-wrap" data-ticket-text="Couple" data-minimum="10" data-maximum="50" ticket-type="couple" ticket-type-key="9ad6a3d0-f0e7-451e-8e0c-2c02f1a2489c">
+                                                                <div class="input-group mb-3">
+                                                                    <div class="input-group-prepend">
+                                                                        <button type="button" class="input-group-text quantity-decrease">-</button>
+                                                                    </div>
+                                                                    <input type="number" name="TicketQuantities[]" class="form-control ticket-quantity ticket-field" value="0">
+
+                                                                    <div class="input-group-append">
+                                                                        <button type="button" class="input-group-text quantity-increase">+</button>
+                                                                    </div>
+
+                                                                </div>
+                                                                <!--<span class="max-ticket" style="display:none;color:#ff0120">Maximum 10.</span>-->
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                                        <span class="total-price">
+                                                                            <span class="currency">$</span>
+                                                                            <span class="amount">0</span>
+                                                                        </span>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr data-ticket-row="3">
+                                                        <td>
+                                                            Group of 4 adult or more
+                                                            <input type="hidden" name="TicketCategoryKeys[]" class="ticket-category-key" value="7a1688bc-cc04-4a1a-838c-02986daf0ffc">
+                                                        </td>
+                                                        <td class="per-price">
+                                                            <span class="currency">$</span>
+                                                            <span class="amount" data-price="80">80</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="quantity-wrap" data-ticket-text="Group of 4 adult or more" data-minimum="15" data-maximum="80" ticket-type="group-of-4-adult-or-more	" ticket-type-key="7a1688bc-cc04-4a1a-838c-02986daf0ffc">
+                                                                <div class="input-group mb-3">
+                                                                    <div class="input-group-prepend">
+                                                                        <button type="button" class="input-group-text quantity-decrease">-</button>
+                                                                    </div>
+                                                                    <input type="number" name="TicketQuantities[]" class="form-control ticket-quantity ticket-field" value="0">
+
+                                                                    <div class="input-group-append">
+                                                                        <button type="button" class="input-group-text quantity-increase">+</button>
+                                                                    </div>
+
+                                                                </div>
+                                                                <!--<span class="max-ticket" style="display:none;color:#ff0120">Maximum 10.</span>-->
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                                        <span class="total-price">
+                                                                            <span class="currency">$</span>
+                                                                            <span class="amount">0</span>
+                                                                        </span>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr data-ticket-row="4">
+                                                        <td>
+                                                            College student (18+)
+                                                            <input type="hidden" name="TicketCategoryKeys[]" class="ticket-category-key" value="ca395e95-2d2e-4ccd-bab2-abbb008d09ae">
+                                                        </td>
+                                                        <td class="per-price">
+                                                            <span class="currency">$</span>
+                                                            <span class="amount" data-price="79">79</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="quantity-wrap" data-ticket-text="College student (18+)" data-minimum="10" data-maximum="50" ticket-type="college-student-(18+)" ticket-type-key="ca395e95-2d2e-4ccd-bab2-abbb008d09ae">
+                                                                <div class="input-group mb-3">
+                                                                    <div class="input-group-prepend">
+                                                                        <button type="button" class="input-group-text quantity-decrease">-</button>
+                                                                    </div>
+                                                                    <input type="number" name="TicketQuantities[]" class="form-control ticket-quantity ticket-field" value="0">
+
+                                                                    <div class="input-group-append">
+                                                                        <button type="button" class="input-group-text quantity-increase">+</button>
+                                                                    </div>
+
+                                                                </div>
+                                                                <!--<span class="max-ticket" style="display:none;color:#ff0120">Maximum 10.</span>-->
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                                        <span class="total-price">
+                                                                            <span class="currency">$</span>
+                                                                            <span class="amount">0</span>
+                                                                        </span>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr data-ticket-row="5">
+                                                        <td>
+                                                            Youth (MYNA-12-17)
+                                                            <input type="hidden" name="TicketCategoryKeys[]" class="ticket-category-key" value="39ad87ad-7aa1-4c86-b67d-e77e3ae74b1f">
+                                                        </td>
+                                                        <td class="per-price">
+                                                            <span class="currency">$</span>
+                                                            <span class="amount" data-price="59">59</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="quantity-wrap" data-ticket-text="Youth (MYNA-12-17)" data-minimum="10" data-maximum="50" ticket-type="youth-(myna-12-17)" ticket-type-key="39ad87ad-7aa1-4c86-b67d-e77e3ae74b1f">
+                                                                <div class="input-group mb-3">
+                                                                    <div class="input-group-prepend">
+                                                                        <button type="button" class="input-group-text quantity-decrease">-</button>
+                                                                    </div>
+                                                                    <input type="number" name="TicketQuantities[]" class="form-control ticket-quantity ticket-field" value="0">
+
+                                                                    <div class="input-group-append">
+                                                                        <button type="button" class="input-group-text quantity-increase">+</button>
+                                                                    </div>
+
+                                                                </div>
+                                                                <!--<span class="max-ticket" style="display:none;color:#ff0120">Maximum 10.</span>-->
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                                        <span class="total-price">
+                                                                            <span class="currency">$</span>
+                                                                            <span class="amount">0</span>
+                                                                        </span>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr data-ticket-row="6">
+                                                        <td>
+                                                            Children's Program
+                                                            <input type="hidden" name="TicketCategoryKeys[]" class="ticket-category-key" value="6c6da279-181f-4a6a-8556-25846eb0e530">
+                                                        </td>
+                                                        <td class="per-price">
+                                                            <span class="currency">$</span>
+                                                            <span class="amount" data-price="49">49</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="quantity-wrap" data-ticket-text="Children's Program" data-minimum="50" data-maximum="150" ticket-type="children's-program" ticket-type-key="6c6da279-181f-4a6a-8556-25846eb0e530">
+                                                                <div class="input-group mb-3">
+                                                                    <div class="input-group-prepend">
+                                                                        <button type="button" class="input-group-text quantity-decrease">-</button>
+                                                                    </div>
+                                                                    <input type="number" name="TicketQuantities[]" class="form-control ticket-quantity ticket-field" value="0">
+
+                                                                    <div class="input-group-append">
+                                                                        <button type="button" class="input-group-text quantity-increase">+</button>
+                                                                    </div>
+
+                                                                </div>
+                                                                <!--<span class="max-ticket" style="display:none;color:#ff0120">Maximum 10.</span>-->
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                                        <span class="total-price">
+                                                                            <span class="currency">$</span>
+                                                                            <span class="amount">0</span>
+                                                                        </span>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr data-ticket-row="7">
+                                                        <td>
+                                                            Babysitting
+                                                            <input type="hidden" name="TicketCategoryKeys[]" class="ticket-category-key" value="e72d60b4-b025-4fe2-8c89-81d2c65ef36d">
+                                                        </td>
+                                                        <td class="per-price">
+                                                            <span class="currency">$</span>
+                                                            <span class="amount" data-price="75">75</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="quantity-wrap" data-ticket-text="Babysitting" ticket-type="babysitting" ticket-type-key="e72d60b4-b025-4fe2-8c89-81d2c65ef36d">
+                                                                <div class="input-group mb-3">
+                                                                    <div class="input-group-prepend">
+                                                                        <button type="button" class="input-group-text quantity-decrease">-</button>
+                                                                    </div>
+                                                                    <input type="number" name="TicketQuantities[]" class="form-control ticket-quantity ticket-field" value="0">
+
+                                                                    <div class="input-group-append">
+                                                                        <button type="button" class="input-group-text quantity-increase">+</button>
+                                                                    </div>
+
+                                                                </div>
+                                                                <!--<span class="max-ticket" style="display:none;color:#ff0120">Maximum 10.</span>-->
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                                        <span class="total-price">
+                                                                            <span class="currency">$</span>
+                                                                            <span class="amount">0</span>
+                                                                        </span>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr data-ticket-row="8">
+                                                        <td>
+                                                            Senior citizen (65+)
+                                                            <input type="hidden" name="TicketCategoryKeys[]" class="ticket-category-key" value="fbe00e40-6a1f-4246-9cee-8c39f1045f6c">
+                                                        </td>
+                                                        <td class="per-price">
+                                                            <span class="currency">$</span>
+                                                            <span class="amount" data-price="79">79</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="quantity-wrap" data-ticket-text="Senior citizen (65+)" data-minimum="10" data-maximum="50" ticket-type="senior-citizen-(65+)" ticket-type-key="fbe00e40-6a1f-4246-9cee-8c39f1045f6c">
+                                                                <div class="input-group mb-3">
+                                                                    <div class="input-group-prepend">
+                                                                        <button type="button" class="input-group-text quantity-decrease">-</button>
+                                                                    </div>
+                                                                    <input type="number" name="TicketQuantities[]" class="form-control ticket-quantity ticket-field" value="0">
+
+                                                                    <div class="input-group-append">
+                                                                        <button type="button" class="input-group-text quantity-increase">+</button>
+                                                                    </div>
+
+                                                                </div>
+                                                                <!--<span class="max-ticket" style="display:none;color:#ff0120">Maximum 10.</span>-->
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                                        <span class="total-price">
+                                                                            <span class="currency">$</span>
+                                                                            <span class="amount">0</span>
+                                                                        </span>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr data-ticket-row="9">
+                                                        <td>
+                                                            CSRL (Community Service Recognition Luncheon)
+                                                            <input type="hidden" name="TicketCategoryKeys[]" class="ticket-category-key" value="0fbeff20-863c-4990-a1d7-cf5c4799e1ef">
+                                                        </td>
+                                                        <td class="per-price">
+                                                            <span class="currency">$</span>
+                                                            <span class="amount" data-price="200">200</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="quantity-wrap" data-ticket-text="CSRL (Community Service Recognition Luncheon)" data-minimum="50" data-maximum="200" ticket-type="csrl-(community-service-recognition-luncheon)	" ticket-type-key="0fbeff20-863c-4990-a1d7-cf5c4799e1ef">
+                                                                <div class="input-group mb-3">
+                                                                    <div class="input-group-prepend">
+                                                                        <button type="button" class="input-group-text quantity-decrease">-</button>
+                                                                    </div>
+                                                                    <input type="number" name="TicketQuantities[]" class="form-control ticket-quantity ticket-field" value="0">
+
+                                                                    <div class="input-group-append">
+                                                                        <button type="button" class="input-group-text quantity-increase">+</button>
+                                                                    </div>
+
+                                                                </div>
+                                                                <!--<span class="max-ticket" style="display:none;color:#ff0120">Maximum 10.</span>-->
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                                        <span class="total-price">
+                                                                            <span class="currency">$</span>
+                                                                            <span class="amount">0</span>
+                                                                        </span>
+                                                        </td>
+                                                    </tr>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- ====== CONTACT INFORMATION ====== -->
+                                <div class="form-row form-row-contact">
+                                    <div class="form-row-head">
+                                        <div class="form-row-head-inner">
+                                            <h3 class="form-row-title">Contact Information</h3>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row-body">
+                                        <div class="form-fields-wrapper">
+                                            <div class="row">
+                                                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                                    <div class="form-group required-group">
+                                                        <label class="form-control-label">First Name <span class="required-mark">*</span></label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                                    <div class="form-group required-group">
+                                                        <label class="form-control-label">Last Name <span class="required-mark">*</span></label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+                                                    <div class="form-group required-group">
+                                                        <label class="form-control-label">Email <span class="required-mark">*</span></label>
+                                                        <input type="email" class="form-control" data-validation="email">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+                                                    <div class="form-group required-group">
+                                                        <label class="form-control-label">Phone Number <span class="required-mark">*</span></label>
+                                                        <input type="text" class="form-control phone-number-mask" data-validation="phone-number">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+                                                    <div class="form-group required-group">
+                                                        <label class="form-control-label">Address <span class="required-mark">*</span></label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label">Address Line 2 </label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                                    <div class="form-group required-group">
+                                                        <label class="form-control-label">Country <span
+                                                                class="required-mark">*</span></label>
+                                                        <select type="text" name="Country" class="form-control country country-js">
+                                                            <option value="">Select Country</option>
+                                                            <!--<option value="USA">USA</option>-->
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                                    <div class="form-group required-group state-field-group">
+                                                        <label class="form-control-label">State <span class="required-mark">*</span></label>
+                                                        <div class="state-holder">
+                                                            <select class="form-control state"></select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                                    <div class="form-group required-group">
+                                                        <label class="form-control-label">ZIP Code <span class="required-mark">*</span></label>
+                                                        <input type="text" class="form-control mask-zipcode" data-validation="zipcode">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label">City <span class="required-mark">*</span></label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-4">
+
+                            <!-- ====== SIDEBAR ====== -->
+                            <div class="sidebar">
+
+                                <div class="sidebar-block">
+                                    <h3 class="sidebar-block-title">Ticket Summary</h3>
+                                    <div class="sidebar-block-description">
+
+                                        <div class="table-responsive ticket-summary-table">
+                                            <table class="table">
+                                                <thead>
+                                                <tr>
+                                                    <th class="text-left"><span class="row-number">#</span> Ticket
+                                                        Category
+                                                    </th>
+                                                    <th class="text-right">Price</th>
+                                                </tr>
+                                                </thead>
+
+                                                <tbody>
+                                                </tbody>
+                                                <tfoot>
+
+                                                <tr class="bg-white">
+                                                    <td>Subtotal</td>
+                                                    <th>
+                                                        <span class="subtotal-price total-price">
+                                                            <span class="currency">$</span>
+                                                            <span class="amount">0</span>
+                                                        </span>
+                                                    </th>
+                                                </tr>
+
+                                                <tr class="bg-white voucher-tr">
+                                                    <td>Coupon <span class="voucher-code-text"></span> </td>
+                                                    <th>
+                                                        <span class="voucher-price">
+                                                            <span class="calculate-sign">(-) &nbsp;</span>
+                                                            <span class="currency">$</span>
+                                                            <span class="amount">0</span>
+                                                        </span>
+                                                    </th>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>Grand Total</td>
+                                                    <th><span class="grand-total-price">
+                                                <span class="currency">$</span>
+                                                <span class="amount">0</span>
+                                            </span> </th>
+                                                </tr>
+                                                </tfoot>
+                                            </table>
+
+                                        </div>
+
+                                        <div class="voucher-block">
+                                            <div class="input-group p-3">
+                                                <input type="text" class="form-control" name="CouponCode" placeholder="Coupon Code">
+                                                <div class="input-group-append">
+                                                    <button type="button" class="btn btn-primary input-group-text btn-apply-voucher-js">Apply Coupon</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="sidebar-block payment-information-div" id="card-info-area" style="display: none">
+                                    <h3 class="sidebar-block-title">Payment Information</h3>
+                                    <div class="sidebar-block-description">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <div class="card-image">
+                                                        <img src="assets/images/credit_card_all_.png" class="img-fluid">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group required-group">
+                                                    <label for="txtCardHolderName" class="field-label form-control-label required-sign"> <span class="lable-text">Name on Card</span> <span class="text-danger">*</span></label>
+                                                    <input id="txtCardHolderName" name="CardHolderName" type="text" class="form-control field-normal cc-name">
+                                                    <span class="text-warning card-holder-name-validation validation"></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12">
+                                                <div class="form-group required-group">
+                                                    <label class="field-label form-control-label required-sign" for="creditcardnumber">
+                                                        <span class="lable-text">Card Number</span>
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="cc-number-holder">
+                                                        <input type="text" name="CardNumber" maxlength="" class="form-control field-normal format-card-number cc-number" id="creditcardnumber" required="" data-validation="credit-card">
+                                                        <div class="cc-card-identity">
+                                                            <img src="assets/images/card_mockup.png">
+                                                        </div>
+                                                    </div>
+
+                                                    <span class="text-warning card-number-validation validation"></span>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-6">
+                                                <div class="form-group required-group">
+                                                    <label for="txtExpiryMonth" class="field-label">
+                                                        <span class="lable-text">Exp MM</span>
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <select id="txtExpiryMonth" class="form-control field-normal cc-month" required="">
+                                                        <option value="0">Select Month</option>
+                                                        <option value="01">01</option>
+                                                        <option value="02">02</option>
+                                                        <option value="03">03</option>
+                                                        <option value="04">04</option>
+                                                        <option value="05">05</option>
+                                                        <option value="06">06</option>
+                                                        <option value="07">07</option>
+                                                        <option value="08">08</option>
+                                                        <option value="09">09</option>
+                                                        <option value="10">10</option>
+                                                        <option value="11">11</option>
+                                                        <option value="12">12</option>
+                                                    </select>
+                                                </div>
+                                                <span class="text-warning expiry-month-validation validation"></span>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="form-group required-group">
+                                                    <label for="txtExpiryYear" class="field-label form-control-label">
+                                                        <span class="lable-text">Exp YY</span>
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <select id="txtExpiryYear" class="form-control field-normal cc-year" required="">
+                                                        <option value="0">Select Year</option>
+                                                        <option value="2022">2022</option>
+                                                        <option value="2023">2023</option>
+                                                        <option value="2024">2024</option>
+                                                        <option value="2025">2025</option>
+                                                        <option value="2026">2026</option>
+                                                        <option value="2027">2027</option>
+                                                        <option value="2028">2028</option>
+                                                        <option value="2029">2029</option>
+                                                        <option value="2030">2030</option>
+                                                        <option value="2031">2031</option>
+                                                        <option value="2032">2032</option>
+                                                    </select>
+                                                    <span class="text-warning expiry-year-validation validation"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group required-group">
+                                                    <label for="txtCvc" class="field-label required-sign">
+                                                        <span class="lable-text">CVV</span>
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <input id="txtCvc" type="text" class="form-control field-normal format-cvv cc-cvc mask-cvv" data-validation="cvv">
+                                                    <span class="text-warning cvv-validation validation"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="sidebar-block">
+                                    <div class="sidebar-block-description">
+                                        <div class="pb-3">
+                                            <img src="assets/images/recaptcha_screenshot.png" class="img-fluid" style="border-right:1px solid #ddd">
+                                        </div>
+                                        <button type="button" class="btn btn-primary btn-block btn-reg btn-reg-js">Register</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+        <!-- THANK YOU WRAPPER -->
+        <div class="thank-wrapper thank-wrapper-inpage">
+            <div class="container">
+                <div class="thank-body">
+                    <div class="thank-message">
+                        <div class="icon-holder text-center pb-2">
+                            <img src="assets/images/check-mark_70.png">
+                        </div>
+                        <div class="thank-message-text">
+                            <h3 class="thank-text text-center m-0">Thank You</h3>
+                            <p class="m-0 order-number text-center">Order number: <span>#30395456454</span></p>
+                        </div>
+                    </div>
+
+                    <!-- EVENT DETAILS -->
+                    <div class="thank-details pt-3 pb-5 pt-sm-5 ">
+                        <p class="m-0 title-indication text-medium text-green text-uppercase">You are going to:</p>
+                        <h3 class="event-title">ISLAMIC LIFE CENTER GRAND FUNDRAISER GALA</h3>
+
+                        <div class="row justify-content-between pt-4 pt-sm-5">
+                            <div class="col-md-4">
+                                <div class="sidebar-block mb-4 mb-sm-3">
+                                    <h3 class="sidebar-block-title">Ticket Quantity</h3>
+                                    <div class="sidebar-block-description">
+                                        <h5 class="pb-2 m-0">1 Ticket Sent to:</h5>
+                                        <p class="text-medium">example@mail.com</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="sidebar-block mb-4 mb-sm-3">
+                                    <h3 class="sidebar-block-title">Event Date</h3>
+                                    <div class="sidebar-block-description">
+                                        <p class="text-medium">Saturday, 16th April, 2022</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="sidebar-block">
+                                    <h3 class="sidebar-block-title">Event Location</h3>
+                                    <div class="sidebar-block-description">
+                                        <p class="text-medium">502 East Event Center,<br>
+                                            Carmel, IN46032</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- THANK FOOT -->
+                    <div class="thank-foot">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <button type="button" class="btn btn-default btn-print"><img class="img-left" src="assets/images/printer_white.png"> Print Ticket </button>
+                            </div>
+
+                            <div class="share-wrapper">
+                                <div class="social-share">
+                                    <span>Share <span class="hidden-xs">Event</span>: </span>
+                                    <ul class="social-share-ul">
+                                        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://alsalamfoundation.org/grand-fundraiser-gala/" target="_blank"><img src="https://alsalamfoundation.org/wp-content/uploads/2022/03/Facebook.png" class="lazyloaded" data-ll-status="loaded"><noscript><img src="https://alsalamfoundation.org/wp-content/uploads/2022/03/Facebook.png"></noscript> </a> </li>
+                                        <li><a href="http://www.twitter.com/share?url=https://alsalamfoundation.org/grand-fundraiser-gala/" target="_blank"><img src="https://alsalamfoundation.org/wp-content/uploads/2022/03/Twitter.png" class="lazyloaded" data-ll-status="loaded"><noscript><img src="https://alsalamfoundation.org/wp-content/uploads/2022/03/Twitter.png"></noscript> </a> </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ====== FOOTER ====== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <p class="m-0 text-center text-md-left pb-2 pb-md-0"><a href="htttps://masjidsolutions.net" target="_blank"> masjidsolutions.net</a> (317) 854 0207 </p>
+                </div>
+                <div class="col-12 col-md-6">
+                    <p class="text-center text-md-right m-0">&copy; Al Salam Foundation. All Rights Reserved, 2022 </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL -->
+    <div class="modal" id="confirm-modal" tabindex="-1" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-confirm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Are you sure?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h4 class="text-medium">You are about to complete the registration</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Proceed</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LOADER -->
+    <div class="loader-div">
+        <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    </div>
+</div>
+
+
+
+<script src="assets/plugins/jquery-3.6.0.slim.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="assets/plugins/input_mask/jquery.inputmask.min.js"></script>
+<script src="assets/plugins/card_validation.js"></script>
+<!--<script src="assets/js/live/event_single/refactored/custom.js?v=1.0.1"></script>-->
+<script src="assets/js/live/event_bulk/custom.js?v=1.0.3"></script>
+<!--<script src="assets/js/event_single/custom.js?v=1.0.1"></script>-->
+<script>
+    function allFieldsValidated(status) {
+        if(status){
+            $('.loader-div').addClass('active');
+            setTimeout(function () {
+                $('.registration-form-wrapper').hide();
+                $('.loader-div').removeClass('active');
+                $('.thank-wrapper').addClass('active');
+            }, 800);
+        }
+    }
+</script>
+</body>
+</html>
