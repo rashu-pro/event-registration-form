@@ -68,101 +68,35 @@
                                     </div>
 
                                     <div class="form-row-body">
+
                                         <div class="cart-table">
-                                            <div class="table-responsive">
-                                                <table class="table">
-                                                    <thead>
-                                                    <tr>
-                                                        <th>Ticket Category</th>
-                                                        <th>Price</th>
-                                                        <th>Quantitiy</th>
-                                                        <th>Subtotal</th>
-                                                    </tr>
-                                                    </thead>
+                                            <div class="ticket-checkbox-wrapper" id="ticket-checkbox-wrapper">
+                                                <div class="checkbox-holder checkbox-medium">
+                                                    <input type="checkbox" id="ticket-category-1" class="regular-checkbox ticket-category-checkbox" data-name="Conference Registration Financial Assistance" data-unitprice="85" data-row="1">
+                                                    <label for="ticket-category-1"><span class="checkbox-text">Conference Registration Fee ($85.00)</span> </label>
+                                                </div>
 
-                                                    <tbody>
-                                                    <tr class="data-row" data-row="1" data-name="RSVP - Below 10" data-unitprice="0">
-                                                        <td>RSVP - Below 10</td>
-                                                        <td class="per-price">
-                                                            <span class="currency">$</span>
-                                                            <span class="amount">0</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="quantity-wrap" ticket-type="below-10">
-                                                                <div class="input-group mb-3">
-                                                                    <div class="input-group-prepend">
-                                                                        <button type="button" class="input-group-text quantity-decrease">-</button>
-                                                                    </div>
-                                                                    <input type="number" class="form-control ticket-field" value="0" data-max="8" data-min="0">
-                                                                    <div class="input-group-append">
-                                                                        <button type="button" class="input-group-text quantity-increase">+</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                <span class="below-10-price">
-                                                    <span class="currency">$</span>
-                                                    <span class="amount">0</span>
-                                                </span>
-                                                        </td>
-                                                    </tr>
+                                                <div class="checkbox-holder checkbox-medium">
+                                                    <input type="checkbox" id="ticket-category-2" class="regular-checkbox ticket-category-checkbox" data-name="Conference Registration Financial Assistance" data-unitprice="40" data-row="2">
+                                                    <label for="ticket-category-2"> <span class="checkbox-text">Conference Registration Financial Assistance ($40)</span> </label>
+                                                </div>
 
-                                                    <tr class="data-row" data-row="2" data-name="RSVP - Below 10" data-unitprice="20">
-                                                        <td>RSVP - Above 10</td>
-                                                        <td class="per-price">
-                                                            <span class="currency">$</span>
-                                                            <span class="amount">20</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="quantity-wrap" ticket-type="below-10">
-                                                                <div class="input-group mb-3">
-                                                                    <div class="input-group-prepend">
-                                                                        <button type="button" class="input-group-text quantity-decrease">-</button>
-                                                                    </div>
-                                                                    <input type="number" class="form-control ticket-field" value="0">
-                                                                    <div class="input-group-append">
-                                                                        <button type="button" class="input-group-text quantity-increase">+</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                <span class="below-10-price">
-                                                    <span class="currency">$</span>
-                                                    <span class="amount">0</span>
-                                                </span>
-                                                        </td>
-                                                    </tr>
+                                                <div class="checkbox-holder checkbox-medium">
+                                                    <input type="checkbox" id="ticket-category-3" class="regular-checkbox ticket-category-checkbox" data-name="Staff Registration" data-unitprice="50" data-row="3">
+                                                    <label for="ticket-category-3"> <span class="checkbox-text">Conference Registration Financial Assistance ($50)</span> </label>
+                                                </div>
 
-                                                    <tr class="data-row" data-row="3" data-name="RSVP - Adult" data-unitprice="30">
-                                                        <td>RSVP - Adult</td>
-                                                        <td class="per-price">
-                                                            <span class="currency">$</span>
-                                                            <span class="amount">30</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="quantity-wrap" ticket-type="adult">
-                                                                <div class="input-group mb-3">
-                                                                    <div class="input-group-prepend">
-                                                                        <button type="button" class="input-group-text quantity-decrease">-</button>
-                                                                    </div>
-                                                                    <input type="text" class="form-control ticket-field" value="0" data-max="20">
-                                                                    <div class="input-group-append">
-                                                                        <button type="button" class="input-group-text quantity-increase">+</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td><span class="price-subtotal">
-                                                <span class="adult-price">
-                                                    <span class="currency">$</span>
-                                                    <span class="amount">0</span>
-                                                </span>
-                                            </span></td>
-                                                    </tr>
-                                                    </tbody>
-                                                </table>
+                                                <h4 class="mt-2">Pre-Order Youth Conference Sweat Shirt</h4>
+                                                <div class="checkbox-holder checkbox-medium">
+                                                    <input type="checkbox" id="ticket-category-4" class="regular-checkbox ticket-category-checkbox" data-name="T-Shirt" data-unitprice="20" data-row="4">
+                                                    <label for="ticket-category-4"> <span class="checkbox-text">T-Shirt ($20)</span> </label>
+                                                </div>
+
+                                                <div class="checkbox-holder checkbox-medium">
+                                                    <input type="checkbox" id="ticket-category-5" class="regular-checkbox ticket-category-checkbox" data-name="T-Shirt" data-unitprice="20" data-row="5">
+                                                    <label for="ticket-category-5"> <span class="checkbox-text">T-Shirt ($20)</span> </label>
+                                                </div>
+
                                             </div>
                                         </div>
                                     </div>
@@ -254,6 +188,22 @@
                                                         <input type="text" class="form-control">
                                                     </div>
                                                 </div>
+
+                                                <div class="col-12">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label font-600">Select Group <span class="text-danger">*</span></label>
+                                                        <div class="checkbox-holder checkbox-medium check-circle">
+                                                            <input type="radio" id="radio-1" class="regular-checkbox ticket-category-checkbox" name="group">
+                                                            <label for="radio-1"><span class="checkbox-text">Track 1 - 2nd - 7th Grade</span> </label>
+                                                        </div>
+
+                                                        <div class="checkbox-holder checkbox-medium check-circle">
+                                                            <input type="radio" id="radio-2" class="regular-checkbox ticket-category-checkbox" name="group">
+                                                            <label for="radio-2"> <span class="checkbox-text">Track 2 - 8th - 12th Grade</span> </label>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -287,7 +237,7 @@
                                 <div class="sidebar-block">
                                     <h3 class="sidebar-block-title">Ticket Summary</h3>
                                     <div class="sidebar-block-description">
-                                        <div class="table-responsive ticket-summary-table pb-3">
+                                        <div class="table-responsive ticket-summary-table">
                                             <table class="table">
                                                 <thead>
                                                 <tr>
@@ -314,6 +264,14 @@
 
                                         </div>
 
+                                        <div class="voucher-block">
+                                            <div class="input-group p-3">
+                                                <input type="text" class="form-control" name="CouponCode" placeholder="Coupon Code">
+                                                <div class="input-group-append">
+                                                    <button type="button" class="btn btn-primary input-group-text btn-apply-voucher-js">Apply Coupon</button>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -632,38 +590,19 @@
         <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
     </div>
 
-    <!-- TICKET SUMMARY ROW TO CLONE -->
-    <div class="ticket-summary-row-to-clone d-none">
-        <table>
-            <tr class="row-ticket-summary-to-clone">
-                <td>
-                <span>
-                    <span class="quantity-ticket-summary">0</span>
-                    <span>X</span>
-                    <span class="name-ticket-summary"></span>
-                </span>
-                </td>
-
-                <th>
-                    <span class="currency">$</span>
-                    <span class="amount-ticket-summary">0</span>
-                </th>
-            </tr>
-        </table>
-
-    </div>
-
 </div>
 
 
 
-<script src="assets/plugins/jquery-3.6.0.slim.min.js"></script>
+<!--<script src="assets/plugins/jquery-3.6.0.slim.min.js"></script>-->
+<!--<script src="assets/plugins/jquery-3.6.0.js"></script>-->
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="assets/plugins/input_mask/jquery.inputmask.min.js"></script>
 <script src="assets/plugins/card_validation.js"></script>
 
-<!--<script src="assets/js/live/event_single/custom.js?v=1.0.2"></script>-->
-<script src="assets/js/event_single/custom.js?v=1.0.1"></script>
+<script src="assets/js/live/event_single/custom.js?v=1.0.2"></script>
+<!--<script src="assets/js/event_single/custom.js?v=1.0.1"></script>-->
 <script>
     function registrationConfirmation(){
         allFieldsValidated(true);

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Registration</title>
+
+    <link rel="icon" href="assets/images/favicon_isna.png">
+
+    <link rel="stylesheet" href="assets/plugins/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/plugins/datepicker/jquery-ui-datepicker.min.css">
+    <link rel="stylesheet" href="assets/css/style.css?1.0.7">
+</head>
+<body>
+
+<div class="main">
+
+    <!-- ====== HEADER ====== -->
+    <header class="header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-3">
+                    <div class="logo-wrapper">
+                        <a href="javascript:void(0)">
+                            <img src="assets/images/logo_isna_black.png" class="img-fluid" alt="ISNA">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-9">
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript:void(0)"><img src="assets/images/sectigo_trust_seal_sm_2x.png"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-wrapper container">
+
+
+
+
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <h4 class="section-title-big mb-3">Welcome to the 59th Annual ISNA convention!<br> </h4>
+            <h5 class="section-title-small text-underline text-success">Onsite Registration will begin on Friday Sep 2 at 9 am</h5>
+            <p class="alert alert-secondary my-4">
+                Donald E Stephens Convention Center
+                <br>
+                5555 N River Road
+                <br>
+                Rosemont, IL 60018
+            </p>
+            <p class="section-title-small text-danger"> We are no longer accepting online registrations.</p>
+
+        </div>
+
+
+
+
+
+    </div>
+
+    <!-- ====== FOOTER ====== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-12 col-lg-6">
+                    <p class="m-0 text-center text-md-center text-lg-left pb-2 pb-md-0"><a href="htttps://masjidsolutions.net" target="_blank"> masjidsolutions.net</a> (317) 854 0207 </p>
+                </div>
+                <div class="col-md-12 col-lg-6">
+                    <p class="text-center text-md-center text-lg-right m-0">&copy; ISNA. All Rights Reserved, 2022 </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- LOADER -->
+    <div class="loader-div">
+        <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    </div>
+</div>
+
+
+
+<script src="assets/plugins/jquery-3.6.0.min.js"></script>
+<script>
+    function fixHeight() {
+        let headerHeight = parseFloat($('.header').css('height')),
+            footerHeight = parseFloat($('.footer').css('height')),
+            mainWrapperMarginTop = parseFloat($('.main-wrapper').css('margin-top')),
+            mainWrapperMarginBottom = parseFloat($('.main-wrapper').css('margin-bottom')),
+            heightToMinusReady = headerHeight + footerHeight + mainWrapperMarginTop + mainWrapperMarginBottom,
+            heightToMinus = "calc(100vh - " + heightToMinusReady + "px)";
+        $('.main-wrapper').css('min-height', heightToMinus);
+
+    }
+    fixHeight();
+</script>
+
+</body>
+</html>

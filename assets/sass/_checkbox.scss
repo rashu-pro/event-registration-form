@@ -175,3 +175,9 @@
     }
   }
 }
+
+.check-circle{
+  .regular-checkbox + label:before{
+    border-radius: 50%;
+  }
+}

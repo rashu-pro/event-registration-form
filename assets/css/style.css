@@ -868,13 +868,17 @@ h4 {
 .cart-table .table tr .text-danger {
   position: absolute;
   bottom: -12px;
-  right: 15px;
+  right: 12px;
+  left: 12px;
   padding: 0;
 }
 @media (min-width: 768px) {
   .cart-table .table {
     width: 100%;
     max-width: 100%;
+  }
+  .cart-table .table tr td {
+    min-width: 100px;
   }
   .cart-table .table tr td:first-child {
     width: auto;
@@ -897,6 +901,15 @@ h4 {
 .quantity-wrap .input-group .form-control:focus {
   outline: 5px auto -webkit-focus-ring-color;
   box-shadow: none;
+}
+
+.ticket-checkbox-wrapper {
+  padding: 15px 20px;
+}
+.ticket-checkbox-wrapper .error-message {
+  position: relative;
+  padding: 0;
+  margin-top: 10px;
 }
 
 .sponsor-wrapper {
@@ -1948,6 +1961,27 @@ h4 {
   background-color: #fff;
 }
 
+.section-title-big {
+  font-size: 22px;
+  font-weight: 700;
+}
+.section-title-small {
+  font-size: 18px;
+  font-weight: 600;
+}
+@media (min-width: 992px) {
+  .section-title-big {
+    font-size: 26px;
+  }
+  .section-title-small {
+    font-size: 22px;
+  }
+}
+
+.text-underline {
+  text-decoration: underline;
+}
+
 .modal-confirm h3 {
   font-size: 22px;
 }
@@ -2193,6 +2227,10 @@ h4 {
     font-size: 18px;
     font-weight: 500;
   }
+}
+
+.check-circle .regular-checkbox + label:before {
+  border-radius: 50%;
 }
 
 /*# sourceMappingURL=style.css.map */

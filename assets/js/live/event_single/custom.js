@@ -13,6 +13,7 @@ $('.quantity-increase').on('click', function () {
     }
     chooseTicketWarning(quantitySelector);
     collectData(self);
+    calculateCoupon($('.btn-apply-voucher-js'), false);
 });
 
 $('.quantity-decrease').on('click', function () {
@@ -25,6 +26,7 @@ $('.quantity-decrease').on('click', function () {
     }
     chooseTicketWarning(quantitySelector);
     collectData(self);
+    calculateCoupon($('.btn-apply-voucher-js'), false);
 });
 
 $('.quantity-wrap .form-control').on('keyup', function () {
@@ -38,6 +40,7 @@ $('.quantity-wrap .form-control').on('keyup', function () {
 
     chooseTicketWarning(quantitySelector);
     collectData(self);
+    calculateCoupon($('.btn-apply-voucher-js'), false);
 });
 
 $(document).on('change', '.ticket-category-js', function (e) {
@@ -55,6 +58,7 @@ $(document).on('change', '.ticket-category-js', function (e) {
     }
     ticket_row_number();
     calculateTotal();
+    calculateCoupon($('.btn-apply-voucher-js'), false);
 });
 
 $(document).on('blur keyup', '.addon-ticket-category-js', function (e) {
@@ -81,6 +85,33 @@ if ($('.ticket-summary-table').length > 0) {
 }
 
 
+//=== 28-09-2022
+let itemRow = $('.item-row-to-clone table tr').clone();
+$(document).on('change', '.ticket-category-checkbox', function () {
+    let self = $(this),
+        itemName = self.data('name'),
+        itemDataRow = self.data('row'),
+        itemPrice = parseInt(self.data('unitprice')),
+        classToAdd = "data-row"+itemRow;
+
+    let tableRow = `<tr class="ticket-price data-row${itemDataRow}">
+            <td><span class="row-counter">1.</span>&nbsp;<span class="text-capitalize">${itemName}</span></td>
+            <th><span class="currency">$&nbsp;</span><span class="amount">${itemPrice}</span></th></tr>`;
+    if(self.is(':checked')){
+        $('.ticket-checkbox-wrapper').find('.error-message').remove();
+        $('.ticket-summary-table tbody .ticket-price.data-row'+itemDataRow).remove();
+        $('.ticket-summary-table tbody').append(tableRow);
+    }else{
+        console.log('unchecked');
+        $('.ticket-summary-table tbody .ticket-price.data-row'+itemDataRow).remove();
+    }
+
+    ticket_row_number();
+    calculateTotal();
+    calculateCoupon($('.btn-apply-voucher-js'), false);
+});
+
+
 
 $(document).on('click', '.btn-reg-js', function (e) {
     e.preventDefault();
@@ -94,6 +125,7 @@ $(document).on('click', '.btn-reg-js', function (e) {
         paymentFormGroupValidatedSelector = formSelector.find('.payment-information-div .form-group.field-validated'),
         paymentFormGroupNotValidatedSelector = formSelector.find('.payment-information-div .required-group:not(.field-validated)'),
         ticketFieldSelector = $('.ticket-field'),
+        ticketCategoryCheckbox = $('.ticket-category-checkbox'),
         ticketFieldValidated = false;
 
     console.log('not validated form field', notValidatedField.length);
@@ -117,6 +149,27 @@ $(document).on('click', '.btn-reg-js', function (e) {
                 ticketFieldSelector.first().closest('tr').after("<p class='error-message text-danger'>Please select a ticket</p>");
             }
 
+            return;
+        }
+    }
+
+    if(ticketCategoryCheckbox.length>0){
+        let checkedCategory = 0;
+        ticketCategoryCheckbox.each(function (i, obj) {
+            if($(obj).is(':checked')){
+                checkedCategory +=1;
+                $(obj).focus();
+            }
+        });
+        if(checkedCategory<1){
+            let animationDuration = 400;
+            $('html, body').animate({
+                scrollTop: $("#ticket-checkbox-wrapper").offset().top
+            }, 400);
+            $('.ticket-checkbox-wrapper').find('.error-message').remove();
+            setTimeout(function () {
+                $('.ticket-checkbox-wrapper').append('<p class="error-message text-danger m-0">Check an item first!</p>');
+            }, 400);
             return;
         }
     }
@@ -571,7 +624,7 @@ function card_validation() {
         creditCardHolder = $('.cc-number-holder'),
         creditCardImageHolder = $('.cc-card-identity');
     let number = document.querySelector('.cc-number');
-    Payment.formatCardNumber(number);
+    //Payment.formatCardNumber(number);
     J.toggleClass(document.querySelectorAll('input'), 'invalid');
     let cardType = Payment.fns.cardType(J.val(number));
     // J.toggleClass(number, 'invalid', !Payment.fns.validateCardNumber(J.val(number)));
@@ -604,6 +657,15 @@ function calculateTotal() {
     $('#total-price').val(totalPrice);
 
     showPaymentForm(totalPrice);
+    calculateGrandTotal();
+}
+
+function calculateGrandTotal() {
+    let totalPrice = parseInt($('.ticket-summary-table .total-price .amount').html()),
+        voucherPrice = parseInt($('.ticket-summary-table .voucher-price .amount').html()),
+        grandTotalPrice = totalPrice - voucherPrice;
+    //    console.log(grandTotalPrice);
+    $('.ticket-summary-table .grand-total-price .amount').html(grandTotalPrice);
 }
 
 function ticket_row_number() {
@@ -638,7 +700,7 @@ $(document).on('focus', '.date-picker-js', function (e) {
         dateFormat: "mm/dd/yy",
         changeMonth: true,
         changeYear: true,
-        yearRange: "1950:" + currentYear,
+        yearRange: "1981:2001",
     });
 });
 

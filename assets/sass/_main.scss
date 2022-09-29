@@ -917,3 +917,25 @@
     background-color: #fff;
   }
 }
+
+.section-title{
+  &-big{
+    font-size:22px;
+    font-weight: 700;
+  }
+  &-small{
+    font-size: 18px;
+    font-weight: 600;
+  }
+  @media(min-width:992px){
+    &-big{
+      font-size:26px;
+    }
+    &-small{
+      font-size: 22px;
+    }
+  }
+}
+.text-underline{
+  text-decoration: underline;
+}
