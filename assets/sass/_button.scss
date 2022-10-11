@@ -29,7 +29,10 @@
     }
 
     img{
-      max-height: 20px;
+      max-height: 16px;
+      &.h-20{
+        max-height: 20px;
+      }
     }
   }
 

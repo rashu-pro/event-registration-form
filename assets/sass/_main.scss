@@ -325,6 +325,18 @@
               &-inner{
 
               }
+
+              &-btn{
+                .btn{
+                  &-ticket-colapse{
+                    .icon{
+                      &-plus{
+
+                      }
+                    }
+                  }
+                }
+              }
             }
           }
         }
@@ -344,6 +356,11 @@
                 .btn{
                   &-ticket-collapse{
                     display: inline-block;
+                    .icon{
+                      &-minus{
+                        display:none;
+                      }
+                    }
                   }
                 }
               }
@@ -938,4 +955,17 @@
 }
 .text-underline{
   text-decoration: underline;
+}
+
+.alert{
+  &.focused{
+    border:3px solid;
+  }
+}
+
+.z-index-99{
+  z-index: 99;
+}
+.p-relative{
+  position: relative;
 }

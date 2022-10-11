@@ -145,3 +145,70 @@
     }
   }
 }
+
+
+.icon-secure{
+  max-height: 40px;
+  @media (min-width:768px){
+    max-height: 45px;
+  }
+}
+
+.sectigo-logo{
+  img{
+    max-height: 40px;
+    @media (min-width:768px){
+      max-height: 45px;
+    }
+  }
+}
+
+.logo-powered-ms{
+  &-wrapper{
+    .img-logo-powered-ms{
+      max-height:40px;
+      @media (min-width:768px){
+        max-height:55px;
+      }
+    }
+
+    &.v2{
+      border: 2px solid #202020;
+      border-radius: 8px;
+      overflow: hidden;
+      .logo-powered-ms{
+        height: 40px;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .sectigo-logo{
+        height: 40px;
+        width: 45px;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        background: #202020;
+        img{
+          max-height:30px;
+        }
+      }
+    }
+
+    @media (min-width:768px){
+      &.v2{
+        border-radius: 15px;
+        .logo-powered-ms{
+          height: 50px;
+        }
+        .sectigo-logo{
+          height: 50px;
+          width: 50px;
+          img{
+            max-height:35px;
+          }
+        }
+      }
+    }
+  }
+}

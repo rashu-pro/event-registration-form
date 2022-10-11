@@ -20,7 +20,8 @@ let ticketHtml = `
 
             <div class="form-row-head-btn">
                 <button type="button" class="btn btn-dark btn-collapse btn-ticket-collapse">
-                    <i class="fa fa-plus"></i>
+                    <img src="assets/images/plus_white_24.png" class="icon-plus">
+                    <img src="assets/images/remove_white_24.png" class="icon-minus">
                 </button>
 
                 <button type="button" class="btn btn-default btn-collapse btn-delete-ticket-js">
@@ -106,23 +107,80 @@ let ticketHtml = `
                                                                     </div>
                                                                 </div>
                         
-                      
-                                                                <!--select group-->
-                                                               <div class="col-12 col-sm-6 col-md-6">
-                                                                    <div class="form-group required-group">
-                                                                        <label class="form-control-label">
-                                                                            Group
-                                                                            <span class="required-mark">*</span>
-                                                                        </label>
-                                                                        <select class="form-control" name="TicketHolderGroup[]">
-                                                                            <option value="Track 1 - 2nd - 7th Grade" selected>Track 1 - 2nd - 7th Grade</option>
-                                                                            <option value="Track 2 - 8th - 12th Grade">Track 2 - 8th - 12th Grade</option>
+                        <!--t-shirt size-->
+                                                                <div class="col-12 col-sm-6 col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label class="form-control-label">T-Shirt Size
+                                                                            <span class="required-mark">*</span></label>
+                                                                        <select class="form-control" name="TshirSize[]">
+                                                                            <option>-- Select T-shirt Size --</option>
+                                                                            <option value="youth small">Youth Small</option>
+                                                                            <option value="youth small">Youth Medium</option>
+                                                                            <option value="youth large">Youth Large</option>
+                                                                            <option value="Adult Small">Adult Small</option>
+                                                                            <option value="Adult Medium">Adult Medium</option>
+                                                                            <option value="Adult Large">Adult Large</option>
+                                                                            <option value="Adult XL">Adult XL</option>
                                                                         </select>
                                                                     </div>
                                                                 </div>
                                                                 
-                                                               
-            
+                                                                <!--select group-->
+                                                                <div class="col-12">
+                                                                    <div class="form-group">
+                                                                        <label class="form-control-label font-600">Select Group <span class="text-danger">*</span></label>
+                                                                        <div class="checkbox-holder checkbox-medium check-circle">
+                                                                            <input type="radio" id="radio-1" class="regular-checkbox ticket-category-checkbox" name="group[]">
+                                                                            <label for="radio-1"><span class="checkbox-text">Track 1 - 2nd - 7th Grade</span> </label>
+                                                                        </div>
+
+                                                                        <div class="checkbox-holder checkbox-medium check-circle">
+                                                                            <input type="radio" id="radio-2" class="regular-checkbox ticket-category-checkbox" name="group[]">
+                                                                            <label for="radio-2"> <span class="checkbox-text">Track 2 - 8th - 12th Grade</span> </label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                <!--preorder sweater-->
+            <div class="col-12">
+                <hr>
+                <div class="static-div addon-ticket">
+                    <h4 class="mt-2">Pre-Order Youth Conference Sweat Shirt</h4>
+
+                    <!-- quantity wrap -->
+                    <div class="quantity-wrap d-flex align-items-center">
+                        <label>Quantity: </label>
+                        <div class="input-group mb-3 ml-3">
+                            <div class="input-group-prepend">
+                                <button type="button" class="input-group-text quantity-decrease">-</button>
+                            </div>
+                            <input type="number" class="form-control ticket-field" name="AddonTicket[]" value="0" data-type="addon-ticket-male" data-unitprice="20" data-name="T-shirt" data-max="8" data-min="0">
+                            <div class="input-group-append">
+                                <button type="button" class="input-group-text quantity-increase">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="static-div addon-ticket">
+                                                                        <h4 class="mt-2">Pre-Order Youth Conference Female Sweat Shirt</h4>
+
+                                                                        <!-- quantity wrap -->
+                                                                        <div class="quantity-wrap d-flex align-items-center">
+                                                                            <label>Quantity: </label>
+                                                                            <div class="input-group mb-3 ml-3">
+                                                                                <div class="input-group-prepend">
+                                                                                    <button type="button" class="input-group-text quantity-decrease">-</button>
+                                                                                </div>
+                                                                                <input type="number" class="form-control ticket-field" name="AddonTicket[]" value="0" data-type="addon-ticket-female" data-unitprice="20" data-name="Female T-shirt" data-max="8" data-min="0">
+                                                                                <div class="input-group-append">
+                                                                                    <button type="button" class="input-group-text quantity-increase">+</button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+            </div>
 
                                                               
                     </div>
@@ -304,6 +362,7 @@ $('.btn-event-register').on('click', function () {
         formGroupValidated = formRowActive.find('.field-validated'),
         notValidatedField = $('.form-row.active .required-group:not(.field-validated)');
 
+
     let isChecked = $('#tc-2').prop('checked');
     if(notValidatedField.length>0){
         //=== Contact Fields Validation Needed
@@ -324,9 +383,9 @@ $('.btn-event-register').on('click', function () {
     }
     if(!isChecked){
         //=== Terms & Condition Field Validation Needed
-        $('#tc-2').closest('.alert').css('border','2px solid #dc3545');
+        $('#tc-2').closest('.tc-wrapper').find('.alert').css('border','2px solid #dc3545');
         setTimeout(function () {
-            $('#tc-2').closest('.alert').css('border','1px solid #084298');
+            $('#tc-2').closest('.tc-wrapper').find('.alert').css('border','1px solid #084298');
         },300);
         return;
     }
@@ -338,7 +397,7 @@ $('.btn-event-register').on('click', function () {
 $(document).on('ready', function (e) {
     fixHeight();
     if ($('.cc-number').length > 0) {
-        card_validation();
+        card_validation()
     }
 });
 
@@ -398,10 +457,11 @@ $(document).on('click', '.btn-add-another-js', function (e) {
         //if (parseInt(mainParent.find('.ticket-type-js').val()) != 0) {
 
         if (parseInt(mainParent.find('.ticket-type-js option:selected').attr('data-price')) != 0) {
+
             pageLoader.addClass('active');
             mainParent.removeClass('active').addClass('edited');
             setTimeout(function () {
-                self.closest('.form-body').append(ticketHtml);
+                self.closest('.form-body').append($('.ticket-html .form-row-ticket-individual').clone());
                 // self.closest('.form-body').append(clonedHtml);
                 mainParent.next().find('.form-fields-wrapper').prepend(clonedTicketCategory);
                 mainParent.next().attr('data-row', dataRow);
@@ -455,45 +515,11 @@ $(document).on('click', '.btn-delete-ticket-js', function (e) {
     $('#confirm-modal-delete .modal-confirm').attr('data-row', dataRow);
     $('#confirm-modal-delete').modal('show');
 });
-
 $('.btn-delete-row-confirm').on('click', function () {
     let self = $(this);
     deleteRow(self.closest('.modal-confirm').attr('data-row'));
     $('#confirm-modal-delete').modal('hide');    
 });
-
-//=== terms link enable/disable functionality
-if($('.terms-link-input').length>0){
-    $('#tc-2').prop('checked',false);
-    enableTermsCheck();
-}
-
-//=== terms link click action
-$(document).on('click', '.terms-link-js', function () {
-    let self = $(this);
-    $('#'+self.data('input')).val(1);
-});
-
-$(document).on('change', '#tc-2', function (e) {
-    let self = $(this);
-    if(!enableTermsCheck()){
-        $('.terms-link-input').each(function (i, element) {
-            if(!$(element).val()) $(element).closest('.alert').addClass('focused');
-            setTimeout(function () {
-                $(element).closest('.alert').removeClass('focused');
-            },300);
-        });
-        self.prop('checked', false);
-    }
-});
-
-function enableTermsCheck(){
-    let isEnable = true;
-    $('.terms-link-input').each(function (i, element) {
-        if(!$(element).val()) isEnable=false;
-    });
-    return isEnable;
-}
 
 
 //===== TICKET TYPE SELECT ACTION

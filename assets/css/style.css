@@ -136,6 +136,70 @@
   z-index: 99;
 }
 
+.icon-secure {
+  max-height: 40px;
+}
+@media (min-width: 768px) {
+  .icon-secure {
+    max-height: 45px;
+  }
+}
+
+.sectigo-logo img {
+  max-height: 40px;
+}
+@media (min-width: 768px) {
+  .sectigo-logo img {
+    max-height: 45px;
+  }
+}
+
+.logo-powered-ms-wrapper .img-logo-powered-ms {
+  max-height: 40px;
+}
+@media (min-width: 768px) {
+  .logo-powered-ms-wrapper .img-logo-powered-ms {
+    max-height: 55px;
+  }
+}
+.logo-powered-ms-wrapper.v2 {
+  border: 2px solid #202020;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.logo-powered-ms-wrapper.v2 .logo-powered-ms {
+  height: 40px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+.logo-powered-ms-wrapper.v2 .sectigo-logo {
+  height: 40px;
+  width: 45px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background: #202020;
+}
+.logo-powered-ms-wrapper.v2 .sectigo-logo img {
+  max-height: 30px;
+}
+@media (min-width: 768px) {
+  .logo-powered-ms-wrapper.v2 {
+    border-radius: 15px;
+  }
+  .logo-powered-ms-wrapper.v2 .logo-powered-ms {
+    height: 50px;
+  }
+  .logo-powered-ms-wrapper.v2 .sectigo-logo {
+    height: 50px;
+    width: 50px;
+  }
+  .logo-powered-ms-wrapper.v2 .sectigo-logo img {
+    max-height: 35px;
+  }
+}
+
 .footer {
   padding: 20px 0;
   background-color: #f5f5f5;
@@ -183,6 +247,9 @@
     margin-right: 10px;
   }
   .btn img {
+    max-height: 16px;
+  }
+  .btn img.h-20 {
     max-height: 20px;
   }
 }
@@ -466,6 +533,9 @@
   line-height: 1.7rem;
   border: 0.12rem solid #8B8B8B;
   border-radius: 6px;
+}
+.form-control.invalid, .form-control.field-invalid {
+  border-color: #dc3545;
 }
 .form-control-label {
   font-size: 16px;
@@ -897,6 +967,7 @@ h4 {
   text-align: center;
   padding: 4px;
   font-size: 16px;
+  border-width: 1px;
 }
 .quantity-wrap .input-group .form-control:focus {
   outline: 5px auto -webkit-focus-ring-color;
@@ -1019,26 +1090,37 @@ h4 {
   }
 }
 
-.thank-wrapper {
-  padding-bottom: 0;
+@media (min-width: 768px) {
+  .main-wrapper.thank-page {
+    margin-top: 30px;
+  }
 }
+.main-wrapper.thank-page.v2 {
+  margin: 0;
+  padding: 0;
+}
+
 .thank-wrapper-inpage {
   display: none;
 }
 .thank-wrapper-inpage.active {
   display: block;
 }
+.thank-wrapper.v2 .thank-message {
+  background-color: #f2f2f2;
+  padding: 15px;
+  border: 0;
+}
 @media (min-width: 768px) {
-  .thank-wrapper {
-    padding-bottom: 80px;
+  .thank-wrapper.v2 .thank-message {
+    padding: 40px;
   }
 }
 .thank-message {
   border-bottom: 1px solid #ddd;
   padding-bottom: 30px;
-  margin: 0 -35px;
-  padding-left: 35px;
-  padding-right: 35px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 .thank-message .icon-holder img {
   max-width: 75px;
@@ -1057,13 +1139,6 @@ h4 {
 }
 .thank-message-text .order-number {
   font-size: 18px;
-}
-@media (min-width: 768px) {
-  .thank-message {
-    margin: 0 -40px;
-    padding-left: 40px;
-    padding-right: 40px;
-  }
 }
 .thank-details .sidebar-block {
   overflow: hidden;
@@ -1166,6 +1241,7 @@ h4 {
   border: 1px solid #ddd;
   border-radius: 12px;
   margin-bottom: 20px;
+  align-items: center;
 }
 .event-info-box-image {
   width: 80px;
@@ -1180,13 +1256,20 @@ h4 {
   max-width: 60%;
 }
 .event-info-box-body {
-  padding: 15px 0;
   padding-bottom: 0;
+}
+.event-info-box.v2 {
+  padding: 0;
+  border: 0;
+  height: auto;
+  align-items: center;
+}
+.event-info-box.v2 .event-info-box-body {
+  padding: 0;
 }
 @media (min-width: 768px) {
   .event-info-box {
     margin-bottom: 0;
-    height: 100%;
   }
 }
 
@@ -1200,6 +1283,15 @@ h4 {
 
 .font-600 {
   font-weight: 600;
+}
+
+.extra-info {
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 18px;
+}
+.extra-info-row img {
+  max-width: 65px;
 }
 
 .loader-div {
@@ -1563,6 +1655,9 @@ h4 {
 }
 .form-row-ticket-individual.edited .form-row-head-btn .btn-ticket-collapse {
   display: inline-block;
+}
+.form-row-ticket-individual.edited .form-row-head-btn .btn-ticket-collapse .icon-minus {
+  display: none;
 }
 .form-row-ticket-individual.edited .form-row-body {
   display: none;
@@ -1980,6 +2075,18 @@ h4 {
 
 .text-underline {
   text-decoration: underline;
+}
+
+.alert.focused {
+  border: 3px solid;
+}
+
+.z-index-99 {
+  z-index: 99;
+}
+
+.p-relative {
+  position: relative;
 }
 
 .modal-confirm h3 {
