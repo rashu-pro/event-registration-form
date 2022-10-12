@@ -10,6 +10,8 @@
 
     <!-- BOOTSTRAP -->
     <link rel="stylesheet" href="assets/plugins/bootstrap.min.css">
+    <!-- intl-tel-input -->
+    <link rel="stylesheet" href="assets/plugins/intl-tel-input/css/intlTelInput.min.css">
 
     <!-- STYLE.CSS -->
     <link rel="stylesheet" href="assets/css/style.css?v=1.1.9">
@@ -62,7 +64,7 @@
         </div>
     </div>
 
-    <div class="main-wrapper style-new container">
+    <div class="main-wrapper v2 style-new container">
 
         <!-- FORM WRAPPER -->
         <div class="registration-form-wrapper">
@@ -105,7 +107,7 @@
                                                         <span class="required-mark">*</span>
                                                     </h4>
 
-                                                    <select name="TicketCategoryKeys[]" class="form-control ticket-type-js">
+                                                    <select name="TicketCategoryKeys[]" class="form-control ticket-type-js" data-type="general" data-dynamic="0">
                                                         <option data-price="0" data-group="0" value="">Select</option>
                                                         <option value="eaef3835-27e6-4ab3-88c5-199cb082adc7" data-price="1" data-unitprice="1" data-group="1" data-text="Conference Registration Fee" data-description="">
                                                             Conference Registration Fee ($1 )
@@ -138,7 +140,7 @@
                                                                     <div class="row">
                                                                         <!-- first name -->
                                                                         <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                                                                            <div class="form-group required-group">
+                                                                            <div class="form-group">
                                                                                 <label class="form-control-label">First
                                                                                     Name <span
                                                                                             class="required-mark">*</span></label>
@@ -187,12 +189,13 @@
 
                                                                 <!--phone number-->
                                                                 <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                                    <div class="form-group">
+                                                                    <div class="form-group phone-number-validator-wrapper">
                                                                         <label class="form-control-label">Phone Number
                                                                             <span class="required-mark">*</span></label>
                                                                         <input type="text"
-                                                                               name="TicketHolderPhoneNumber[]"
-                                                                               class="form-control phone-number-mask">
+                                                                               name=""
+                                                                               class="form-control phone-number-validator">
+                                                                        <input type="hidden" class="phone-number-hidden" name="TicketHolderPhoneNumber[]" value="">
                                                                     </div>
                                                                 </div>
 
@@ -224,7 +227,7 @@
                                                                         <label class="form-control-label">T-Shirt Size
                                                                             <span class="required-mark">*</span></label>
                                                                         <select class="form-control" name="TshirSize[]">
-                                                                            <option>-- Select T-shirt Size --</option>
+                                                                            <option value="">-- Select T-shirt Size --</option>
                                                                             <option value="youth small">Youth Small</option>
                                                                             <option value="youth small">Youth Medium</option>
                                                                             <option value="youth large">Youth Large</option>
@@ -237,18 +240,14 @@
                                                                 </div>
 
                                                                 <!--select group-->
-                                                                <div class="col-12">
+                                                                <div class="col-12 col-sm-6 col-md-6">
                                                                     <div class="form-group">
-                                                                        <label class="form-control-label font-600">Select Group <span class="text-danger">*</span></label>
-                                                                        <div class="checkbox-holder checkbox-medium check-circle">
-                                                                            <input type="radio" id="radio-1" class="regular-checkbox ticket-category-checkbox" name="group[]" checked="checked">
-                                                                            <label for="radio-1"><span class="checkbox-text">Track 1 - 2nd - 7th Grade</span> </label>
-                                                                        </div>
-
-                                                                        <div class="checkbox-holder checkbox-medium check-circle">
-                                                                            <input type="radio" id="radio-2" class="regular-checkbox ticket-category-checkbox" name="group[]">
-                                                                            <label for="radio-2"> <span class="checkbox-text">Track 2 - 8th - 12th Grade</span> </label>
-                                                                        </div>
+                                                                        <label class="form-control-label font-600">Select Group <span class="required-mark text-danger">*</span></label>
+                                                                        <select class="form-control" name="Group[]">
+                                                                            <option value="">-- Select Group --</option>
+                                                                            <option value="Track 1 - 2nd - 7th Grade">Track 1 - 2nd - 7th Grade</option>
+                                                                            <option value="Track 2 - 8th - 12th Grade">Track 2 - 8th - 12th Grade</option>
+                                                                        </select>
                                                                     </div>
 
                                                                 </div>
@@ -350,12 +349,13 @@
 
                                                 <!--phone number-->
                                                 <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                    <div class="form-group">
+                                                    <div class="form-group phone-number-validator-wrapper">
                                                         <label class="form-control-label">Phone Number
                                                             <span class="required-mark">*</span></label>
                                                         <input type="text"
-                                                               name="TicketHolderPhoneNumber[]"
-                                                               class="form-control phone-number-mask">
+                                                               name=""
+                                                               class="form-control phone-number-validator">
+                                                        <input type="hidden" class="phone-number-hidden" name="TicketHolderPhoneNumber[]">
                                                     </div>
                                                 </div>
 
@@ -364,11 +364,8 @@
                                                     <div class="form-group">
                                                         <label class="form-control-label">Country <span
                                                                 class="required-mark">*</span></label>
-                                                        <select name="Country" class="form-control country">
-                                                            <option value="0">Select Country</option>
-                                                            <option value="USA">USA</option>
-                                                            <option value="Canada">Canada</option>
-
+                                                        <select name="Country" class="form-control country country-selector">
+                                                            <option value="">Select Country</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -492,6 +489,7 @@
                                                 <tbody>
 
                                                 </tbody>
+
                                                 <tfoot>
 
                                                 <tr class="bg-white">
@@ -813,7 +811,7 @@
                         <span class="required-mark">*</span></label>
                     <input type="text"
                            name="TicketHolderPhoneNumber[]"
-                           class="form-control phone-number-mask">
+                           class="form-control">
                 </div>
             </div>
 
@@ -1012,7 +1010,7 @@
                         <span class="required-mark">*</span></label>
                     <input type="text"
                            name="TicketHolderPhoneNumber[]"
-                           class="form-control phone-number-mask">
+                           class="form-control ">
                 </div>
             </div>
 
@@ -1113,14 +1111,22 @@
 
 <!-- //=== TICKET SUMMARY FIELD ROW -->
 <div class="ticket-summary-row d-none">
-    <table class="ticket-summary-row-table">
-        <tr id='' class='price-row ticket-price-row' data-row="">
+    <table class="ticket-summary-row-table-to-clone">
+        <tr class='price-row ticket-price-row' data-row="">
             <td class="tr-ticket-text"></td>
             <th>
                 <span class="currency">$</span><span class="amount"></span>
             </th>
         </tr>
     </table>
+</div>
+
+<!-- //=== FORM GROUP TO CLONE -->
+<div class="form-group-to-clone d-none">
+    <label class="form-control-label">Phone Number
+        <span class="required-mark">*</span></label>
+    <input type="text" name="" class="form-control">
+    <input type="hidden" class="phone-number-hidden" name="TicketHolderPhoneNumber[]" value="">
 </div>
 
 <!-- LOADER -->
@@ -1143,14 +1149,12 @@
 
 
 <script src="assets/plugins/jquery-3.6.0.min.js"></script>
-<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"-->
-        <!--integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"-->
-        <!--crossorigin="anonymous"></script>-->
 <script src="assets/plugins/bootstrap.min.js"></script>
-
+<script src="assets/plugins/intl-tel-input/js/intlTelInput.min.js"></script>
 <script src="assets/plugins/card_validation.js"></script>
-<script src="assets/plugins/input_mask/jquery.inputmask.min.js"></script>
+
 <!--<script src="assets/js/custom.js?v=1.2.1"></script>-->
+<script src="assets/js/phone_validator.js"></script>
 <script src="assets/js/event_multiple/temp.js"></script>
 <script src="assets/js/event_multiple/ticket_html_string.js"></script>
 <script src="assets/js/event_multiple/custom.js?v=1.4.2"></script>

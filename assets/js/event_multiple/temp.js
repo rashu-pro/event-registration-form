@@ -27,8 +27,34 @@ let J = Payment.J,
     phoneNumberMask = $('.phone-number-mask'),
     zipcodeMask = $('.mask-zipcode'),
     countryField = $('.country'),
+    countrySelector = $('.country-selector'),
     stateFieldGroup = $('.state-field-group'),
-    statesJson = {
+    statesCanadaJson = {
+        "Alberta": "Alberta",
+        "British Columbia": "British Columbia",
+        "Manitoba": "Manitoba",
+        "New Brunswick": "New Brunswick",
+        "Newfoundland and Labrador": "Newfoundland and Labrador",
+        "Northwest Territories": "Northwest Territories",
+        "Nova Scotia": "Nova Scotia",
+        "Nunavut": "Nunavut",
+        "Ontario": "Ontario",
+        "Prince Edward Island": "Prince Edward Island",
+        "Quebec": "Quebec",
+        "Saskatchewan": "Saskatchewan",
+        "Yukon": "Yukon"
+    },
+    radioHolder = $('.contact-information-inner.contact-information-single .contact-information-grouped-wrapper .checkbox-holder'),
+    errorMessage = "The field is required",
+    ticketHtmlCloned = '',
+    termsConditionsSelector = $('#tc-2'),
+    cartItemHolder = $('.ticket-summary-table tbody');
+
+//=== button selector
+let btnAddAnother = $('.btn-add-another-js');
+
+const statesJson = {
+    "USA": {
         "Alabama": "Alabama",
         "Alaska": "Alaska",
         "Arizona": "Arizona",
@@ -81,7 +107,7 @@ let J = Payment.J,
         "Wyoming": "Wyoming",
         "zUnknown": "zUnknown"
     },
-    statesCanadaJson = {
+    "Canada": {
         "Alberta": "Alberta",
         "British Columbia": "British Columbia",
         "Manitoba": "Manitoba",
@@ -96,11 +122,5 @@ let J = Payment.J,
         "Saskatchewan": "Saskatchewan",
         "Yukon": "Yukon"
     },
-    radioHolder = $('.contact-information-inner.contact-information-single .contact-information-grouped-wrapper .checkbox-holder'),
-    errorMessage = "The field is required",
-    ticketHtmlCloned = '',
-    termsConditionsSelector = $('#tc-2');
-
-//=== button selector
-let btnAddAnother = $('.btn-add-another-js');
+};
 

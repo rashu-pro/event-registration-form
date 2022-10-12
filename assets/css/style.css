@@ -2340,4 +2340,17 @@ h4 {
   border-radius: 50%;
 }
 
+.iti {
+  display: block;
+}
+
+.iti__country-list {
+  z-index: 999;
+  max-width: 280px;
+}
+
+.main-wrapper.v2 .form-row.first-row .btn-delete-ticket-js {
+  display: inline-block;
+}
+
 /*# sourceMappingURL=style.css.map */

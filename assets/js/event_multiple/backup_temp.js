@@ -126,6 +126,63 @@ $('.btn-event-register').on('click', function () {
 
 });
 
+$(document).on('change', '.ticket-type-js', function (e) {
+    e.preventDefault();
+    let self = $(this),
+        mainParent = self.closest('.form-row-ticket-individual'),
+        ticketText = self.children(':selected').attr('data-text'),
+        ticketDataGroup = self.children(':selected').attr('data-group'),
+        ticketDataAddon = self.children(':selected').attr('data-addon'),
+        ticketDescription = self.children(':selected').attr('data-description'),
+        //change made by Emdad
+        //price = self.val(),
+        price = self.children(':selected').attr('data-price'),
+        unitPrice = self.children(':selected').attr('data-unitPrice'),
+        dataRow = mainParent.attr('data-row');
+    let contactInformationHtml = $('.contact-information-html .contact-information-grouped-single-copy').clone();
+
+    if (self.val() != 0) {
+        self.closest('.ticket-type').find('.ticket-type-details').show();
+        self.closest('.ticket-type').find('.ticket-type-text').text(ticketText);
+        self.closest('.ticket-type').find('.ticket-type-price').text(unitPrice);
+        self.closest('.ticket-type').find('.ticket-type-description').text(ticketDescription);
+    } else {
+        self.closest('.ticket-type').find('.ticket-type-details').hide();
+    }
+
+    if (ticketText == 'Childcare Ticket') {
+        $('.child-care-wrapper').show();
+    } else {
+        $('.child-care-wrapper').hide();
+    }
+
+
+    if (parseInt(ticketDataGroup) != 0) {
+        ticketGroupManipulation(ticketDataGroup, ticketDataGroup, self);
+    } else {
+        self.closest('.form-row-ticket-individual').find('.contact-information-inner.contact-information-grouped .contact-information-grouped-single').remove();
+        self.closest('.form-row-ticket-individual').find('.contact-information-inner.contact-information-grouped').hide();
+        self.closest('.form-row-ticket-individual').find('.contact-information-inner.contact-information-single').show();
+        self.closest('.form-row-ticket-individual').find('.contact-information-inner.contact-information-single .contact-information-grouped-wrapper').html(contactInformationHtml);
+        let radioHolder = self.closest('.form-row-ticket-individual').find('.contact-information-inner.contact-information-single .contact-information-grouped-wrapper .checkbox-holder');
+        radioBoxIdGenerating(radioHolder);
+
+        self.closest('.form-row-ticket-individual').find('.contact-information-grouped-single-copy').addClass('contact-information-grouped-single');
+        self.closest('.form-row-ticket-individual').find('.contact-information-grouped-single-copy').find('.section-title span').html('Perticipant Information');
+        registrantTextChanging(mainParent);
+    }
+
+    self.closest('.form-row-ticket-individual').find('.contact-information-grouped-wrapper .contact-information-grouped-single').find('.gender-selector').closest('.form-group.required-group').addClass('field-validated');
+
+    //=== WHEN DATA-ADDON IS TRUE
+    if (parseInt(ticketDataAddon) === 1) {
+        removeContactFields(mainParent);
+    }
+
+    calculateTotalPrice(mainParent);
+    calculateCoupon($('.btn-apply-voucher-js'), false);
+});
+
 
 function singleValidation(formControl, formGroup) {
     errorMessage = "The field is required";

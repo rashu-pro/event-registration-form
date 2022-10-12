@@ -1,0 +1,13 @@
+.main-wrapper{
+  &.v2{
+    .form{
+      &-row{
+        &.first-row{
+          .btn-delete-ticket-js{
+            display: inline-block;
+          }
+        }
+      }
+    }
+  }
+}
