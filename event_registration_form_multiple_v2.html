@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="assets/plugins/intl-tel-input/css/intlTelInput.min.css">
 
     <!-- STYLE.CSS -->
-    <link rel="stylesheet" href="assets/css/style.css?v=1.1.9">
+    <link rel="stylesheet" href="assets/css/style.css?v=2.0.0">
 </head>
 <body>
 
@@ -77,7 +77,6 @@
                         <div class="col-12 col-sm-12 col-md-12 col-lg-8">
                             <!-- ====== FORM BODY ====== -->
                             <div class="form-body">
-
                                 <!-- ====== SELECT TICKET TYPE ====== -->
                                 <div class="form-row form-row-ticket-individual first-row active div-to-clone cloneable" data-row="1">
                                     <div class="form-row-head">
@@ -252,18 +251,6 @@
 
                                                                 </div>
 
-                                                                <!--preorder sweater-->
-                                                                <div class="col-12">
-                                                                    <hr>
-                                                                    <div class="static-div">
-                                                                        <h4 class="mt-2">Pre-Order Youth Conference Sweat Shirt</h4>
-                                                                        <div class="checkbox-medium">
-                                                                            <input type="checkbox" id="ticket-addon-3" class="regular-checkbox t-shirt-checkbox" data-name="T-Shirt" data-unitprice="20">
-                                                                            <label for="ticket-addon-3"> <span class="checkbox-text">T-Shirt ($20)</span> </label>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
                                                             </div>
                                                         </div>
 
@@ -296,9 +283,33 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
 
+                            <!-- ====== ADDON TICKET ====== -->
+                            <div class="form-row form-row-ticket-addon mt-4">
+                                <div class="form-row-ticket-addon-wrapper">
+                                    <h4 class="pb-1 mb-0 title">Pre-Order Youth Conference Sweat Shirt</h4>
+                                    <p class="text-success font-medium">Price: $20</p>
+
+                                    <div class="form-group pb-0">
+                                        <div class="d-flex align-items-center">
+                                            <label class="mr-2" for="addon-ticket">Quantity:</label>
+
+                                            <select class="form-control" id="addon-ticket" name="AddOnTicketCategoryKey[]" data-name="Conference Sweat Shirt" data-type="addon" data-unitprice="20" data-price="20" style="max-width:80px;max-height:40px;">
+                                                <option value="0">0</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                            </select>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
 
                             <!-- ===== BILLING INFORMATION ==== -->
                             <div class="form-row billing-information-wrapper mt-4">
@@ -418,21 +429,17 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
 
-                                    <div class="form-row-foot">
-                                        <div class="alert alert-success">
-                                            <p class="price-note">Your current total for <span
+                                        <div class="price-note-wrapper">
+                                            <p class="price-note"><img src="assets/images/tag_black_20.png"> Your current total for <span
                                                     class="ticket-count"></span> tickets is: $<span
                                                     class="total-price"></span></p>
                                         </div>
-
                                     </div>
+
 
                                 </div>
                             </div>
-
-
                         </div>
 
                         <div class="col-12 col-sm-12 col-md-12 col-lg-4">
@@ -492,6 +499,7 @@
 
                                                 <tfoot>
 
+                                                <!-- subtotal -->
                                                 <tr class="bg-white">
                                                     <td>Subtotal</td>
                                                     <th>
@@ -532,7 +540,8 @@
                                         </div>
 
                                         <div class="voucher-block">
-                                            <div class="input-group p-3">
+                                            <p class="text-medium expand-coupon-p px-2 pt-3">Have a coupon? <span class="expand-coupon expand-coupon-js text-danger" data-divid="voucher-block">Click here to enter your code</span> </p>
+                                            <div class="input-group voucher-block-wrapper p-3" id="voucher-block">
                                                 <input type="text" class="form-control" name="CouponCode" placeholder="Coupon Code">
                                                 <div class="input-group-append">
                                                     <button type="button" class="btn btn-primary input-group-text btn-apply-voucher-js">Apply Coupon</button>
@@ -872,18 +881,6 @@
 
             </div>
 
-            <!--preorder sweater-->
-            <div class="col-12">
-                <hr>
-                <div class="static-div">
-                    <h4 class="mt-2">Pre-Order Youth Conference Sweat Shirt</h4>
-                    <div class="checkbox-medium">
-                        <input type="checkbox" id="ticket-addon-2" class="regular-checkbox t-shirt-checkbox" data-name="T-Shirt" data-unitprice="20">
-                        <label for="ticket-addon-2"> <span class="checkbox-text">T-Shirt ($20)</span> </label>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </div>
 </div>
@@ -1121,6 +1118,24 @@
     </table>
 </div>
 
+<!-- //=== TICKET SUMMARY EXTRA ROWS AFTER SUBTOTAL -->
+<div class="ticket-summary-extra-row d-none">
+    <table>
+        <tbody>
+        <tr class="price-row-extra bg-white" data-method="plus">
+            <td><span class="row-name">Donation</span></td>
+            <th>
+                                                        <span class="">
+                                                            <span class="calculate-sign">(+) &nbsp;</span>
+                                                            <span class="currency">$</span>
+                                                            <span class="amount">20</span>
+                                                        </span>
+            </th>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
 <!-- //=== FORM GROUP TO CLONE -->
 <div class="form-group-to-clone d-none">
     <label class="form-control-label">Phone Number
@@ -1156,8 +1171,7 @@
 <!--<script src="assets/js/custom.js?v=1.2.1"></script>-->
 <script src="assets/js/phone_validator.js"></script>
 <script src="assets/js/event_multiple/temp.js"></script>
-<script src="assets/js/event_multiple/ticket_html_string.js"></script>
-<script src="assets/js/event_multiple/custom.js?v=1.4.2"></script>
+<script src="assets/js/event_multiple/custom.js?v=2.0.0"></script>
 
 <script>
     function registrationConfirmation() {

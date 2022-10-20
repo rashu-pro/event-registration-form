@@ -1,0 +1,20 @@
+.form{
+  &-row{
+    &-ticket{
+      &-addon{
+        &-wrapper{
+          border: 1px solid;
+          border-left: 4px solid;
+          font-size: 18px;
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+          padding: 20px;
+          background: #fbf8f8;
+          @media (min-width:768px){
+            padding: 25px;
+          }
+        }
+      }
+    }
+  }
+}

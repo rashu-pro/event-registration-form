@@ -83,3 +83,44 @@
     margin-top:10px;
   }
 }
+
+.voucher{
+  &-block{
+    .btn{
+      padding:0 10px;
+      font-size:15px;
+      box-shadow:none;
+    }
+
+    &-wrapper{
+      display: none;
+    }
+
+    &.active{
+      .expand-coupon-p{
+        display: none;
+      }
+      .voucher-block-wrapper{
+        display: flex;
+      }
+    }
+  }
+
+  &-tr{
+    display: none;
+  }
+
+}
+
+.price{
+  &-row{
+    &-extra{
+      font-weight: 500;
+      font-size: 16px;
+      .calculate-sign{
+        font-weight: 500;
+        font-size: 16px;
+      }
+    }
+  }
+}

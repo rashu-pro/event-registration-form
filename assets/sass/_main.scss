@@ -969,3 +969,34 @@
 .p-relative{
   position: relative;
 }
+
+.expand-coupon{
+  cursor: pointer;
+  border-bottom: 1px dotted;
+  &:hover{
+    border-bottom: 1px solid;
+  }
+}
+
+.price{
+  &-note{
+    padding: 10px;
+    border: 2px dashed;
+    background: #d5d5d5;
+    font-weight: 600;
+    font-size: 20px;
+    img{
+      max-height:20px;
+      max-width:20px;
+    }
+    p{
+      margin:0;
+    }
+    &-wrapper{
+      display: none;
+      &.active{
+        display: block;
+      }
+    }
+  }
+}

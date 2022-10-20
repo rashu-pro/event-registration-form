@@ -22,6 +22,7 @@ let J = Payment.J,
     creditCardImageHolder = $('.cc-card-identity'),
     pageLoader = $('.loader-div'),
     bannerHeight = $('.main-banner').height(),
+    ticketRowSelector = $('.form-body .form-row-ticket-individual'),
     uniqueId = new Date().getUTCMilliseconds(),
     textMask = $('.mask-text'),
     phoneNumberMask = $('.phone-number-mask'),
@@ -48,10 +49,15 @@ let J = Payment.J,
     errorMessage = "The field is required",
     ticketHtmlCloned = '',
     termsConditionsSelector = $('#tc-2'),
-    cartItemHolder = $('.ticket-summary-table tbody');
+    cartItemHolder = $('.ticket-summary-table tbody'),
+    cartItemRows = $('.ticket-summary-table .ticket-price-row'),
+    priceNoteWrapper = $('.price-note-wrapper'),
+    paymentInfoForm = $('#payment-information');
 
 //=== button selector
 let btnAddAnother = $('.btn-add-another-js');
+
+let rowToDelete;
 
 const statesJson = {
     "USA": {
@@ -123,4 +129,3 @@ const statesJson = {
         "Yukon": "Yukon"
     },
 };
-

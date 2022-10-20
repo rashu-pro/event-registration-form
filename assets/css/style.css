@@ -913,13 +913,19 @@ h4 {
   min-width: 115px;
 }
 
-.voucher-block .btn {
-  padding: 0 10px;
-  font-size: 15px;
-  box-shadow: none;
+.form-row-ticket-addon-wrapper {
+  border: 1px solid;
+  border-left: 4px solid;
+  font-size: 18px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  padding: 20px;
+  background: #fbf8f8;
 }
-.voucher-tr {
-  display: none;
+@media (min-width: 768px) {
+  .form-row-ticket-addon-wrapper {
+    padding: 25px;
+  }
 }
 
 .cart-table .table {
@@ -981,6 +987,33 @@ h4 {
   position: relative;
   padding: 0;
   margin-top: 10px;
+}
+
+.voucher-block .btn {
+  padding: 0 10px;
+  font-size: 15px;
+  box-shadow: none;
+}
+.voucher-block-wrapper {
+  display: none;
+}
+.voucher-block.active .expand-coupon-p {
+  display: none;
+}
+.voucher-block.active .voucher-block-wrapper {
+  display: flex;
+}
+.voucher-tr {
+  display: none;
+}
+
+.price-row-extra {
+  font-weight: 500;
+  font-size: 16px;
+}
+.price-row-extra .calculate-sign {
+  font-weight: 500;
+  font-size: 16px;
 }
 
 .sponsor-wrapper {
@@ -2087,6 +2120,35 @@ h4 {
 
 .p-relative {
   position: relative;
+}
+
+.expand-coupon {
+  cursor: pointer;
+  border-bottom: 1px dotted;
+}
+.expand-coupon:hover {
+  border-bottom: 1px solid;
+}
+
+.price-note {
+  padding: 10px;
+  border: 2px dashed;
+  background: #d5d5d5;
+  font-weight: 600;
+  font-size: 20px;
+}
+.price-note img {
+  max-height: 20px;
+  max-width: 20px;
+}
+.price-note p {
+  margin: 0;
+}
+.price-note-wrapper {
+  display: none;
+}
+.price-note-wrapper.active {
+  display: block;
 }
 
 .modal-confirm h3 {
