@@ -355,7 +355,7 @@
                 display: block;
                 .btn{
                   &-ticket-collapse{
-                    display: inline-block;
+                    display: inline-flex;
                     .icon{
                       &-minus{
                         display:none;
@@ -383,6 +383,18 @@
                 &-btn{
                   display: block;
                   .btn{
+
+                    &-ticket-collapse{
+                      .icon{
+                        &-plus{
+                          display: none;
+                        }
+                        &-minus{
+                          display: block;
+                        }
+                      }
+                    }
+
                     .fa-plus{
                       &:before{
                         content:"\f068";

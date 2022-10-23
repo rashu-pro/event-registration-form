@@ -31,7 +31,7 @@
     img{
       max-height: 16px;
       &.h-20{
-        max-height: 20px;
+        max-height: 18px;
       }
     }
   }
@@ -126,8 +126,12 @@
   }
 
   &-collapse{
-    padding:4px 10px;
     border-radius:6px;
+    padding: 0;
+    width: 38px;
+    height: 38px;
+    align-items: center;
+    justify-content: center;
   }
 
   &.selected{

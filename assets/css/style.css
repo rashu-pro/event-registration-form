@@ -250,7 +250,7 @@
     max-height: 16px;
   }
   .btn img.h-20 {
-    max-height: 20px;
+    max-height: 18px;
   }
 }
 .btn-block {
@@ -331,8 +331,12 @@
   display: none;
 }
 .btn-collapse {
-  padding: 4px 10px;
   border-radius: 6px;
+  padding: 0;
+  width: 38px;
+  height: 38px;
+  align-items: center;
+  justify-content: center;
 }
 .btn.selected {
   color: #202020;
@@ -1687,7 +1691,7 @@ h4 {
   display: block;
 }
 .form-row-ticket-individual.edited .form-row-head-btn .btn-ticket-collapse {
-  display: inline-block;
+  display: inline-flex;
 }
 .form-row-ticket-individual.edited .form-row-head-btn .btn-ticket-collapse .icon-minus {
   display: none;
@@ -1696,6 +1700,12 @@ h4 {
   display: none;
 }
 .form-row-ticket-individual.edited.active .form-row-head-btn {
+  display: block;
+}
+.form-row-ticket-individual.edited.active .form-row-head-btn .btn-ticket-collapse .icon-plus {
+  display: none;
+}
+.form-row-ticket-individual.edited.active .form-row-head-btn .btn-ticket-collapse .icon-minus {
   display: block;
 }
 .form-row-ticket-individual.edited.active .form-row-head-btn .btn .fa-plus:before {
