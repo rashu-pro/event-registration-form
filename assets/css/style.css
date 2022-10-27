@@ -2171,6 +2171,12 @@ h4 {
 .modal-confirm .modal-content {
   border-radius: 12px;
 }
+@media (min-width: 1200px) {
+  .modal-lg {
+    max-width: 1140px;
+  }
+}
+
 .card-info-area .card-image {
   padding: 15px 0;
 }
