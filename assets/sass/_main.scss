@@ -992,18 +992,21 @@
 
 .price{
   &-note{
-    padding: 10px;
-    border: 2px dashed;
-    background: #d5d5d5;
-    font-weight: 600;
-    font-size: 20px;
-    img{
-      max-height:20px;
-      max-width:20px;
+    &.v2{
+      padding: 10px;
+      border: 2px dashed;
+      background: #d5d5d5;
+      font-weight: 600;
+      font-size: 20px;
+      img{
+        max-height:20px;
+        max-width:20px;
+      }
+      p{
+        margin:0;
+      }
     }
-    p{
-      margin:0;
-    }
+
     &-wrapper{
       display: none;
       &.active{

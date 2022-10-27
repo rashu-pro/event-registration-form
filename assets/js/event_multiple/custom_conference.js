@@ -1444,9 +1444,3 @@ $(document).on('change', '.t-shirt-checkbox', function () {
     }
     calculateTotal();
 });
-
-//=== MODAL HEIGHT CHANGING FOR MOBILE DEVICES
-if($(window).width()<768){
-    $('#iframe-coc').attr('height',500+'px');
-    $('#iframe-terms').attr('height',2600+'px');
-}
