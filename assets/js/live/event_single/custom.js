@@ -207,7 +207,7 @@ $(document).on('click', '.btn-reg-js', function (e) {
 
 let creditCardField = $('.cc-number');
 if (creditCardField.length > 0) {
-    card_validation()
+    // card_validation();
 }
 
 creditCardField.on('keyup', function (e) {
@@ -726,4 +726,14 @@ function selectWithOtherOption(selector) {
     } else {
         selector.closest('.form-group').find('.other-wrapper').hide();
     }
+}
+
+if($('.field-trip-state-house-court-house-visit').length>0){
+    $('#tc-2').prop('checked', true);
+    $('.field-trip-state-house-court-house-visit .tc-wrapper').hide();
+}
+
+if($('.field-trip-bowling').length>0){
+    $('#tc-2').prop('checked', true);
+    $('.field-trip-bowling .tc-wrapper').hide();
 }

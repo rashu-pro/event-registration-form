@@ -282,18 +282,85 @@ $(document).on('click', '.btn-delete-ticket-js', function (e) {
 $(document).on('click', '.btn-delete-row-confirm', function () {
     let self = $(this),
         dataRow = self.closest('.modal-confirm').data('row');
-    self.closest('.modal-confirm').css('border','1px solid red');
     deleteRow(rowToDelete);
 
     $('#confirm-modal-delete').modal('hide');
+});
+
+//=== COUPON CALCULATION
+$(document).on('click', '.btn-apply-voucher-js', function (e) {
+    let self = $(this),
+        voucherField = self.closest('.voucher-block').find('.voucher-field-js'),
+        subtotal = parseFloat($('.subtotal-price .amount').text()),
+        discountAmount = 0,
+        discountSign = '';
+
+    self.closest('.voucher-block').find('.error-message').remove();
+    if(voucherField.val()==''){
+        errorLoadVoucher(self, 'Put the code first!');
+        return;
+    }
+
+    if(voucherField.data('type')==='solid'){
+        if(voucherField.val()<1){
+            errorLoadVoucher(self, 'Invalid discount!');
+        }
+
+        if(parseFloat(voucherField.val())>=subtotal){
+            errorLoadVoucher(self, 'Invalid discount!');
+            e.preventDefault();
+            voucherField.val(0);
+            discountAmount = 0;
+            $('.discount-js').html(discountAmount);
+            $('.discount-amount-name-js').val(discountAmount);
+            calculateGrandTotal();
+            return false;
+        }
+        discountAmount = parseFloat(voucherField.val())? parseFloat(voucherField.val()): 0;
+    }else{
+        let object = couponCodes.find(obj=>obj.name===voucherField.val());
+        if(!object){
+            errorLoad(self, 'Wrong coupon code!');
+            return;
+        }
+        discountAmount = object.discount;
+        if(object.calculateMethod==='percentage'){
+            discountSign = '%';
+            discountAmount = (parseFloat(object.discount)*subtotal)/100;
+        }
+        $('.discount-code-name-js').val(object.discount);
+        $('.discount-note-js').html('<span class="currency">$</span><span>'+object.discount+'</span><span>'+discountSign+'</span>');
+    }
+
+    $('.discount-js').html(discountAmount);
+    $('.discount-amount-name-js').val(discountAmount);
+    calculateGrandTotal();
 });
 
 
 
 /**
  * -------------------------------------
- * 5. EVENT LISTENER: KEYUP/BLUR
+ * 5. EVENT LISTENER: KEYUP / BLUR
  */
+$(document).on('keyup', '.form-group.required-group .form-control', function (e) {
+    let self = $(this);
+
+    if(self.val().length>0){
+        self.removeClass('invalid');
+        self.removeClass('field-invalid');
+        self.closest('.form-group').find('.error-message').remove();
+    }
+});
+
+$(document).on('blur', '.form-group.required-group .form-control', function (e) {
+    let self = $(this);
+    let errorMessage = "The field is required";
+
+    //=== FIELD VALIDATION
+    singleValidation(self, self.closest('.form-group'),'field-invalid', 'field-validated', 'error-message', errorMessage);
+});
+
 
 
 
@@ -348,6 +415,17 @@ $(document).on('change', '.country-selector', function (e) {
         stateList = statesJson[self.val()];
 
     stateFiller(formRow, self, stateHolder, stateList);
+});
+
+//=== SELECT FIELD CHANGE
+$(document).on('change', '.form-group.required-group .form-control', function (e) {
+    let self = $(this);
+
+    if(self.val().length>0){
+        self.removeClass('invalid');
+        self.removeClass('field-invalid');
+        self.closest('.form-group').find('.error-message').remove();
+    }
 });
 
 
@@ -426,6 +504,9 @@ function singleValidation(formControl, formGroup, invalidClassName, validClassNa
         "errorMessageClassName": errorMessageClassName,
         "errorMessage": errorMessage
     };
+
+    //=== IF FORM GROUP HAS DISPLAY NONE PROPERTIES
+    if(formGroup.css('display')==='none') return;
 
     //=== INPUT FIELD VALIDATION: EMPTY FIELD
     if(formControl.val()===''){
@@ -814,6 +895,17 @@ function radioBoxIdGenerating(radioHolder) {
     let randomUniqueIdFemale = (Math.random() + 1).toString(36).substring(4, 7);
     radioHolder.last().find('input').attr('id', randomUniqueIdFemale);
     radioHolder.last().find('label').attr('for', randomUniqueIdFemale);
+}
+
+/**
+ *
+ * @param self
+ * @param message
+ */
+function errorLoadVoucher(self, message) {
+    self.closest('.voucher-block').find('.error-message').remove();
+    self.closest('.voucher-block').append('<p class="text-danger error-message">' + message + '</p>');
+    // self.closest('.voucher-block').find('.warning-message').remove();
 }
 
 // created by Emdad

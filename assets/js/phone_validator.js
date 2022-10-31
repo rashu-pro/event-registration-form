@@ -98,6 +98,7 @@ function setNumber(iti, number) {
 function errorHandling(iti, phoneNumber, phoneNumberWrapperSelectorName, alertMessageSelectorName, hiddenField) {
     let alertClass = '',
         isvalidClass = '',
+        isFormGroupValid = '',
         statusMessage = '',
         showErrorMessage = 0;
 
@@ -108,7 +109,7 @@ function errorHandling(iti, phoneNumber, phoneNumberWrapperSelectorName, alertMe
     if(!isValid && error === intlTelInputUtils.validationError.TOO_SHORT){
         showErrorMessage = 1;
         statusMessage = "Number is too short!";
-        alertClass = 'text-info';
+        alertClass = 'text-danger';
         isvalidClass = 'invalid';
     }
 
@@ -128,9 +129,10 @@ function errorHandling(iti, phoneNumber, phoneNumberWrapperSelectorName, alertMe
 
     if(isValid && error === intlTelInputUtils.validationError.IS_POSSIBLE){
         showErrorMessage = 1;
-        statusMessage = "Number is valid!";
+        // statusMessage = "Number is valid!";
         alertClass = 'text-success';
         isvalidClass = 'valid';
+        isFormGroupValid = 'field-validated';
     }
 
     if(phoneNumber.closest(phoneNumberWrapperSelectorName).querySelector(alertMessageSelectorName)){
@@ -145,6 +147,7 @@ function errorHandling(iti, phoneNumber, phoneNumberWrapperSelectorName, alertMe
         phoneNumber.classList.remove(...classToRemove);
         alertTag.append(statusMessage);
         phoneNumber.classList.add(isvalidClass);
+        if(isFormGroupValid!=='') phoneNumber.parentElement.parentElement.classList.add(isFormGroupValid);
         phoneNumber.closest(phoneNumberWrapperSelectorName).append(alertTag);
     }
 

@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="assets/plugins/intl-tel-input/css/intlTelInput.min.css">
 
     <!-- STYLE.CSS -->
-    <link rel="stylesheet" href="assets/css/style.css?v=2.0.1">
+    <link rel="stylesheet" href="assets/css/style.css?v=2.0.0">
 </head>
 <body>
 
@@ -139,8 +139,10 @@
                                                                     <div class="row">
                                                                         <!-- first name -->
                                                                         <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                                                                            <div class="form-group required-group">
-                                                                                <label class="form-control-label">First Name <span class="required-mark">*</span></label>
+                                                                            <div class="form-group">
+                                                                                <label class="form-control-label">First
+                                                                                    Name <span
+                                                                                            class="required-mark">*</span></label>
                                                                                 <input type="text"
                                                                                        name="TicketHolderFirstName[]"
                                                                                        class="form-control first-name validation-text">
@@ -150,7 +152,9 @@
                                                                         <!-- last name -->
                                                                         <div class="col-6 col-sm-6 col-md-6 col-lg-6">
                                                                             <div class="form-group">
-                                                                                <label class="form-control-label">Last Name <span class="required-mark">*</span></label>
+                                                                                <label class="form-control-label">Last
+                                                                                    Name <span
+                                                                                            class="required-mark">*</span></label>
                                                                                 <input type="text"
                                                                                        name="TicketHolderLastName[]"
                                                                                        class="form-control last-name validation-text">
@@ -161,12 +165,11 @@
 
                                                                 <!--gender-->
                                                                 <div class="col-12 col-sm-3">
-                                                                    <div class="form-group required-group">
+                                                                    <div class="form-group">
                                                                         <label>Gender <span
                                                                                 class="required-mark">*</span></label>
                                                                         <select class="form-control gender-selector"
                                                                                 name="TicketHolderGender[]">
-                                                                            <option value="">Select Gender</option>
                                                                             <option value="male">Male</option>
                                                                             <option value="female">Female</option>
                                                                         </select>
@@ -175,7 +178,7 @@
 
                                                                 <!--email-->
                                                                 <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                                    <div class="form-group required-group">
+                                                                    <div class="form-group email-field">
                                                                         <label class="form-control-label">Email <span
                                                                                 class="required-mark">*</span></label>
                                                                         <input type="email" name="TicketHolderEmail[]"
@@ -185,7 +188,7 @@
 
                                                                 <!--phone number-->
                                                                 <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                                    <div class="form-group required-group phone-number-validator-wrapper">
+                                                                    <div class="form-group phone-number-validator-wrapper">
                                                                         <label class="form-control-label">Phone Number
                                                                             <span class="required-mark">*</span></label>
                                                                         <input type="text"
@@ -197,7 +200,7 @@
 
                                                                 <!--Grade-->
                                                                 <div class="col-12 col-sm-6 col-md-6">
-                                                                    <div class="form-group required-group">
+                                                                    <div class="form-group">
                                                                         <label class="form-control-label">Grade
                                                                             <span class="required-mark">*</span></label>
                                                                         <select class="form-control" name="Grade[]">
@@ -237,7 +240,7 @@
 
                                                                 <!--select group-->
                                                                 <div class="col-12 col-sm-6 col-md-6">
-                                                                    <div class="form-group required-group">
+                                                                    <div class="form-group">
                                                                         <label class="form-control-label font-600">Select Group <span class="required-mark text-danger">*</span></label>
                                                                         <select class="form-control" name="Group[]">
                                                                             <option value="">-- Select Group --</option>
@@ -313,7 +316,7 @@
 
                                 <div class="form-row-head">
                                     <div class="form-row-head-inner">
-                                        <h3 class="form-row-title text-center"><span>Billing Information</span></h3>
+                                        <h3 class="form-row-title text-center"><span>Parent Information</span></h3>
                                     </div>
                                 </div>
 
@@ -347,7 +350,7 @@
 
                                                 <!--email-->
                                                 <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                    <div class="form-group required-group">
+                                                    <div class="form-group">
                                                         <label class="form-control-label">Email <span
                                                                 class="required-mark">*</span></label>
                                                         <input type="email" name="TicketHolderEmail[]"
@@ -357,7 +360,7 @@
 
                                                 <!--phone number-->
                                                 <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                    <div class="form-group required-group phone-number-validator-wrapper">
+                                                    <div class="form-group phone-number-validator-wrapper">
                                                         <label class="form-control-label">Phone Number
                                                             <span class="required-mark">*</span></label>
                                                         <input type="text"
@@ -369,7 +372,7 @@
 
                                                 <!--country-->
                                                 <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                    <div class="form-group required-group">
+                                                    <div class="form-group">
                                                         <label class="form-control-label">Country <span
                                                                 class="required-mark">*</span></label>
                                                         <select name="Country" class="form-control country country-selector">
@@ -380,7 +383,7 @@
 
                                                 <!--state-->
                                                 <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                                                    <div class="form-group required-group state-field-group">
+                                                    <div class="form-group state-field-group">
                                                         <label class="form-control-label">State <span
                                                                 class="required-mark">*</span></label>
                                                         <div class="state-holder">
@@ -391,16 +394,16 @@
 
                                                 <!--city-->
                                                 <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                                                    <div class="form-group required-group">
+                                                    <div class="form-group">
                                                         <label class="form-control-label">City <span
                                                                 class="required-mark">*</span></label>
-                                                        <input name="City" type="text" class="form-control validation-text">
+                                                        <input name="City" type="text" class="form-control city">
                                                     </div>
                                                 </div>
 
                                                 <!--zipcode-->
                                                 <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                                                    <div class="form-group required-group zip-code-field">
+                                                    <div class="form-group zip-code-field">
                                                         <label class="form-control-label">ZIP Code <span
                                                                 class="required-mark">*</span></label>
                                                         <input name="ZipCode" type="text" class="form-control validation-text">
@@ -409,11 +412,11 @@
 
                                                 <!--address-->
                                                 <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                                                    <div class="form-group required-group">
+                                                    <div class="form-group">
                                                         <label class="form-control-label">Street Address <span
                                                                 class="required-mark">*</span></label>
                                                         <input name="AddressLine1" type="text"
-                                                               class="form-control validation-text">
+                                                               class="form-control address">
                                                     </div>
                                                 </div>
 
@@ -428,7 +431,7 @@
                                         </div>
 
                                         <div class="price-note-wrapper">
-                                            <p class="price-note v2"><img src="assets/images/tag_black_20.png"> Your current total for <span
+                                            <p class="price-note"><img src="assets/images/tag_black_20.png"> Your current total for <span
                                                     class="ticket-count"></span> tickets is: $<span
                                                     class="total-price"></span></p>
                                         </div>
@@ -539,7 +542,7 @@
                                         <div class="voucher-block">
                                             <p class="text-medium expand-coupon-p px-2 pt-3">Have a coupon? <span class="expand-coupon expand-coupon-js text-danger" data-divid="voucher-block">Click here to enter your code</span> </p>
                                             <div class="input-group voucher-block-wrapper p-3" id="voucher-block">
-                                                <input type="text" class="form-control voucher-field-js" name="CouponCode" placeholder="Coupon Code" data-type="solid">
+                                                <input type="text" class="form-control" name="CouponCode" placeholder="Coupon Code">
                                                 <div class="input-group-append">
                                                     <button type="button" class="btn btn-primary input-group-text btn-apply-voucher-js">Apply Coupon</button>
                                                 </div>
@@ -561,7 +564,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-12">
-                                                <div class="form-group required-group">
+                                                <div class="form-group">
                                                     <label for="txtCardHolderName"
                                                            class="field-label form-control-label required-sign"> <span
                                                             class="lable-text">Name on Card</span> <span
@@ -579,7 +582,7 @@
                                                         <span class="text-danger required-mark">*</span>
                                                     </label>
                                                     <div class="cc-number-holder">
-                                                        <input type="text" name="CardNumber" maxlength="16" class="form-control validation-cc-number format-card-number cc-number" id="creditcardnumber" required="" value="">
+                                                        <input type="text" name="CardNumber" maxlength="" class="form-control validation-cc-number format-card-number cc-number" id="creditcardnumber" required="" value="">
                                                         <div class="cc-card-identity">
                                                             <!--<img src="assets/images/card_mockup.png">-->
                                                             <img src="https://secure-api.net/Content/event-management-assets/individual-multiple-assets/images/card_mockup.png">
@@ -590,7 +593,7 @@
 
 
                                             <div class="col-6">
-                                                <div class="form-group required-group">
+                                                <div class="form-group">
                                                     <label for="txtExpiryMonth" class="field-label">
                                                         <span class="lable-text">Exp MM</span>
                                                         <span class="text-danger required-mark">*</span>
@@ -615,7 +618,7 @@
                                                 <span class="text-warning expiry-month-validation validation"></span>
                                             </div>
                                             <div class="col-6">
-                                                <div class="form-group required-group">
+                                                <div class="form-group">
                                                     <label for="txtExpiryYear" class="field-label form-control-label">
                                                         <span class="lable-text">Exp YY</span>
                                                         <span class="text-danger required-mark">*</span>
@@ -639,7 +642,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-6">
-                                                <div class="form-group required-group">
+                                                <div class="form-group">
                                                     <label for="txtCvc" class="field-label">
                                                         <span class="lable-text">CVV</span>
                                                         <span class="required-mark text-danger">*</span>
@@ -650,7 +653,7 @@
                                             </div>
 
                                             <div class="col-6">
-                                                <div class="form-group required-group">
+                                                <div class="form-group">
                                                     <label class="form-control-label">ZIP Code <span
                                                             class="required-mark">*</span></label>
                                                     <input type="text" class="form-control validation-text">
@@ -1168,7 +1171,7 @@
 <!--<script src="assets/js/custom.js?v=1.2.1"></script>-->
 <script src="assets/js/phone_validator.js"></script>
 
-<script src="assets/js/event_multiple/custom.js?v=2.0.2"></script>
+<script src="assets/js/event_multiple/custom.min.js?v=2.0.0"></script>
 
 <script>
     function registrationConfirmation() {
@@ -1180,9 +1183,12 @@
         $('.loader-div').addClass('active');
         setTimeout(function () {
             $('.loader-div').removeClass('active');
-            window.location.href = "thank_you_v2.html";
-        }, 1000);
+        }, 1000)
     });
+
+    function calculateCoupon(param) {
+        return true;
+    }
 </script>
 
 
