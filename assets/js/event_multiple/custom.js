@@ -23,6 +23,7 @@ let J = Payment.J,
     pageLoader = $('.loader-div'),
     bannerHeight = $('.main-banner').height(),
     ticketRowSelector = $('.form-body .form-row-ticket-individual'),
+    ticketRowSelectorClass = '.form-body .form-row-ticket-individual',
     uniqueId = new Date().getUTCMilliseconds(),
     textMask = $('.mask-text'),
     phoneNumberMask = $('.phone-number-mask'),
@@ -51,6 +52,7 @@ let J = Payment.J,
     termsConditionsSelector = $('#tc-2'),
     cartItemHolder = $('.ticket-summary-table tbody'),
     cartItemRows = $('.ticket-summary-table .ticket-price-row'),
+    voucherBlockHolder = $('.voucher-block-holder'),
     priceNoteWrapper = $('.price-note-wrapper'),
     paymentInfoForm = $('#payment-information');
 
@@ -244,6 +246,7 @@ $(document).on('click', '.btn-add-another-js', function (e) {
             ticketHtmlCloned.find('.form-group.phone-number-validator-wrapper').html($('.form-group-to-clone').html());
             ticketHtmlCloned.find('.form-group.phone-number-validator-wrapper .form-control').addClass('phone-number-validator');
             self.closest('.form-body').append(ticketHtmlCloned);
+            ticketSerialNumber();
             //=== REINITIALIZED PHONE VALIDATOR TO THE CLONED ITEM
             let currentPhoneNumberSelectors = document.querySelectorAll('.phone-number-validator');
             if(currentPhoneNumberSelectors) {
@@ -282,6 +285,7 @@ $(document).on('click', '.btn-delete-ticket-js', function (e) {
 $(document).on('click', '.btn-delete-row-confirm', function () {
     let self = $(this),
         dataRow = self.closest('.modal-confirm').data('row');
+    console.log("row number: ", rowToDelete);
     deleteRow(rowToDelete);
 
     $('#confirm-modal-delete').modal('hide');
@@ -289,14 +293,17 @@ $(document).on('click', '.btn-delete-row-confirm', function () {
 
 //=== COUPON CALCULATION
 $(document).on('click', '.btn-apply-voucher-js', function (e) {
+    e.preventDefault();
     let self = $(this),
         voucherField = self.closest('.voucher-block').find('.voucher-field-js'),
         subtotal = parseFloat($('.subtotal-price .amount').text()),
         discountAmount = 0,
-        discountSign = '';
+        discountSign = '',
+        voucherTrClass = 'active';
 
     self.closest('.voucher-block').find('.error-message').remove();
-    if(voucherField.val()==''){
+    if(voucherField.val()===''){
+        voucherField.focus();
         errorLoadVoucher(self, 'Put the code first!');
         return;
     }
@@ -304,37 +311,22 @@ $(document).on('click', '.btn-apply-voucher-js', function (e) {
     if(voucherField.data('type')==='solid'){
         if(voucherField.val()<1){
             errorLoadVoucher(self, 'Invalid discount!');
+            voucherTrClass = '';
+            discountAmount = 0;
         }
 
-        if(parseFloat(voucherField.val())>=subtotal){
+        if(parseFloat(voucherField.val())>subtotal){
             errorLoadVoucher(self, 'Invalid discount!');
-            e.preventDefault();
             voucherField.val(0);
             discountAmount = 0;
-            $('.discount-js').html(discountAmount);
-            $('.discount-amount-name-js').val(discountAmount);
-            calculateGrandTotal();
-            return false;
+            voucherTrClass = '';
         }
-        discountAmount = parseFloat(voucherField.val())? parseFloat(voucherField.val()): 0;
-    }else{
-        let object = couponCodes.find(obj=>obj.name===voucherField.val());
-        if(!object){
-            errorLoad(self, 'Wrong coupon code!');
-            return;
-        }
-        discountAmount = object.discount;
-        if(object.calculateMethod==='percentage'){
-            discountSign = '%';
-            discountAmount = (parseFloat(object.discount)*subtotal)/100;
-        }
-        $('.discount-code-name-js').val(object.discount);
-        $('.discount-note-js').html('<span class="currency">$</span><span>'+object.discount+'</span><span>'+discountSign+'</span>');
     }
-
-    $('.discount-js').html(discountAmount);
-    $('.discount-amount-name-js').val(discountAmount);
-    calculateGrandTotal();
+    // discountAmount = voucherField.val();
+    // $('.voucher-price .amount').html(discountAmount);
+    // $('.voucher-tr').addClass(voucherTrClass);
+    // calculateGrandTotal($('.subtotal-price .amount').html());
+    // console.log("discount amount", discountAmount);
 });
 
 
@@ -359,6 +351,11 @@ $(document).on('blur', '.form-group.required-group .form-control', function (e) 
 
     //=== FIELD VALIDATION
     singleValidation(self, self.closest('.form-group'),'field-invalid', 'field-validated', 'error-message', errorMessage);
+});
+
+$(document).on('keyup', '.voucher-field-js', function () {
+    let self = $(this);
+    self.closest('.voucher-block').find('.error-message').remove();
 });
 
 
@@ -683,6 +680,9 @@ function cartItemManipulation(status, dataType, dataRow, cartItemHolder, cartIte
         cartItemHolder.find('.ticket-'+dataType+'-'+dataRow).remove();
         calculateTotal();
         elementOrder($('.ticket-summary-table tbody tr'), cartItemHolder);
+        if($('.ticket-summary-table tbody tr').length<1){
+            voucherBlockHolder.removeClass('active');
+        }
         return;
     }
 
@@ -690,6 +690,7 @@ function cartItemManipulation(status, dataType, dataRow, cartItemHolder, cartIte
     addItemIntoCart(cartItemHolder, cartItemDivCloned, dataRow, dataType);
     calculateTotal();
     elementOrder($('.ticket-summary-table tbody tr'), cartItemHolder);
+    voucherBlockHolder.addClass('active');
 }
 
 /**
@@ -810,7 +811,7 @@ function removeTicket(dataRow){
 function removeCartItem(dataRow){
     $('.ticket-price-row[data-row='+dataRow+']').remove();
     calculateTotal();
-    $('.btn-apply-voucher-js').trigger("click");
+    // $('.btn-apply-voucher-js').trigger("click");
     elementOrder($('.ticket-summary-table tbody tr'), cartItemHolder);
 }
 
@@ -819,8 +820,9 @@ function removeCartItem(dataRow){
  *
  * @param ticketRows
  */
-function ticketSerialNumber(ticketRows) {
-    ticketRows.each(function (i, element) {
+function ticketSerialNumber() {
+    console.log('total row is: ', $(ticketRowSelectorClass).length);
+    $(ticketRowSelectorClass).each(function (i, element) {
         $(element).find('.ticket-row').html(i + 1);
     });
 }
@@ -834,17 +836,17 @@ function deleteRow(dataRow) {
     pageLoader.addClass('active');
     //--changed by Emdad
     updateTicketQuantity(dataRow);
+    //--changed by Emdad
 
     setTimeout(function () {
         removeTicket(dataRow);
         removeCartItem(dataRow);
-        ticketSerialNumber(ticketRowSelector);
+        ticketSerialNumber(ticketRowSelectorClass);
         //=== EXPAND FIRST TICKET ROW IF THERES ONLY ONE TICKET ROW
-        console.log(ticketRowSelector.length);
-        if(ticketRowSelector.length == 1) $('.form-row-ticket-individual').addClass('first-row');
+        if($(ticketRowSelectorClass).length<2) $(ticketRowSelectorClass).addClass('first-row');
         //AFTER DELETION LAST TICKET ROW SHOULD BE OPEN
-        ticketRowSelector.last().removeClass('edited');
-        ticketRowSelector.last().addClass('active');
+        $(ticketRowSelectorClass).last().removeClass('edited');
+        $(ticketRowSelectorClass).last().addClass('active');
         pageLoader.removeClass('active');
     }, 600)
 }

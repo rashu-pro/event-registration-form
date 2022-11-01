@@ -108,14 +108,14 @@
 
                                                     <select name="TicketCategoryKeys[]" class="form-control ticket-type-js" data-type="general" data-dynamic="0">
                                                         <option data-price="0" data-group="0" value="">Select</option>
-                                                        <option value="eaef3835-27e6-4ab3-88c5-199cb082adc7" data-price="1" data-unitprice="1" data-group="1" data-text="Conference Registration Fee" data-description="">
-                                                            Conference Registration Fee ($1 )
+                                                        <option value="eaef3835-27e6-4ab3-88c5-199cb082adc7" data-price="10" data-unitprice="10" data-group="1" data-text="Conference Registration Fee" data-description="">
+                                                            Conference Registration Fee ($10)
                                                         </option>
-                                                        <option value="fd4b8df7-cb86-44af-b06d-31300f8209d2" data-price="1" data-unitprice="1" data-group="1" data-text="Conference Registration Financial Assistance" data-description="">
-                                                            Conference Registration Financial Assistance ($1 )
+                                                        <option value="fd4b8df7-cb86-44af-b06d-31300f8209d2" data-price="15" data-unitprice="15" data-group="1" data-text="Conference Registration Financial Assistance" data-description="">
+                                                            Conference Registration Financial Assistance ($15)
                                                         </option>
-                                                        <option value="e0dbc3e8-b253-488a-866e-efa4c11902d8" data-price="1" data-unitprice="1" data-group="1" data-text="Staff Registration" data-description="">
-                                                            Staff Registration ($1 )
+                                                        <option value="e0dbc3e8-b253-488a-866e-efa4c11902d8" data-price="20" data-unitprice="20" data-group="1" data-text="Staff Registration" data-description="">
+                                                            Staff Registration ($20)
                                                         </option>
                                                     </select>
                                                 </div>
@@ -535,16 +535,18 @@
                                             </table>
 
                                             <div class="ticket-summary-input-fields">
-
+                                                <input type="hidden" class="discount-amount-name-js">
                                             </div>
                                         </div>
 
-                                        <div class="voucher-block">
-                                            <p class="text-medium expand-coupon-p px-2 pt-3">Have a coupon? <span class="expand-coupon expand-coupon-js text-danger" data-divid="voucher-block">Click here to enter your code</span> </p>
-                                            <div class="input-group voucher-block-wrapper p-3" id="voucher-block">
-                                                <input type="text" class="form-control" name="CouponCode" placeholder="Coupon Code">
-                                                <div class="input-group-append">
-                                                    <button type="button" class="btn btn-primary input-group-text btn-apply-voucher-js">Apply Coupon</button>
+                                        <div class="voucher-block-holder">
+                                            <div class="voucher-block">
+                                                <p class="text-medium expand-coupon-p px-2 pt-3">Have a coupon? <span class="expand-coupon expand-coupon-js text-danger" data-divid="voucher-block">Click here to enter your code</span> </p>
+                                                <div class="input-group voucher-block-wrapper p-3" id="voucher-block">
+                                                    <input type="text" class="form-control voucher-field-js" name="CouponCode" placeholder="Coupon Code" data-type="solid">
+                                                    <div class="input-group-append">
+                                                        <button type="button" class="btn btn-primary input-group-text btn-apply-voucher-js">Apply Coupon</button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -895,14 +897,14 @@
             </h4>
             <select name="TicketCategoryKeys[]" class="form-control ticket-type-js" data-dynamic="0">
                 <option data-price="0" data-group="0" value="">Select</option>
-                <option value="eaef3835-27e6-4ab3-88c5-199cb082adc7" data-price="1" data-unitprice="1" data-group="1" data-text="Conference Registration Fee" data-description="">
-                    Conference Registration Fee ($1 )
+                <option value="eaef3835-27e6-4ab3-88c5-199cb082adc7" data-price="10" data-unitprice="1" data-group="1" data-text="Conference Registration Fee" data-description="">
+                    Conference Registration Fee ($10 )
                 </option>
-                <option value="fd4b8df7-cb86-44af-b06d-31300f8209d2" data-price="1" data-unitprice="1" data-group="1" data-text="Conference Registration Financial Assistance" data-description="">
-                    Conference Registration Financial Assistance ($1 )
+                <option value="fd4b8df7-cb86-44af-b06d-31300f8209d2" data-price="15" data-unitprice="1" data-group="1" data-text="Conference Registration Financial Assistance" data-description="">
+                    Conference Registration Financial Assistance ($15)
                 </option>
-                <option value="e0dbc3e8-b253-488a-866e-efa4c11902d8" data-price="1" data-unitprice="1" data-group="1" data-text="Staff Registration" data-description="">
-                    Staff Registration ($1 )
+                <option value="e0dbc3e8-b253-488a-866e-efa4c11902d8" data-price="20" data-unitprice="1" data-group="1" data-text="Staff Registration" data-description="">
+                    Staff Registration ($20)
                 </option>
             </select>
         </div>
@@ -1171,7 +1173,7 @@
 <!--<script src="assets/js/custom.js?v=1.2.1"></script>-->
 <script src="assets/js/phone_validator.js"></script>
 
-<script src="assets/js/event_multiple/custom.min.js?v=2.0.0"></script>
+<script src="assets/js/event_multiple/custom.js?v=2.0.0"></script>
 
 <script>
     function registrationConfirmation() {

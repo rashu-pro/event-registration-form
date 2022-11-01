@@ -995,6 +995,12 @@ h4 {
   margin-top: 10px;
 }
 
+.voucher-block-holder {
+  display: none;
+}
+.voucher-block-holder.active {
+  display: block;
+}
 .voucher-block .btn {
   padding: 0 10px;
   font-size: 15px;
@@ -1016,6 +1022,9 @@ h4 {
 }
 .voucher-tr {
   display: none;
+}
+.voucher-tr.active {
+  display: table-row;
 }
 
 .price-row-extra {
