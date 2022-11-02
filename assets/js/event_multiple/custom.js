@@ -131,6 +131,12 @@ const statesJson = {
         "Yukon": "Yukon"
     },
 };
+const couponCodes = [
+    { name: 'coupon', discount: '20', calculateMethod: 'percentage' },
+    { name: 'discount', discount: '30', calculateMethod: 'percentage' },
+    { name: 'voucher', discount: '10', calculateMethod: 'solid' },
+    { name: 'invalid', discount: '500', calculateMethod: 'solid' }
+];
 
 
 /**
@@ -194,9 +200,9 @@ $(document).on('click', '.btn-event-register', function (e) {
     //=== TERMS & CONDITIONS CHECKBOX CHECK
     let isChecked = termsConditionsSelector.prop('checked');
     if(!isChecked){
-        termsConditionsSelector.closest('.tc-wrapper').find('.tc-inner').css('border','2px solid #dc3545');
+        termsConditionsSelector.closest('.tc-wrapper').addClass('warned');
         setTimeout(function () {
-            termsConditionsSelector.closest('.tc-wrapper').find('.tc-inner').css('border','1px solid #084298');
+            termsConditionsSelector.closest('.tc-wrapper').removeClass('warned');
         },300);
         return;
     }
@@ -294,41 +300,8 @@ $(document).on('click', '.btn-delete-row-confirm', function () {
 //=== COUPON CALCULATION
 $(document).on('click', '.btn-apply-voucher-js', function (e) {
     e.preventDefault();
-    let self = $(this),
-        voucherField = self.closest('.voucher-block').find('.voucher-field-js'),
-        subtotal = parseFloat($('.subtotal-price .amount').text()),
-        discountAmount = 0,
-        discountSign = '',
-        voucherTrClass = 'active';
-
-    self.closest('.voucher-block').find('.error-message').remove();
-    if(voucherField.val()===''){
-        voucherField.focus();
-        errorLoadVoucher(self, 'Put the code first!');
-        return;
-    }
-
-    if(voucherField.data('type')==='solid'){
-        if(voucherField.val()<1){
-            errorLoadVoucher(self, 'Invalid discount!');
-            voucherTrClass = '';
-            discountAmount = 0;
-        }
-
-        if(parseFloat(voucherField.val())>subtotal){
-            errorLoadVoucher(self, 'Invalid discount!');
-            voucherField.val(0);
-            discountAmount = 0;
-            voucherTrClass = '';
-        }
-    }
-    // discountAmount = voucherField.val();
-    // $('.voucher-price .amount').html(discountAmount);
-    // $('.voucher-tr').addClass(voucherTrClass);
-    // calculateGrandTotal($('.subtotal-price .amount').html());
-    // console.log("discount amount", discountAmount);
+    couponManipulation();
 });
-
 
 
 /**
@@ -679,6 +652,7 @@ function cartItemManipulation(status, dataType, dataRow, cartItemHolder, cartIte
     if(!status){
         cartItemHolder.find('.ticket-'+dataType+'-'+dataRow).remove();
         calculateTotal();
+        if($('.sidebar-block-ticket-summary .voucher-field-js').val()!=='') couponManipulation();
         elementOrder($('.ticket-summary-table tbody tr'), cartItemHolder);
         if($('.ticket-summary-table tbody tr').length<1){
             voucherBlockHolder.removeClass('active');
@@ -689,8 +663,62 @@ function cartItemManipulation(status, dataType, dataRow, cartItemHolder, cartIte
     makeCartItemReadyToAppend(cartItemDivCloned, dataRow, dataType, ticketText, price);
     addItemIntoCart(cartItemHolder, cartItemDivCloned, dataRow, dataType);
     calculateTotal();
+    if($('.sidebar-block-ticket-summary .voucher-field-js').val()!='') couponManipulation();
     elementOrder($('.ticket-summary-table tbody tr'), cartItemHolder);
     voucherBlockHolder.addClass('active');
+}
+
+/**
+ * Does all the tasks for coupon functionality
+ */
+function couponManipulation(){
+    let voucherField = $('.sidebar-block-ticket-summary .voucher-field-js'),
+        subtotal = parseFloat($('.subtotal-price .amount').text()),
+        discountAmount = 0,
+        discountSign = '',
+        isDiscount = false;
+
+    voucherField.closest('.voucher-block').find('.error-message').remove();
+    if(voucherField.val()===''){
+        voucherField.focus();
+        errorLoadVoucher(voucherField, 'Put the code first!');
+    }
+
+    discountAmount = voucherField.val()?voucherField.val():0;
+    let isCode = couponCodes.find(obj=>obj.name===voucherField.val());
+    isCode?isDiscount=true:isDiscount=false;
+
+    if(!isDiscount){
+        calculateVoucherAndDomUpdate(isDiscount, 0, false);
+        errorLoadVoucher(voucherField, 'Wrong coupon code!');
+        return;
+    }
+
+    if(isCode.calculateMethod ==='solid'){
+        if(isCode.discount>subtotal){
+            calculateVoucherAndDomUpdate(false, 0, false);
+            errorLoadVoucher(voucherField, 'Not applicable!');
+            return;
+        }
+        discountAmount = isCode.discount;
+    }
+
+    if(isCode.calculateMethod ==='percentage') discountAmount = (parseFloat(isCode.discount)*subtotal)/100;
+    calculateVoucherAndDomUpdate(isDiscount, discountAmount, isCode.name);
+}
+
+/**
+ * CalculateS coupon and update in the DOM
+ *
+ * @param isDiscount
+ * @param discountAmount
+ * @param codeName
+ */
+function calculateVoucherAndDomUpdate(isDiscount, discountAmount, codeName){
+    $('.voucher-price .amount').html(discountAmount);
+    $('.voucher-tr .voucher-code-text').html(codeName?codeName:'');
+    isDiscount?$('.voucher-tr').addClass('active'):$('.voucher-tr').removeClass('active');
+    calculateGrandTotal($('.subtotal-price .amount').html());
 }
 
 /**
@@ -741,14 +769,14 @@ function calculateTotal() {
  */
 function grandTotal(subtotal){
     console.log('subtotal', subtotal);
-    let grandTotal = parseInt(subtotal);
+    let grandTotal = parseFloat(subtotal);
     $('.ticket-summary-table .price-row-extra').each(function (i, element) {
-        console.log(parseInt($(element).find('.amount').text()));
-        if($(element).data('method')==='plus') grandTotal = grandTotal + parseInt($(element).find('.amount').text());
-        if($(element).data('method')==='minus') grandTotal = grandTotal - parseInt($(element).find('.amount').text());
+        console.log("extra amount: ", parseFloat($(element).find('.amount').text()));
+        if($(element).data('method')==='plus') grandTotal = grandTotal + parseFloat($(element).find('.amount').text());
+        if($(element).data('method')==='minus') grandTotal = grandTotal - parseFloat($(element).find('.amount').text());
     });
     console.log('Grand total in grandTotal(): ', grandTotal);
-    return grandTotal;
+    return grandTotal.toFixed(2);
 }
 
 

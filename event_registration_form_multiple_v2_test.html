@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="assets/plugins/intl-tel-input/css/intlTelInput.min.css">
 
     <!-- STYLE.CSS -->
-    <link rel="stylesheet" href="assets/css/style.css?v=2.0.0">
+    <link rel="stylesheet" href="assets/css/style.css?v=3.0.0">
 </head>
 <body>
 
@@ -510,7 +510,7 @@
                                                     </th>
                                                 </tr>
 
-                                                <tr class="bg-white voucher-tr">
+                                                <tr class="price-row-extra bg-white voucher-tr" data-method="minus">
                                                     <td>Coupon <span class="voucher-code-text"></span> </td>
                                                     <th>
                                                         <span class="voucher-price">
@@ -520,7 +520,6 @@
                                                         </span>
                                                     </th>
                                                 </tr>
-
 
                                                 <tr>
                                                     <th class="text-right">Grand Total</th>
@@ -543,7 +542,7 @@
                                             <div class="voucher-block">
                                                 <p class="text-medium expand-coupon-p px-2 pt-3">Have a coupon? <span class="expand-coupon expand-coupon-js text-danger" data-divid="voucher-block">Click here to enter your code</span> </p>
                                                 <div class="input-group voucher-block-wrapper p-3" id="voucher-block">
-                                                    <input type="text" class="form-control voucher-field-js" name="CouponCode" placeholder="Coupon Code" data-type="solid">
+                                                    <input type="text" class="form-control voucher-field-js" name="CouponCode" placeholder="Coupon Code">
                                                     <div class="input-group-append">
                                                         <button type="button" class="btn btn-primary input-group-text btn-apply-voucher-js">Apply Coupon</button>
                                                     </div>
@@ -554,7 +553,7 @@
                                     </div>
                                 </div>
 
-                                <div class="sidebar-block" id="payment-information">
+                                <div class="sidebar-block sidebar-block-payment" id="payment-information">
                                     <h3 class="sidebar-block-title">Payment Information</h3>
                                     <div class="sidebar-block-description payment-information">
                                         <div class="row">
@@ -584,7 +583,7 @@
                                                         <span class="text-danger required-mark">*</span>
                                                     </label>
                                                     <div class="cc-number-holder">
-                                                        <input type="text" name="CardNumber" maxlength="" class="form-control validation-cc-number format-card-number cc-number" id="creditcardnumber" required="" value="">
+                                                        <input type="text" name="CardNumber" maxlength="16" class="form-control validation-cc-number format-card-number cc-number" id="creditcardnumber" required="" value="">
                                                         <div class="cc-card-identity">
                                                             <!--<img src="assets/images/card_mockup.png">-->
                                                             <img src="https://secure-api.net/Content/event-management-assets/individual-multiple-assets/images/card_mockup.png">
@@ -677,10 +676,12 @@
                                                 <p style="font-size:14px">For Waiver, Terms & Conditions <a href="https://forms.gle/QUj7ppDyQGH6wrjT8" target="_blank">Click Here</a> </p>
 
                                                 <div class="mt-3 mb-0">
-                                                    <input type="checkbox" id="tc-2" class="tc">
-                                                    <label for="tc-2"
-                                                           style="font-size: 14px;display: inline;color: #000; font-weight: 600;">I
-                                                        I Have Read ICGC Code of Conduct. </label>
+                                                    <div class="form-check term-check">
+                                                        <label class="check-container">I Have Read ICGC Code of Conduct.
+                                                            <input type="checkbox" class="form-check-input tc" id="tc-2">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -1173,7 +1174,7 @@
 <!--<script src="assets/js/custom.js?v=1.2.1"></script>-->
 <script src="assets/js/phone_validator.js"></script>
 
-<script src="assets/js/event_multiple/custom.js?v=2.0.0"></script>
+<script src="assets/js/event_multiple/custom.js?v=3.0.0"></script>
 
 <script>
     function registrationConfirmation() {
@@ -1187,10 +1188,6 @@
             $('.loader-div').removeClass('active');
         }, 1000)
     });
-
-    function calculateCoupon(param) {
-        return true;
-    }
 </script>
 
 

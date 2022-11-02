@@ -53,7 +53,6 @@
       }
     }
 
-
     &-ticket{
       &-summary{
         .sidebar{
@@ -116,6 +115,10 @@
         }
       }
     }
+
+    &-payment{
+      display: none;
+    }
   }
 }
 
@@ -130,6 +133,20 @@
   }
   th,td{
     min-width:115px;
+  }
+}
+
+.tc-wrapper{
+  &.warned{
+    .tc-inner{
+      border-color:#e91e63;
+      .check-container{
+        color:#e91e63;
+        .checkmark{
+          border-color:#e91e63;
+        }
+      }
+    }
   }
 }
 

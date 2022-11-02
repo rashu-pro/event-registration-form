@@ -107,6 +107,7 @@
     }
 
   }
+
   &-control{
     line-height: 1.7rem;
     border: 0.12rem solid #8B8B8B;
@@ -129,6 +130,86 @@
       &-label{
         font-size: 18px;
       }
+    }
+  }
+
+  //=== CHECKBOX STYLE
+  &-check{
+    padding-left:0;
+    .check-container{
+      display: block;
+      position: relative;
+      padding-left: 26px;
+      cursor: pointer;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      margin: 0;
+      line-height: 1.2;
+      font-weight: 600;
+      font-size: 16px;
+      //font-weight: 500;
+      input{
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+      }
+
+      input:checked~.checkmark{
+        background-color: $green_primary;
+        border-color:$green_primary;
+        &:after{
+          display: block;
+          //background-color: $color_primary;
+        }
+      }
+
+      .checkmark{
+        position: absolute;
+        top: -1px;
+        left: 0;
+        height: 20px;
+        width: 20px;
+        /* background-color: #eee; */
+        border: 2px solid #202020;
+        border-radius: 0.2rem;
+        //background-color: $color_primary_light;
+
+        &:after{
+          content: "";
+          position: absolute;
+          display: none;
+          left: 6px;
+          top: 2px;
+          width: 5px;
+          height: 10px;
+          /* width: 5px; */
+          border: solid #fff;
+          border-width: 0 2px 2px 0;
+          -webkit-transform: rotate(45deg);
+          -ms-transform: rotate(45deg);
+          transform: rotate(41deg);
+        }
+
+        &:hover{
+          background-color: #f2f2f2;
+        }
+      }
+
+      &:hover{
+        .checkmark{
+          background-color: #f2f2f2;
+        }
+        input~.checkmark{
+          //background-color: #ccc;
+        }
+      }
+    }
+    &-input{
+
     }
   }
 }
