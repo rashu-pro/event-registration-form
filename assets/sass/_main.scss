@@ -128,6 +128,12 @@
         img{
           max-height:180px;
         }
+        &.alamine-convention-2023-b860c72f{
+          img{
+            height: auto;
+            max-height: none;
+          }
+        }
         &-content{
           img{
             height:auto;
@@ -1014,5 +1020,11 @@
         display: block;
       }
     }
+  }
+}
+
+.secure-alert{
+  img{
+    max-height:24px;
   }
 }

@@ -247,7 +247,10 @@
     font-size: 18px;
     &-row{
       img{
-        max-width:65px;
+        max-width:45px;
+        @media (min-width:576px){
+          max-width:65px;
+        }
       }
     }
   }

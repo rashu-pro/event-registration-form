@@ -5,18 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Event Registration</title>
 
-    <link rel="icon" href="assets/images/favicon_icgc.png">
+    <!-- FAVICON -->
+    <link rel="icon" href="assets/images/favicon_masjidsolutions.png">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
-          integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
-          crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <link rel="stylesheet" href="assets/css/style.css?v=1.1.9">
+    <!-- BOOTSTRAP -->
+    <link rel="stylesheet" href="assets/plugins/bootstrap.min.css">
+    <!-- intl-tel-input -->
+    <link rel="stylesheet" href="assets/plugins/intl-tel-input/css/intlTelInput.min.css">
+
+    <!-- STYLE.CSS -->
+    <link rel="stylesheet" href="assets/css/style.css?v=3.0.3">
 </head>
 <body>
 
-<div class="main bg-white">
+<div class="main bg-white logo-white">
 
     <!-- ====== HEADER ====== -->
     <header class="header style-new">
@@ -26,13 +28,14 @@
                     <div class="col-3">
                         <div class="logo-wrapper">
                             <a href="javascript:void(0)">
-                                <img src="assets/images/logo_icgc_small.png" class="img-fluid" alt="ICGC Youth Conference">
+                                <img src="assets/images/logo_icgc_small.png" class="img-fluid" alt="Masjid Solutions Conference">
                             </a>
                         </div>
                     </div>
                     <div class="col-9">
                         <div class="logo-holder text-right">
-                            <img src="assets/images/sectigo_trust_seal_sm_2x.png">
+                            <!--<img src="assets/images/sectigo_trust_seal_sm_2x.png">-->
+                            <img class="logo-power-by-ms" src="assets/images/powered_by_ms_3_resized.png" alt="Powered By Masjid Solutions">
                         </div>
                     </div>
                 </div>
@@ -47,7 +50,7 @@
             <div class="main-banner-content-wrapper">
                 <div class="container">
                     <div class="main-banner-content-section">
-                        <h3 class="banner-title">ICGC YOUTH CONFERENCE 2022</h3>
+                        <h3 class="banner-title">Masjid Solutions Conference 2022</h3>
                         <div class="banner-details">
                             <p>Islamic Center of Greater Cincinnati</p>
                             <p>8092 Plantation Drive West Chester, OH 45069</p>
@@ -62,22 +65,21 @@
         </div>
     </div>
 
-    <div class="main-wrapper style-new container">
+    <div class="main-wrapper v2 style-new container">
 
         <!-- FORM WRAPPER -->
         <div class="registration-form-wrapper">
 
             <!-- ====== MAIN BODY ====== -->
             <div class="main-body">
-                <form>
+                <form class="main-form">
                     <div class="row">
 
                         <div class="col-12 col-sm-12 col-md-12 col-lg-8">
                             <!-- ====== FORM BODY ====== -->
                             <div class="form-body">
-
                                 <!-- ====== SELECT TICKET TYPE ====== -->
-                                <div class="form-row form-row-ticket-individual first-row active" data-row="1">
+                                <div class="form-row form-row-ticket-individual first-row active div-to-clone cloneable" data-row="1">
                                     <div class="form-row-head">
                                         <div class="form-row-head-inner">
                                             <h3 class="form-row-title">Registration <span class="text-normal text-capitalize">Ticket #<span class="ticket-row">1</span></span></h3>
@@ -85,12 +87,13 @@
                                             <div class="form-row-head-btn">
                                                 <button type="button"
                                                         class="btn btn-dark btn-collapse btn-ticket-collapse">
-                                                    <i class="fa fa-plus"></i>
+                                                    <img src="assets/images/plus_white_24.png" class="icon-plus">
+                                                    <img src="assets/images/remove_white_24.png" class="icon-minus">
                                                 </button>
 
                                                 <button type="button"
                                                         class="btn btn-default btn-collapse btn-delete-ticket-js">
-                                                    <i class="fa fa-trash"></i>
+                                                    <img src="assets/images/trash.png" class="h-20">
                                                 </button>
                                             </div>
                                         </div>
@@ -104,8 +107,8 @@
                                                         <span class="required-mark">*</span>
                                                     </h4>
 
-                                                    <select name="TicketCategoryKeys[]" class="form-control ticket-type-js">
-                                                        <option data-price="0" data-group="0" value="0">Select</option>
+                                                    <select name="TicketCategoryKeys[]" class="form-control ticket-type-js" data-type="general" data-dynamic="0">
+                                                        <option data-price="0" data-group="0" value="">Select</option>
                                                         <option value="eaef3835-27e6-4ab3-88c5-199cb082adc7" data-price="1" data-unitprice="1" data-group="1" data-text="Conference Registration Fee" data-description="">
                                                             Conference Registration Fee ($1 )
                                                         </option>
@@ -138,24 +141,20 @@
                                                                         <!-- first name -->
                                                                         <div class="col-6 col-sm-6 col-md-6 col-lg-6">
                                                                             <div class="form-group required-group">
-                                                                                <label class="form-control-label">First
-                                                                                    Name <span
-                                                                                            class="required-mark">*</span></label>
+                                                                                <label class="form-control-label">First Name <span class="required-mark">*</span></label>
                                                                                 <input type="text"
                                                                                        name="TicketHolderFirstName[]"
-                                                                                       class="form-control first-name mask-text">
+                                                                                       class="form-control first-name validation-text">
                                                                             </div>
                                                                         </div>
 
                                                                         <!-- last name -->
                                                                         <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                                                                            <div class="form-group required-group">
-                                                                                <label class="form-control-label">Last
-                                                                                    Name <span
-                                                                                            class="required-mark">*</span></label>
+                                                                            <div class="form-group">
+                                                                                <label class="form-control-label">Last Name <span class="required-mark">*</span></label>
                                                                                 <input type="text"
                                                                                        name="TicketHolderLastName[]"
-                                                                                       class="form-control last-name">
+                                                                                       class="form-control last-name validation-text">
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -163,11 +162,12 @@
 
                                                                 <!--gender-->
                                                                 <div class="col-12 col-sm-3">
-                                                                    <div class="form-group required-group field-validated">
+                                                                    <div class="form-group required-group">
                                                                         <label>Gender <span
                                                                                 class="required-mark">*</span></label>
                                                                         <select class="form-control gender-selector"
                                                                                 name="TicketHolderGender[]">
+                                                                            <option value="">Select Gender</option>
                                                                             <option value="male">Male</option>
                                                                             <option value="female">Female</option>
                                                                         </select>
@@ -176,33 +176,33 @@
 
                                                                 <!--email-->
                                                                 <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                                    <div class="form-group email-field required-group">
+                                                                    <div class="form-group required-group">
                                                                         <label class="form-control-label">Email <span
                                                                                 class="required-mark">*</span></label>
                                                                         <input type="email" name="TicketHolderEmail[]"
-                                                                               class="form-control email mask-email"
-                                                                               data-validation="email">
+                                                                               class="form-control email validation-email">
                                                                     </div>
                                                                 </div>
 
                                                                 <!--phone number-->
                                                                 <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                                    <div class="form-group required-group">
+                                                                    <div class="form-group required-group phone-number-validator-wrapper">
                                                                         <label class="form-control-label">Phone Number
                                                                             <span class="required-mark">*</span></label>
                                                                         <input type="text"
-                                                                               name="TicketHolderPhoneNumber[]"
-                                                                               class="form-control phone-number-mask">
+                                                                               name=""
+                                                                               class="form-control phone-number-validator">
+                                                                        <input type="hidden" class="phone-number-hidden" name="TicketHolderPhoneNumber[]" value="">
                                                                     </div>
                                                                 </div>
 
                                                                 <!--Grade-->
                                                                 <div class="col-12 col-sm-6 col-md-6">
-                                                                    <div class="form-group">
+                                                                    <div class="form-group required-group">
                                                                         <label class="form-control-label">Grade
                                                                             <span class="required-mark">*</span></label>
                                                                         <select class="form-control" name="Grade[]">
-                                                                            <option>-- Select Grade --</option>
+                                                                            <option value="">-- Select Grade --</option>
                                                                             <option value="2nd Grade">2nd Grade</option>
                                                                             <option value="3rd Grade">3rd Grade</option>
                                                                             <option value="4th Grade">4rd Grade</option>
@@ -224,7 +224,7 @@
                                                                         <label class="form-control-label">T-Shirt Size
                                                                             <span class="required-mark">*</span></label>
                                                                         <select class="form-control" name="TshirSize[]">
-                                                                            <option>-- Select T-shirt Size --</option>
+                                                                            <option value="">-- Select T-shirt Size --</option>
                                                                             <option value="youth small">Youth Small</option>
                                                                             <option value="youth small">Youth Medium</option>
                                                                             <option value="youth large">Youth Large</option>
@@ -237,32 +237,16 @@
                                                                 </div>
 
                                                                 <!--select group-->
-                                                                <div class="col-12">
-                                                                    <div class="form-group">
-                                                                        <label class="form-control-label font-600">Select Group <span class="text-danger">*</span></label>
-                                                                        <div class="checkbox-holder checkbox-medium check-circle">
-                                                                            <input type="radio" id="radio-1" class="regular-checkbox ticket-category-checkbox" name="group[]">
-                                                                            <label for="radio-1"><span class="checkbox-text">Track 1 - 2nd - 7th Grade</span> </label>
-                                                                        </div>
-
-                                                                        <div class="checkbox-holder checkbox-medium check-circle">
-                                                                            <input type="radio" id="radio-2" class="regular-checkbox ticket-category-checkbox" name="group[]">
-                                                                            <label for="radio-2"> <span class="checkbox-text">Track 2 - 8th - 12th Grade</span> </label>
-                                                                        </div>
+                                                                <div class="col-12 col-sm-6 col-md-6">
+                                                                    <div class="form-group required-group">
+                                                                        <label class="form-control-label font-600">Select Group <span class="required-mark text-danger">*</span></label>
+                                                                        <select class="form-control" name="Group[]">
+                                                                            <option value="">-- Select Group --</option>
+                                                                            <option value="Track 1 - 2nd - 7th Grade">Track 1 - 2nd - 7th Grade</option>
+                                                                            <option value="Track 2 - 8th - 12th Grade">Track 2 - 8th - 12th Grade</option>
+                                                                        </select>
                                                                     </div>
 
-                                                                </div>
-
-                                                                <!--preorder sweater-->
-                                                                <div class="col-12">
-                                                                    <hr>
-                                                                    <div class="static-div">
-                                                                        <h4 class="mt-2">Pre-Order Youth Conference Sweat Shirt</h4>
-                                                                        <div class="checkbox-medium">
-                                                                            <input type="checkbox" id="ticket-addon-3" class="regular-checkbox t-shirt-checkbox" data-name="T-Shirt" data-unitprice="20">
-                                                                            <label for="ticket-addon-3"> <span class="checkbox-text">T-Shirt ($20)</span> </label>
-                                                                        </div>
-                                                                    </div>
                                                                 </div>
 
                                                             </div>
@@ -289,7 +273,7 @@
 
                                         <div class="form-row-foot">
                                             <div class="text-center">
-                                                <a href="javascript:void(0)" class="btn btn-dark btn-add-another-js">
+                                                <a href="javascript:void(0)" class="btn btn-dark btn-add-another-js" data-root="form-row">
                                                     <img src="assets/images/plus_circle.png" class="img-left">
                                                     <span class="btn-text">Save and Add Another Ticket</span>
                                                 </a>
@@ -297,16 +281,40 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
 
+                            <!-- ====== ADDON TICKET ====== -->
+                            <div class="form-row form-row-ticket-addon mt-4">
+                                <div class="form-row-ticket-addon-wrapper">
+                                    <h4 class="pb-1 mb-0 title">Pre-Order Youth Conference Sweat Shirt</h4>
+                                    <p class="text-success font-medium">Price: $20</p>
+
+                                    <div class="form-group pb-0">
+                                        <div class="d-flex align-items-center">
+                                            <label class="mr-2" for="addon-ticket">Quantity:</label>
+
+                                            <select class="form-control" id="addon-ticket" name="AddOnTicketCategoryKey[]" data-name="Conference Sweat Shirt" data-type="addon" data-unitprice="20" data-price="20" style="max-width:80px;max-height:40px;">
+                                                <option value="0">0</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                            </select>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
 
                             <!-- ===== BILLING INFORMATION ==== -->
                             <div class="form-row billing-information-wrapper mt-4">
 
                                 <div class="form-row-head">
                                     <div class="form-row-head-inner">
-                                        <h3 class="form-row-title text-center"><span>Parent Information</span></h3>
+                                        <h3 class="form-row-title text-center"><span>Billing Information</span></h3>
                                     </div>
                                 </div>
 
@@ -322,41 +330,41 @@
                                                                     class="required-mark">*</span></label>
                                                         <input type="text"
                                                                name="TicketHolderFirstName[]"
-                                                               class="form-control first-name mask-text">
+                                                               class="form-control first-name validation-text">
                                                     </div>
                                                 </div>
 
                                                 <!-- last name -->
                                                 <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                    <div class="form-group required-group">
+                                                    <div class="form-group">
                                                         <label class="form-control-label">Last
                                                             Name <span
                                                                     class="required-mark">*</span></label>
                                                         <input type="text"
                                                                name="TicketHolderLastName[]"
-                                                               class="form-control last-name">
+                                                               class="form-control validation-text">
                                                     </div>
                                                 </div>
 
                                                 <!--email-->
                                                 <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                    <div class="form-group email-field required-group">
+                                                    <div class="form-group required-group">
                                                         <label class="form-control-label">Email <span
                                                                 class="required-mark">*</span></label>
                                                         <input type="email" name="TicketHolderEmail[]"
-                                                               class="form-control email mask-email"
-                                                               data-validation="email">
+                                                               class="form-control email validation-email">
                                                     </div>
                                                 </div>
 
                                                 <!--phone number-->
                                                 <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                    <div class="form-group required-group">
+                                                    <div class="form-group required-group phone-number-validator-wrapper">
                                                         <label class="form-control-label">Phone Number
                                                             <span class="required-mark">*</span></label>
                                                         <input type="text"
-                                                               name="TicketHolderPhoneNumber[]"
-                                                               class="form-control phone-number-mask">
+                                                               name=""
+                                                               class="form-control phone-number-validator">
+                                                        <input type="hidden" class="phone-number-hidden" name="TicketHolderPhoneNumber[]">
                                                     </div>
                                                 </div>
 
@@ -365,11 +373,8 @@
                                                     <div class="form-group required-group">
                                                         <label class="form-control-label">Country <span
                                                                 class="required-mark">*</span></label>
-                                                        <select name="Country" class="form-control country">
-                                                            <option value="0">Select Country</option>
-                                                            <option value="USA">USA</option>
-                                                            <option value="Canada">Canada</option>
-
+                                                        <select name="Country" class="form-control country country-selector">
+                                                            <option value="">Select Country</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -380,9 +385,7 @@
                                                         <label class="form-control-label">State <span
                                                                 class="required-mark">*</span></label>
                                                         <div class="state-holder">
-                                                            <select class="form-control state"
-                                                                    name="State">
-                                                            </select>
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -392,7 +395,7 @@
                                                     <div class="form-group required-group">
                                                         <label class="form-control-label">City <span
                                                                 class="required-mark">*</span></label>
-                                                        <input name="City" type="text" class="form-control city">
+                                                        <input name="City" type="text" class="form-control validation-text">
                                                     </div>
                                                 </div>
 
@@ -401,7 +404,7 @@
                                                     <div class="form-group required-group zip-code-field">
                                                         <label class="form-control-label">ZIP Code <span
                                                                 class="required-mark">*</span></label>
-                                                        <input name="ZipCode" type="text" class="form-control zip-code">
+                                                        <input name="ZipCode" type="text" class="form-control validation-text">
                                                     </div>
                                                 </div>
 
@@ -411,7 +414,7 @@
                                                         <label class="form-control-label">Street Address <span
                                                                 class="required-mark">*</span></label>
                                                         <input name="AddressLine1" type="text"
-                                                               class="form-control address">
+                                                               class="form-control validation-text">
                                                     </div>
                                                 </div>
 
@@ -424,21 +427,17 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
 
-                                    <div class="form-row-foot">
-                                        <div class="alert alert-success">
-                                            <p class="price-note">Your current total for <span
+                                        <div class="price-note-wrapper">
+                                            <p class="price-note v2"><img src="assets/images/tag_black_20.png"> Your current total for <span
                                                     class="ticket-count"></span> tickets is: $<span
                                                     class="total-price"></span></p>
                                         </div>
-
                                     </div>
+
 
                                 </div>
                             </div>
-
-
                         </div>
 
                         <div class="col-12 col-sm-12 col-md-12 col-lg-4">
@@ -495,8 +494,10 @@
                                                 <tbody>
 
                                                 </tbody>
+
                                                 <tfoot>
 
+                                                <!-- subtotal -->
                                                 <tr class="bg-white">
                                                     <td>Subtotal</td>
                                                     <th>
@@ -507,7 +508,7 @@
                                                     </th>
                                                 </tr>
 
-                                                <tr class="bg-white voucher-tr">
+                                                <tr class="price-row-extra bg-white voucher-tr" data-method="minus">
                                                     <td>Coupon <span class="voucher-code-text"></span> </td>
                                                     <th>
                                                         <span class="voucher-price">
@@ -536,11 +537,14 @@
                                             </div>
                                         </div>
 
-                                        <div class="voucher-block">
-                                            <div class="input-group p-3">
-                                                <input type="text" class="form-control" name="CouponCode" placeholder="Coupon Code">
-                                                <div class="input-group-append">
-                                                    <button type="button" class="btn btn-primary input-group-text btn-apply-voucher-js">Apply Coupon</button>
+                                        <div class="voucher-block-holder">
+                                            <div class="voucher-block">
+                                                <p class="text-medium expand-coupon-p px-2 pt-3">Have a coupon? <span class="expand-coupon expand-coupon-js text-danger" data-divid="voucher-block">Click here to enter your code</span> </p>
+                                                <div class="input-group voucher-block-wrapper p-3" id="voucher-block">
+                                                    <input type="text" class="form-control voucher-field-js" name="CouponCode" placeholder="Coupon Code">
+                                                    <div class="input-group-append">
+                                                        <button type="button" class="btn btn-primary input-group-text btn-apply-voucher-js">Apply Coupon</button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -548,7 +552,7 @@
                                     </div>
                                 </div>
 
-                                <div class="sidebar-block" id="payment-information">
+                                <div class="sidebar-block sidebar-block-payment" id="payment-information">
                                     <h3 class="sidebar-block-title">Payment Information</h3>
                                     <div class="sidebar-block-description payment-information">
                                         <div class="row">
@@ -560,47 +564,43 @@
                                                 </div>
                                             </div>
                                             <div class="col-12">
-                                                <div class="form-group">
+                                                <div class="form-group required-group">
                                                     <label for="txtCardHolderName"
                                                            class="field-label form-control-label required-sign"> <span
                                                             class="lable-text">Name on Card</span> <span
-                                                            class="text-danger">*</span></label>
+                                                            class="text-danger required-mark">*</span></label>
                                                     <input id="txtCardHolderName" name="CardHolderName" type="text"
-                                                           class="form-control field-normal cc-name field-empty">
-                                                    <span class="text-warning card-holder-name-validation validation"></span>
+                                                           class="form-control cc-name validation-text">
                                                 </div>
                                             </div>
 
                                             <div class="col-12">
-                                                <div class="form-group">
+                                                <div class="form-group required-group">
                                                     <label class="field-label form-control-label required-sign"
                                                            for="creditcardnumber">
                                                         <span class="lable-text">Card Number</span>
-                                                        <span class="text-danger">*</span>
+                                                        <span class="text-danger required-mark">*</span>
                                                     </label>
                                                     <div class="cc-number-holder">
-                                                        <input type="text" name="CardNumber" maxlength=""
-                                                               class="form-control field-normal format-card-number cc-number"
-                                                               id="creditcardnumber" required="">
+                                                        <input type="text" name="CardNumber" maxlength="16" class="form-control validation-cc-number format-card-number cc-number" id="creditcardnumber" required="" value="">
                                                         <div class="cc-card-identity">
-                                                            <img src="assets/images/card_mockup.png">
+                                                            <!--<img src="assets/images/card_mockup.png">-->
+                                                            <img src="https://secure-api.net/Content/event-management-assets/individual-multiple-assets/images/card_mockup.png">
                                                         </div>
                                                     </div>
-
-                                                    <span class="text-warning card-number-validation validation"></span>
                                                 </div>
                                             </div>
 
 
                                             <div class="col-6">
-                                                <div class="form-group">
+                                                <div class="form-group required-group">
                                                     <label for="txtExpiryMonth" class="field-label">
                                                         <span class="lable-text">Exp MM</span>
-                                                        <span class="text-danger">*</span>
+                                                        <span class="text-danger required-mark">*</span>
                                                     </label>
                                                     <select id="txtExpiryMonth"
                                                             class="form-control field-normal cc-month" required="">
-                                                        <option value="0">Select Month</option>
+                                                        <option value="">Select Month</option>
                                                         <option value="01">01</option>
                                                         <option value="02">02</option>
                                                         <option value="03">03</option>
@@ -618,14 +618,14 @@
                                                 <span class="text-warning expiry-month-validation validation"></span>
                                             </div>
                                             <div class="col-6">
-                                                <div class="form-group">
+                                                <div class="form-group required-group">
                                                     <label for="txtExpiryYear" class="field-label form-control-label">
                                                         <span class="lable-text">Exp YY</span>
-                                                        <span class="text-danger">*</span>
+                                                        <span class="text-danger required-mark">*</span>
                                                     </label>
-                                                    <select id="txtExpiryYear" class="form-control field-normal cc-year"
+                                                    <select id="txtExpiryYear" class="form-control cc-year"
                                                             required="">
-                                                        <option value="0">Select Year</option>
+                                                        <option value="">Select Year</option>
                                                         <option value="2022">2022</option>
                                                         <option value="2023">2023</option>
                                                         <option value="2024">2024</option>
@@ -642,22 +642,21 @@
                                                 </div>
                                             </div>
                                             <div class="col-6">
-                                                <div class="form-group">
-                                                    <label for="txtCvc" class="field-label required-sign">
+                                                <div class="form-group required-group">
+                                                    <label for="txtCvc" class="field-label">
                                                         <span class="lable-text">CVV</span>
-                                                        <span class="text-danger">*</span>
+                                                        <span class="required-mark text-danger">*</span>
                                                     </label>
                                                     <input id="txtCvc" type="text"
-                                                           class="form-control field-normal format-cvv cc-cvc mask-cvv">
-                                                    <span class="text-warning cvv-validation validation"></span>
+                                                           class="form-control field-normal validation-number" data-length-min="3" data-length-max="4">
                                                 </div>
                                             </div>
 
                                             <div class="col-6">
-                                                <div class="form-group zip-code-field">
+                                                <div class="form-group required-group">
                                                     <label class="form-control-label">ZIP Code <span
                                                             class="required-mark">*</span></label>
-                                                    <input type="text" class="form-control zip-code-plain">
+                                                    <input type="text" class="form-control validation-text">
                                                 </div>
                                             </div>
                                         </div>
@@ -668,7 +667,7 @@
                                     <div class="sidebar-block-description">
 
                                         <div class="tc-wrapper mt-2">
-                                            <div class="alert alert-primary alert-round-border">
+                                            <div class="tc-inner alert alert-primary alert-round-border">
                                                 <p style="font-size:14px;margin-bottom:10px;">
                                                     For ICG Code of Conduct <a href="https://drive.google.com/file/d/1T2lHuJurcdX-ELzQgVyaVDGF1Y2Gyq3o/view?usp=sharing" target="_blank">Click Here</a>
                                                 </p>
@@ -676,16 +675,22 @@
                                                 <p style="font-size:14px">For Waiver, Terms & Conditions <a href="https://forms.gle/QUj7ppDyQGH6wrjT8" target="_blank">Click Here</a> </p>
 
                                                 <div class="mt-3 mb-0">
-                                                    <input type="checkbox" id="tc-2" class="tc">
-                                                    <label for="tc-2"
-                                                           style="font-size: 14px;display: inline;color: #000; font-weight: 600;">I
-                                                        I Have Read ICGC Code of Conduct. </label>
+                                                    <div class="form-check term-check">
+                                                        <label class="check-container">I Have Read Masjid Solutions Code of Conduct.
+                                                            <input type="checkbox" class="form-check-input tc" id="tc-2">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <button type="button" class="btn btn-primary btn-block btn-event-register">
-                                            Submit Registration
+                                        <button type="button" class="btn btn-primary btn-block btn-event-register btn-event-register-js">
+                                            <!--<span><img src="assets/images/icon_lock.png" alt="secure"> </span>-->
+                                            <span><img src="assets/images/icon_security.png" alt="secure"> </span>
+                                            <span>Submit Registration</span>
                                         </button>
+
+                                        <p class="secure-alert m-0 mt-2 text-center text-success"><img src="assets/images/icon_shield.png" alt="secure by sectigo"> Secured by SECTIGO</p>
                                     </div>
                                 </div>
                             </div>
@@ -708,7 +713,7 @@
                         (317) 854 0207 </p>
                 </div>
                 <div class="col-md-12 col-lg-6">
-                    <p class="text-center text-md-center text-lg-right m-0">&copy; ISNA. All Rights Reserved, 2022 </p>
+                    <p class="text-center text-md-center text-lg-right m-0">&copy; Masjid Solutions. All Rights Reserved, 2022 </p>
                 </div>
             </div>
         </div>
@@ -752,24 +757,6 @@
             </div>
         </div>
     </div>
-
-    <!-- LOADER -->
-    <div class="loader-div">
-        <div class="lds-spinner">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-    </div>
 </div>
 
 
@@ -791,7 +778,7 @@
                                         class="required-mark">*</span></label>
                             <input type="text"
                                    name="TicketHolderFirstName[]"
-                                   class="form-control first-name mask-text">
+                                   class="form-control first-name validation-text">
                         </div>
                     </div>
 
@@ -803,7 +790,7 @@
                                         class="required-mark">*</span></label>
                             <input type="text"
                                    name="TicketHolderLastName[]"
-                                   class="form-control last-name">
+                                   class="form-control last-name validation-text">
                         </div>
                     </div>
                 </div>
@@ -811,7 +798,7 @@
 
             <!--gender-->
             <div class="col-12 col-sm-3">
-                <div class="form-group required-group field-validated">
+                <div class="form-group required-group">
                     <label>Gender <span
                             class="required-mark">*</span></label>
                     <select class="form-control gender-selector"
@@ -828,29 +815,28 @@
                     <label class="form-control-label">Email <span
                             class="required-mark">*</span></label>
                     <input type="email" name="TicketHolderEmail[]"
-                           class="form-control email mask-email"
-                           data-validation="email">
+                           class="form-control email validation-email">
                 </div>
             </div>
 
             <!--phone number-->
             <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-                <div class="form-group required-group">
+                <div class="form-group">
                     <label class="form-control-label">Phone Number
                         <span class="required-mark">*</span></label>
                     <input type="text"
                            name="TicketHolderPhoneNumber[]"
-                           class="form-control phone-number-mask">
+                           class="form-control">
                 </div>
             </div>
 
             <!--Grade-->
             <div class="col-12 col-sm-6 col-md-6">
-                <div class="form-group">
+                <div class="form-group required-group">
                     <label class="form-control-label">Grade
                         <span class="required-mark">*</span></label>
                     <select class="form-control" name="Grade[]">
-                        <option>-- Select Grade --</option>
+                        <option value="">-- Select Grade --</option>
                         <option value="2nd Grade">2nd Grade</option>
                         <option value="3rd Grade">3rd Grade</option>
                         <option value="4th Grade">4rd Grade</option>
@@ -889,28 +875,16 @@
                 <div class="form-group">
                     <label class="form-control-label font-600">Select Group <span class="text-danger">*</span></label>
                     <div class="checkbox-holder checkbox-medium check-circle">
-                        <input type="radio" id="radio-1" class="regular-checkbox ticket-category-checkbox" name="group[]">
-                        <label for="radio-1"><span class="checkbox-text">Track 1 - 2nd - 7th Grade</span> </label>
+                        <input type="radio" id="radio-4" class="regular-checkbox ticket-category-checkbox" name="group[]">
+                        <label for="radio-4"><span class="checkbox-text">Track 1 - 2nd - 7th Grade</span> </label>
                     </div>
 
                     <div class="checkbox-holder checkbox-medium check-circle">
-                        <input type="radio" id="radio-2" class="regular-checkbox ticket-category-checkbox" name="group[]">
-                        <label for="radio-2"> <span class="checkbox-text">Track 2 - 8th - 12th Grade</span> </label>
+                        <input type="radio" id="radio-3" class="regular-checkbox ticket-category-checkbox" name="group[]">
+                        <label for="radio-3"> <span class="checkbox-text">Track 2 - 8th - 12th Grade</span> </label>
                     </div>
                 </div>
 
-            </div>
-
-            <!--preorder sweater-->
-            <div class="col-12">
-                <hr>
-                <div class="static-div">
-                    <h4 class="mt-2">Pre-Order Youth Conference Sweat Shirt</h4>
-                    <div class="checkbox-medium">
-                        <input type="checkbox" id="ticket-addon-2" class="regular-checkbox t-shirt-checkbox" data-name="T-Shirt" data-unitprice="20">
-                        <label for="ticket-addon-2"> <span class="checkbox-text">T-Shirt ($20)</span> </label>
-                    </div>
-                </div>
             </div>
 
         </div>
@@ -925,8 +899,8 @@
             <h4 class="pb-2">Select Ticket Type:
                 <span class="required-mark">*</span>
             </h4>
-            <select name="TicketCategoryKeys[]" class="form-control ticket-type-js">
-                <option data-price="0" data-group="0" value="0">Select</option>
+            <select name="TicketCategoryKeys[]" class="form-control ticket-type-js" data-dynamic="0">
+                <option data-price="0" data-group="0" value="">Select</option>
                 <option value="eaef3835-27e6-4ab3-88c5-199cb082adc7" data-price="1" data-unitprice="1" data-group="1" data-text="Conference Registration Fee" data-description="">
                     Conference Registration Fee ($1 )
                 </option>
@@ -1011,7 +985,7 @@
 
             <!--gender-->
             <div class="col-12 col-sm-3">
-                <div class="form-group required-group field-validated">
+                <div class="form-group required-group">
                     <label>Gender <span
                             class="required-mark">*</span></label>
                     <select class="form-control gender-selector"
@@ -1028,8 +1002,7 @@
                     <label class="form-control-label">Email <span
                             class="required-mark">*</span></label>
                     <input type="email" name="TicketHolderEmail[]"
-                           class="form-control email mask-email"
-                           data-validation="email">
+                           class="form-control email validation-email">
                 </div>
             </div>
 
@@ -1040,7 +1013,7 @@
                         <span class="required-mark">*</span></label>
                     <input type="text"
                            name="TicketHolderPhoneNumber[]"
-                           class="form-control phone-number-mask">
+                           class="form-control ">
                 </div>
             </div>
 
@@ -1139,16 +1112,72 @@
     </div>
 </div>
 
+<!-- //=== TICKET SUMMARY FIELD ROW -->
+<div class="ticket-summary-row d-none">
+    <table class="ticket-summary-row-table-to-clone">
+        <tr class='price-row ticket-price-row' data-row="">
+            <td class="tr-ticket-text"></td>
+            <th>
+                <span class="currency">$</span><span class="amount"></span>
+            </th>
+        </tr>
+    </table>
+</div>
+
+<!-- //=== TICKET SUMMARY EXTRA ROWS AFTER SUBTOTAL -->
+<div class="ticket-summary-extra-row d-none">
+    <table>
+        <tbody>
+        <tr class="price-row-extra bg-white" data-method="plus">
+            <td><span class="row-name">Donation</span></td>
+            <th>
+                                                        <span class="">
+                                                            <span class="calculate-sign">(+) &nbsp;</span>
+                                                            <span class="currency">$</span>
+                                                            <span class="amount">20</span>
+                                                        </span>
+            </th>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- //=== FORM GROUP TO CLONE -->
+<div class="form-group-to-clone d-none">
+    <label class="form-control-label">Phone Number
+        <span class="required-mark">*</span></label>
+    <input type="text" name="" class="form-control">
+    <input type="hidden" class="phone-number-hidden" name="TicketHolderPhoneNumber[]" value="">
+</div>
+
+<!-- LOADER -->
+<div class="loader-div">
+    <div class="lds-spinner">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+
 
 <script src="assets/plugins/jquery-3.6.0.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
-
+<script src="assets/plugins/bootstrap.min.js"></script>
+<script src="assets/plugins/intl-tel-input/js/intlTelInput.min.js"></script>
 <script src="assets/plugins/card_validation.js"></script>
-<script src="assets/plugins/input_mask/jquery.inputmask.min.js"></script>
+
 <!--<script src="assets/js/custom.js?v=1.2.1"></script>-->
-<script src="assets/js/live/event_multiple/custom_conference.js?v=1.4.2"></script>
+<script src="assets/js/phone_validator.js"></script>
+
+<script src="assets/js/event_multiple/custom.js?v=3.0.3"></script>
 
 <script>
     function registrationConfirmation() {
@@ -1160,7 +1189,8 @@
         $('.loader-div').addClass('active');
         setTimeout(function () {
             $('.loader-div').removeClass('active');
-        }, 1000)
+            window.location.href = "thank_you_v2.html";
+        }, 1000);
     });
 </script>
 

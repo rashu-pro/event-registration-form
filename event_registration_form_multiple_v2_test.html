@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="assets/plugins/intl-tel-input/css/intlTelInput.min.css">
 
     <!-- STYLE.CSS -->
-    <link rel="stylesheet" href="assets/css/style.css?v=3.0.1">
+    <link rel="stylesheet" href="assets/css/style.css?v=3.0.3">
 </head>
 <body>
 
@@ -1174,7 +1174,7 @@
 <!--<script src="assets/js/custom.js?v=1.2.1"></script>-->
 <script src="assets/js/phone_validator.js"></script>
 
-<script src="assets/js/event_multiple/custom.js?v=3.0.1"></script>
+<script src="assets/js/event_multiple/custom.js?v=3.0.3"></script>
 
 <script>
     function registrationConfirmation() {
@@ -1186,7 +1186,8 @@
         $('.loader-div').addClass('active');
         setTimeout(function () {
             $('.loader-div').removeClass('active');
-        }, 1000)
+            window.location.href = "thank_you_v2.html";
+        }, 1000);
     });
 </script>
 

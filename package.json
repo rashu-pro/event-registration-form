@@ -1,0 +1,24 @@
+{
+  "name": "event-registration-form",
+  "version": "1.0.0",
+  "description": "event registration form",
+  "main": "index.js",
+  "scripts": {
+    "compile:sass": "sass -w assets/sass:assets/css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/rashu.skifftech/event-registration-form.git"
+  },
+  "keywords": [
+    "event",
+    "registration",
+    "form"
+  ],
+  "author": "rashu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/rashu.skifftech/event-registration-form/issues"
+  },
+  "homepage": "https://gitlab.com/rashu.skifftech/event-registration-form#readme"
+}

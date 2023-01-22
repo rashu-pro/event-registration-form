@@ -11,7 +11,7 @@
       @media (min-width:768px){
         //height:55px;
         max-height:90px;
-        max-width:none;
+        max-width:250px;
       }
     }
 
@@ -70,9 +70,10 @@
       background: linear-gradient(180deg, rgba(0, 0, 0, 0.97) 0%, rgba(0, 128, 128, 0) 100%);
       filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000", endColorstr="#008080", GradientType=0);
       z-index: 1;
-      height: 200%;
-      display: none;
+      //height: 200%;
+      //display: none;
     }
+
 
     .nav-link{
       color: #fff;
@@ -166,7 +167,7 @@
 .logo-powered-ms{
   &-wrapper{
     .img-logo-powered-ms{
-      max-height:40px;
+      max-height:35px;
       @media (min-width:768px){
         max-height:55px;
       }
@@ -209,6 +210,25 @@
           }
         }
       }
+    }
+  }
+}
+
+.main{
+  &.logo-black{
+    .header{
+      &.style-new{
+        &:before{
+          background: linear-gradient(180deg, rgba(255, 255, 255, 0.97) 0%, rgba(0, 128, 128, 0) 100%);
+        }
+      }
+    }
+  }
+
+  &.logo-white{
+    .logo-power-by-ms{
+      background-color: #fff;
+      border-radius: 5px;
     }
   }
 }
