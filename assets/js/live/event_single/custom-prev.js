@@ -665,10 +665,6 @@ function calculateGrandTotal() {
         voucherPrice = parseInt($('.ticket-summary-table .voucher-price .amount').html()),
         grandTotalPrice = totalPrice - voucherPrice;
     //    console.log(grandTotalPrice);
-    //changed by Emdad
-    //Update total price hidden field
-    $('#total-price').val(grandTotalPrice);
-
     $('.ticket-summary-table .grand-total-price .amount').html(grandTotalPrice);
 }
 
@@ -681,11 +677,11 @@ function ticket_row_number() {
 function showPaymentForm(totalAmount) {
     if (totalAmount > 0) {
         $('#card-info-area').show();
-      //  $('.btn-reg').text('Payment');
+        $('.btn-reg').text('Payment');
         $('.btn-reg').addClass('btn-payment');
     } else {
         $('#card-info-area').attr('style', 'display:none;');
-      //  $('.btn-reg').text('Register');
+        $('.btn-reg').text('Register');
         $('.btn-reg').removeClass('btn-payment');
     }
 }
@@ -741,4 +737,3 @@ if($('.field-trip-bowling').length>0){
     $('#tc-2').prop('checked', true);
     $('.field-trip-bowling .tc-wrapper').hide();
 }
-

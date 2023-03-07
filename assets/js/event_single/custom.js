@@ -776,7 +776,7 @@ function calculateCoupon(self, isClicked) {
     if (voucherCode === '') {
         $('.voucher-tr').hide();
         $('.voucher-price .amount').html(0);
-        calculateGrandTotal();
+        calculateTotal();
         let errorMessage = `<p class="error-message text-danger m-0">Enter your coupon code</p>`;
         voucherBlock.find('.error-message').remove();
         if (isClicked) {

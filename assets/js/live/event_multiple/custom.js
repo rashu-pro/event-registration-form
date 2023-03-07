@@ -831,10 +831,7 @@ function calculateTotal() {
     $('.billing-information-wrapper .price-note .ticket-count').html(ticketCount);
     $('.billing-information-wrapper .price-note .total-price').html(totalPrice);
     console.log('total price: ' + totalPrice);
-    //changed by Emdad
-    //Update total price hidden field
-    $('#total-price').val(totalPrice);
-
+    
     calculateGrandTotal();
 }
 
@@ -844,12 +841,20 @@ function calculateGrandTotal() {
         voucherPrice = parseInt($('.ticket-summary-table .voucher-price .amount').html()),
         grandTotalPrice = totalPrice - voucherPrice;
 
+
+    //changed by Emdad
+    //Update total price hidden field
+    $('#sub-total-price').val(totalPrice);
+    $('#total-price').val(grandTotalPrice);    
+
     $('.ticket-summary-table .grand-total-price .amount').html(grandTotalPrice);
     if(grandTotalPrice<=0){
         $('#payment-information').hide();
     }else{
         $('#payment-information').show();
     }
+
+    
 }
 
 //=== UPDATE TICKET PRICE AFTER ADD ANOTHER PERSON ACTION
