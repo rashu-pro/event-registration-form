@@ -150,3 +150,13 @@
     }
   }
 }
+
+.ticket-summary{
+  padding: 15px 30px;
+  &-row{
+    margin-bottom: 5px;
+    &:not(:last-child){
+      border-bottom: 1px solid #ddd;
+    }
+  }
+}

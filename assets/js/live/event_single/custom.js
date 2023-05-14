@@ -6,9 +6,10 @@ let totalPrice = 0,
 $('.quantity-increase').on('click', function () {
     let self = $(this),
         quantitySelector = self.closest('.quantity-wrap').find('.form-control'),
-        quantityValue = quantitySelector.val();
+        quantityValue = quantitySelector.val(),
+        quantityMax = parseInt(quantitySelector.data('max'));
 
-    if (quantityValue < 10) {
+    if (quantityValue < quantityMax) {
         quantitySelector.val(parseInt(quantityValue) + 1);
     }
     chooseTicketWarning(quantitySelector);
@@ -32,9 +33,14 @@ $('.quantity-decrease').on('click', function () {
 $('.quantity-wrap .form-control').on('keyup', function () {
     let self = $(this),
         quantitySelector = self.closest('.quantity-wrap').find('.form-control'),
-        quantityValue = quantitySelector.val();
+        quantityValue = quantitySelector.val(),
+        quantityMax = parseInt(self.data('max'));
 
-    if (quantityValue > 10) {
+    if(self.val() === ''){
+        self.val(0);
+    }
+
+    if (quantityValue > quantityMax) {
         quantitySelector.val(0);
     }
 
@@ -665,11 +671,16 @@ function calculateGrandTotal() {
         voucherPrice = parseInt($('.ticket-summary-table .voucher-price .amount').html()),
         grandTotalPrice = totalPrice - voucherPrice;
     //    console.log(grandTotalPrice);
-    //changed by Emdad
-    //Update total price hidden field
+
+    $('#sub-total-price').val(totalPrice);
     $('#total-price').val(grandTotalPrice);
 
     $('.ticket-summary-table .grand-total-price .amount').html(grandTotalPrice);
+    if (grandTotalPrice <= 0) {
+        $('#card-info-area').hide();
+    } else {
+        $('#card-info-area').show();
+    }
 }
 
 function ticket_row_number() {
@@ -741,4 +752,3 @@ if($('.field-trip-bowling').length>0){
     $('#tc-2').prop('checked', true);
     $('.field-trip-bowling .tc-wrapper').hide();
 }
-

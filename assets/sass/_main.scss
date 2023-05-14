@@ -15,6 +15,7 @@
 
       img{
         width:100%;
+        border-radius: 0;
       }
 
       .main{
@@ -775,12 +776,14 @@
       }
       &-single{
         border-bottom:1px solid #ddd;
+        margin-bottom: 14px;
       }
 
       &-wrapper{
         .contact-information-grouped-single{
           &:last-child{
             border-bottom: 0;
+            margin-bottom: 0;
           }
         }
         &:not(:first-child){
@@ -1028,3 +1031,52 @@
     max-height:24px;
   }
 }
+
+.attendee-wrapper-head{
+  display: flex;
+  color: #009688;
+  align-items: center;
+  margin: -15px -30px 0 -32px;
+  /* border-left: 4px solid; */
+  padding: 24px 0 10px 30px;
+  background: #b6cecc40;
+  position: relative;
+  .dot{
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #009688;
+    margin-right: 10px;
+  }
+}
+
+.ticket-number{
+  position: absolute;
+  top: 6px;
+  line-height: 1;
+  background: #000;
+  color: #fff;
+  padding: 0 10px;
+}
+
+.form-row{
+  .add-more-attendee{
+    display: none;
+  }
+  &.ticket-pack{
+    .add-more-attendee{
+      display: inline-block;
+    }
+  }
+}
+
+.update-ticket-information-js{
+  padding: 10px;
+  border: 2px solid #c3c1c1;
+  border-radius: 4px;
+  display: inline-block;
+  margin-top: 15px;
+}
+
+
+

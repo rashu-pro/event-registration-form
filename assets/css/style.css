@@ -1126,6 +1126,16 @@ h4 {
   font-size: 16px;
 }
 
+.ticket-summary {
+  padding: 15px 30px;
+}
+.ticket-summary-row {
+  margin-bottom: 5px;
+}
+.ticket-summary-row:not(:last-child) {
+  border-bottom: 1px solid #ddd;
+}
+
 .sponsor-wrapper {
   background: #FBF8F8;
   border-radius: 15px;
@@ -1561,6 +1571,7 @@ h4 {
 }
 .main-banner.style-new img {
   width: 100%;
+  border-radius: 0;
 }
 .main-banner.style-new .main-banner-content {
   position: absolute;
@@ -2071,12 +2082,14 @@ h4 {
 }
 .contact-information-grouped-single {
   border-bottom: 1px solid #ddd;
+  margin-bottom: 14px;
 }
 .contact-information-grouped-wrapper {
   margin-bottom: 20px;
 }
 .contact-information-grouped-wrapper .contact-information-grouped-single:last-child {
   border-bottom: 0;
+  margin-bottom: 0;
 }
 .contact-information-grouped-wrapper:not(:first-child) {
   border-bottom: 1px solid #ddd;
@@ -2267,6 +2280,48 @@ h4 {
 
 .secure-alert img {
   max-height: 24px;
+}
+
+.attendee-wrapper-head {
+  display: flex;
+  color: #009688;
+  align-items: center;
+  margin: -15px -30px 0 -32px;
+  /* border-left: 4px solid; */
+  padding: 24px 0 10px 30px;
+  background: #b6cecc40;
+  position: relative;
+}
+.attendee-wrapper-head .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #009688;
+  margin-right: 10px;
+}
+
+.ticket-number {
+  position: absolute;
+  top: 6px;
+  line-height: 1;
+  background: #000;
+  color: #fff;
+  padding: 0 10px;
+}
+
+.form-row .add-more-attendee {
+  display: none;
+}
+.form-row.ticket-pack .add-more-attendee {
+  display: inline-block;
+}
+
+.update-ticket-information-js {
+  padding: 10px;
+  border: 2px solid #c3c1c1;
+  border-radius: 4px;
+  display: inline-block;
+  margin-top: 15px;
 }
 
 .modal-confirm h3 {
