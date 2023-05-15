@@ -123,6 +123,8 @@ $('.quantity-increase').on('click', function () {
         quantitySelector.val(parseInt(quantityValue) + 1);
     }
 
+    updateSubtotal(quantitySelector);
+
     /**
     collectData(self);
     calculateCoupon($('.btn-apply-voucher-js'), false);
@@ -138,16 +140,20 @@ $('.quantity-decrease').on('click', function () {
         quantitySelector.val(parseInt(quantityValue) - 1);
     }
 
+    updateSubtotal(quantitySelector);
+
     /**
     collectData(self);
     calculateCoupon($('.btn-apply-voucher-js'), false);
      **/
 });
 
-$('.quantity-wrap .form-control').on('keyup', function () {
+$('.quantity-wrap .form-control').on('change', function () {
     let self = $(this);
-    collectData(self);
-    calculateCoupon($('.btn-apply-voucher-js'), false);
+    if(!self.val()) self.val('0');
+    updateSubtotal(self);
+    // collectData(self);
+    // calculateCoupon($('.btn-apply-voucher-js'), false);
 });
 
 $('.btn-event-register').on('click', function () {
@@ -173,17 +179,30 @@ $('.btn-event-register').on('click', function () {
 
 
     let isChecked = $('#tc-2').prop('checked');
+
+    //=== CHECK WHETHER AT LEAST A TICKET INFORMATION IS BEING FILLED UP
+    if($('.ticket-wrapper-js .form-row-js').length<1){
+        $('.ticket-information-js .warning-message').remove();
+        goToTheSection('.ticket-information-js');
+        let errorMessage = $('.ticket-info-foot-js').attr('data-error-message');
+        let errorMessageHtml = `<p class="m-0 mt-3 warning-message text-danger text-center">${errorMessage}</p>`;
+        $('.ticket-info-foot-js').append(errorMessageHtml);
+        return;
+    }
+
     if(notValidatedField.length>0){
         //=== Contact Fields Validation Needed
         focusToNotValidFields(notValidatedField);
         return;
     }
+
     if(notValidatedBillingFields>0){
         //=== Billing Fields Validation Needed
         focusToNotValidFields(notValidatedBillingFieldsSelector);
         return;
     }
-    if(parseInt($('.grand-total-price .amount').text())>0){
+
+    if(parseInt($('.grand-total-price .amount').text())>0 && !$('#bill-later').prop('checked')){
         if ((paymentFields) != paymentValidFields) {
             //=== Payment Fields Validation Needed
             paymentFieldNotValidatdSelector.first().focus();
@@ -571,6 +590,7 @@ function card_validation() {
     if (cardType) {
         creditCardField.addClass(cardType);
         creditCardImageHolder.html("<img src='/beta/Content/event-management-assets/individual-multiple-assets/images/" + cardType + ".png'>");
+        // creditCardImageHolder.html("<img src='assets/images/" + cardType + ".png'>");
     } else {
         console.log('no card selected');
         creditCardImageHolder.html("<img src='/beta/Content/event-management-assets/individual-multiple-assets/images/unknown.png'>");
@@ -857,7 +877,7 @@ function calculateTotal() {
     $('.billing-information-wrapper .price-note .ticket-count').html(ticketCount);
     $('.billing-information-wrapper .price-note .total-price').html(totalPrice);
     console.log('total price: ' + totalPrice);
-    
+    showPaymentForm(totalPrice);
     calculateGrandTotal();
 }
 
@@ -1265,6 +1285,7 @@ $(document).on('click', '.btn-generate-ticket-js', function (e){
         totalTicket += parseInt($(element).val());
     });
 
+    $('.ticket-information-js .warning-message').remove();
     $(carTableSelector).find('.error-message').remove();
     if (!totalTicket){
         $(carTableSelector).append('<p class="error-message text-danger">Please select a ticket</p>');
@@ -1283,12 +1304,12 @@ $(document).on('click', '.btn-generate-ticket-js', function (e){
             let quantity = parseInt($(element).val());
             if(!quantity) return;
 
-            let ticketText = $(element).closest('tr').find('.ticket-name-js').attr('data-name');
-            let price = parseInt($(element).val()) * parseInt($(element).closest('tr').find('.per-price .amount').text());
+            let ticketText = $(element).closest('.table-row').find('.ticket-name-js').attr('data-name');
+            let price = parseInt($(element).val()) * parseInt($(element).closest('.table-row').find('.per-price .amount').text());
             let ticketSummaryRow = `<div class="ticket-summary-row">
                                                 <span class="ticket-number d-inline-block" style="position: relative"><span class="ticket-number-js">${quantity}</span> ticket${quantity>1?'s':''}</span>
                                                 <p class="mb-1">${ticketText}</p>
-                                                <p class="mb-2">$<span class="amount">${$(element).closest('tr').find('.per-price .amount').text()}</span> X <span class="quantity">${quantity}</span> = <strong>$<span class="subtotal">${price}</span></strong></p>
+                                                <p class="mb-2">$<span class="amount">${$(element).closest('.table-row').find('.per-price .amount').text()}</span> X <span class="quantity">${quantity}</span> = <strong>$<span class="subtotal">${price}</span></strong></p>
                                             </div>`;
             $('.ticket-summary-js').append(ticketSummaryRow);
 
@@ -1306,41 +1327,93 @@ $(document).on('click', '.btn-generate-ticket-js', function (e){
             updateAttendeeNumber(i);
         })
 
-        $('.ticket-summary-js').append('<a href="javascript:void(0)" class="update-ticket-information-js">Update Ticket Information</a>');
+        $('.ticket-summary-js').append($('.update-ticket-information-warning-html-js .update-ticket-information-wrapper').clone());
         addTicketSummaryAndCalculateTotalPrice();
         changeTicketUtitlity();
         pageLoader.removeClass('active');
-    },1000)
+    },600)
 })
 
 $(document).on('click', '.add-more-attendee-js', function (e){
     e.preventDefault();
     let self = $(this);
     let clonedDiv = self.closest('.single-ticket-js').find('.attendee-wrapper-box-js .attendee-wrapper').last().clone();
+    let removeBtn = $('.remove-btn-wrapper-html .btn-remove-js').clone();
+    removeBtn.attr('data-remove', '.attendee-wrapper');
     clonedDiv.find('.form-control').val('');
     clonedDiv.find('.attendee-number-js').html(parseInt(clonedDiv.find('.attendee-number-js').text())+1);
+    clonedDiv.find('.attendee-wrapper-head').append(removeBtn);
+
+    clonedDiv.css('display','none');
+
     self.closest('.single-ticket-js').find('.attendee-wrapper-box-js').append(clonedDiv);
+    clonedDiv.slideDown();
+})
+
+$(document).on('click', '.btn-remove-js', function (e){
+    e.preventDefault();
+    let self = $(this);
+    let divToRemove = self.attr('data-remove');
+    self.closest(divToRemove).slideUp(500, function (){
+        self.closest(divToRemove).remove();
+    });
 })
 
 $(document).on('click', '.update-ticket-information-js', function (e){
     e.preventDefault();
+    $('.cart-table-js .quantity-wrap .form-control').val('0');
+    $('.cart-table-js .quantity-wrap .form-control').trigger('change');
     $('.cart-table-js').removeClass('d-none');
     $('.ticket-info-foot-js').removeClass('d-none');
     $('.ticket-summary-js').addClass('d-none');
+
+    $('.ticket-wrapper-js').empty();
+    goToTheSection('.ticket-information-js');
 })
+
+$(document).on('change', '#bill-later', function (){
+    let self = $(this);
+    billMeLaterToggle(self);
+})
+
+calculateTotal();
+
+/**
+ * Toggles payment form on bill me later checkbox state
+ * @param element
+ */
+function billMeLaterToggle(element){
+    $('.payment-form-wrapper-js').slideUp();
+    if(element.prop('checked')) return;
+
+    $('.payment-form-wrapper-js').slideDown();
+}
 
 function changeTicketUtitlity(){
     $('.cart-table-js').addClass('d-none');
     $('.ticket-info-foot-js').addClass('d-none');
     $('.ticket-summary-js').removeClass('d-none');
+
+    goToTheSection('#form-body');
+}
+
+/**
+ * Goes to the desired section
+ * @param element
+ */
+function goToTheSection(element){
     // Get the target <div> element
-    let targetDiv = $('#form-body');
+    let targetDiv = $(element);
     let offsetTop = targetDiv.offset().top;
     $('html, body').animate({
         scrollTop: offsetTop
     }, 500);
 }
 
+/**
+ * Updates attendee number per ticket
+ * @param rowNumber
+ */
 function updateAttendeeNumber(rowNumber){
     $('.form-row-js[data-row='+rowNumber+']').each(function (i, element){
         $(element).find('.attendee-wrapper').each(function (j, element){
@@ -1350,13 +1423,16 @@ function updateAttendeeNumber(rowNumber){
     })
 }
 
-
+/**
+ * Add/Update ticket summary table
+ * Calculates total price
+ */
 function addTicketSummaryAndCalculateTotalPrice() {
     $('.ticket-summary-table tbody').html('');
     $(ticketQuantitySelector).each(function (i, element){
-        let ticketText = $(element).closest('tr').find('.ticket-name-js').attr('data-name');
+        let ticketText = $(element).closest('.table-row').find('.ticket-name-js').attr('data-name');
         let dataRow = i;
-        let price = parseInt($(element).val()) * parseInt($(element).closest('tr').find('.per-price .amount').text());
+        let price = parseInt($(element).val()) * parseInt($(element).closest('.table-row').find('.per-price .amount').text());
         let row = `<tr id='row-${ticketText}' class='price-row ticket-price-row price-${dataRow}' data-row="${dataRow}">
                                     <td class="tr-ticket-text">
                                         ${ticketText}
@@ -1413,4 +1489,31 @@ function addTicketSummaryAndCalculateTotalPrice() {
      **/
 
     calculateTotal();
+}
+
+/**
+ * Updates subtotal on quantity change
+ * @param quantityElementSelector
+ */
+function updateSubtotal(quantityElement){
+    let quantity = parseInt($(quantityElement).val());
+    let perPrice = parseInt($(quantityElement).closest('.table-row').find('.per-price').find('.amount').text());
+    let totalPrice = quantity * perPrice;
+    $(quantityElement).closest('.table-row').find('.price-subtotal').find('.amount').html(totalPrice);
+}
+
+/**
+ * Shows payment form when total amount is greater than 0
+ * @param totalAmount
+ */
+function showPaymentForm(totalAmount) {
+    if (totalAmount > 0) {
+        $('#payment-information').show();
+        //  $('.btn-reg').text('Payment');
+        // $('.btn-reg').addClass('btn-payment');
+    } else {
+        $('#payment-information').attr('style', 'display:none;');
+        //  $('.btn-reg').text('Register');
+        // $('.payment-information').removeClass('btn-payment');
+    }
 }

@@ -160,3 +160,27 @@
     }
   }
 }
+
+.table{
+  &-row{
+    padding:16px 15px;
+    border-bottom:1px solid #ddd;
+
+    &:last-child{
+      border-bottom: 0;
+    }
+
+    &-head{
+      border-bottom:2px solid #ddd;
+      padding:10px 15px;
+    }
+
+    @media (min-width: 992px) {
+      padding:20px 30px;
+
+      &-head{
+        padding:10px 30px;
+      }
+    }
+  }
+}

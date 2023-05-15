@@ -1050,6 +1050,14 @@
   }
 }
 
+.attendee-wrapper-box{
+  .attendee-wrapper{
+    &:not(:first-child){
+      margin-top:20px;
+    }
+  }
+}
+
 .ticket-number{
   position: absolute;
   top: 6px;
@@ -1078,5 +1086,11 @@
   margin-top: 15px;
 }
 
+
+.bill-me-later-wrapper{
+  margin: -18px -16px 0;
+  padding: 10px 20px;
+  background: #c6c6c666;
+}
 
 

@@ -15,7 +15,7 @@
     margin-bottom:0;
 
     @media (min-width:768px){
-      padding-bottom:30px;
+      padding-bottom:20px;
     }
     &.last{
       margin:0;
@@ -110,8 +110,8 @@
 
   &-control{
     line-height: 1.7rem;
-    border: 0.12rem solid #8B8B8B;
-    border-radius: 6px;
+    border: 1px solid #8B8B8B;
+    border-radius: 5px;
 
     &.invalid, &.field-invalid{
       border-color:#dc3545;
@@ -124,8 +124,8 @@
     }
 
     @media (min-width:768px){
-      line-height: 2.2rem;
-      border: 0.15rem solid #8B8B8B;
+      line-height: 2rem;
+      border: 1px solid #8B8B8B;
       border-radius: 8px;
       &-label{
         font-size: 18px;
@@ -215,14 +215,14 @@
 }
 
 select.form-control:not([size]):not([multiple]){
-  height:43px;
+  height:40px;
   position: relative;
   //background: transparent;
   z-index: 99;
   //-webkit-appearance: none;
 
   @media (min-width:768px){
-    height:54px;
+    height:45.6px;
   }
 }
 

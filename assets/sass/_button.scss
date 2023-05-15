@@ -149,5 +149,30 @@
     opacity: 0.4;
   }
 
+  &-remove{
+    color:#dc3545;
+    background-color: transparent;
+    position: absolute;
+    right: 10px;
+    text-transform: unset;
+    border: 1px solid #de7781;
+    border-radius: 0.3rem;
+    padding: 2px 6px;
+    line-height: 1.2;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+
+    img{
+      max-height: 14px;
+      position: relative;
+      top: -0.1rem;
+    }
+    &:hover{
+      background-color: #f2aeba45;
+      border-color:#dc3545;
+    }
+  }
+
 }
 

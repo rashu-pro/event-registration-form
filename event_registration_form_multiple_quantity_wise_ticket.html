@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Event Registration</title>
 
-    <link rel="icon" href="assets/images/favicon_icgc.png">
+    <link rel="icon" href="assets/images/favicon-isla.png">
 
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"-->
     <!-- integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
@@ -13,7 +13,7 @@
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
           integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/> -->
-    <link rel="stylesheet" href="assets/css/style.css?v=1.2.3">
+    <link rel="stylesheet" href="assets/css/style.css?v=1.2.4">
 
 </head>
 <body>
@@ -45,7 +45,7 @@
 
     <!-- ====== BANNER ====== -->
     <div class="main-banner style-new">
-        <img src="assets/images/banner-isla.jpg" alt="professional development week">
+        <img src="assets/images/banner-event-isla.jpg" alt="professional development week">
         <div class="main-banner-content">
             <div class="main-banner-content-wrapper">
                 <div class="container">
@@ -78,7 +78,7 @@
                         <div class="col-12 col-sm-12 col-md-12 col-lg-8">
 
                             <!-- ====== TICKET SELECTION WRAPPER ====== -->
-                            <div class="ticket-information">
+                            <div class="ticket-information ticket-information-js">
                                 <div class="form-row">
                                     <div class="form-row-head">
                                         <div class="form-row-head-inner">
@@ -87,31 +87,51 @@
                                     </div>
 
                                     <div class="form-row-body">
-                                        <div class="cart-table cart-table-js">
-                                            <div class="table-responsive">
-                                                <table class="table">
-                                                    <thead>
-                                                    <tr>
-                                                        <th>Ticket Category</th>
-                                                        <th>Price</th>
-                                                        <th>Quantity</th>
-                                                        <th>Subtotal</th>
-                                                    </tr>
-                                                    </thead>
 
-                                                    <tbody>
-                                                    <tr>
-                                                        <td>
+                                        <div class="cart-table cart-table-js">
+                                            <div class="table-div">
+
+                                                <div class="table-row table-row-head d-none d-md-block">
+                                                    <div class="row align-items-center">
+                                                        <div class="col-md-5">
+                                                            <strong>Ticket Category</strong>
+                                                        </div>
+
+                                                        <div class="col-md-2">
+                                                            <div class="text-left mb-2 mb-md-0">
+                                                                <strong>Price</strong>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-8 col-md-3">
+                                                            <strong>Quantity</strong>
+                                                        </div>
+
+                                                        <div class="col-4 col-md-2">
+                                                            <div class="text-right">
+                                                                <strong>Subtotal</strong>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="table-row">
+                                                    <div class="row align-items-center">
+                                                        <div class="col-md-5">
                                                             <p class="m-0 ticket-name-js" data-name="Non-member School Access">Non-member School Access</p>
                                                             <p class="m-0 text-info" style="font-size: 14px">Upto 10 attendee per tickets</p>
-                                                        </td>
-                                                        <td class="per-price">
-                                                            <span class="currency">$</span>
-                                                            <span class="amount">750</span>
-                                                        </td>
-                                                        <td>
+                                                        </div>
+
+                                                        <div class="col-md-2">
+                                                            <div class="text-left per-price mb-2 mb-md-0">
+                                                                <span class="currency">$</span>
+                                                                <span class="amount">550</span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-8 col-md-3">
                                                             <div class="quantity-wrap" ticket-type="below-10">
-                                                                <div class="input-group mb-3">
+                                                                <div class="input-group">
                                                                     <div class="input-group-prepend">
                                                                         <button type="button" class="input-group-text quantity-decrease">-</button>
                                                                     </div>
@@ -121,75 +141,91 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </td>
-                                                        <td>
-                                                <span class="below-10-price">
-                                                    <span class="currency">$</span>
-                                                    <span class="amount">0</span>
-                                                </span>
-                                                        </td>
-                                                    </tr>
+                                                        </div>
 
-                                                    <tr>
-                                                        <td>
+                                                        <div class="col-4 col-md-2">
+                                                            <div class="text-right price-subtotal">
+                                                                <span class="currency">$</span>
+                                                                <span class="amount">0</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="table-row">
+                                                    <div class="row align-items-center">
+                                                        <div class="col-md-5">
                                                             <p class="m-0 ticket-name-js" data-name="Member School Access">Member School Access</p>
                                                             <p class="m-0 text-info" style="font-size: 14px">Upto 10 attendee per tickets</p>
-                                                        </td>
-                                                        <td class="per-price">
-                                                            <span class="currency">$</span>
-                                                            <span class="amount">550</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="quantity-wrap" ticket-type="above-10">
-                                                                <div class="input-group mb-3">
-                                                                    <div class="input-group-prepend">
-                                                                        <button type="button" class="input-group-text quantity-decrease">-</button>
-                                                                    </div>
-                                                                    <input type="text" class="form-control ticket-quantity-js" data-limit="10" value="0">
-                                                                    <div class="input-group-append">
-                                                                        <button type="button" class="input-group-text quantity-increase">+</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td><span class="price-subtotal">
-                                                <span class="above-10-price">
-                                                    <span class="currency">$</span>
-                                                    <span class="amount">0</span>
-                                                </span>
-                                            </span> </td>
-                                                    </tr>
+                                                        </div>
 
-                                                    <tr>
-                                                        <td>
-                                                            <p class="m-0 ticket-name-js" data-name="Individual Ticket">Individual Ticket</p>
-                                                        </td>
-                                                        <td class="per-price">
-                                                            <span class="currency">$</span>
-                                                            <span class="amount">125</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="quantity-wrap" ticket-type="adult">
-                                                                <div class="input-group mb-3">
+                                                        <div class="col-md-2">
+                                                            <div class="text-left per-price mb-2 mb-md-0">
+                                                                <span class="currency">$</span>
+                                                                <span class="amount">550</span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-8 col-md-3">
+                                                            <div class="quantity-wrap" ticket-type="below-10">
+                                                                <div class="input-group">
                                                                     <div class="input-group-prepend">
                                                                         <button type="button" class="input-group-text quantity-decrease">-</button>
                                                                     </div>
-                                                                    <input type="text" class="form-control ticket-quantity-js" data-limit="1" value="0">
+                                                                    <input type="number" class="form-control ticket-quantity-js" value="0" data-limit="10">
                                                                     <div class="input-group-append">
                                                                         <button type="button" class="input-group-text quantity-increase">+</button>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </td>
-                                                        <td><span class="price-subtotal">
-                                                <span class="adult-price">
-                                                    <span class="currency">$</span>
-                                                    <span class="amount">0</span>
-                                                </span>
-                                            </span></td>
-                                                    </tr>
-                                                    </tbody>
-                                                </table>
+                                                        </div>
+
+                                                        <div class="col-4 col-md-2">
+                                                            <div class="text-right price-subtotal">
+                                                                <span class="currency">$</span>
+                                                                <span class="amount">0</span>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="table-row">
+                                                    <div class="row align-items-center">
+                                                        <div class="col-md-5">
+                                                            <p class="m-0 ticket-name-js" data-name="Individual Ticket">Individual Ticket</p>
+                                                        </div>
+
+                                                        <div class="col-md-2">
+                                                            <div class="text-left per-price mb-2 mb-md-0">
+                                                                <span class="currency">$</span>
+                                                                <span class="amount">125</span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-8 col-md-3">
+                                                            <div class="quantity-wrap" ticket-type="below-10">
+                                                                <div class="input-group">
+                                                                    <div class="input-group-prepend">
+                                                                        <button type="button" class="input-group-text quantity-decrease">-</button>
+                                                                    </div>
+                                                                    <input type="number" class="form-control ticket-quantity-js" value="0" data-limit="1">
+                                                                    <div class="input-group-append">
+                                                                        <button type="button" class="input-group-text quantity-increase">+</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-4 col-md-2">
+                                                            <div class="text-right price-subtotal">
+                                                                <span class="currency">$</span>
+                                                                <span class="amount">0</span>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -197,13 +233,21 @@
 
                                         </div>
 
-                                        <div class="form-row-foot ticket-info-foot-js">
-                                            <div class="text-center">
-                                                <a href="javascript:void(0)" class="btn btn-dark btn-generate-ticket-js" data-update-text="Update Ticket Information">
-                                                    <span class="btn-text">Continue</span>
-                                                    <img src="assets/images/down.png" style="margin-right:0;margin-left:6px;top:0">
-                                                </a>
+                                        <div class="form-row-foot ticket-info-foot-js ticket-info-foot" data-error-message="Please select at least a ticket and press continue button to fill up ticket information.">
+                                            <div class="row justify-content-center">
+                                                <div class="col-md-9">
+                                                    <div class="">
+                                                        <div class="text-center">
+                                                            <a href="javascript:void(0)" class="btn btn-dark btn-generate-ticket-js" data-update-text="Update Ticket Information">
+                                                                <span class="btn-text">Continue</span>
+                                                                <img src="assets/images/down.png" alt="down" style="margin-right:0;margin-left:6px;top:0">
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
+
+
                                         </div>
                                     </div>
                                 </div>
@@ -482,113 +526,124 @@
                                 <div class="sidebar-block" id="payment-information">
                                     <h3 class="sidebar-block-title">Payment Information</h3>
                                     <div class="sidebar-block-description payment-information">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <div class="form-group">
-                                                    <div class="card-image">
-                                                        <img src="assets/images/credit_card_all_.png" class="img-fluid">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="form-group">
-                                                    <label for="txtCardHolderName"
-                                                           class="field-label form-control-label required-sign"> <span
-                                                            class="lable-text">Name on Card</span> <span
-                                                            class="text-danger">*</span></label>
-                                                    <input id="txtCardHolderName" name="CardHolderName" type="text"
-                                                           class="form-control field-normal cc-name field-empty">
-                                                    <span class="text-warning card-holder-name-validation validation"></span>
-                                                </div>
-                                            </div>
 
-                                            <div class="col-12">
-                                                <div class="form-group">
-                                                    <label class="field-label form-control-label required-sign"
-                                                           for="creditcardnumber">
-                                                        <span class="lable-text">Card Number</span>
-                                                        <span class="text-danger">*</span>
-                                                    </label>
-                                                    <div class="cc-number-holder">
-                                                        <input type="text" name="CardNumber" maxlength=""
-                                                               class="form-control field-normal format-card-number cc-number"
-                                                               id="creditcardnumber" required="">
-                                                        <div class="cc-card-identity">
-                                                            <img src="assets/images/card_mockup.png">
+                                        <div class="bill-me-later-wrapper">
+                                            <div class="d-flex checkbox-div">
+                                                <input type="checkbox" id="bill-later" class="checkbox-default checkbox-md">
+                                                <label class="font-semibold mb-0" for="bill-later">Bill me later using an invoice</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="payment-form-wrapper-js">
+                                            <div class="row pt-3">
+                                                <div class="col-12">
+                                                    <div class="form-group">
+                                                        <div class="card-image">
+                                                            <img src="assets/images/credit_card_all_.png" class="img-fluid">
                                                         </div>
                                                     </div>
-
-                                                    <span class="text-warning card-number-validation validation"></span>
                                                 </div>
-                                            </div>
+
+                                                <div class="col-12">
+                                                    <div class="form-group">
+                                                        <label for="txtCardHolderName"
+                                                               class="field-label form-control-label required-sign"> <span
+                                                                class="lable-text">Name on Card</span> <span
+                                                                class="text-danger">*</span></label>
+                                                        <input id="txtCardHolderName" name="CardHolderName" type="text"
+                                                               class="form-control field-normal cc-name field-empty">
+                                                        <span class="text-warning card-holder-name-validation validation"></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label form-control-label required-sign"
+                                                               for="creditcardnumber">
+                                                            <span class="lable-text">Card Number</span>
+                                                            <span class="text-danger">*</span>
+                                                        </label>
+                                                        <div class="cc-number-holder">
+                                                            <input type="text" name="CardNumber" maxlength="16"
+                                                                   class="form-control field-normal format-card-number cc-number"
+                                                                   id="creditcardnumber" required="">
+                                                            <div class="cc-card-identity">
+                                                                <img src="assets/images/card_mockup.png">
+                                                            </div>
+                                                        </div>
+
+                                                        <span class="text-warning card-number-validation validation"></span>
+                                                    </div>
+                                                </div>
 
 
-                                            <div class="col-6">
-                                                <div class="form-group">
-                                                    <label for="txtExpiryMonth" class="field-label">
-                                                        <span class="lable-text">Exp MM</span>
-                                                        <span class="text-danger">*</span>
-                                                    </label>
-                                                    <select id="txtExpiryMonth"
-                                                            class="form-control field-normal cc-month" required="">
-                                                        <option value="0">Select Month</option>
-                                                        <option value="01">01</option>
-                                                        <option value="02">02</option>
-                                                        <option value="03">03</option>
-                                                        <option value="04">04</option>
-                                                        <option value="05">05</option>
-                                                        <option value="06">06</option>
-                                                        <option value="07">07</option>
-                                                        <option value="08">08</option>
-                                                        <option value="09">09</option>
-                                                        <option value="10">10</option>
-                                                        <option value="11">11</option>
-                                                        <option value="12">12</option>
-                                                    </select>
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label for="txtExpiryMonth" class="field-label">
+                                                            <span class="lable-text">Exp MM</span>
+                                                            <span class="text-danger">*</span>
+                                                        </label>
+                                                        <select id="txtExpiryMonth"
+                                                                class="form-control field-normal cc-month" required="">
+                                                            <option value="0">Select Month</option>
+                                                            <option value="01">01</option>
+                                                            <option value="02">02</option>
+                                                            <option value="03">03</option>
+                                                            <option value="04">04</option>
+                                                            <option value="05">05</option>
+                                                            <option value="06">06</option>
+                                                            <option value="07">07</option>
+                                                            <option value="08">08</option>
+                                                            <option value="09">09</option>
+                                                            <option value="10">10</option>
+                                                            <option value="11">11</option>
+                                                            <option value="12">12</option>
+                                                        </select>
+                                                    </div>
+                                                    <span class="text-warning expiry-month-validation validation"></span>
                                                 </div>
-                                                <span class="text-warning expiry-month-validation validation"></span>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="form-group">
-                                                    <label for="txtExpiryYear" class="field-label form-control-label">
-                                                        <span class="lable-text">Exp YY</span>
-                                                        <span class="text-danger">*</span>
-                                                    </label>
-                                                    <select id="txtExpiryYear" class="form-control field-normal cc-year"
-                                                            required="">
-                                                        <option value="0">Select Year</option>
-                                                        <option value="2022">2022</option>
-                                                        <option value="2023">2023</option>
-                                                        <option value="2024">2024</option>
-                                                        <option value="2025">2025</option>
-                                                        <option value="2026">2026</option>
-                                                        <option value="2027">2027</option>
-                                                        <option value="2028">2028</option>
-                                                        <option value="2029">2029</option>
-                                                        <option value="2030">2030</option>
-                                                        <option value="2031">2031</option>
-                                                        <option value="2032">2032</option>
-                                                    </select>
-                                                    <span class="text-warning expiry-year-validation validation"></span>
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label for="txtExpiryYear" class="field-label form-control-label">
+                                                            <span class="lable-text">Exp YY</span>
+                                                            <span class="text-danger">*</span>
+                                                        </label>
+                                                        <select id="txtExpiryYear" class="form-control field-normal cc-year"
+                                                                required="">
+                                                            <option value="0">Select Year</option>
+                                                            <option value="2022">2022</option>
+                                                            <option value="2023">2023</option>
+                                                            <option value="2024">2024</option>
+                                                            <option value="2025">2025</option>
+                                                            <option value="2026">2026</option>
+                                                            <option value="2027">2027</option>
+                                                            <option value="2028">2028</option>
+                                                            <option value="2029">2029</option>
+                                                            <option value="2030">2030</option>
+                                                            <option value="2031">2031</option>
+                                                            <option value="2032">2032</option>
+                                                        </select>
+                                                        <span class="text-warning expiry-year-validation validation"></span>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="form-group">
-                                                    <label for="txtCvc" class="field-label required-sign">
-                                                        <span class="lable-text">CVV</span>
-                                                        <span class="text-danger">*</span>
-                                                    </label>
-                                                    <input id="txtCvc" type="text"
-                                                           class="form-control field-normal format-cvv cc-cvc mask-cvv">
-                                                    <span class="text-warning cvv-validation validation"></span>
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label for="txtCvc" class="field-label required-sign">
+                                                            <span class="lable-text">CVV</span>
+                                                            <span class="text-danger">*</span>
+                                                        </label>
+                                                        <input id="txtCvc" type="text"
+                                                               class="form-control field-normal format-cvv cc-cvc mask-cvv">
+                                                        <span class="text-warning cvv-validation validation"></span>
+                                                    </div>
                                                 </div>
-                                            </div>
 
-                                            <div class="col-6">
-                                                <div class="form-group zip-code-field">
-                                                    <label class="form-control-label">ZIP Code <span
-                                                            class="required-mark">*</span></label>
-                                                    <input type="text" class="form-control zip-code-plain">
+                                                <div class="col-6">
+                                                    <div class="form-group zip-code-field">
+                                                        <label class="form-control-label">ZIP Code <span
+                                                                class="required-mark">*</span></label>
+                                                        <input type="text" class="form-control zip-code-plain">
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -617,11 +672,11 @@
 
                                             <div class="alert alert-primary alert-round-border">
 
-                                                <div class="mt-3 mb-0">
-                                                    <input type="checkbox" id="tc-2" class="tc">
+                                                <div class="mt-2 mb-0 d-flex">
+                                                    <input type="checkbox" id="tc-2" class="tc checkbox-default">
                                                     <label for="tc-2"
-                                                           style="font-size: 14px;display: inline;color: #000; font-weight: 600;">I
-                                                        I Have Read ICGC Code of Conduct. </label>
+                                                           style="font-size: 14px;color: #000; font-weight: 600;padding-left: 10px">
+                                                        I Have Read ISLA Code of Conduct </label>
                                                 </div>
                                             </div>
                                         </div>
@@ -716,634 +771,6 @@
 
 </div>
 
-
-<!-- //=== contact information htmlstring
-this div is being cloned while selecting ticket category
- -->
-<div class="contact-information-html d-none">
-    <div class="contact-information-grouped-single-copy" data-contact="1" style="position: relative">
-
-        <h3 class="text-center font-bold section-title"><span> Contact Information <p
-                style="display:inline-block;margin:0; padding-left:10px;" class="contact-number"></p></span></h3>
-
-        <div class="row mt-3">
-            <div class="col-12 col-sm-9">
-                <div class="row">
-                    <!-- first name -->
-                    <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                        <div class="form-group required-group">
-                            <label class="form-control-label">First
-                                Name <span
-                                        class="required-mark">*</span></label>
-                            <input type="text"
-                                   name="TicketHolderFirstName[]"
-                                   class="form-control first-name mask-text">
-                        </div>
-                    </div>
-
-                    <!-- last name -->
-                    <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                        <div class="form-group required-group">
-                            <label class="form-control-label">Last
-                                Name <span
-                                        class="required-mark">*</span></label>
-                            <input type="text"
-                                   name="TicketHolderLastName[]"
-                                   class="form-control last-name">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!--gender-->
-            <div class="col-12 col-sm-3">
-                <div class="form-group required-group field-validated">
-                    <label>Gender <span
-                            class="required-mark">*</span></label>
-                    <select class="form-control gender-selector"
-                            name="TicketHolderGender[]">
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                    </select>
-                </div>
-            </div>
-
-            <!--email-->
-            <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-                <div class="form-group email-field">
-                    <label class="form-control-label">Email <span
-                            class="required-mark">*</span></label>
-                    <input type="email" name="TicketHolderEmail[]"
-                           class="form-control email mask-email"
-                           data-validation="email">
-                </div>
-            </div>
-
-            <!--phone number-->
-            <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-                <div class="form-group">
-                    <label class="form-control-label">Phone Number
-                        <span class="required-mark">*</span></label>
-                    <input type="text"
-                           name="TicketHolderPhoneNumber[]"
-                           class="form-control phone-number-mask">
-                </div>
-            </div>
-
-            <!--Grade-->
-            <div class="col-12 col-sm-6 col-md-6">
-                <div class="form-group">
-                    <label class="form-control-label">School Grade
-                        <span class="required-mark">*</span></label>
-                    <select class="form-control" name="TicketHolderSchoolGrade[]">
-                        <option>-- Select Grade --</option>
-                        <option value="2nd Grade">2nd Grade</option>
-                        <option value="3rd Grade">3rd Grade</option>
-                        <option value="4th Grade">4rd Grade</option>
-                        <option value="5th Grade">5th Grade</option>
-                        <option value="6th Grade">6th Grade</option>
-                        <option value="7th Grade">7th Grade</option>
-                        <option value="8th Grade">8th Grade</option>
-                        <option value="9th Grade">9th Grade</option>
-                        <option value="10th Grade">10th Grade</option>
-                        <option value="11th Grade">11th Grade</option>
-                        <option value="12th Grade">12th Grade</option>
-                    </select>
-                </div>
-            </div>
-
-            <!--t-shirt size-->
-            <div class="col-12 col-sm-6 col-md-6">
-                <div class="form-group">
-                    <label class="form-control-label">T-Shirt Size
-                        <span class="required-mark">*</span></label>
-                    <select class="form-control" name="TshirSize[]">
-                        <option>-- Select T-shirt Size --</option>
-                        <option value="youth small">Youth Small</option>
-                        <option value="youth small">Youth Medium</option>
-                        <option value="youth large">Youth Large</option>
-                        <option value="Adult Small">Adult Small</option>
-                        <option value="Adult Medium">Adult Medium</option>
-                        <option value="Adult Large">Adult Large</option>
-                        <option value="Adult XL">Adult XL</option>
-                    </select>
-                </div>
-            </div>
-
-            <!--select group-->
-            <div class="col-12">
-                <div class="form-group">
-                    <label class="form-control-label font-600">Select Group <span class="text-danger">*</span></label>
-                    <div class="checkbox-holder checkbox-medium check-circle">
-                        <input type="radio" id="radio-group-1" class="regular-checkbox ticket-category-checkbox" name="group[]">
-                        <label for="radio-group-1"><span class="checkbox-text">Track 1 - 2nd - 7th Grade</span> </label>
-                    </div>
-
-                    <div class="checkbox-holder checkbox-medium check-circle">
-                        <input type="radio" id="radio-group-2" class="regular-checkbox ticket-category-checkbox" name="group[]">
-                        <label for="radio-group-2"> <span class="checkbox-text">Track 2 - 8th - 12th Grade</span> </label>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- select group -->
-            <div class="col-12">
-                <div class="form-group required-group">
-                    <label class="form-control-label font-600">Select Group <span class="text-danger">*</span></label>
-                    <select class="form-control" name="Group[]">
-                        <option value="0">Select Group</option>
-                        <option value="1">Track 1 - 2nd - 7th Grade</option>
-                        <option value="2">Track 2 - 8th - 12th Grade</option>
-                    </select>
-                </div>
-            </div>
-
-            <!--preorder sweater-->
-            <div class="col-12">
-                <hr>
-                <div class="static-div addon-ticket">
-                    <h4 class="mt-2">Pre-Order Youth Conference Sweat Shirt in ticket</h4>
-
-                    <!-- quantity wrap -->
-                    <div class="quantity-wrap d-flex align-items-center">
-                        <label>Quantity: </label>
-                        <div class="input-group mb-3 ml-3">
-                            <div class="input-group-prepend">
-                                <button type="button" class="input-group-text quantity-decrease">-</button>
-                            </div>
-                            <input type="number" class="form-control ticket-field" name="AddonTicket[]" value="0" data-type="addon-ticket-male" data-unitprice="20" data-name="T-shirt" data-max="8" data-min="0">
-                            <div class="input-group-append">
-                                <button type="button" class="input-group-text quantity-increase">+</button>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="static-div addon-ticket">
-                    <h4 class="mt-2">Pre-Order Youth Conference Female Sweat Shirt</h4>
-
-                    <!-- quantity wrap -->
-                    <div class="quantity-wrap d-flex align-items-center">
-                        <label>Quantity: </label>
-                        <div class="input-group mb-3 ml-3">
-                            <div class="input-group-prepend">
-                                <button type="button" class="input-group-text quantity-decrease">-</button>
-                            </div>
-                            <input type="number" class="form-control ticket-field" name="AddonTicket[]" value="0" data-type="addon-ticket-female" data-unitprice="20" data-name="Female T-shirt" data-max="8" data-min="0">
-                            <div class="input-group-append">
-                                <button type="button" class="input-group-text quantity-increase">+</button>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div>
-
-<!-- //=== full ticket htmlstring -->
-<div class="ticket-html d-none">
-    <div class="form-row form-row-ticket-individual-new">
-        <div class="form-row-head">
-            <div class="form-row-head-inner">
-                <h3 class="form-row-title">Registration <span class="text-normal text-capitalize">Ticket() #<span class="ticket-row">1</span></span></h3>
-
-                <div class="form-row-head-btn">
-                    <button type="button" class="btn btn-dark btn-collapse btn-ticket-collapse">
-                        <img src="assets/images/plus_white_24.png" class="icon-plus">
-                        <img src="assets/images/remove_white_24.png" class="icon-minus">
-                    </button>
-
-                    <button type="button" class="btn btn-default btn-collapse btn-delete-ticket-js">
-                        <i class="fa fa-trash"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <div class="form-row-body">
-            <div class="form-fields-wrapper">
-
-                <!-- //=== CONTACT INFORMATION -->
-                <div class="contact-information-wrapper b-t-1 mt-4 pt-3">
-
-                    <!-- //=== CONTACT INFORMATION -->
-                    <div class="contact-information-inner contact-information-single">
-                        <div class="contact-information-grouped-wrapper" data-grouped="1">
-                            <div class="contact-information-grouped-single" data-contact="1">
-                                <h3 class="text-center font-bold section-title"><span>Perticipant Information <p style="display:inline-block;margin:0; padding-left:10px;" class="contact-number"></p></span></h3>
-
-                                <div class="row mt-3">
-                                    <div class="col-12 col-sm-9">
-                                        <div class="row">
-                                            <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                                                <div class="form-group required-group">
-                                                    <label class="form-control-label">First Name <span class="required-mark">*</span></label>
-                                                    <input type="text" name="TicketHolderFirstName[]" class="form-control first-name mask-text">
-                                                </div>
-                                            </div>
-
-                                            <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                                                <div class="form-group required-group">
-                                                    <label class="form-control-label">Last Name <span class="required-mark">*</span></label>
-                                                    <input type="text" name="TicketHolderLastName[]" class="form-control last-name">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-sm-3">
-                                        <div class="form-group required-group field-validated">
-                                            <label>Gender <span class="required-mark">*</span></label>
-                                            <select class="form-control gender-selector" name="TicketHolderGender[]">
-                                                <option value="male">Male</option>
-                                                <option value="female">Female</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-                                        <div class="form-group email-field">
-                                            <label class="form-control-label">Email <span class="required-mark">*</span></label>
-                                            <input type="email" name="TicketHolderEmail[]" class="form-control email" data-validation="email">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-                                        <div class="form-group">
-                                            <label class="form-control-label">Phone Number <span class="required-mark">*</span></label>
-                                            <input type="text" name="TicketHolderPhoneNumber[]" class="form-control phone-number-mask">
-                                        </div>
-                                    </div>
-
-                                    <!--Grade-->
-                                    <div class="col-12 col-sm-6 col-md-6">
-                                        <div class="form-group">
-                                            <label class="form-control-label">School Grade
-                                                <span class="required-mark">*</span></label>
-                                            <select class="form-control" name="TicketHolderSchoolGrade[]">
-                                                <option>-- Select Grade --</option>
-                                                <option value="2nd Grade">2nd Grade</option>
-                                                <option value="3rd Grade">3rd Grade</option>
-                                                <option value="4th Grade">4rd Grade</option>
-                                                <option value="5th Grade">5th Grade</option>
-                                                <option value="6th Grade">6th Grade</option>
-                                                <option value="7th Grade">7th Grade</option>
-                                                <option value="8th Grade">8th Grade</option>
-                                                <option value="9th Grade">9th Grade</option>
-                                                <option value="10th Grade">10th Grade</option>
-                                                <option value="11th Grade">11th Grade</option>
-                                                <option value="12th Grade">12th Grade</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <!--t-shirt size-->
-                                    <div class="col-12 col-sm-6 col-md-6">
-                                        <div class="form-group">
-                                            <label class="form-control-label">T-Shirt Size
-                                                <span class="required-mark">*</span></label>
-                                            <select class="form-control" name="TshirSize[]">
-                                                <option>-- Select T-shirt Size --</option>
-                                                <option value="youth small">Youth Small</option>
-                                                <option value="youth small">Youth Medium</option>
-                                                <option value="youth large">Youth Large</option>
-                                                <option value="Adult Small">Adult Small</option>
-                                                <option value="Adult Medium">Adult Medium</option>
-                                                <option value="Adult Large">Adult Large</option>
-                                                <option value="Adult XL">Adult XL</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <!--select group-->
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label class="form-control-label font-600">Select Group <span class="text-danger">*</span></label>
-                                            <div class="checkbox-holder checkbox-medium check-circle">
-                                                <input type="radio" id="radio-1" class="regular-checkbox ticket-category-checkbox" name="group[]">
-                                                <label for="radio-1"><span class="checkbox-text">Track 1 - 2nd - 7th Grade</span> </label>
-                                            </div>
-
-                                            <div class="checkbox-holder checkbox-medium check-circle">
-                                                <input type="radio" id="radio-2" class="regular-checkbox ticket-category-checkbox" name="group[]">
-                                                <label for="radio-2"> <span class="checkbox-text">Track 2 - 8th - 12th Grade</span> </label>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!--preorder sweater-->
-                                    <div class="col-12">
-                                        <hr>
-                                        <div class="static-div addon-ticket">
-                                            <h4 class="mt-2">Pre-Order Youth Conference Sweat Shirt</h4>
-
-                                            <!-- quantity wrap -->
-                                            <div class="quantity-wrap d-flex align-items-center">
-                                                <label>Quantity: </label>
-                                                <div class="input-group mb-3 ml-3">
-                                                    <div class="input-group-prepend">
-                                                        <button type="button" class="input-group-text quantity-decrease">-</button>
-                                                    </div>
-                                                    <input type="number" class="form-control ticket-field" name="AddonTicket[]" value="0" data-type="addon-ticket-male" data-unitprice="20" data-name="T-shirt" data-max="8" data-min="0">
-                                                    <div class="input-group-append">
-                                                        <button type="button" class="input-group-text quantity-increase">+</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="static-div addon-ticket">
-                                            <h4 class="mt-2">Pre-Order Youth Conference Female Sweat Shirt</h4>
-
-                                            <!-- quantity wrap -->
-                                            <div class="quantity-wrap d-flex align-items-center">
-                                                <label>Quantity: </label>
-                                                <div class="input-group mb-3 ml-3">
-                                                    <div class="input-group-prepend">
-                                                        <button type="button" class="input-group-text quantity-decrease">-</button>
-                                                    </div>
-                                                    <input type="number" class="form-control ticket-field" name="AddonTicket[]" value="0" data-type="addon-ticket-female" data-unitprice="20" data-name="Female T-shirt" data-max="8" data-min="0">
-                                                    <div class="input-group-append">
-                                                        <button type="button" class="input-group-text quantity-increase">+</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="contact-information-inner contact-information-grouped">
-                        <div class="contact-information-grouped-wrapper" data-grouped="1">
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-
-            <div class="form-row-foot">
-                <div class="text-center">
-                    <a href="javascript:void(0)" class="btn btn-dark btn-add-another-js">
-                        <img src="https://res.cloudinary.com/secure-api/image/upload/v1652709692/secure-api/Common/assets/plus_circle.png" class="img-left">
-                        <span class="btn-text">Save and Add Another Ticket</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- //=== TICKET TYPE SELECT HTMLSTRING -->
-<div class="ticket-type-new d-none">
-
-    <div class="ticket-type">
-        <div class="form-group required-group m-0 p-0">
-            <h4 class="pb-2">Select Ticket Type:
-                <span class="required-mark">*</span>
-            </h4>
-            <select name="TicketCategoryKeys[]" class="form-control ticket-type-js">
-                <option data-price="0" data-group="0" value="0">Select</option>
-                <option value="eaef3835-27e6-4ab3-88c5-199cb082adc7" data-price="1" data-unitprice="1" data-group="1" data-text="Conference Registration Fee" data-description="">
-                    Conference Registration Fee ($1 )
-                </option>
-                <option value="fd4b8df7-cb86-44af-b06d-31300f8209d2" data-price="1" data-unitprice="1" data-group="1" data-text="Conference Registration Financial Assistance" data-description="">
-                    Conference Registration Financial Assistance ($1 )
-                </option>
-                <option value="e0dbc3e8-b253-488a-866e-efa4c11902d8" data-price="1" data-unitprice="1" data-group="1" data-text="Staff Registration" data-description="">
-                    Staff Registration ($1 )
-                </option>
-            </select>
-        </div>
-    </div>
-</div>
-
-<!-- //=== ADDON TICKET QUANTITY HTMLSTRING -->
-<div class="addon-ticket-quantity-wrapper d-none">
-    <div class="addon-ticket-quantity">
-        <div class="contact-information-grouped-wrapper">
-            <div class="contact-information-grouped-single" style="position: relative">
-
-                <h3 class="text-center font-bold section-title"><span> Ticket Information <p
-                        style="display:inline-block;margin:0; padding-left:10px;" class="contact-number"></p></span>
-                </h3>
-
-                <div class="row mt-3">
-                    <div class="col-sm-6">
-                        <div class="form-group required-group">
-                            <label>Ticket Quantity</label>
-                            <select class="form-control addon-ticket-quantity-field" data-price="49">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-    </div>
-</div>
-
-<!-- //=== ADDON TICKET DETAILS HTMLSTRING -->
-<div class="addon-ticket-details-wrapper d-none">
-    <div class="addon-ticket-details">
-        <div class="addon-ticket-details-head">
-            <span class="">Ticket <span class="addon-ticket-counter"></span> </span>
-
-            <span class="addon-ticket-close badge badge-danger">Delete</span>
-        </div>
-        <div class="row mt-3">
-            <div class="col-12 col-sm-9">
-                <div class="row">
-                    <!-- first name -->
-                    <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                        <div class="form-group required-group">
-                            <label class="form-control-label">First
-                                Name <span
-                                        class="required-mark">*</span></label>
-                            <input type="text"
-                                   name="TicketHolderFirstName[]"
-                                   class="form-control first-name mask-text">
-                        </div>
-                    </div>
-
-                    <!-- last name -->
-                    <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                        <div class="form-group required-group">
-                            <label class="form-control-label">Last
-                                Name <span
-                                        class="required-mark">*</span></label>
-                            <input type="text"
-                                   name="TicketHolderLastName[]"
-                                   class="form-control last-name">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!--gender-->
-            <div class="col-12 col-sm-3">
-                <div class="form-group required-group field-validated">
-                    <label>Gender <span
-                            class="required-mark">*</span></label>
-                    <select class="form-control gender-selector"
-                            name="TicketHolderGender[]">
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                    </select>
-                </div>
-            </div>
-
-            <!--email-->
-            <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-                <div class="form-group email-field">
-                    <label class="form-control-label">Email <span
-                            class="required-mark">*</span></label>
-                    <input type="email" name="TicketHolderEmail[]"
-                           class="form-control email mask-email"
-                           data-validation="email">
-                </div>
-            </div>
-
-            <!--phone number-->
-            <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-                <div class="form-group">
-                    <label class="form-control-label">Phone Number
-                        <span class="required-mark">*</span></label>
-                    <input type="text"
-                           name="TicketHolderPhoneNumber[]"
-                           class="form-control phone-number-mask">
-                </div>
-            </div>
-
-            <!--t-shirt size-->
-            <div class="col-12 col-sm-6 col-md-6">
-                <div class="form-group">
-                    <label class="form-control-label">T-Shirt Size
-                        <span class="required-mark">*</span></label>
-                    <select class="form-control" name="TshirSize[]">
-                        <option>-- Select T-shirt Size --</option>
-                        <option value="youth small">Youth Small</option>
-                        <option value="youth small">Youth Medium</option>
-                        <option value="youth large">Youth Large</option>
-                        <option value="Adult Small">Adult Small</option>
-                        <option value="Adult Medium">Adult Medium</option>
-                        <option value="Adult Large">Adult Large</option>
-                        <option value="Adult XL">Adult XL</option>
-                    </select>
-                </div>
-            </div>
-
-            <!--preorder sweater-->
-            <div class="col-12">
-                <hr>
-                <div class="static-div addon-ticket">
-                    <h4 class="mt-2">Pre-Order Youth Conference Sweat Shirt</h4>
-
-                    <!-- quantity wrap -->
-                    <div class="quantity-wrap d-flex align-items-center">
-                        <label>Quantity: </label>
-                        <div class="input-group mb-3 ml-3">
-                            <div class="input-group-prepend">
-                                <button type="button" class="input-group-text quantity-decrease">-</button>
-                            </div>
-                            <input type="number" class="form-control ticket-field" name="AddonTicket[]" value="0" data-type="addon-ticket-male" data-unitprice="20" data-name="T-shirt" data-max="8" data-min="0">
-                            <div class="input-group-append">
-                                <button type="button" class="input-group-text quantity-increase">+</button>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="static-div addon-ticket">
-                    <h4 class="mt-2">Pre-Order Youth Conference Female Sweat Shirt</h4>
-
-                    <!-- quantity wrap -->
-                    <div class="quantity-wrap d-flex align-items-center">
-                        <label>Quantity: </label>
-                        <div class="input-group mb-3 ml-3">
-                            <div class="input-group-prepend">
-                                <button type="button" class="input-group-text quantity-decrease">-</button>
-                            </div>
-                            <input type="number" class="form-control ticket-field" name="AddonTicket[]" value="0" data-type="addon-ticket-female" data-unitprice="20" data-name="Female T-shirt" data-max="8" data-min="0">
-                            <div class="input-group-append">
-                                <button type="button" class="input-group-text quantity-increase">+</button>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div>
-
-
-<!-- //=== CSRL TICKET WRAPPOER HTMLSTRING -->
-<div class="csrl-html-wrapper d-none">
-    <div class="event-single">
-        <div class="alert alert-info">
-            <h3 class="pb-3">Community Service Recognition Luncheon (CSRL)</h3>
-            <!--<p class="tag bg-danger text-white">Closed</p>-->
-            <div class="row">
-                <div class="col-6 col-sm-4">
-                    <div class="form-group">
-                        <label>Quantity</label>
-                        <select class="form-control" name="csrl[]">
-                            <option value="0">0</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div>
-
-<!-- //=== CSRL PRICE ROW HTMLSTRING -->
-<div class="csrl-price-html-wrapper d-none">
-    <table>
-        <tr class='price-row csrl-price'>
-            <td class="tr-ticket-text">
-                <span class="row-number">1.</span>
-                <span class="row-text">CSRL</span>
-                <span> X </span>
-                <span class="row-quantity">1</span>
-            </td>
-
-            <th>
-                <span class="">
-                    <span class="currency">$</span>
-                    <span class="amount"></span>
-                </span>
-            </th>
-        </tr>
-    </table>
-
-</div>
 
 <!-- //=== TICKET HTML -->
 <div class="ticket-html-wrapper ticket-html-wrapper-js d-none">
@@ -1456,8 +883,24 @@ this div is being cloned while selecting ticket category
 
         </div>
 
-        <a href="javascript:void(0)" class="add-more-attendee add-more-attendee-js" style="border-bottom:2px solid;text-decoration: none;position: relative;top:-15px;">Add More Attendee </a>
+        <a href="javascript:void(0)" class="add-more-attendee add-more-attendee-js" style="border-bottom:2px solid;text-decoration: none;position: relative;top:-8px;">Add More Attendee </a>
     </div>
+</div>
+
+<!-- //=== UPDATE TICKET INFORMATION MESSAGE HTNL -->
+<div class="update-ticket-information-warning-html-js d-none">
+    <div class="update-ticket-information-wrapper">
+        <a href="javascript:void(0)" class="update-ticket-information-js">Reset Ticket Information</a>
+        <p class="m-0 mt-2 text-danger">Note: After clicking update ticket information all the forms data will be erased.</p>
+    </div>
+</div>
+
+<!-- //=== REMOVE BUTTON HTML -->
+<div class="remove-btn-wrapper-html d-none">
+    <button type="button" class="btn-remove btn-remove-js" data-remove="">
+        Remove
+        <img src="assets/images/trash.png" alt="remove">
+    </button>
 </div>
 
 <!-- //=== HIDDEN FIELDS FOR RECEIPT -->
@@ -1480,7 +923,7 @@ this div is being cloned while selecting ticket category
 <script src="assets/plugins/card_validation.js"></script>
 <script src="assets/plugins/input_mask/jquery.inputmask.min.js"></script>
 <!--<script src="assets/js/custom.js?v=1.2.1"></script>-->
-<script src="assets/js/live/event_multiple/quantity-wise-ticket/custom.js?1.0.0"></script>
+<script src="assets/js/live/event_multiple/quantity-wise-ticket/custom.js?1.0.1"></script>
 
 <script>
     function registrationConfirmation() {
