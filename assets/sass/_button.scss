@@ -149,6 +149,64 @@
     opacity: 0.4;
   }
 
+  &-action{
+    color:$black;
+    background-color: transparent;
+    text-transform: unset;
+    border: 1px solid $black_border;
+    border-radius: 0.3rem;
+    padding: 8px 15px;
+    line-height: 1.2;
+    cursor: pointer;
+    text-decoration: none;
+
+    svg{
+      path{
+        stroke:$black;
+      }
+    }
+
+    &:hover{
+      border-color:$black;
+      background-color: $black_hover_bg;
+      text-decoration: none;
+      color:$black;
+    }
+
+    &-danger{
+      border-color:$red_border;
+      color:$red_primary;
+
+      svg{
+        path{
+          stroke: $red_primary;
+        }
+      }
+      &:hover{
+        background-color: $red_hover_bg;
+        border-color:$red_primary;
+        color:$red_primary;
+      }
+    }
+
+    &-primary{
+      border-color:$blue_border;
+      color:$blue_primary;
+
+      svg{
+        path{
+          stroke: $blue_primary;
+        }
+      }
+
+      &:hover, &:focus{
+        background-color: #6496db1f;
+        border-color:$blue_primary;
+        color:$blue_primary;
+      }
+    }
+  }
+
   &-remove{
     color:#dc3545;
     background-color: transparent;

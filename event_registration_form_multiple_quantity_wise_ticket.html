@@ -233,6 +233,10 @@
 
                                         </div>
 
+                                        <div class="ticket-hidden-field-wrapper">
+
+                                        </div>
+
                                         <div class="form-row-foot ticket-info-foot-js ticket-info-foot" data-error-message="Please select at least a ticket and press continue button to fill up ticket information.">
                                             <div class="row justify-content-center">
                                                 <div class="col-md-9">
@@ -260,7 +264,7 @@
 
 
                             <!-- ===== BILLING INFORMATION ==== -->
-                            <div class="form-row billing-information-wrapper mt-4">
+                            <div class="form-row billing-information-wrapper billing-information-wrapper-js mt-4 d-none">
 
                                 <div class="form-row-head">
                                     <div class="form-row-head-inner">
@@ -883,23 +887,47 @@
 
         </div>
 
-        <a href="javascript:void(0)" class="add-more-attendee add-more-attendee-js" style="border-bottom:2px solid;text-decoration: none;position: relative;top:-8px;">Add More Attendee </a>
+        <button class="btn-action btn-action-primary add-more-attendee-js d-inline-flex align-items-center mt-3">
+            <span class="pr-1">Add More Attendee</span>
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 fill="#000000"
+                 width="20px"
+                 height="20px"
+                 viewBox="0 0 24 24"
+                 id="plus"
+                 data-name="Flat Line"
+                 class="icon flat-line icon-plus">
+                <path id="primary" d="M5,12H19M12,5V19"
+                      style="fill: none;stroke-linecap: round;stroke-linejoin: round;stroke-width: 2;"/>
+            </svg>
+        </button>
     </div>
 </div>
 
 <!-- //=== UPDATE TICKET INFORMATION MESSAGE HTNL -->
 <div class="update-ticket-information-warning-html-js d-none">
     <div class="update-ticket-information-wrapper">
-        <a href="javascript:void(0)" class="update-ticket-information-js">Reset Ticket Information</a>
+        <a href="javascript:void(0)" class="btn-action btn-action-primary mt-2 update-ticket-information-js d-inline-flex align-items-center">
+            <span class="pr-1">Update Ticket Information</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="20px" height="20px"><path d="M 25 5 C 13.964844 5 5 13.964844 5 25 C 4.996094 25.359375 5.183594 25.695313 5.496094 25.878906 C 5.808594 26.058594 6.191406 26.058594 6.503906 25.878906 C 6.816406 25.695313 7.003906 25.359375 7 25 C 7 15.046875 15.046875 7 25 7 C 31.246094 7 36.726563 10.179688 39.957031 15 L 33 15 C 32.640625 14.996094 32.304688 15.183594 32.121094 15.496094 C 31.941406 15.808594 31.941406 16.191406 32.121094 16.503906 C 32.304688 16.816406 32.640625 17.003906 33 17 L 43 17 L 43 7 C 43.003906 6.730469 42.898438 6.46875 42.707031 6.277344 C 42.515625 6.085938 42.253906 5.980469 41.984375 5.984375 C 41.433594 5.996094 40.992188 6.449219 41 7 L 41 13.011719 C 37.347656 8.148438 31.539063 5 25 5 Z M 43.984375 23.984375 C 43.433594 23.996094 42.992188 24.449219 43 25 C 43 34.953125 34.953125 43 25 43 C 18.753906 43 13.269531 39.820313 10.042969 35 L 17 35 C 17.359375 35.007813 17.695313 34.816406 17.878906 34.507813 C 18.058594 34.195313 18.058594 33.808594 17.878906 33.496094 C 17.695313 33.1875 17.359375 32.996094 17 33 L 8.445313 33 C 8.316406 32.976563 8.1875 32.976563 8.058594 33 L 7 33 L 7 43 C 6.996094 43.359375 7.183594 43.695313 7.496094 43.878906 C 7.808594 44.058594 8.191406 44.058594 8.503906 43.878906 C 8.816406 43.695313 9.003906 43.359375 9 43 L 9 36.984375 C 12.648438 41.847656 18.460938 45 25 45 C 36.035156 45 45 36.035156 45 25 C 45.003906 24.730469 44.898438 24.46875 44.707031 24.277344 C 44.515625 24.085938 44.253906 23.980469 43.984375 23.984375 Z"/></svg>
+        </a>
         <p class="m-0 mt-2 text-danger">Note: After clicking update ticket information all the forms data will be erased.</p>
     </div>
 </div>
 
 <!-- //=== REMOVE BUTTON HTML -->
 <div class="remove-btn-wrapper-html d-none">
-    <button type="button" class="btn-remove btn-remove-js" data-remove="">
-        Remove
-        <img src="assets/images/trash.png" alt="remove">
+    <button class="btn-action btn-action-danger btn-remove-js d-inline-flex align-items-center">
+        <span class="pr-1">Remove</span>
+        <svg xmlns="http://www.w3.org/2000/svg"
+             width="20px"
+             height="20px"
+             viewBox="0 0 24 24"
+             fill="none">
+            <g id="Interface / Trash_Full">
+                <path id="Vector" d="M14 10V17M10 10V17M6 6V17.8C6 18.9201 6 19.4798 6.21799 19.9076C6.40973 20.2839 6.71547 20.5905 7.0918 20.7822C7.5192 21 8.07899 21 9.19691 21H14.8031C15.921 21 16.48 21 16.9074 20.7822C17.2837 20.5905 17.5905 20.2839 17.7822 19.9076C18 19.4802 18 18.921 18 17.8031V6M6 6H8M6 6H4M8 6H16M8 6C8 5.06812 8 4.60241 8.15224 4.23486C8.35523 3.74481 8.74432 3.35523 9.23438 3.15224C9.60192 3 10.0681 3 11 3H13C13.9319 3 14.3978 3 14.7654 3.15224C15.2554 3.35523 15.6447 3.74481 15.8477 4.23486C15.9999 4.6024 16 5.06812 16 6M16 6H18M18 6H20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+        </svg>
     </button>
 </div>
 
