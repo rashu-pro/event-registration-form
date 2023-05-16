@@ -614,6 +614,13 @@
   border: 1px solid #8B8B8B;
   border-radius: 5px;
 }
+.form-control.street-address-pin {
+  position: relative;
+  background-image: url(https://res.cloudinary.com/secure-api/image/upload/v1683720094/secure-api/Secure-api/images/mjomeg9bme4yuh2tlr5q.png);
+  background-repeat: no-repeat;
+  background-position: 98% 10px;
+  background-size: auto;
+}
 .form-control.invalid, .form-control.field-invalid {
   border-color: #dc3545;
 }
@@ -2719,7 +2726,7 @@ h4 {
   background: transparent;
 }
 .checkbox-default:checked {
-  background-image: url(../images/check-icon.svg);
+  background-image: url(/Content/event-management-assets/individual-multiple-assets/images/check-icon.svg);
   background-color: #2563eb;
   border-color: #2563eb;
   outline: 2px solid #2563eb;

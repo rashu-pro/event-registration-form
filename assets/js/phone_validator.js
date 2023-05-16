@@ -11,8 +11,8 @@ const userIpCookieName = "userCountry";
 if(phoneNumberSelectors.length>0){
     phoneNumberValidator(phoneNumberSelectors, phoneNumberWrapperSelectorName, alertMessageSelectorName);
     //=== loading utils.js script and then giving country list div a custom width
-    window.intlTelInputGlobals.loadUtils("assets/plugins/intl-tel-input/js/utils.js").then(function () {
-        console.log('util.js loaded!');
+    window.intlTelInputGlobals.loadUtils("/Content/common-plugins/intl-tel-input/js/utils.js").then(function () {
+        console.log('utils.js loaded!');
     });
 }
 
@@ -33,6 +33,9 @@ function phoneNumberValidator(phoneNumberSelectors, phoneNumberWrapperSelectorNa
         let iti = window.intlTelInput(phoneNumber, {
             allowDropdown: true,
             initialCountry: "auto",
+          customPlaceholder: function (selectedCountryPlaceholder, selectedCountryData) {
+            return phoneNumber.getAttribute('placeholder')?phoneNumber.getAttribute('placeholder'):'';
+          },
             geoIpLookup: function(success, failure) {
                 let countryCode = 'US';
                 if(getCookie(userIpCookieName)){
@@ -141,7 +144,7 @@ function errorHandling(iti, phoneNumber, phoneNumberWrapperSelectorName, alertMe
 
     if(showErrorMessage){
         let alertTag = document.createElement('p');
-        let classToadd = ['font-600', alertClass, 'error-message'];
+        let classToadd = [alertClass, 'error-message'];
         let classToRemove = ['valid', 'invalid', 'empty-field'];
         alertTag.classList.add(...classToadd);
         phoneNumber.classList.remove(...classToRemove);

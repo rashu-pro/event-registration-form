@@ -113,6 +113,14 @@
     border: 1px solid #8B8B8B;
     border-radius: 5px;
 
+    &.street-address-pin {
+      position: relative;
+      background-image: url(https://res.cloudinary.com/secure-api/image/upload/v1683720094/secure-api/Secure-api/images/mjomeg9bme4yuh2tlr5q.png);
+      background-repeat: no-repeat;
+      background-position: 98% 10px;
+      background-size: auto;
+    }
+
     &.invalid, &.field-invalid{
       border-color:#dc3545;
     }

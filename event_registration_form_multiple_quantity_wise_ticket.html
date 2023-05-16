@@ -13,6 +13,7 @@
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
           integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/> -->
+    <link rel="stylesheet" href="assets/plugins/intl-tel-input/build/css/intlTelInput.min.css">
     <link rel="stylesheet" href="assets/css/style.css?v=1.2.5">
 
 </head>
@@ -320,87 +321,69 @@
                                                                name="TicketHolderPhoneNumber[]"
                                                                class="form-control phone-number-mask">
                                                     </div>
-                                                </div>
 
-                                                <!--country-->
-                                                <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                    <div class="form-group required-group">
-                                                        <label class="form-control-label">Country <span
-                                                                class="required-mark">*</span></label>
-                                                        <select name="Country" class="form-control country">
-                                                            <option value="0">Select Country</option>
-                                                            <option value="USA">USA</option>
-                                                            <option value="Canada">Canada</option>
-
-                                                        </select>
+                                                    <div class="form-group phone-number-validator-wrapper">
+                                                        <label for="phone-number-spouse-personal">Phone Number (Personal) </label>
+                                                        <input type="text" class="form-control phone-number-validator input-phone-number"
+                                                               id="phone-number-spouse-personal" name="SpousePhonePersonal">
+                                                        <input type="hidden" class="phone-number-hidden" name="PhoneNumberPersonal">
                                                     </div>
                                                 </div>
 
-                                                <!--state-->
-                                                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                                                    <div class="form-group required-group state-field-group">
-                                                        <label class="form-control-label">State <span
-                                                                class="required-mark">*</span></label>
-                                                        <div class="state-holder"><select class="form-control state"
-                                                                                          name="State">
-                                                            <option value="0">Select a State</option>
-                                                            <option value="Alberta">Alberta</option>
-                                                            <option value="British Columbia">British Columbia</option>
-                                                            <option value="Manitoba">Manitoba</option>
-                                                            <option value="New Brunswick">New Brunswick</option>
-                                                            <option value="Newfoundland and Labrador">Newfoundland and
-                                                                Labrador
-                                                            </option>
-                                                            <option value="Northwest Territories">Northwest
-                                                                Territories
-                                                            </option>
-                                                            <option value="Nova Scotia">Nova Scotia</option>
-                                                            <option value="Nunavut">Nunavut</option>
-                                                            <option value="Ontario">Ontario</option>
-                                                            <option value="Prince Edward Island">Prince Edward Island
-                                                            </option>
-                                                            <option value="Quebec">Quebec</option>
-                                                            <option value="Saskatchewan">Saskatchewan</option>
-                                                            <option value="Yukon">Yukon</option>
-                                                        </select></div>
+                                                <!-- ADDRESS AUTOCOMPLETE BLOCK -->
+                                                <div class="col-md-12">
+                                                    <div class="address-autocomplete-block-js">
+                                                        <div class="row">
+                                                            <!--address-->
+                                                            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                                                <div class="form-group required-group">
+                                                                    <label class="form-control-label">Street Address <span
+                                                                            class="required-mark">*</span></label>
+                                                                    <input name="AddressLine1" type="text"
+                                                                           class="form-control street-address-pin street-address-js">
+                                                                </div>
+                                                            </div>
+
+                                                            <!--country-->
+                                                            <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+                                                                <div class="form-group required-group">
+                                                                    <label class="form-control-label">Country <span
+                                                                            class="required-mark">*</span></label>
+                                                                    <input name="Country" class="form-control input-country-js" >
+                                                                </div>
+                                                            </div>
+
+                                                            <!--state-->
+                                                            <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                                                <div class="form-group required-group state-field-group">
+                                                                    <label class="form-control-label">State <span
+                                                                            class="required-mark">*</span></label>
+                                                                    <input class="form-control input-state-js"
+                                                                           name="State">
+                                                                </div>
+                                                            </div>
+
+                                                            <!--city-->
+                                                            <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                                                <div class="form-group required-group">
+                                                                    <label class="form-control-label">City <span
+                                                                            class="required-mark">*</span></label>
+                                                                    <input name="City" type="text" class="form-control input-city-js">
+                                                                </div>
+                                                            </div>
+
+                                                            <!--zipcode-->
+                                                            <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                                                <div class="form-group required-group zip-code-field">
+                                                                    <label class="form-control-label">ZIP Code <span
+                                                                            class="required-mark">*</span></label>
+                                                                    <input name="ZipCode" type="text" class="form-control input-postal-code-js zip-code">
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
 
-                                                <!--city-->
-                                                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                                                    <div class="form-group required-group">
-                                                        <label class="form-control-label">City <span
-                                                                class="required-mark">*</span></label>
-                                                        <input name="City" type="text" class="form-control city">
-                                                    </div>
-                                                </div>
-
-                                                <!--zipcode-->
-                                                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                                                    <div class="form-group required-group zip-code-field">
-                                                        <label class="form-control-label">ZIP Code <span
-                                                                class="required-mark">*</span></label>
-                                                        <input name="ZipCode" type="text" class="form-control zip-code">
-                                                    </div>
-                                                </div>
-
-                                                <!--address-->
-                                                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                                                    <div class="form-group required-group">
-                                                        <label class="form-control-label">Street Address <span
-                                                                class="required-mark">*</span></label>
-                                                        <input name="AddressLine1" type="text"
-                                                               class="form-control address">
-                                                    </div>
-                                                </div>
-
-                                                <!--address line 2-->
-                                                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                                                    <div class="form-group">
-                                                        <label class="form-control-label">Address Line 2 </label>
-                                                        <input name="AddressLine2" type="text" class="form-control">
-                                                    </div>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -950,8 +933,11 @@
 
 <script src="assets/plugins/card_validation.js"></script>
 <script src="assets/plugins/input_mask/jquery.inputmask.min.js"></script>
+<!-- google map api -->
+<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRIIew-eQp2QjI5mRLFOE-qoUnl-qKC38&libraries=places&callback=initMap"></script>
+
 <!--<script src="assets/js/custom.js?v=1.2.1"></script>-->
-<script src="assets/js/live/event_multiple/quantity-wise-ticket/custom.js?1.0.2"></script>
+<script src="assets/js/live/event_multiple/quantity-wise-ticket/custom.js?v=1.0.2"></script>
 
 <script>
     function registrationConfirmation() {
