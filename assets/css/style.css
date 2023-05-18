@@ -2186,6 +2186,9 @@ h4 {
 .contact-information-grouped-wrapper {
   margin-bottom: 20px;
 }
+.contact-information-grouped-wrapper .contact-information-grouped-single:not(:last-child) .add-more-attendee {
+  margin-bottom: 20px;
+}
 .contact-information-grouped-wrapper .contact-information-grouped-single:last-child {
   border-bottom: 0;
   margin-bottom: 0;
@@ -2437,7 +2440,7 @@ h4 {
   display: none;
 }
 .form-row.ticket-pack .add-more-attendee {
-  display: inline-block;
+  display: inline-flex;
 }
 
 .bill-me-later-wrapper {

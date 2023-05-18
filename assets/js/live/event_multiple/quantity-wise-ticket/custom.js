@@ -866,7 +866,13 @@ function calculateTotal() {
     let totalPrice = 0,
         sidebarPriceRow = $('.sidebar-block .price-row'),
         sidebarTicketPriceRow = $('.sidebar-block .ticket-price-row'),
-        ticketCount = sidebarTicketPriceRow.length;
+      processingFees = 0;
+
+    let ticketCount = 0;
+    $('.cart-table-js .ticket-quantity-js').each(function (i, element){
+        if(!$(element).val()) return;
+        ticketCount += parseInt($(element).val());
+    })
 
     sidebarPriceRow.each(function (i, obj) {
         totalPrice = totalPrice + parseInt($(obj).find('.amount').text());
@@ -874,17 +880,19 @@ function calculateTotal() {
 
     $('.ticket-summary-table .total-price .amount').html(totalPrice);
 
+    $('.processing-fees-tr-js').hide();
+    $('.processing-fees-tr-js .amount').html(processingFees);
     if(totalPrice>0){
-        let processingFees = calculateProcessingFees(totalPrice);
+        processingFees = calculateProcessingFees(totalPrice);
         $('.processing-fees-tr-js').show();
         $('.processing-fees-tr-js .amount').html(processingFees);
     }
 
-
-    $('.billing-information-wrapper .price-note .ticket-count').html(ticketCount);
-    $('.billing-information-wrapper .price-note .total-price').html(totalPrice);
     showPaymentForm(totalPrice);
-    calculateGrandTotal();
+    let grandTotal = calculateGrandTotal();
+    $('.billing-information-wrapper .price-note .ticket-count').html(ticketCount);
+    $('.billing-information-wrapper .price-note .total-price').html(grandTotal);
+
     return totalPrice;
 }
 
@@ -907,6 +915,7 @@ function calculateGrandTotal() {
     }else{
         $('#payment-information').show();
     }
+    return grandTotalPrice;
 
     
 }
@@ -1396,6 +1405,11 @@ $(document).on('click', '.update-ticket-information-js', function (e){
 
     $('.ticket-wrapper-js').empty();
     goToTheSection('.ticket-information-js');
+    addTicketSummaryAndCalculateTotalPrice();
+    setTimeout(function (){
+        calculateTotal();
+    },600)
+
 })
 
 $(document).on('change', '#bill-later', function (){
