@@ -874,19 +874,27 @@ function calculateTotal() {
 
     $('.ticket-summary-table .total-price .amount').html(totalPrice);
 
+    if(totalPrice>0){
+        let processingFees = calculateProcessingFees(totalPrice);
+        $('.processing-fees-tr-js').show();
+        $('.processing-fees-tr-js .amount').html(processingFees);
+    }
+
+
     $('.billing-information-wrapper .price-note .ticket-count').html(ticketCount);
     $('.billing-information-wrapper .price-note .total-price').html(totalPrice);
-    console.log('total price: ' + totalPrice);
     showPaymentForm(totalPrice);
     calculateGrandTotal();
+    return totalPrice;
 }
 
 
 function calculateGrandTotal() {
     let totalPrice = parseInt($('.ticket-summary-table .total-price .amount').html()),
-        voucherPrice = parseInt($('.ticket-summary-table .voucher-price .amount').html()),
-        grandTotalPrice = totalPrice - voucherPrice;
-
+      processingFees = parseFloat($('.processing-fees-tr-js .amount').text()),
+      voucherPrice = parseInt($('.ticket-summary-table .voucher-price .amount').html());
+    // processingFees = processingFees.toFixed(2);
+      let grandTotalPrice = (totalPrice + processingFees) - voucherPrice;
 
     //changed by Emdad
     //Update total price hidden field
@@ -1298,7 +1306,10 @@ $(document).on('click', '.btn-generate-ticket-js', function (e){
         //== GENERATES TICKET
         $(ticketQuantitySelector).each(function (i, element){
             let quantity = parseInt($(element).val());
-            if(!quantity) return;
+            if(!quantity){
+                $(element).closest('.table-row').find('.ticket-category-key').remove();
+                return;
+            }
 
             let ticketText = $(element).closest('.table-row').find('.ticket-name-js').attr('data-name');
             let price = parseInt($(element).val()) * parseInt($(element).closest('.table-row').find('.per-price .amount').text());
@@ -1307,11 +1318,13 @@ $(document).on('click', '.btn-generate-ticket-js', function (e){
                                                 <p class="mb-1">${ticketText}</p>
                                                 <p class="mb-2">$<span class="amount">${$(element).closest('.table-row').find('.per-price .amount').text()}</span> X <span class="quantity">${quantity}</span> = <strong>$<span class="subtotal">${price}</span></strong></p>
                                             </div>`;
+            let ticketCategoryKey = $(element).closest('.table-row').find('.ticket-category-key').val();
             $('.ticket-summary-js').append(ticketSummaryRow);
 
 
             $('.ticket-wrapper-js').append($('.ticket-html-wrapper-js .form-row-js').clone());
             $('.ticket-wrapper-js .form-row-js').last().attr('data-row', i);
+            $('.ticket-wrapper-js .form-row-js').last().attr('data-key', ticketCategoryKey);
             $('.ticket-wrapper-js .form-row-js').last().attr('data-limit', $(element).attr('data-limit'));
             $('.ticket-wrapper-js .form-row-js').last().find('.ticket-row-title-js').html(ticketText);
             if(parseInt($(element).attr('data-limit'))<2){
@@ -1319,6 +1332,10 @@ $(document).on('click', '.btn-generate-ticket-js', function (e){
             }
             for(let j=1; j<=quantity; j++){
                 $('.ticket-wrapper-js .form-row-js[data-row='+i+'] .single-ticket-wrapper-js').append($('.single-ticket-html-js .single-ticket-js').clone());
+                $('.ticket-wrapper-js .form-row-js[data-row='+i+'] .single-ticket-wrapper-js .single-ticket-js .ticket-category-key').val(ticketCategoryKey);
+                // $('.ticket-wrapper-js .form-row-js[data-row='+i+'] .single-ticket-wrapper-js .single-ticket-js .attendee-wrapper').last().find('.form-group').removeClass('field-validated');
+                // $('.ticket-wrapper-js .form-row-js[data-row='+i+'] .single-ticket-wrapper-js .single-ticket-js .attendee-wrapper').last().find('.form-group').removeClass('field-invalid');
+                // $('.ticket-wrapper-js .form-row-js[data-row='+i+'] .single-ticket-wrapper-js .single-ticket-js .attendee-wrapper').last().find('.error-message').remove();
             }
             $('.ticket-wrapper-js .form-row-js[data-row='+i+'] .ticket-count-js').html(quantity);
             updateAttendeeNumber(i);
@@ -1340,6 +1357,9 @@ $(document).on('click', '.add-more-attendee-js', function (e){
     let dataLimit = self.closest('.form-row-js').attr('data-limit');
 
     let clonedDiv = self.closest('.single-ticket-js').find('.attendee-wrapper-box-js .attendee-wrapper').last().clone();
+    clonedDiv.find('.form-group').removeClass('field-validated');
+    clonedDiv.find('.form-group').removeClass('field-invalid');
+    clonedDiv.find('.error-message').remove();
     let removeBtn = $('.remove-btn-wrapper-html .btn-remove-js').clone();
     removeBtn.attr('data-remove', '.attendee-wrapper');
     clonedDiv.find('.form-control').val('');
@@ -1496,6 +1516,19 @@ function addTicketSummaryAndCalculateTotalPrice() {
      **/
 
     calculateTotal();
+}
+
+/**
+ * Calculates the processing fees of the transaction
+ * @param totalPrice
+ * @returns {string}
+ */
+function calculateProcessingFees(totalPrice) {
+    let rate = 0.022;  // 2.2% expressed as a decimal
+    let fixedFee = 0.30;  // $0.30
+
+    let processingFees = totalPrice * rate + fixedFee;
+    return processingFees.toFixed(2);  // Rounded to 2 decimal places
 }
 
 /**

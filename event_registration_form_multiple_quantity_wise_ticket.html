@@ -121,6 +121,8 @@
                                                         <div class="col-md-5">
                                                             <p class="m-0 ticket-name-js" data-name="Non-member School Access">Non-member School Access</p>
                                                             <p class="m-0 text-info" style="font-size: 14px">Upto 10 attendee per tickets</p>
+
+                                                            <input type="hidden" name="TicketCategoryKeys[]" class="ticket-category-key" value="3cfa31f6-61f7-409e-b5d5-f0044708050d">
                                                         </div>
 
                                                         <div class="col-md-2">
@@ -158,6 +160,7 @@
                                                         <div class="col-md-5">
                                                             <p class="m-0 ticket-name-js" data-name="Member School Access">Member School Access</p>
                                                             <p class="m-0 text-info" style="font-size: 14px">Upto 10 attendee per tickets</p>
+                                                            <input type="hidden" name="TicketCategoryKeys[]" class="ticket-category-key" value="3cfa31f6-61f7-409e-b5d5-f004470805eee">
                                                         </div>
 
                                                         <div class="col-md-2">
@@ -195,6 +198,8 @@
                                                     <div class="row align-items-center">
                                                         <div class="col-md-5">
                                                             <p class="m-0 ticket-name-js" data-name="Individual Ticket">Individual Ticket</p>
+
+                                                            <input type="hidden" name="TicketCategoryKeys[]" class="ticket-category-key" value="3cfa31f6-61f7-409e-b5d5-f004470805zzz">
                                                         </div>
 
                                                         <div class="col-md-2">
@@ -463,6 +468,19 @@
                                                     <td>Subtotal</td>
                                                     <th>
                                                         <span class="subtotal-price total-price">
+                                                            <span class="currency">$</span>
+                                                            <span class="amount">0</span>
+                                                        </span>
+                                                    </th>
+                                                </tr>
+
+                                                <tr class="bg-grey processing-fees-tr processing-fees-tr-js" style="background: #f4f3f3;vertical-align: middle;display: none">
+                                                    <td style="vertical-align: middle">
+                                                        <p class="m-0" style="font-size:16px;">Processing Fees </p>
+                                                        <p class="m-0 text-info" style="font-size:14px;font-weight: 400">Rate: 2.2% + 30cents</p>
+                                                    </td>
+                                                    <th style="vertical-align: middle">
+                                                        <span class="processing-price">
                                                             <span class="currency">$</span>
                                                             <span class="amount">0</span>
                                                         </span>
@@ -865,6 +883,8 @@
                         </div>
                     </div>
 
+                    <input type="hidden" name="TicketCategoryKeys[]" class="ticket-category-key" value="3cfa31f6-61f7-409e-b5d5-f0044708050d">
+
                 </div>
             </div>
 
@@ -933,11 +953,11 @@
 
 <script src="assets/plugins/card_validation.js"></script>
 <script src="assets/plugins/input_mask/jquery.inputmask.min.js"></script>
-<!-- google map api -->
-<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRIIew-eQp2QjI5mRLFOE-qoUnl-qKC38&libraries=places&callback=initMap"></script>
 
 <!--<script src="assets/js/custom.js?v=1.2.1"></script>-->
-<script src="assets/js/live/event_multiple/quantity-wise-ticket/custom.js?v=1.0.2"></script>
+<script src="assets/js/live/event_multiple/quantity-wise-ticket/custom.js?v=1.0.3"></script>
+<!-- google map api -->
+<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRIIew-eQp2QjI5mRLFOE-qoUnl-qKC38&libraries=places&callback=initMap"></script>
 
 <script>
     function registrationConfirmation() {
