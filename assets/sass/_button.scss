@@ -7,6 +7,14 @@
   text-transform: uppercase;
   font-weight:500;
 
+  &-md{
+    padding:6px 10px 9px;
+    border-radius: 0.3rem;
+    img{
+      max-height: 13px;
+    }
+  }
+
   .img-left{
     margin-right:5px;
   }
@@ -24,10 +32,6 @@
     padding:18px 30px;
     font-size: 18px;
 
-    .img-left{
-      margin-right:10px;
-    }
-
     img{
       max-height: 24px;
       margin-right: 3px;
@@ -36,6 +40,19 @@
       &.h-20{
         max-height: 18px;
       }
+    }
+
+    &-md{
+      padding:8px 15px 12px;
+      border-radius: 0.3rem;
+      font-size: 16px;
+      img{
+        max-height: 13px;
+      }
+    }
+
+    .img-left{
+      margin-right:10px;
     }
   }
 
@@ -109,7 +126,7 @@
     @media (min-width: 768px) {
       padding:18px 30px;
       font-size: 18px;
-      min-width: none;
+      min-width: auto;
     }
   }
 
@@ -155,7 +172,7 @@
     text-transform: unset;
     border: 1px solid $black_border;
     border-radius: 0.3rem;
-    padding: 8px 15px;
+    padding: 6px 8px;
     line-height: 1.2;
     cursor: pointer;
     text-decoration: none;
@@ -204,6 +221,10 @@
         border-color:$blue_primary;
         color:$blue_primary;
       }
+    }
+
+    @media (min-width: 768px){
+      padding: 8px 15px;
     }
   }
 

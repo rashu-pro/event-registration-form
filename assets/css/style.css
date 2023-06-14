@@ -234,6 +234,13 @@
   text-transform: uppercase;
   font-weight: 500;
 }
+.btn-md {
+  padding: 6px 10px 9px;
+  border-radius: 0.3rem;
+}
+.btn-md img {
+  max-height: 13px;
+}
 .btn .img-left {
   margin-right: 5px;
 }
@@ -249,9 +256,6 @@
     padding: 18px 30px;
     font-size: 18px;
   }
-  .btn .img-left {
-    margin-right: 10px;
-  }
   .btn img {
     max-height: 24px;
     margin-right: 3px;
@@ -260,6 +264,17 @@
   }
   .btn img.h-20 {
     max-height: 18px;
+  }
+  .btn-md {
+    padding: 8px 15px 12px;
+    border-radius: 0.3rem;
+    font-size: 16px;
+  }
+  .btn-md img {
+    max-height: 13px;
+  }
+  .btn .img-left {
+    margin-right: 10px;
   }
 }
 .btn-block {
@@ -326,7 +341,7 @@
   .btn-print {
     padding: 18px 30px;
     font-size: 18px;
-    min-width: none;
+    min-width: auto;
   }
 }
 .btn-change {
@@ -360,7 +375,7 @@
   text-transform: unset;
   border: 1px solid #5e5a5a9e;
   border-radius: 0.3rem;
-  padding: 8px 15px;
+  padding: 6px 8px;
   line-height: 1.2;
   cursor: pointer;
   text-decoration: none;
@@ -397,6 +412,11 @@
   background-color: #6496db1f;
   border-color: #007bff;
   color: #007bff;
+}
+@media (min-width: 768px) {
+  .btn-action {
+    padding: 8px 15px;
+  }
 }
 .btn-remove {
   color: #dc3545;
@@ -1862,10 +1882,15 @@ h4 {
 .form-row-body {
   border: 1px solid #ddd;
   border-top: 0;
-  border-radius: 0 0 15px 15px;
   background-color: #FBF8F8;
 }
 .form-row-body .section-title span {
+  background-color: #FBF8F8;
+}
+.form-row-foot {
+  border: 1px solid #ddd;
+  border-top: 0;
+  border-radius: 0 0 15px 15px;
   background-color: #FBF8F8;
 }
 .form-row .row {
@@ -2390,7 +2415,7 @@ h4 {
   align-items: center;
   margin: -15px -15px 0 -15px;
   /* border-left: 4px solid; */
-  padding: 24px 0 10px 15px;
+  padding: 24px 15px 10px 15px;
   background: #b6cecc40;
   position: relative;
 }
@@ -2404,22 +2429,16 @@ h4 {
 .attendee-wrapper-head h3 {
   font-size: 20px;
 }
-.attendee-wrapper-head .btn-action {
-  position: absolute;
-  right: 15px;
-  top: 50%;
-  transform: translateY(-50%);
+.attendee-wrapper-head .action-btn-wrapper {
+  margin-top: -15px;
 }
 @media (min-width: 768px) {
   .attendee-wrapper-head {
     margin: -15px -30px 0 -30px;
-    padding: 24px 0 10px 30px;
+    padding: 24px 30px 10px 30px;
   }
   .attendee-wrapper-head h3 {
     font-size: 22px;
-  }
-  .attendee-wrapper-head .btn-action {
-    right: 30px;
   }
 }
 
