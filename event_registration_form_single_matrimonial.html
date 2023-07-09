@@ -382,98 +382,112 @@
                                 <div class="sidebar-block payment-information-div" id="card-info-area" style="display: none">
                                     <h3 class="sidebar-block-title">Payment Information</h3>
                                     <div class="sidebar-block-description">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <div class="form-group">
-                                                    <div class="card-image">
-                                                        <img src="assets/images/credit_card_all_.png" class="img-fluid">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="form-group required-group">
-                                                    <label for="txtCardHolderName" class="field-label form-control-label required-sign"> <span class="lable-text">Name on Card</span> <span class="text-danger">*</span></label>
-                                                    <input id="txtCardHolderName" name="CardHolderName" type="text" class="form-control field-normal cc-name">
-                                                    <span class="text-warning card-holder-name-validation validation"></span>
-                                                </div>
-                                            </div>
 
-                                            <div class="col-12">
-                                                <div class="form-group required-group">
-                                                    <label class="field-label form-control-label required-sign" for="creditcardnumber">
-                                                        <span class="lable-text">Card Number</span>
-                                                        <span class="text-danger">*</span>
-                                                    </label>
-                                                    <div class="cc-number-holder">
-                                                        <input type="text" name="CardNumber" maxlength="" class="form-control field-normal format-card-number cc-number" id="creditcardnumber" required="" data-validation="credit-card">
-                                                        <div class="cc-card-identity">
-                                                            <img src="assets/images/card_mockup.png">
+                                        <!-- BILL ME LATER TOGGLE -->
+                                        <div class="bill-me-later-wrapper">
+                                            <div class="d-flex checkbox-div">
+                                                <input type="checkbox" id="bill-later"
+                                                       class="checkbox-default checkbox-md">
+                                                <label class="font-semibold mb-0" for="bill-later">Bill me later
+                                                    using an invoice</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="payment-form-wrapper-js">
+                                            <div class="row pt-3">
+                                                <div class="col-12">
+                                                    <div class="form-group">
+                                                        <div class="card-image">
+                                                            <img src="assets/images/credit_card_all_.png" class="img-fluid">
                                                         </div>
                                                     </div>
-
-                                                    <span class="text-warning card-number-validation validation"></span>
                                                 </div>
-                                            </div>
+                                                <div class="col-12">
+                                                    <div class="form-group required-group">
+                                                        <label for="txtCardHolderName" class="field-label form-control-label required-sign"> <span class="lable-text">Name on Card</span> <span class="text-danger">*</span></label>
+                                                        <input id="txtCardHolderName" name="CardHolderName" type="text" class="form-control field-normal cc-name">
+                                                        <span class="text-warning card-holder-name-validation validation"></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12">
+                                                    <div class="form-group required-group">
+                                                        <label class="field-label form-control-label required-sign" for="creditcardnumber">
+                                                            <span class="lable-text">Card Number</span>
+                                                            <span class="text-danger">*</span>
+                                                        </label>
+                                                        <div class="cc-number-holder">
+                                                            <input type="text" name="CardNumber" maxlength="" class="form-control field-normal format-card-number cc-number" id="creditcardnumber" required="" data-validation="credit-card">
+                                                            <div class="cc-card-identity">
+                                                                <img src="assets/images/card_mockup.png">
+                                                            </div>
+                                                        </div>
+
+                                                        <span class="text-warning card-number-validation validation"></span>
+                                                    </div>
+                                                </div>
 
 
-                                            <div class="col-6">
-                                                <div class="form-group required-group">
-                                                    <label for="txtExpiryMonth" class="field-label">
-                                                        <span class="lable-text">Exp MM</span>
-                                                        <span class="text-danger">*</span>
-                                                    </label>
-                                                    <select id="txtExpiryMonth" class="form-control field-normal cc-month" required="">
-                                                        <option value="0">Select Month</option>
-                                                        <option value="01">01</option>
-                                                        <option value="02">02</option>
-                                                        <option value="03">03</option>
-                                                        <option value="04">04</option>
-                                                        <option value="05">05</option>
-                                                        <option value="06">06</option>
-                                                        <option value="07">07</option>
-                                                        <option value="08">08</option>
-                                                        <option value="09">09</option>
-                                                        <option value="10">10</option>
-                                                        <option value="11">11</option>
-                                                        <option value="12">12</option>
-                                                    </select>
+                                                <div class="col-6">
+                                                    <div class="form-group required-group">
+                                                        <label for="txtExpiryMonth" class="field-label">
+                                                            <span class="lable-text">Exp MM</span>
+                                                            <span class="text-danger">*</span>
+                                                        </label>
+                                                        <select id="txtExpiryMonth" class="form-control field-normal cc-month" required="">
+                                                            <option value="0">Select Month</option>
+                                                            <option value="01">01</option>
+                                                            <option value="02">02</option>
+                                                            <option value="03">03</option>
+                                                            <option value="04">04</option>
+                                                            <option value="05">05</option>
+                                                            <option value="06">06</option>
+                                                            <option value="07">07</option>
+                                                            <option value="08">08</option>
+                                                            <option value="09">09</option>
+                                                            <option value="10">10</option>
+                                                            <option value="11">11</option>
+                                                            <option value="12">12</option>
+                                                        </select>
+                                                    </div>
+                                                    <span class="text-warning expiry-month-validation validation"></span>
                                                 </div>
-                                                <span class="text-warning expiry-month-validation validation"></span>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="form-group required-group">
-                                                    <label for="txtExpiryYear" class="field-label form-control-label">
-                                                        <span class="lable-text">Exp YY</span>
-                                                        <span class="text-danger">*</span>
-                                                    </label>
-                                                    <select id="txtExpiryYear" class="form-control field-normal cc-year" required="">
-                                                        <option value="0">Select Year</option>
-                                                        <option value="2022">2022</option>
-                                                        <option value="2023">2023</option>
-                                                        <option value="2024">2024</option>
-                                                        <option value="2025">2025</option>
-                                                        <option value="2026">2026</option>
-                                                        <option value="2027">2027</option>
-                                                        <option value="2028">2028</option>
-                                                        <option value="2029">2029</option>
-                                                        <option value="2030">2030</option>
-                                                        <option value="2031">2031</option>
-                                                        <option value="2032">2032</option>
-                                                    </select>
-                                                    <span class="text-warning expiry-year-validation validation"></span>
+                                                <div class="col-6">
+                                                    <div class="form-group required-group">
+                                                        <label for="txtExpiryYear" class="field-label form-control-label">
+                                                            <span class="lable-text">Exp YY</span>
+                                                            <span class="text-danger">*</span>
+                                                        </label>
+                                                        <select id="txtExpiryYear" class="form-control field-normal cc-year" required="">
+                                                            <option value="0">Select Year</option>
+                                                            <option value="2022">2022</option>
+                                                            <option value="2023">2023</option>
+                                                            <option value="2024">2024</option>
+                                                            <option value="2025">2025</option>
+                                                            <option value="2026">2026</option>
+                                                            <option value="2027">2027</option>
+                                                            <option value="2028">2028</option>
+                                                            <option value="2029">2029</option>
+                                                            <option value="2030">2030</option>
+                                                            <option value="2031">2031</option>
+                                                            <option value="2032">2032</option>
+                                                        </select>
+                                                        <span class="text-warning expiry-year-validation validation"></span>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="form-group required-group">
-                                                    <label for="txtCvc" class="field-label required-sign">
-                                                        <span class="lable-text">CVV</span>
-                                                        <span class="text-danger">*</span>
-                                                    </label>
-                                                    <input id="txtCvc" type="text" class="form-control field-normal format-cvv cc-cvc mask-cvv" data-validation="cvv">
-                                                    <span class="text-warning cvv-validation validation"></span>
+                                                <div class="col-12">
+                                                    <div class="form-group required-group">
+                                                        <label for="txtCvc" class="field-label required-sign">
+                                                            <span class="lable-text">CVV</span>
+                                                            <span class="text-danger">*</span>
+                                                        </label>
+                                                        <input id="txtCvc" type="text" class="form-control field-normal format-cvv cc-cvc mask-cvv" data-validation="cvv">
+                                                        <span class="text-warning cvv-validation validation"></span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
+
 
                                         <div class="tc-wrapper mt-2">
                                             <div class="alert alert-primary alert-round-border">
