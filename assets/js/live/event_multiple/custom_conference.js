@@ -83,40 +83,58 @@ let ticketHtml = `
                                 <input type="text" name="TicketHolderPhoneNumber[]" class="form-control phone-number-mask">
                             </div>
                         </div>
-                        
+                         <!--date of birth-->
+                                                              <!--  <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+                                                                    <div class="form-group required-group">
+                                                                        <label class="form-control-label">
+                                                                            Date Of Birth
+                                                                              <span class="required-mark">*</span>
+                                                                        </label>
+                                                                        <input type="text"
+                                                                               name="TicketHolderDateOfBirth[]"
+                                                                               class="form-control date-picker-js">
+                                                                    </div>
+                                                                </div>-->
                         <!--Grade-->
-                                                                <div class="col-12 col-sm-6 col-md-6">
+                                                               <!-- <div class="col-12 col-sm-6 col-md-6">
                                                                     <div class="form-group">
                                                                         <label class="form-control-label">School Grade
-                                                                            <span class="required-mark">*</span></label>
+                                                                     <span class="required-mark">*</span> 
+                                                                        </label>
                                                                         <select class="form-control" name="TicketHolderSchoolGrade[]">
-                                                                            <option>-- Select Grade --</option>
-                                                                            <option value="2nd Grade">2nd Grade</option>
+                                                                            <option value="">-- Select Grade --</option>
+                                                                          <option value="2nd Grade">2nd Grade</option>
                                                                             <option value="3rd Grade">3rd Grade</option>
                                                                             <option value="4th Grade">4rd Grade</option>
                                                                             <option value="5th Grade">5th Grade</option>
                                                                             <option value="6th Grade">6th Grade</option>
-                                                                            <option value="7th Grade">7th Grade</option>
-                                                                            <option value="8th Grade">8th Grade</option>
+                                                                            <option value="7th Grade">7th Grade</option> 
+                                                                            <option value="8th Grade">8th Grade</option> 
                                                                             <option value="9th Grade">9th Grade</option>
                                                                             <option value="10th Grade">10th Grade</option>
                                                                             <option value="11th Grade">11th Grade</option>
                                                                             <option value="12th Grade">12th Grade</option>
+                                                                            <option value="College">College</option>
+                                                                            <option value="Young Professional">Young Professional</option>
                                                                         </select>
                                                                     </div>
-                                                                </div>
+                                                                </div> -->
                         
                       
                                                                 <!--select group-->
-                                                               <div class="col-12 col-sm-6 col-md-6">
+                                                                   <div class="col-12 col-sm-6 col-md-6">
                                                                     <div class="form-group required-group">
                                                                         <label class="form-control-label">
-                                                                            Group
+                                                                            Age Group
                                                                             <span class="required-mark">*</span>
                                                                         </label>
                                                                         <select class="form-control" name="TicketHolderGroup[]">
-                                                                            <option value="Track 1 - 2nd - 7th Grade" selected>Track 1 - 2nd - 7th Grade</option>
-                                                                            <option value="Track 2 - 8th - 12th Grade">Track 2 - 8th - 12th Grade</option>
+                                                                            <option value="">-- Select Group --</option>
+                                                                            <!-- <option value="Track 1 - 2nd - 7th Grade">Track 1 - 2nd - 7th Grade</option>
+                                                                            <option value="Track 2 - 8th - 12th Grade">Track 2 - 8th - 12th Grade</option>-->
+                                                                            <option value="Young Youth - Between 10 and 12">Young Youth - Between 10 and 12</option>
+                                                                            <option value="Youth - Between 13 and 17">Youth - Between 13 and 17</option>
+                                                                            <option value="Adult 18+">Adult 18+</option>
                                                                         </select>
                                                                     </div>
                                                                 </div>
@@ -315,7 +333,7 @@ $('.btn-event-register').on('click', function () {
         focusToNotValidFields(notValidatedBillingFieldsSelector);
         return;
     }
-    if(parseInt($('.grand-total-price .amount').text())>0){
+    if(parseInt($('.grand-total-price .amount').text())>0 && !$('#bill-later').prop('checked')){
         if ((paymentFields) != paymentValidFields) {
             //=== Payment Fields Validation Needed
             paymentFieldNotValidatdSelector.first().focus();
@@ -1449,4 +1467,30 @@ $(document).on('change', '.t-shirt-checkbox', function () {
 if($(window).width()<768){
     $('#iframe-coc').attr('height',500+'px');
     $('#iframe-terms').attr('height',2600+'px');
+}
+
+$(document).on('focus', '.date-picker-js', function (e) {
+    let self = $(this);
+    $(this).datepicker({
+        dateFormat: "mm/dd/yy",
+        changeMonth: true,
+        changeYear: true,
+      //  yearRange: "1981:2001",
+    });
+});
+
+$(document).on('change', '#bill-later', function (){
+    let self = $(this);
+    billMeLaterToggle(self);
+})
+
+/**
+ * Toggles payment form on bill me later checkbox state
+ * @param element
+ */
+function billMeLaterToggle(element){
+    $('.payment-form-wrapper-js').slideUp();
+    if(element.prop('checked')) return;
+
+    $('.payment-form-wrapper-js').slideDown();
 }
