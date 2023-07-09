@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,682 +8,805 @@
 
     <link rel="icon" href="assets/images/site_icon.png">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css?1.0.1">
 </head>
+
 <body>
 
-<div class="main">
+    <div class="main">
 
-    <!-- ====== HEADER ====== -->
-    <header class="header">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-3">
-                    <div class="logo-wrapper">
-                        <a href="javascript:void(0)">
-                            <img src="assets/images/logo.png" class="img-fluid">
-                        </a>
+        <!-- ====== HEADER ====== -->
+        <header class="header">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-3">
+                        <div class="logo-wrapper">
+                            <a href="javascript:void(0)">
+                                <img src="assets/images/logo.png" class="img-fluid">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-9">
+                        <ul class="nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Contact Us</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="tel:317 644 6538"><img
+                                        src="assets/images/telephone_call_resized.png"> 317 644 6538 </a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-                <div class="col-9">
-                    <ul class="nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Contact Us</a>
-                        </li>
+            </div>
+        </header>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="tel:317 644 6538"><img src="assets/images/telephone_call_resized.png"> 317 644 6538 </a>
-                        </li>
-                    </ul>
+        <div class="main-wrapper container">
+
+            <!-- FORM WRAPPER -->
+            <div class="registration-form-wrapper">
+                <!-- ====== BANNER ====== -->
+                <div class="main-banner">
+                    <img src="assets/images/event_banner_fixed_compressed.png" alt="Gala Event">
                 </div>
-            </div>
-        </div>
-    </header>
 
-    <div class="main-wrapper container">
+                <!-- ====== MAIN BODY ====== -->
+                <div class="main-body">
+                    <form method="post" id="event-reg-form">
+                        <div class="row" id="reg-form-row">
 
-        <!-- FORM WRAPPER -->
-        <div class="registration-form-wrapper">
-            <!-- ====== BANNER ====== -->
-            <div class="main-banner">
-                <img src="assets/images/event_banner_fixed_compressed.png" alt="Gala Event">
-            </div>
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-8">
+                                <!-- ====== FORM BODY ====== -->
+                                <div class="form-body">
+                                    <div class="form-row">
+                                        <div class="form-row-head">
+                                            <div class="form-row-head-inner">
+                                                <h3 class="form-row-title">Ticket</h3>
+                                            </div>
+                                        </div>
+                                        <div class="form-row-body">
+                                            <div class="cart-table">
+                                                <div class="table-responsive">
+                                                    <table class="table">
+                                                        <thead>
 
-            <!-- ====== MAIN BODY ====== -->
-            <div class="main-body">
-                <form method="post" id="event-reg-form">
-                    <div class="row">
+                                                        <tr>
+                                                            <th>Ticket Category</th>
+                                                            <th>Price</th>
+                                                            <th>Quantity</th>
+                                                            <th>Subtotal</th>
+                                                        </tr>
+                                                        </thead>
 
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-8">
-                            <!-- ====== FORM BODY ====== -->
-                            <div class="form-body">
+                                                        <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                Adults
+                                                                <input type="hidden" name="TicketCategoryKeys[]" class="ticket-category-key" value="165bc078-520a-4919-b35d-f3450684a265">
+                                                            </td>
+                                                            <td class="per-price">
+                                                                <span class="currency">$</span>
+                                                                <span class="amount">50</span>
+                                                            </td>
+                                                            <td>
+                                                                <div class="quantity-wrap" ticket-type="adults" ticket-type-key="165bc078-520a-4919-b35d-f3450684a265">
+                                                                    <div class="input-group mb-3">
+                                                                        <div class="input-group-prepend">
+                                                                            <button type="button" class="input-group-text quantity-decrease">-</button>
+                                                                        </div>
+
+                                                                        <input data-max="4" data-min="0" type="number" name="TicketQuantities[]" class="form-control ticket-quantity ticket-field" value="0">
+
+                                                                        <div class="input-group-append">
+                                                                            <button type="button" class="input-group-text quantity-increase">+</button>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!--<span class="max-ticket" style="display:none;color:#ff0120">Maximum 10.</span>-->
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                        <span class="adults-price">
+                                                                            <span class="currency">$</span>
+                                                                            <span class="amount">0</span>
+                                                                        </span>
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row form-row-contact">
+                                        <div class="form-row-head">
+                                            <div class="form-row-head-inner">
+                                                <h3 class="form-row-title">Contact Information</h3>
+                                            </div>
+                                        </div>
+                                        <div class="form-row-body">
+                                            <div class="form-fields-wrapper">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <div class="form-group required-group">
+                                                            <label class="form-control-label">First Name <span class="required-mark">*</span></label>
+                                                            <input type="text" class="form-control" name="FirstName" id="first-name">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                            <label class="form-control-label">Last Name<span class="required-mark">*</span></label>
+                                                            <input type="text" class="form-control" name="LastName" id="last-name">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-6">
+                                                        <div class="form-group required-group">
+                                                            <label class="form-control-label">Email <span class="required-mark">*</span></label>
+                                                            <input type="email" class="form-control" name="Email" id="email" data-validation="email">
+                                                            <span id="email-validate" class="text-danger"></span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                            <label class="form-control-label">Phone Number <span class="required-mark">*</span></label>
+                                                            <input type="text" class="form-control phone-number-mask" data-validation="phone-number" name="Phone" id="phone">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                            <label class="form-control-label">Address Line</label>
+                                                            <input type="text" class="form-control" name="AddressLine1" id="address-line1">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                            <label class="form-control-label">Address Line 2</label>
+                                                            <input type="text" class="form-control" name="AddressLine2" id="address-line2">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+                                                        <div class="form-group">
+                                                            <label class="form-control-label">Country <span class="required-mark">*</span></label>
+                                                            <select type="text" name="Country" class="form-control country" id="country">
+
+                                                                <option value="USA">USA</option>
+                                                                <option value="Canada">Canada</option>
+                                                                <option value="Other">Other</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                                        <div class="form-group state-field-group">
+                                                            <label class="form-control-label">State <span class="required-mark">*</span></label>
+                                                            <div class="state-holder"><select class="form-control state" name="State" id="state"><option value="0">Select a State</option><option value="Alabama">Alabama</option><option value="Alaska">Alaska</option><option value="Arizona">Arizona</option><option value="Arkansas">Arkansas</option><option value="California">California</option><option value="Colorado">Colorado</option><option value="Connecticut">Connecticut</option><option value="Delaware">Delaware</option><option value="Florida">Florida</option><option value="Georgia">Georgia</option><option value="Hawaii">Hawaii</option><option value="Idaho">Idaho</option><option value="Illinois">Illinois</option><option value="Indiana">Indiana</option><option value="Iowa">Iowa</option><option value="Kansas">Kansas</option><option value="Kentucky">Kentucky</option><option value="Louisiana">Louisiana</option><option value="Maine">Maine</option><option value="Maryland">Maryland</option><option value="Massachusetts">Massachusetts</option><option value="Michigan">Michigan</option><option value="Minnesota">Minnesota</option><option value="Mississippi">Mississippi</option><option value="Missouri">Missouri</option><option value="Montana">Montana</option><option value="Nebraska">Nebraska</option><option value="Nevada">Nevada</option><option value="NewHampshire">NewHampshire</option><option value="NewJersey">NewJersey</option><option value="NewMexico">NewMexico</option><option value="NewYork">NewYork</option><option value="NorthCarolina">NorthCarolina</option><option value="NorthDakota">NorthDakota</option><option value="Ohio">Ohio</option><option value="Oklahoma">Oklahoma</option><option value="Oregon">Oregon</option><option value="Pennsylvania">Pennsylvania</option><option value="RhodeIsland">RhodeIsland</option><option value="SouthCarolina">SouthCarolina</option><option value="SouthDakota">SouthDakota</option><option value="Tennessee">Tennessee</option><option value="Texas">Texas</option><option value="Utah">Utah</option><option value="Vermont">Vermont</option><option value="Virginia">Virginia</option><option value="Washington">Washington</option><option value="WestVirginia">WestVirginia</option><option value="Wisconsin">Wisconsin</option><option value="Wyoming">Wyoming</option><option value="zUnknown">zUnknown</option></select></div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                            <label class="form-control-label">Zip Code</label>
+                                                            <input type="text" class="form-control zip-code mask-zipcode" data-validation="zipcode" name="ZipCode" id="zipcode">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                            <label class="form-control-label">City</label>
+                                                            <input type="text" class="form-control city" name="City" id="city">
+                                                        </div>
+                                                    </div>
 
 
-                                <!-- ====== CHOOSE TICKET ====== -->
-                                <div class="form-row">
-                                    <div class="form-row-head">
-                                        <div class="form-row-head-inner">
-                                            <h3 class="form-row-title">Ticket</h3>
+
+                                                    <input type="hidden" name="TotalPrice" id="total-price" value="0">
+                                                    <input type="hidden" name="SubTotalPrice" id="sub-total-price" value="0">
+                                                    <input type="hidden" name="EventKey" id="event-key" value="a66b5060-3b4b-490f-9b65-ffb4bd434663">
+                                                    <input type="hidden" name="SponsorKey" id="sponsor-key">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span id="ticket-limit-message" style="  display: none; color: red"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-4">
+
+                                <!-- ====== SIDEBAR ====== -->
+                                <div class="sidebar">
+                                    <div class="sidebar-block">
+                                        <h3 class="sidebar-block-title">Announcement</h3>
+                                        <div class="sidebar-block-description">
+                                            <p>Al Azhar Foundation Masjid Construction Fundraiser.</p><p><strong>UNITE - BUILD - GATHER</strong></p><p><strong>WHEN</strong>: Saturday, March 25, 2023</p><p><strong>Start Time: </strong>Starts at Maghrib promptly, followed by catered meal and then fundraising program</p>
                                         </div>
                                     </div>
 
-                                    <div class="form-row-body">
-                                        <div class="cart-table">
-                                            <div class="table-responsive">
+                                    <div class="sidebar-block sidebar-block-ticket-summary">
+                                        <h3 class="sidebar-block-title">Ticket Summary</h3>
+                                        <div class="sidebar-block-description">
+                                            <div class="table-responsive ticket-summary-table pb-3">
                                                 <table class="table">
-                                                    <thead>
-                                                    <tr>
-                                                        <th>Ticket Category</th>
-                                                        <th>Price</th>
-                                                        <th>Quantitiy</th>
-                                                        <th>Subtotal</th>
-                                                    </tr>
-                                                    </thead>
-
                                                     <tbody>
-                                                    <tr class="data-row" data-row="1" data-name="RSVP - Below 10" data-unitprice="0">
-                                                        <td>RSVP - Below 10</td>
-                                                        <td class="per-price">
-                                                            <span class="currency">$</span>
-                                                            <span class="amount">0</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="quantity-wrap" ticket-type="below-10">
-                                                                <div class="input-group mb-3">
-                                                                    <div class="input-group-prepend">
-                                                                        <button type="button" class="input-group-text quantity-decrease">-</button>
-                                                                    </div>
-                                                                    <input type="number" class="form-control ticket-field" value="0" data-max="8" data-min="0">
-                                                                    <div class="input-group-append">
-                                                                        <button type="button" class="input-group-text quantity-increase">+</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                <span class="below-10-price">
-                                                    <span class="currency">$</span>
-                                                    <span class="amount">0</span>
-                                                </span>
-                                                        </td>
-                                                    </tr>
-
-                                                    <tr class="data-row" data-row="2" data-name="RSVP - Below 10" data-unitprice="20">
-                                                        <td>RSVP - Above 10</td>
-                                                        <td class="per-price">
-                                                            <span class="currency">$</span>
-                                                            <span class="amount">20</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="quantity-wrap" ticket-type="below-10">
-                                                                <div class="input-group mb-3">
-                                                                    <div class="input-group-prepend">
-                                                                        <button type="button" class="input-group-text quantity-decrease">-</button>
-                                                                    </div>
-                                                                    <input type="number" class="form-control ticket-field" value="0">
-                                                                    <div class="input-group-append">
-                                                                        <button type="button" class="input-group-text quantity-increase">+</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                <span class="below-10-price">
-                                                    <span class="currency">$</span>
-                                                    <span class="amount">0</span>
-                                                </span>
-                                                        </td>
-                                                    </tr>
-
-                                                    <tr class="data-row" data-row="3" data-name="RSVP - Adult" data-unitprice="30">
-                                                        <td>RSVP - Adult</td>
-                                                        <td class="per-price">
-                                                            <span class="currency">$</span>
-                                                            <span class="amount">30</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="quantity-wrap" ticket-type="adult">
-                                                                <div class="input-group mb-3">
-                                                                    <div class="input-group-prepend">
-                                                                        <button type="button" class="input-group-text quantity-decrease">-</button>
-                                                                    </div>
-                                                                    <input type="text" class="form-control ticket-field" value="0" data-max="20">
-                                                                    <div class="input-group-append">
-                                                                        <button type="button" class="input-group-text quantity-increase">+</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td><span class="price-subtotal">
-                                                <span class="adult-price">
-                                                    <span class="currency">$</span>
-                                                    <span class="amount">0</span>
-                                                </span>
-                                            </span></td>
+                                                    <tr>
+                                                        <td><span><span class="adults-quantity">0</span> x Adults</span></td>
+                                                        <th>
+                                                                    <span class="adults-price">
+                                                                        <span class="currency">$</span>
+                                                                        <span class="amount">0</span>
+                                                                    </span>
+                                                        </th>
                                                     </tr>
                                                     </tbody>
+                                                    <tfoot>
+                                                    <tr>
+                                                        <td>Total</td>
+                                                        <th>
+                                                        <span class="total-price">
+                                                            <span class="currency">$</span>
+                                                            <span class="amount">0</span>
+                                                        </span>
+                                                        </th>
+                                                    </tr>
+
+                                                    <tr class="bg-white voucher-tr">
+                                                        <td>Coupon <span class="voucher-code-text"></span> </td>
+                                                        <th>
+                                                        <span class="voucher-price">
+                                                            <span class="calculate-sign">(-) &nbsp;</span>
+                                                            <span class="currency">$</span>
+                                                            <span class="amount">0</span>
+                                                        </span>
+                                                        </th>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <th class="text-right">Grand Total</th>
+                                                        <th class="">
+                                                        <span class="grand-total-price">
+                                                            <span class="currency">$</span>
+                                                            <span class="amount">0</span>
+                                                        </span>
+                                                        </th></tr>
+                                                    </tfoot>
                                                 </table>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
 
-                                <!-- ====== CONTACT INFORMATION ====== -->
-                                <div class="form-row form-row-contact">
-                                    <div class="form-row-head">
-                                        <div class="form-row-head-inner">
-                                            <h3 class="form-row-title">Contact Information</h3>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-row-body">
-                                        <div class="form-fields-wrapper">
-                                            <div class="row">
-                                                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                                                    <div class="form-group required-group">
-                                                        <label class="form-control-label">First Name <span class="required-mark">*</span></label>
-                                                        <input type="text" class="form-control" value="Test">
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                                                    <div class="form-group required-group">
-                                                        <label class="form-control-label">Last Name <span class="required-mark">*</span></label>
-                                                        <input type="text" class="form-control" value="last name">
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                    <div class="form-group required-group">
-                                                        <label class="form-control-label">Email <span class="required-mark">*</span></label>
-                                                        <input type="email" class="form-control" data-validation="email">
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                    <div class="form-group required-group">
-                                                        <label class="form-control-label">Phone Number <span class="required-mark">*</span></label>
-                                                        <input type="text" class="form-control phone-number-mask" data-validation="phone-number">
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                    <div class="form-group required-group">
-                                                        <label class="form-control-label">Address <span class="required-mark">*</span></label>
-                                                        <input type="text" class="form-control">
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                    <div class="form-group">
-                                                        <label class="form-control-label">Address Line 2 </label>
-                                                        <input type="text" class="form-control">
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                                                    <div class="form-group required-group">
-                                                        <label class="form-control-label">Country <span
-                                                                class="required-mark">*</span></label>
-                                                        <select type="text" name="Country" class="form-control country country-js">
-                                                            <option value="">Select Country</option>
-                                                            <option value="USA">USA</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                                                    <div class="form-group required-group state-field-group">
-                                                        <label class="form-control-label">State <span class="required-mark">*</span></label>
-                                                        <div class="state-holder">
-                                                            <select class="form-control state"></select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                                                    <div class="form-group required-group">
-                                                        <label class="form-control-label">ZIP Code <span class="required-mark">*</span></label>
-                                                        <input type="text" class="form-control mask-zipcode" data-validation="zipcode">
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                                                    <div class="form-group">
-                                                        <label class="form-control-label">City <span class="required-mark">*</span></label>
-                                                        <input type="text" class="form-control">
+                                            <div class="voucher-block">
+                                                <div class="input-group p-3">
+                                                    <input type="text" class="form-control" name="CouponCode" placeholder="Coupon Code">
+                                                    <div class="input-group-append">
+                                                        <button type="button" class="btn btn-primary input-group-text btn-apply-voucher-js">Apply Coupon</button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
+                                    <!--Card Information-->
+                                    <div class="sidebar-block payment-information-div" id="card-info-area" style="display:none;">
+                                        <h3 class="sidebar-block-title">Payment Information</h3>
+                                        <div class="sidebar-block-description">
+
+                                            <!-- BILL ME LATER TOGGLE -->
+                                            <div class="bill-me-later-wrapper">
+                                                <div class="d-flex checkbox-div">
+                                                    <input type="checkbox" id="bill-later"
+                                                           class="checkbox-default checkbox-md">
+                                                    <label class="font-semibold mb-0" for="bill-later">Bill me later
+                                                        using an invoice</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="payment-form-wrapper-js">
+                                                <div class="row pt-3">
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <div class="card-image">
+                                                                <img src="/beta/Content/event-management-assets/individual-multiple-assets/images/credit_card_all_.png" class="img-fluid">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group required-group">
+                                                            <label for="txtCardHolderName" class="field-label form-control-label required-sign"> <span class="lable-text">Name on Card</span> <span class="text-danger">*</span></label>
+                                                            <input id="txtCardHolderName" name="CardHolderName" type="text" class="form-control field-normal cc-name field-empty">
+                                                            <span class="text-warning card-holder-name-validation validation"></span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-12">
+                                                        <div class="form-group required-group">
+                                                            <label class="field-label form-control-label required-sign" for="creditcardnumber">
+                                                                <span class="lable-text">Card Number</span>
+                                                                <span class="text-danger">*</span>
+                                                            </label>
+                                                            <div class="cc-number-holder">
+                                                                <input type="text" maxlength="16" name="CreditCardNumber" class="form-control field-normal format-card-number cc-number" id="creditcardnumber" required="">
+                                                                <div class="cc-card-identity">
+                                                                    <img src="/beta/Content/event-management-assets/individual-multiple-assets/images/card_mockup.png">
+                                                                </div>
+                                                            </div>
+
+                                                            <span class="text-warning card-number-validation validation"></span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-6">
+                                                        <div class="form-group required-group">
+                                                            <label for="txtExpiryMonth" class="field-label">
+                                                                <span class="lable-text">Exp MM</span>
+                                                                <span class="text-danger">*</span>
+                                                            </label>
+                                                            <select id="txtExpiryMonth" name="CreditCardExpireMonth" class="form-control field-normal cc-month" required="">
+                                                                <option value="0">Select Month</option>
+                                                                <option value="01">01</option>
+                                                                <option value="02">02</option>
+                                                                <option value="03">03</option>
+                                                                <option value="04">04</option>
+                                                                <option value="05">05</option>
+                                                                <option value="06">06</option>
+                                                                <option value="07">07</option>
+                                                                <option value="08">08</option>
+                                                                <option value="09">09</option>
+                                                                <option value="10">10</option>
+                                                                <option value="11">11</option>
+                                                                <option value="12">12</option>
+                                                            </select>
+                                                        </div>
+                                                        <span class="text-warning expiry-month-validation validation"></span>
+                                                    </div>
+
+                                                    <div class="col-6">
+                                                        <div class="form-group required-group">
+                                                            <label for="txtExpiryYear" class="field-label form-control-label">
+                                                                <span class="lable-text">Exp YY</span>
+                                                                <span class="text-danger">*</span>
+                                                            </label>
+                                                            <select id="txtExpiryYear" name="CreditCardExpireYear" class="form-control field-normal cc-year" required="">
+                                                                <option value="0">Select Year</option>
+                                                                <option value="2023">2023</option>
+                                                                <option value="2024">2024</option>
+                                                                <option value="2025">2025</option>
+                                                                <option value="2026">2026</option>
+                                                                <option value="2027">2027</option>
+                                                                <option value="2028">2028</option>
+                                                                <option value="2029">2029</option>
+                                                                <option value="2030">2030</option>
+                                                                <option value="2031">2031</option>
+                                                                <option value="2032">2032</option>
+                                                                <option value="2033">2033</option>
+                                                            </select>
+                                                            <span class="text-warning expiry-year-validation validation"></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="form-group required-group">
+                                                            <label for="txtCvc" class="field-label required-sign">
+                                                                <span class="lable-text">CVV</span>
+                                                                <span class="text-danger">*</span>
+                                                            </label>
+                                                            <input id="txtCvc" name="CVV" type="text" class="form-control field-normal format-cvv cc-cvc mask-cvv" inputmode="text">
+                                                            <span class="text-warning cvv-validation validation"></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="form-group required-group zip-code-field">
+                                                            <label class="form-control-label">ZIP Code <span class="required-mark">*</span></label>
+                                                            <input type="text" id="txtZipCode" name="BillingZipCode" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <input id="hdnToken" name="Token" type="hidden" value="">
+                                            <input data-val="true" data-val-required="The CompanyKey field is required." id="hdnCompanyKey" name="CompanyKey" type="hidden" value="1553134c-5673-4941-9af5-349992fa3131">
+                                            <input id="hdnCompanyName" name="CompanyName" type="hidden" value="Al-Azhar Foundation">
+                                            <input data-val="true" data-val-required="The IsLive field is required." id="hdnCompanyIsLive" name="IsLive" type="hidden" value="False">
+                                            <input id="paymentProductId" name="PaymentProductId" type="hidden" value="prod_NNZqrqYGT1qvBz">
+                                            <input data-val="true" data-val-required="The PaymentGateway field is required." id="PaymentGateway" name="PaymentGateway" type="hidden" value="STRIPE">
+                                        </div>
+                                    </div>
+                                    <div class="sidebar-block">
+                                        <div class="sidebar-block-description pt-3">
+
+                                            <div class="tc-wrapper mt-2">
+                                                <div class="alert alert-primary alert-round-border">
+                                                    <div class="mb-0">
+                                                        <input type="checkbox" id="tc-2" class="tc">
+                                                        <label for="tc-2" style="font-size: 14px;display: inline;color: #000; font-weight: 600;">I agree to the Terms and Conditions.</label>
+                                                    </div>
+
+                                                </div>
+
+                                                <button type="button" class="btn btn-primary btn-block btn-reg btn-reg-js">Register Now</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- THANK YOU WRAPPER -->
+            <div class="thank-wrapper thank-wrapper-inpage">
+                <div class="container">
+                    <div class="thank-body">
+                        <div class="thank-message">
+                            <div class="icon-holder text-center pb-2">
+                                <img src="assets/images/check-mark_70.png">
+                            </div>
+                            <div class="thank-message-text">
+                                <h3 class="thank-text text-center m-0">Thank You</h3>
+                                <p class="m-0 order-number text-center">Order number: <span>#30395456454</span></p>
                             </div>
                         </div>
 
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-4">
+                        <!-- EVENT DETAILS -->
+                        <div class="thank-details pt-3 pb-5 pt-sm-5 ">
+                            <p class="m-0 title-indication text-medium text-green text-uppercase">You are going to:</p>
+                            <h3 class="event-title">ISLAMIC LIFE CENTER GRAND FUNDRAISER GALA</h3>
 
-                            <!-- ====== SIDEBAR ====== -->
-                            <div class="sidebar">
+                            <div class="row justify-content-between pt-4 pt-sm-5">
+                                <div class="col-md-4">
+                                    <div class="sidebar-block mb-4 mb-sm-3">
+                                        <h3 class="sidebar-block-title">Ticket Quantity</h3>
+                                        <div class="sidebar-block-description">
+                                            <h5 class="pb-2 m-0">1 Ticket Sent to:</h5>
+                                            <p class="text-medium">example@mail.com</p>
+                                        </div>
+                                    </div>
+                                </div>
 
-                                <div class="sidebar-block">
-                                    <h3 class="sidebar-block-title">Agenda</h3>
-                                    <div class="sidebar-block-description">
-                                        <ul class="list">
-                                            <li>1. Check-in</li>
-                                            <li>2. Welcome by the event hosts</li>
-                                            <li>3. <a href="https://www.almaghrib.org/instructors/ammar-alshukry/" target="_blank"> Special guest Sheikh Amar AShukry from the Al Maghreb Institute.</a></li>
-                                            <li>4. Fundraiser for the ILC project</li>
-                                            <li>5. Breaking fast with drinks and light snacks</li>
-                                            <li>6. Pray Maghrib together.</li>
-                                            <li>7. Dinner</li>
-                                            <li>8. Conclude the evening at 930PM.</li>
+                                <div class="col-md-4">
+                                    <div class="sidebar-block mb-4 mb-sm-3">
+                                        <h3 class="sidebar-block-title">Event Date</h3>
+                                        <div class="sidebar-block-description">
+                                            <p class="text-medium">Saturday, 16th April, 2022</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="sidebar-block">
+                                        <h3 class="sidebar-block-title">Event Location</h3>
+                                        <div class="sidebar-block-description">
+                                            <p class="text-medium">502 East Event Center,<br>
+                                                Carmel, IN46032</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- THANK FOOT -->
+                        <div class="thank-foot">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <button type="button" class="btn btn-default btn-print"><img class="img-left"
+                                            src="assets/images/printer_white.png"> Print Ticket </button>
+                                </div>
+
+                                <div class="share-wrapper">
+                                    <div class="social-share">
+                                        <span>Share <span class="hidden-xs">Event</span>: </span>
+                                        <ul class="social-share-ul">
+                                            <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://alsalamfoundation.org/grand-fundraiser-gala/"
+                                                    target="_blank"><img
+                                                        src="https://alsalamfoundation.org/wp-content/uploads/2022/03/Facebook.png"
+                                                        class="lazyloaded" data-ll-status="loaded"><noscript><img
+                                                            src="https://alsalamfoundation.org/wp-content/uploads/2022/03/Facebook.png"></noscript>
+                                                </a> </li>
+                                            <li><a href="http://www.twitter.com/share?url=https://alsalamfoundation.org/grand-fundraiser-gala/"
+                                                    target="_blank"><img
+                                                        src="https://alsalamfoundation.org/wp-content/uploads/2022/03/Twitter.png"
+                                                        class="lazyloaded" data-ll-status="loaded"><noscript><img
+                                                            src="https://alsalamfoundation.org/wp-content/uploads/2022/03/Twitter.png"></noscript>
+                                                </a> </li>
                                         </ul>
-
                                     </div>
                                 </div>
 
-                                <div class="sidebar-block">
-                                    <h3 class="sidebar-block-title">Ticket Summary</h3>
-                                    <div class="sidebar-block-description">
-                                        <div class="table-responsive ticket-summary-table pb-3">
-                                            <table class="table">
-                                                <thead>
-                                                <tr>
-                                                    <th class="text-left"><span class="row-number">#</span> Ticket
-                                                        Category
-                                                    </th>
-                                                    <th class="text-right">Price</th>
-                                                </tr>
-                                                </thead>
-
-                                                <tbody>
-
-                                                </tbody>
-                                                <tfoot>
-                                                <tr>
-                                                    <td>Total</td>
-                                                    <th><span class="total-price">
-                                                <span class="currency">$</span>
-                                                <span class="amount">0</span>
-                                            </span> </th>
-                                                </tr>
-                                                </tfoot>
-                                            </table>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <div class="sidebar-block payment-information-div" id="card-info-area" style="display: none">
-                                    <h3 class="sidebar-block-title">Payment Information</h3>
-                                    <div class="sidebar-block-description">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <div class="form-group">
-                                                    <div class="card-image">
-                                                        <img src="assets/images/credit_card_all_.png" class="img-fluid">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="form-group required-group">
-                                                    <label for="txtCardHolderName" class="field-label form-control-label required-sign"> <span class="lable-text">Name on Card</span> <span class="text-danger">*</span></label>
-                                                    <input id="txtCardHolderName" name="CardHolderName" type="text" class="form-control field-normal cc-name">
-                                                    <span class="text-warning card-holder-name-validation validation"></span>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-12">
-                                                <div class="form-group required-group">
-                                                    <label class="field-label form-control-label required-sign" for="creditcardnumber">
-                                                        <span class="lable-text">Card Number</span>
-                                                        <span class="text-danger">*</span>
-                                                    </label>
-                                                    <div class="cc-number-holder">
-                                                        <input type="text" name="CardNumber" maxlength="" class="form-control field-normal format-card-number cc-number" id="creditcardnumber" required="" data-validation="credit-card">
-                                                        <div class="cc-card-identity">
-                                                            <img src="assets/images/card_mockup.png">
-                                                        </div>
-                                                    </div>
-
-                                                    <span class="text-warning card-number-validation validation"></span>
-                                                </div>
-                                            </div>
-
-
-                                            <div class="col-6">
-                                                <div class="form-group required-group">
-                                                    <label for="txtExpiryMonth" class="field-label">
-                                                        <span class="lable-text">Exp MM</span>
-                                                        <span class="text-danger">*</span>
-                                                    </label>
-                                                    <select id="txtExpiryMonth" class="form-control field-normal cc-month" required="">
-                                                        <option value="0">Select Month</option>
-                                                        <option value="01">01</option>
-                                                        <option value="02">02</option>
-                                                        <option value="03">03</option>
-                                                        <option value="04">04</option>
-                                                        <option value="05">05</option>
-                                                        <option value="06">06</option>
-                                                        <option value="07">07</option>
-                                                        <option value="08">08</option>
-                                                        <option value="09">09</option>
-                                                        <option value="10">10</option>
-                                                        <option value="11">11</option>
-                                                        <option value="12">12</option>
-                                                    </select>
-                                                </div>
-                                                <span class="text-warning expiry-month-validation validation"></span>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="form-group required-group">
-                                                    <label for="txtExpiryYear" class="field-label form-control-label">
-                                                        <span class="lable-text">Exp YY</span>
-                                                        <span class="text-danger">*</span>
-                                                    </label>
-                                                    <select id="txtExpiryYear" class="form-control field-normal cc-year" required="">
-                                                        <option value="0">Select Year</option>
-                                                        <option value="2022">2022</option>
-                                                        <option value="2023">2023</option>
-                                                        <option value="2024">2024</option>
-                                                        <option value="2025">2025</option>
-                                                        <option value="2026">2026</option>
-                                                        <option value="2027">2027</option>
-                                                        <option value="2028">2028</option>
-                                                        <option value="2029">2029</option>
-                                                        <option value="2030">2030</option>
-                                                        <option value="2031">2031</option>
-                                                        <option value="2032">2032</option>
-                                                    </select>
-                                                    <span class="text-warning expiry-year-validation validation"></span>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="form-group required-group">
-                                                    <label for="txtCvc" class="field-label required-sign">
-                                                        <span class="lable-text">CVV</span>
-                                                        <span class="text-danger">*</span>
-                                                    </label>
-                                                    <input id="txtCvc" type="text" class="form-control field-normal format-cvv cc-cvc mask-cvv" data-validation="cvv">
-                                                    <span class="text-warning cvv-validation validation"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="sidebar-block">
-                                    <div class="sidebar-block-description">
-                                        <div class="pb-3">
-                                            <div class="checkbox-holder checkbox-medium">
-                                                <input type="checkbox" id="checkbox-tc" class="regular-checkbox">
-                                                <label for="checkbox-tc"> <span class="checkbox-text"> I read and agree to the  <a href="javascript:void(0)" data-toggle="modal" data-target="#modal-tc">terms & Conditions</a> </span></label>
-                                            </div>
-                                        </div>
-                                        <button type="button" class="btn btn-primary btn-block btn-reg btn-reg-js">Register</button>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
-                </form>
-
+                </div>
             </div>
+
         </div>
 
-        <!-- THANK YOU WRAPPER -->
-        <div class="thank-wrapper thank-wrapper-inpage">
+        <!-- ====== FOOTER ====== -->
+        <footer class="footer">
             <div class="container">
-                <div class="thank-body">
-                    <div class="thank-message">
-                        <div class="icon-holder text-center pb-2">
-                            <img src="assets/images/check-mark_70.png">
-                        </div>
-                        <div class="thank-message-text">
-                            <h3 class="thank-text text-center m-0">Thank You</h3>
-                            <p class="m-0 order-number text-center">Order number: <span>#30395456454</span></p>
-                        </div>
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <p class="m-0 text-center text-md-left pb-2 pb-md-0"><a href="htttps://masjidsolutions.net"
+                                target="_blank"> masjidsolutions.net</a> (317) 854 0207 </p>
                     </div>
-
-                    <!-- EVENT DETAILS -->
-                    <div class="thank-details pt-3 pb-5 pt-sm-5 ">
-                        <p class="m-0 title-indication text-medium text-green text-uppercase">You are going to:</p>
-                        <h3 class="event-title">ISLAMIC LIFE CENTER GRAND FUNDRAISER GALA</h3>
-
-                        <div class="row justify-content-between pt-4 pt-sm-5">
-                            <div class="col-md-4">
-                                <div class="sidebar-block mb-4 mb-sm-3">
-                                    <h3 class="sidebar-block-title">Ticket Quantity</h3>
-                                    <div class="sidebar-block-description">
-                                        <h5 class="pb-2 m-0">1 Ticket Sent to:</h5>
-                                        <p class="text-medium">example@mail.com</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-4">
-                                <div class="sidebar-block mb-4 mb-sm-3">
-                                    <h3 class="sidebar-block-title">Event Date</h3>
-                                    <div class="sidebar-block-description">
-                                        <p class="text-medium">Saturday, 16th April, 2022</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-4">
-                                <div class="sidebar-block">
-                                    <h3 class="sidebar-block-title">Event Location</h3>
-                                    <div class="sidebar-block-description">
-                                        <p class="text-medium">502 East Event Center,<br>
-                                            Carmel, IN46032</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="col-12 col-md-6">
+                        <p class="text-center text-md-right m-0">&copy; Al Salam Foundation. All Rights Reserved, 2022
+                        </p>
                     </div>
+                </div>
+            </div>
+        </footer>
 
-                    <!-- THANK FOOT -->
-                    <div class="thank-foot">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div>
-                                <button type="button" class="btn btn-default btn-print"><img class="img-left" src="assets/images/printer_white.png"> Print Ticket </button>
-                            </div>
-
-                            <div class="share-wrapper">
-                                <div class="social-share">
-                                    <span>Share <span class="hidden-xs">Event</span>: </span>
-                                    <ul class="social-share-ul">
-                                        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://alsalamfoundation.org/grand-fundraiser-gala/" target="_blank"><img src="https://alsalamfoundation.org/wp-content/uploads/2022/03/Facebook.png" class="lazyloaded" data-ll-status="loaded"><noscript><img src="https://alsalamfoundation.org/wp-content/uploads/2022/03/Facebook.png"></noscript> </a> </li>
-                                        <li><a href="http://www.twitter.com/share?url=https://alsalamfoundation.org/grand-fundraiser-gala/" target="_blank"><img src="https://alsalamfoundation.org/wp-content/uploads/2022/03/Twitter.png" class="lazyloaded" data-ll-status="loaded"><noscript><img src="https://alsalamfoundation.org/wp-content/uploads/2022/03/Twitter.png"></noscript> </a> </li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                        </div>
+        <!-- MODAL -->
+        <div class="modal" id="confirm-modal" tabindex="-1" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog modal-confirm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Are you sure?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h4 class="text-medium">You are about to complete the registration</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Proceed</button>
                     </div>
                 </div>
             </div>
         </div>
 
-    </div>
-
-    <!-- ====== FOOTER ====== -->
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 col-md-6">
-                    <p class="m-0 text-center text-md-left pb-2 pb-md-0"><a href="htttps://masjidsolutions.net" target="_blank"> masjidsolutions.net</a> (317) 854 0207 </p>
-                </div>
-                <div class="col-12 col-md-6">
-                    <p class="text-center text-md-right m-0">&copy; Al Salam Foundation. All Rights Reserved, 2022 </p>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- MODAL -->
-    <div class="modal" id="confirm-modal" tabindex="-1" data-backdrop="static" data-keyboard="false">
-        <div class="modal-dialog modal-confirm">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Are you sure?</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <h4 class="text-medium">You are about to complete the registration</h4>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Proceed</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- MODAL (TERMS AND CONDITIONS) -->
-    <div class="modal" id="modal-tc" tabindex="-1" data-backdrop="static" data-keyboard="false">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title px-3">Terms & Conditions</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="content-tc px-3">
-                        <h3 class="mb-4">Midwest Muslim Singles Event -Sept. 2022</h3>
-                        <p>
-                            <strong>Assalamu Alaikum!</strong></p>
-                        <p>Welcome to the Midwest Muslim Singles event (MMS) release of liability and payment page. The MMS event is sponsored by the Islamic Center of Greater Cincinnati (ICGC).</p>
-
-                        <h4>Agree to Release of Liability</h4>
-                        <p>In exchange for participation in the activities of the MMS event (Muslim Midwest Singles event) organized by the Islamic Center of Greater Cincinnati, referred to as ICGC, in collaboration with HalfDeen, and/or use of the property, facilities and services of ICGC, I agree for myself to the following:</p>
-
-                        <div>
-                            <h5>AGREEMENT TO FOLLOW DIRECTIONS.</h5>
-                            <p>I agree to observe and obey all posted rules and warnings, and further agree to follow any oral instructions or directions given by ICGC/Halfdeen volunteers and contractors.</p>
-                        </div>
-
-                        <div>
+        <!-- MODAL (TERMS AND CONDITIONS) -->
+        <div class="modal" id="modal-tc" tabindex="-1" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title px-3">Terms & Conditions</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="content-tc px-3">
+                            <h3 class="mb-4">Midwest Muslim Singles Event -Sept. 2022</h3>
                             <p>
-                                <strong>ICGG/Halfdeen</strong> reserves the right to eject any participant who they feel, in their sole discretion, does not comply with the terms of this section. Ejected participants will not be entitled to a refund or any further recourse.</p>
+                                <strong>Assalamu Alaikum!</strong>
+                            </p>
+                            <p>Welcome to the Midwest Muslim Singles event (MMS) release of liability and payment page.
+                                The MMS event is sponsored by the Islamic Center of Greater Cincinnati (ICGC).</p>
+
+                            <h4>Agree to Release of Liability</h4>
+                            <p>In exchange for participation in the activities of the MMS event (Muslim Midwest Singles
+                                event) organized by the Islamic Center of Greater Cincinnati, referred to as ICGC, in
+                                collaboration with HalfDeen, and/or use of the property, facilities and services of
+                                ICGC, I agree for myself to the following:</p>
+
+                            <div>
+                                <h5>AGREEMENT TO FOLLOW DIRECTIONS.</h5>
+                                <p>I agree to observe and obey all posted rules and warnings, and further agree to
+                                    follow any oral instructions or directions given by ICGC/Halfdeen volunteers and
+                                    contractors.</p>
+                            </div>
+
+                            <div>
+                                <p>
+                                    <strong>ICGG/Halfdeen</strong> reserves the right to eject any participant who they
+                                    feel, in their sole discretion, does not comply with the terms of this section.
+                                    Ejected participants will not be entitled to a refund or any further recourse.
+                                </p>
+                            </div>
+
+                            <div>
+                                <h5>ASSUMPTION OF THE RISKS AND RELEASE.</h5>
+                                <p>I recognize that there are certain inherent risks associated with the MMS event
+                                    activities and I assume full responsibility for personal injury to myself, and
+                                    further release and discharge ICGC/Halfdeen for injury, loss or damage arising out
+                                    of my use of or presence upon the MMS event’s venue, whether caused by the fault of
+                                    myself or other third parties.</p>
+                            </div>
+
+                            <div>
+                                <p>By participating in the MMS event by ICGC/Halfdeen, I agree that ICGC/Halfdeen event
+                                    is provided with no special warranty either expressed or implied. ICGC/Halfdeen and
+                                    its organizers and members, assume no liability for any loss, theft, damage, or
+                                    injury to property or persons, whether arising in contract, negligence, equity, or
+                                    otherwise.</p>
+                            </div>
+
+                            <div>
+                                <p><strong>INDEMNIFICATION.</strong> I agree to indemnify and defend ICGC/Halfdeen
+                                    against all claims, causes of action, damages, judgments, costs or expenses,
+                                    including attorney fees and other litigation costs, which may in any way arise from
+                                    my use of or presence upon the venue of the MMS event.</p>
+                            </div>
+
+                            <div>
+                                <p><strong>MEDIA.</strong> I agree not to engage in any recording or photographing of
+                                    the MMS attendees or staff in any format (audio, video, picture) in order to uphold
+                                    the highest level of privacy for event attendees.</p>
+                            </div>
+
+                            <div>
+                                <p><strong>FEES.</strong> I agree to pay for all damages to the venue of the MMS event
+                                    caused by any negligent, reckless, or willful actions by me.</p>
+                            </div>
+
+                            <div>
+                                <p><strong>APPLICABLE LAW.</strong> Any legal or equitable claim that may arise from
+                                    participation in the above shall be resolved under Ohio law.</p>
+                            </div>
+
+                            <div>
+                                <p><strong>NO DURESS.</strong> I agree and acknowledge that I am under no pressure or
+                                    duress to sign this Agreement and that I have been given a reasonable opportunity to
+                                    review it before signing. I further agree and acknowledge that I am free to have my
+                                    own legal counsel review this Agreement if I so desire.</p>
+                            </div>
+
+                            <div>
+                                <p><strong>ARM'S LENGTH AGREEMENT.</strong> This Agreement and each of its terms are the
+                                    product of an arm's length negotiation between the Parties. In the event any
+                                    ambiguity is found to exist in the interpretation of this Agreement, or any of its
+                                    provisions, the Parties, and each of them, explicitly reject the application of any
+                                    legal or equitable rule of interpretation which would lead to a construction either
+                                    "for" or "against" a particular party based upon their status as the drafter of a
+                                    specific term, language, or provision giving rise to such ambiguity.</p>
+                            </div>
+
+                            <div>
+                                <p><strong>ENFORCEABILITY.</strong> The invalidity or unenforceability of any provision
+                                    of this Agreement, whether standing alone or as applied to a particular occurrence
+                                    or circumstance, shall not affect the validity or enforceability of any other
+                                    provision of this Agreement or of any other applications of such provision, as the
+                                    case may be, and such invalid or unenforceable provision shall be deemed not to be a
+                                    part of this Agreement.</p>
+                            </div>
+
+                            <div>
+                                <p><strong>DISPUTE RESOLUTION.</strong> The parties will attempt to resolve any dispute
+                                    arising out of or relating to this Agreement through friendly negotiations amongst
+                                    the parties. If the matter is not resolved by negotiation, the parties will resolve
+                                    the dispute using the below Alternative Dispute Resolution (ADR) procedure.Any
+                                    controversies or disputes arising out of or relating to this Agreement will be
+                                    resolved by binding arbitration under the rules of the American Arbitration
+                                    Association. The arbitrator's award will be final, and any judgment may be entered
+                                    upon it by any court having proper jurisdiction.</p>
+                            </div>
                         </div>
 
-                        <div>
-                            <h5>ASSUMPTION OF THE RISKS AND RELEASE.</h5>
-                            <p>I recognize that there are certain inherent risks associated with the MMS event activities and I assume full responsibility for personal injury to myself, and further release and discharge ICGC/Halfdeen for injury, loss or damage arising out of my use of or presence upon the MMS event’s venue, whether caused by the fault of myself or other third parties.</p>
+                        <div class="content-tc mt-4 px-3">
+                            <h3 class="mb-4">Waiver of Liability Relating to COVID-19</h3>
+
+                            <p>
+                                The novel coronavirus (“COVID-19”) has been declared a worldwide pandemic by the World
+                                Health Organization. COVID-19 is extremely contagious and is believed to spread mainly
+                                from person-to-person contact. According to the Center for Disease Control and
+                                Prevention (CDC), the virus that causes COVID-19 is thought to spread mainly from person
+                                to person, mainly through respiratory droplets produced when an infected person coughs,
+                                sneezes or talks, and also may be produced when yelling, cheering, singing and spitting.
+                                These droplets can land in the mouths or noses of people who are nearby or possibly be
+                                inhaled into the lungs. Spread is more likely when people are in close contact with one
+                                another (within about six feet). As a result, federal, state, and local governments and
+                                federal and state health agencies recommend social distancing and have, in many
+                                locations, prohibited the congregation of large groups of people. ICGC cannot guarantee
+                                that you will not become exposed to or infected with COVID-19. Attending any program or
+                                participating in any activity at ICGC that involves close contact (including but not
+                                limited to Midwest Muslim Singles Event) could increase your risk of contracting
+                                COVID-19.
+                            </p>
+
+                            <p>
+                                I hereby acknowledge the contagious nature of COVID-19 and assume the risk that I may be
+                                exposed to or infected by COVID-19 while attending the Midwest Muslim Singles Event
+                                sponsored and organized by ICGC in partnership with Halfdeen, and that such exposure or
+                                infection may result in bodily injury, illness, disability, and/or death. I understand
+                                that the risk of becoming exposed to or infected with COVID-19 at ICGC may result from
+                                the actions, omissions, or negligence of myself and others, including, but not limited
+                                to, ICGC employees, volunteers, agents, representatives, program participants and/or
+                                their partners. I agree to assume all of the foregoing risks including, but not limited
+                                to, bodily injury, illness, disability, and/or death, damage, loss, claim, liability, or
+                                expense, of any kind (“Claims”), that I may experience or incur in connection with my
+                                attendance at the private location where the Midwest Muslim Singles Event will be held.
+                                I hereby release, discharge, and hold harmless ICGC, its employees, volunteers, agents,
+                                representatives, and partners from any Claims.
+                            </p>
+
+                            <div>
+                                <h4>Cancellation Policy:</h4>
+                                <p>Please note that we have a no refund policy.</p>
+                            </div>
+
                         </div>
 
-                        <div><p>By participating in the MMS event by ICGC/Halfdeen, I agree that ICGC/Halfdeen event is provided with no special warranty either expressed or implied. ICGC/Halfdeen and its organizers and members, assume no liability for any loss, theft, damage, or injury to property or persons, whether arising in contract, negligence, equity, or otherwise.</p></div>
-
-                        <div><p><strong>INDEMNIFICATION.</strong> I agree to indemnify and defend ICGC/Halfdeen against all claims, causes of action, damages, judgments, costs or expenses, including attorney fees and other litigation costs, which may in any way arise from my use of or presence upon the venue of the MMS event.</p></div>
-
-                        <div><p><strong>MEDIA.</strong> I agree not to engage in any recording or photographing of the MMS attendees or staff in any format (audio, video, picture) in order to uphold the highest level of privacy for event attendees.</p></div>
-
-                        <div><p><strong>FEES.</strong> I agree to pay for all damages to the venue of the MMS event caused by any negligent, reckless, or willful actions by me.</p></div>
-
-                        <div><p><strong>APPLICABLE LAW.</strong> Any legal or equitable claim that may arise from participation in the above shall be resolved under Ohio law.</p></div>
-
-                        <div><p><strong>NO DURESS.</strong> I agree and acknowledge that I am under no pressure or duress to sign this Agreement and that I have been given a reasonable opportunity to review it before signing. I further agree and acknowledge that I am free to have my own legal counsel review this Agreement if I so desire.</p></div>
-
-                        <div><p><strong>ARM'S LENGTH AGREEMENT.</strong> This Agreement and each of its terms are the product of an arm's length negotiation between the Parties. In the event any ambiguity is found to exist in the interpretation of this Agreement, or any of its provisions, the Parties, and each of them, explicitly reject the application of any legal or equitable rule of interpretation which would lead to a construction either "for" or "against" a particular party based upon their status as the drafter of a specific term, language, or provision giving rise to such ambiguity.</p></div>
-
-                        <div><p><strong>ENFORCEABILITY.</strong> The invalidity or unenforceability of any provision of this Agreement, whether standing alone or as applied to a particular occurrence or circumstance, shall not affect the validity or enforceability of any other provision of this Agreement or of any other applications of such provision, as the case may be, and such invalid or unenforceable provision shall be deemed not to be a part of this Agreement.</p></div>
-
-                        <div><p><strong>DISPUTE RESOLUTION.</strong> The parties will attempt to resolve any dispute arising out of or relating to this Agreement through friendly negotiations amongst the parties. If the matter is not resolved by negotiation, the parties will resolve the dispute using the below Alternative Dispute Resolution (ADR) procedure.Any controversies or disputes arising out of or relating to this Agreement will be resolved by binding arbitration under the rules of the American Arbitration Association. The arbitrator's award will be final, and any judgment may be entered upon it by any court having proper jurisdiction.</p></div>
                     </div>
 
-                    <div class="content-tc mt-4 px-3">
-                        <h3 class="mb-4">Waiver of Liability Relating to COVID-19</h3>
-
-                        <p>
-                            The novel coronavirus (“COVID-19”) has been declared a worldwide pandemic by the World Health Organization. COVID-19 is extremely contagious and is believed to spread mainly from person-to-person contact. According to the Center for Disease Control and Prevention (CDC), the virus that causes COVID-19 is thought to spread mainly from person to person, mainly through respiratory droplets produced when an infected person coughs, sneezes or talks, and also may be produced when yelling, cheering, singing and spitting. These droplets can land in the mouths or noses of people who are nearby or possibly be inhaled into the lungs. Spread is more likely when people are in close contact with one another (within about six feet). As a result, federal, state, and local governments and federal and state health agencies recommend social distancing and have, in many locations, prohibited the congregation of large groups of people. ICGC cannot guarantee that you will not become exposed to or infected with COVID-19. Attending any program or participating in any activity at ICGC that involves close contact (including but not limited to Midwest Muslim Singles Event) could increase your risk of contracting COVID-19.
-                        </p>
-
-                        <p>
-                            I hereby acknowledge the contagious nature of COVID-19 and assume the risk that I may be exposed to or infected by COVID-19 while attending the Midwest Muslim Singles Event sponsored and organized by ICGC in partnership with Halfdeen, and that such exposure or infection may result in bodily injury, illness, disability, and/or death. I understand that the risk of becoming exposed to or infected with COVID-19 at ICGC may result from the actions, omissions, or negligence of myself and others, including, but not limited to, ICGC employees, volunteers, agents, representatives, program participants and/or their partners. I agree to assume all of the foregoing risks including, but not limited to, bodily injury, illness, disability, and/or death, damage, loss, claim, liability, or expense, of any kind (“Claims”), that I may experience or incur in connection with my attendance at the private location where the Midwest Muslim Singles Event will be held. I hereby release, discharge, and hold harmless ICGC, its employees, volunteers, agents, representatives, and partners from any Claims.
-                        </p>
-
-                        <div>
-                            <h4>Cancellation Policy:</h4>
-                            <p>Please note that we have a no refund policy.</p>
-                        </div>
-
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal"
+                            style="padding-top:10px;padding-bottom:10px;font-size:16px;">Close</button>
                     </div>
 
                 </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal" style="padding-top:10px;padding-bottom:10px;font-size:16px;">Close</button>
-                </div>
-
             </div>
         </div>
+
+        <!-- LOADER -->
+        <div class="loader-div">
+            <div class="lds-spinner">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+
+        <!-- TICKET SUMMARY ROW TO CLONE -->
+        <div class="ticket-summary-row-to-clone d-none">
+            <table>
+                <tr class="row-ticket-summary-to-clone">
+                    <td>
+                        <span>
+                            <span class="quantity-ticket-summary">0</span>
+                            <span>X</span>
+                            <span class="name-ticket-summary"></span>
+                        </span>
+                    </td>
+
+                    <th>
+                        <span class="currency">$</span>
+                        <span class="amount-ticket-summary">0</span>
+                    </th>
+                </tr>
+            </table>
+
+        </div>
+
     </div>
 
-    <!-- LOADER -->
-    <div class="loader-div">
-        <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
-    </div>
-
-    <!-- TICKET SUMMARY ROW TO CLONE -->
-    <div class="ticket-summary-row-to-clone d-none">
-        <table>
-            <tr class="row-ticket-summary-to-clone">
-                <td>
-                <span>
-                    <span class="quantity-ticket-summary">0</span>
-                    <span>X</span>
-                    <span class="name-ticket-summary"></span>
-                </span>
-                </td>
-
-                <th>
-                    <span class="currency">$</span>
-                    <span class="amount-ticket-summary">0</span>
-                </th>
-            </tr>
-        </table>
-
-    </div>
-
-</div>
 
 
+    <script src="assets/plugins/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="assets/plugins/input_mask/jquery.inputmask.min.js"></script>
+    <script src="assets/plugins/card_validation.js"></script>
 
-<script src="assets/plugins/jquery-3.6.0.slim.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script src="assets/plugins/input_mask/jquery.inputmask.min.js"></script>
-<script src="assets/plugins/card_validation.js"></script>
-
-<script src="assets/js/live/event_single/custom.js?v=1.0.2"></script>
-<!--<script src="assets/js/event_single/custom.js?v=1.0.1"></script>-->
-<script>
-    function registrationConfirmation(){
-        allFieldsValidated(true);
-    }
-
-    function allFieldsValidated(status) {
-        if(status){
-            $('.loader-div').addClass('active');
-            setTimeout(function () {
-                $('.registration-form-wrapper').hide();
-                $('.loader-div').removeClass('active');
-                $('.thank-wrapper').addClass('active');
-            }, 800);
+    <script src="assets/js/live/event_single/custom.js?v=2.0.0"></script>
+    <!-- <script src="assets/js/event_single/custom.js?v=2.0.0"></script> -->
+    <script>
+        function registrationConfirmation() {
+            allFieldsValidated(true);
         }
-    }
 
-    function calculateCoupon(){
+        function allFieldsValidated(status) {
+            if (status) {
+                $('.loader-div').addClass('active');
+                setTimeout(function () {
+                    $('.registration-form-wrapper').hide();
+                    $('.loader-div').removeClass('active');
+                    $('.thank-wrapper').addClass('active');
+                }, 800);
+            }
+        }
 
-    }
-</script>
+        function calculateCoupon() {
+          calculateGrandTotal();
+        }
+    </script>
 </body>
+
 </html>

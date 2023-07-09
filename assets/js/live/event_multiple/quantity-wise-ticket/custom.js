@@ -901,6 +901,10 @@ function calculateGrandTotal() {
     let totalPrice = parseInt($('.ticket-summary-table .total-price .amount').html()),
       processingFees = parseFloat($('.processing-fees-tr-js .amount').text()),
       voucherPrice = parseInt($('.ticket-summary-table .voucher-price .amount').html());
+    if(totalPrice===voucherPrice){
+        $('.processing-fees-tr-js .amount').text(0);
+        processingFees = 0;
+    }
     // processingFees = processingFees.toFixed(2);
     let grandTotalPrice = parseFloat((totalPrice + processingFees) - voucherPrice).toFixed(2);
     //changed by Emdad

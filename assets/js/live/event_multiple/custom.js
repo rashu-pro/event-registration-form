@@ -179,7 +179,7 @@ $('.btn-event-register').on('click', function () {
         focusToNotValidFields(notValidatedBillingFieldsSelector);
         return;
     }
-    if(parseInt($('.grand-total-price .amount').text())>0){
+    if(parseInt($('.grand-total-price .amount').text())>0 && !$('#bill-later').prop('checked')){
         if ((paymentFields) != paymentValidFields) {
             //=== Payment Fields Validation Needed
             paymentFieldNotValidatdSelector.first().focus();
@@ -414,6 +414,11 @@ $(document).on('click', '.btn-pay-direction-js', function (e) {
         $('.cc-name').focus();
     }
 });
+
+$(document).on('change', '#bill-later', function (){
+    let self = $(this);
+    billMeLaterToggle(self);
+})
 
 $(document).on('keyup blur change', '.form-group.required-group .form-control', function (e) {
     let self = $(this);
@@ -1221,4 +1226,15 @@ if ($('.ticket-summary-table').length > 0) {
 //DataRow added as ticket quantity on #ticket-quantity field
 function updateTicketQuantity(dataRow) {
     $('#ticket-quantity').val(dataRow);
+}
+
+/**
+ * Toggles payment form on bill me later checkbox state
+ * @param element
+ */
+function billMeLaterToggle(element){
+    $('.payment-form-wrapper-js').slideUp();
+    if(element.prop('checked')) return;
+
+    $('.payment-form-wrapper-js').slideDown();
 }

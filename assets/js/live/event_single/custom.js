@@ -84,6 +84,11 @@ $(document).on('blur keyup', '.addon-ticket-category-js', function (e) {
     calculateTotal();
 });
 
+$(document).on('change', '#bill-later', function (){
+    let self = $(this);
+    billMeLaterToggle(self);
+})
+
 calculateTotal();
 
 if ($('.ticket-summary-table').length > 0) {
@@ -190,7 +195,7 @@ $(document).on('click', '.btn-reg-js', function (e) {
     }
 
     if ($('.payment-information-div').css('display') === "block") {
-        if (paymentFormGroupNotValidatedSelector.length > 0) {
+        if (paymentFormGroupNotValidatedSelector.length > 0 && !$('#bill-later').prop('checked')) {
             paymentFormGroupNotValidatedSelector.first().find('.form-control').focus();
             return;
         } else {
@@ -606,6 +611,7 @@ function updateTicketData(ticketNumber, ticketPrice, ticketType) {
     });
 
     totalPrice = amount;
+    console.log('TOTAL PRICE: ', totalPrice);
     $('.total-price .amount').text(totalPrice);
     $('#total-price').val(totalPrice);
 
@@ -751,4 +757,15 @@ if($('.field-trip-state-house-court-house-visit').length>0){
 if($('.field-trip-bowling').length>0){
     $('#tc-2').prop('checked', true);
     $('.field-trip-bowling .tc-wrapper').hide();
+}
+
+/**
+ * Toggles payment form on bill me later checkbox state
+ * @param element
+ */
+function billMeLaterToggle(element){
+    $('.payment-form-wrapper-js').slideUp();
+    if(element.prop('checked')) return;
+
+    $('.payment-form-wrapper-js').slideDown();
 }
