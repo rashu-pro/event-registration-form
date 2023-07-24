@@ -2,14 +2,10 @@
  * Created by rashu on 4/14/2022.
  */
 
-
 $(function ($) {
     let tickets = [],
         price = 0,
         boothType = '',
-        selectedBooths = [],
-        boothNumber,
-        booth,
         timerFunction = false,
         btnMapSelector = $('.ticket-map-row .btn-holder .btn'),
         btnMapSelectorSelected = $('.ticket-map-row .btn-holder .btn.booth-selected'),
@@ -20,10 +16,7 @@ $(function ($) {
         btnModalCancelSelector = $('.btn-modal-cancel-js'),
         btnNextSelector = $('.btn-next-js'),
         btnChangeSelector = $('.btn-change-js'),
-        confirmationModalSelector = $('#confirmation-modal'),
-        btnClearSelector = $(".btn-clear-js"),
-        btnMoreSelector = $(".btn-more-js"),
-        btnMiniBooth = $(".btn-mini-booth");
+        confirmationModalSelector = $('#confirmation-modal');
 
 
     columnGapSelector.prev().find('.btn').addClass('on-edge');
@@ -31,617 +24,263 @@ $(function ($) {
     btnHolderBtnGapSelector.parent().prev().find('.btn').addClass('on-edge');
     emptyRowSelector.next().addClass('after-empty');
 
-    //=== ON DOCUMENT READY  
-    //btnMapSelector.each(function (e) {
-    //    let self = $(this);
-    //    self.attr('data-id', self.text());
-    //    if (self.hasClass('btn-sponsorship-aisle')) {
-    //        price = 2000;
-    //        self.attr('data-type', 'Sponsorship Aisle');
-    //        self.attr('data-price', price);
-    //    } else if (self.hasClass('btn-prime-a')) {
-    //        price = 1500;
-    //        self.attr('data-type', 'Prime A');
-    //        self.attr('data-price', price);
-    //    } else if (self.hasClass('btn-prime-b')) {
-    //        price = 1300;
-    //        self.attr('data-type', 'Prime B');
-    //        self.attr('data-price', price);
-    //    } else if (self.hasClass('btn-prime-c')) {
-    //        price = 950;
-    //        self.attr('data-type', 'Prime C');
-    //        self.attr('data-price', price);
-    //    } else if (self.hasClass('btn-standard')) {
-    //        price = 550;
-    //        self.attr('data-type', 'Standard');
-    //        self.attr('data-price', price);
-    //    } else {
-    //        price = 0;
-    //    }
-    //});
-
-    $("#draggable").draggable({
-        axis: "x"
-    });
-
-    afterTermsCheck();
-    $(document).on('click', '#terms-check', function (e) {
-        afterTermsCheck();
-    });
-
-    $(document).on('change', '.ticket-category-check', function () {
-        let self = $(this),
-            price = parseInt(self.data('price'));
-        if (self.prop('checked')) {
-            adSelection(self, 'add');
-        } else {
-            adSelection(self, 'remove');
+    //=== ON DOCUMENT READY
+    btnMapSelector.each(function (e) {
+        let self = $(this);
+        self.attr('data-id',self.text());
+        if(self.hasClass('btn-sponsorship-aisle')){
+            price = 2000;
+            self.attr('data-type','Sponsorship Aisle');
+            self.attr('data-price', price);
+        }else if(self.hasClass('btn-prime-a')){
+            price = 1500;
+            self.attr('data-type','Prime A');
+            self.attr('data-price', price);
+        }else if(self.hasClass('btn-prime-b')){
+            price = 1300;
+            self.attr('data-type','Prime B');
+            self.attr('data-price', price);
+        }else if(self.hasClass('btn-prime-c')){
+            price = 950;
+            self.attr('data-type','Prime C');
+            self.attr('data-price', price);
+        }else if(self.hasClass('btn-standard')){
+            price = 550;
+            self.attr('data-type','Standard');
+            self.attr('data-price', price);
+        }else{
+            price = 0;
         }
-        serialTicketSummary();
-        calculateTotal();
-    });
-    calculateTotal();
-
-    // Reference the auto-generated proxy for the hub.
-    booth = $.connection.boothHub;
-
-    // Disable the send button until connection is established
-    /*  $(".js-booth").attr("disabled", "disabled");*/
-
-
-    // Create a function that the hub can call back to display messages.
-    booth.client.booked = function (boothNumber, clear) {
-        // Clear temp registrations
-        clearReservations()
-            .then((data) => {
-                if (data.booths.length > 0) {
-                    $(data.booths).each(function (index, item) {
-                        $("." + item).removeAttr("disabled");
-                        $("." + item).removeClass("booth-selected");
-                    });
-                }
-
-                // Add the message to the page.
-                if (clear == true) {
-                    /*$("." + boothNumber).removeAttr("disabled");*/
-                    $("." + boothNumber).removeClass("booth-selected");
-                } else {
-                    /*$("." + boothNumber).attr("disabled", "disabled");*/
-                    $("." + boothNumber).addClass("booth-selected");
-                }
-            });
-    };
-
-    // Start the connection./
-    //if ($.connection.hub && $.connection.hub.state === $.signalR.connectionState.disconnected) {
-    //    console.log($.connection.hub.state);
-    //    $.connection.hub.start()
-    //}
-
-    $.connection.hub.disconnected(function () {
-        setTimeout(function () {
-            $.connection.hub.start();
-        }, 1000); // Restart connection after 1 second.
     });
 
-    $.connection.hub.start().done(function () {
-        // console.log("Connection Status: " + $.connection.hub.state);
-        // btnMapSelector.removeAttr("disabled");
-        btnMapSelector.on('click', function (e) {
-            e.preventDefault();
-            let self = $(this),
-                item = self.text(),
-                boothType = self.attr('data-type'),
-                price = self.attr('data-price'),
-                classToAdd = self.attr('class').replace('btn', ''),
-                btnBooth = '<span class="' + classToAdd + '">' + self.text() + '</span>',
-                slotKey = self.attr("data-slot-key"),
-                boothKey = self.attr("data-booth-key");
-
-
-            $("#EventSlotKey").val(slotKey);
-            $("#EventBoothKey").val(boothKey);
-            $("#BoothNo").val(self.text());
-
-            if (selectedBooths.filter(e => e.eventBoothKey === boothKey).length > 0) {
-
-                // get index of object 
-                var removeIndex = selectedBooths.map(function (item) { return item.eventBoothKey; }).indexOf(boothKey);
-
-                // remove object
-                selectedBooths.splice(removeIndex, 1);
-
-
-                updateMiniBooth();
-
-                boothNumber = self.text();
-                if (boothNumber != null) {
-                    // remove from reservation table
-                    removeReservation(boothKey, boothNumber).then((data) => {
-                        if (data.isSuccess) {
-                            booth.server.send(boothNumber, true);
-                            boothNumber = null;
-                        }
-                    }).catch((error) => {
-                        console.log(error);
-                    });
-                }
-            } else {
-                if (selectedBooths.length < 4) { // Only allowed 4 booths
-                    boothNumber = self.text();
-                    $('.loader-div').addClass('active');
-                    // Check someone already booked the selected booth
-                    checkReservation()
-                        .then((data) => {
-                            if (data.isSuccess) { // if already booked return
-                                //  $('.loader-div').addClass('active');
-                                let confirmTemplate = `Booth No: <strong><em>${boothNumber}</em></strong> is already booked.`
-
-                                if (data.isSoldOut) {
-                                    confirmTemplate = `Booth No: <strong><em>${boothNumber}</em></strong> is already sold out.`
-                                }
-
-                                getReservedBooths().then((data) => {
-                                    if (data.isSuccess) {
-                                        $(data.bookedBooths).each(function (index, item) {
-
-                                            // Call the Send method on the hub.
-                                            booth.server.send(item.boothNo, false);
-
-                                            //$(`.${item.boothNo}`).removeClass("booth-selected").addClass("booth-selected");
-                                            ///*$(`.${item.boothNo}`).attr("disabled", "disabled");*/
-                                            //$(`.${item.boothNo}`).attr("title", "This booth is booked");
-                                        })
-                                    }
-                                }).catch((error) => {
-                                    console.log(error);
-                                });
-
-                                $('.loader-div').removeClass('active');
-                                // notify
-                                toastr.warning(confirmTemplate);
-                                return;
-                            }
-
-                            // Add to Reservation table
-                            createReservation()
-                                .then((data) => {
-                                    if (data.isSuccess) {
-
-                                        // Call the Send method on the hub.
-                                        booth.server.send(boothNumber, false);
-
-                                        clearInterval(timerFunction);
-                                        start_tmer(900);
-
-                                        selectedBooths.push({
-                                            boothType: boothType,
-                                            btnBooth: btnBooth,
-                                            price: price,
-                                            boothNumber: boothNumber,
-                                            eventSlotKey: slotKey,
-                                            eventBoothKey: boothKey
-                                        });
-
-                                     
-                                        // Notify
-                                        toastr.success("Booth is added into the basket, click the basket to proceed.");
-
-                                        updateMiniBooth();
-
-                                        //// Clear temp registrations
-                                        //clearReservations()
-                                        //    .then((data) => {
-                                        //        if (data.booths.length > 0) {
-                                        //            $(data.booths).each(function (index, item) {
-                                        //                // Call the Send method on the hub.
-                                        //                booth.server.send(item, true);
-                                        //                //$("." + item).removeAttr("disabled");
-                                        //                //$("." + item).removeClass("booth-selected");
-                                        //            });
-                                        //        }
-                                        //    });
-
-                                        $('.js-timer-block').hide();
-                                        setTimeout(function () {
-                                            $(".js-timer-block").show();
-                                        }, 1000);
-
-                                        $('.loader-div').removeClass('active');
-                                        self.closest('.form-row').find('.btn-next-js').removeClass('disabled');
-                                    }
-                                }).catch((error) => {
-                                    console.log(error);
-                                });
-                        })
-                        .catch((error) => {
-                            console.log(error);
-                        });
-
-                } else {
-                    // notify 
-                    toastr.warning("A maximum of 4 booths can be selected.");
-                }
-            }
-        });
-    });
-
-
-    btnMiniBooth.on('click', function (e) {
-        e.preventDefault();
-
-        $('#confirmation-modal').modal('show');
-
-        showSelectedBooths();
-    });
-
-    btnNextSelector.on('click', function (e) {
+    btnNextSelector.on('click',function (e) {
         let self = $(this);
         $('.loader-div').addClass('active');
-        if (self.closest('.modal').hasClass('confirm-modal')) {
-            showTicketSummary();
-
+        if(self.closest('.modal').hasClass('confirm-modal')){
             $('#confirmation-modal').modal('hide');
-
+            //self.closest('.booth-selection').hide();
+            //self.closest('.booth-selection').next().show();
             $('.booth-selection').hide();
             $('.booth-selection').next().show();
-
-            allSelectedBooths();
-
             let bannerHeight = $('.main-banner').height();
-            window.scrollTo({ top: bannerHeight, behavior: 'smooth' });
+            window.scrollTo({top: bannerHeight, behavior: 'smooth'});
             setTimeout(function (e) {
+                //self.closest('.form-row').removeClass('active').addClass('edited');
+                //self.closest('.form-row').next().addClass('active');
                 $('.booth-selection .form-row').removeClass('active').addClass('edited');
                 $('.booth-selection .form-row').next().addClass('active');
                 $('.loader-div').removeClass('active');
-            }, 400)
-        } else {
+            },400)
+        }else{
             setTimeout(function (e) {
                 self.closest('.form-row').removeClass('active').addClass('edited');
                 self.closest('.form-row').next().addClass('active');
                 $('.loader-div').removeClass('active');
-            }, 400)
+            },400)
         }
+
     });
 
-
-    btnModalCancelSelector.on('click', function (e) {
+    btnModalCancelSelector.on('click',function (e) {
         e.preventDefault();
+        let self = $(this);
         confirmationModalSelector.modal('hide');
+        btnMapSelector.removeClass('booth-selected');
     });
 
-    btnMoreSelector.on('click', function (e) {
-        e.preventDefault();
 
-        $('#confirmation-modal').modal('hide');
-    });
-
-    btnClearSelector.on('click', function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-
-        clearBooth();
-        updateMiniBooth();
-
-        selectedBooths = [];
-        $('#confirmation-modal').modal('hide');
-    });
-
-    btnChangeSelector.on('click', function (e) {
-        //clearBooth();
-    });
-
-    $("body").on("click", '.btn-change-js', function (e) {
-        e.preventDefault();
-
-        $('.js-timer-block').hide();
+    btnChangeSelector.on('click',function (e) {
+        let self = $(this);
+        $('.loader-div').addClass('active');
         $('.after-booth-selection').hide();
         $('.booth-selection').show();
         $('.booth-selection .form-row').addClass('active');
-    })
+        setTimeout(function (e) {
+            $('.loader-div').removeClass('active');
+        },400);
+    });
 
-    $('.body-toggler').on('click', function (e) {
+    $('.body-toggler').on('click',function (e) {
         let self = $(this);
         $('.form-row.active').removeClass('active').addClass('edited');
         self.closest('.form-row.edited').removeClass('edited').addClass('active');
-        $('.content-div').height('auto');
     });
 
-    $("body").on("click", ".booth-remove-js", function (e) {
+    btnMapSelector.on('click',function (e) {
         e.preventDefault();
-        e.stopPropagation();
+        let self = $(this),
+            item = self.text(),
+            boothType = self.attr('data-type'),
+            price = self.attr('data-price'),
+            classToAdd = self.attr('class').replace('btn',''),
+            btnBooth = '<span class="'+classToAdd+'">' + self.text()+'</span>';
+        $('#confirmation-modal').modal('show');
+        $('.booth-type-holder .booth-type').text(boothType);
+        $('.booth-number').html(btnBooth);
+        $('.booth-price').html(price);
+        if(!self.hasClass('booth-selected')){
+            $('.js-timer-block').hide();
+            setTimeout(function () {
+                $(".js-timer-block").show();
+            },1000);
 
-        var selector = $(this).data("booth-key");
-        var boothToRemove = $(this).data("booth");
+            self.closest('.form-row-booth').find('.btn').removeClass('booth-selected');
+            self.addClass('booth-selected');
+            btnBooth = '<span class="'+classToAdd+'">' + self.text()+'</span>';
+            $('.form-row-selected-booth').find('.booth-holder').html(btnBooth);
+            self.closest('.form-row').find('.btn-next-js').removeClass('disabled');
 
-        if (boothToRemove != null) {
-            // remove from reservation table
-            removeReservation($(this).data("booth-key"), boothToRemove).then((data) => {
-                if (data.isSuccess) {
-                    booth.server.send(boothToRemove, true);
-                }
-            }).catch((error) => {
-                console.log(error);
-            });
+            let item = $(this).data("id");
+            tickets.push(item);
 
-            // get index of object 
-            var removeIndex = selectedBooths.map(function (item) { return item.eventBoothKey; }).indexOf(selector);
-
-            // remove object
-            selectedBooths.splice(removeIndex, 1);
-
-            console.log(selectedBooths.length);
-            $("#" + selector).remove();
-
-            updateMiniBooth();
-        }
-
-        //selectedBooths = selectedBooths.filter(function (el) {
-        //    return el.eventBoothKey != selector
-        //});
-
-
-    });
-
-    //$(document).on('click', '.btn-reg', function (e) {
-    //    selectedBooths = [];
-    //});
-
-    ////==== TICKET ROW 2
-    //for (let i = 0; i < 5; i++) {
-    //    $('.ticket-map-left .ticket-map-row.row-2, .ticket-map-left .ticket-map-row.row-11').append('<span class="column-gap"></span>');
-    //}
-
-    //for (let i = 0; i < 36; i++) {
-    //    $('.ticket-map-left .ticket-map-row.row-2, .ticket-map-left .ticket-map-row.row-11').append('<span class="btn-gap"></span>');
-    //}
-
-    //$('.ticket-map-left .ticket-map-row.row-2').append('<div class="btn-holder">' +
-    //    '<button type="button" class="btn btn-sponsorship-aisle on-edge" data-id="1304">1304</button> ' +
-    //    '</div>');
-
-
-    ////==== TICKET ROW 5
-    //for (let i = 0; i < 3; i++) {
-    //    $('.ticket-map-left .ticket-map-row.row-5').append('<span class="column-gap"></span>');
-    //}
-    //for (let i = 0; i < 19; i++) {
-    //    $('.ticket-map-left .ticket-map-row.row-5').append('<span class="btn-gap"></span>');
-    //}
-    //$('.ticket-map-left .ticket-map-row.row-5').append('<div class="btn-holder">' +
-    //    '<button type="button" class="btn btn-prime-a on-edge" data-id="1310">1310</button> ' +
-    //    '</div>');
-
-    //$('.ticket-map-left .ticket-map-row.row-11').append('<div class="btn-holder">' +
-    //    '<button type="button" class="btn btn-prime-a on-edge" data-id="1310">1322</button> ' +
-    //    '</div>');
-
-    //for (let i = 1; i < 19; i++) {
-    //    $('.ticket-map-row.row-' + 3 * i + ' .column-gap').next().append('<span class="fire-exits"></span>');
-    //    if (i === 1) {
-    //        $('.ticket-map-row.row-1 .column-gap').next().append('<span class="fire-exits bottom-row"></span>');
-    //    }
-    //}
-
-
-    if (!btnMapSelector.next().hasClass('btn')) {
-        btnMapSelector.addClass('on-edge');
-    }
-
-    //$('.btn-reg').click(function () {
-    //    let self = $(this);
-    //    $('.loader-div').addClass('active');
-    //    setTimeout(function (e) {
-    //        $('.registration-form-wrapper').hide();
-    //        $('.thank-wrapper').show();
-    //        $('.loader-div').removeClass('active');
-    //    }, 400);
-
-    //});
-
-
-
-    function updateMiniBooth() {
-        if (selectedBooths.length > 0) {
-            $(btnMiniBooth).show();
-            $(btnMiniBooth).find("span").text(selectedBooths.length);
-            $(btnMiniBooth).effect("bounce", { times: 3 }, 300);
-
-            $(btnClearSelector).fadeIn();
-            $(btnNextSelector).fadeIn();
-        }
-        else {
-            $(btnMiniBooth).find("span").text(0);
-            $(btnMiniBooth).hide();
-
-            $(btnClearSelector).fadeOut();
-            $(btnNextSelector).fadeOut();
-
-            selectedBooths = [];
-        }
-
-        if (selectedBooths.length == 4) {
-            $(btnMoreSelector).fadeOut();
-        } else {
-            $(btnMoreSelector).fadeIn();
-        }
-    }
-
-
-    function showSelectedBooths() {
-        $("#boothTable tbody").empty();
-        $(selectedBooths).each(function (index, item) {
-            let boothTemplate = `<tr id="${item.eventBoothKey}">
-                                          <td class="booth-type-holder"><span class="booth-type">${item.boothType}</span></td>
-                                          <td class="booth-number-holder"><span class="booth-number">${item.btnBooth}</span></td>
-                                          <td class="booth-name-holder">$<span class="booth-price">${item.price}</span></td>
-                                          <td class="booth-remove-js" data-booth="${item.boothNumber}" data-slot-key='${item.eventSlotKey}' data-booth-key='${item.eventBoothKey}' class=""><span class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></span></td>
-                                    </tr>`;
-            $("#boothTable tbody").append(boothTemplate);
-        });
-    }
-
-    function allSelectedBooths() {
-        $('.form-row-selected-booth').find('.form-row-body').empty();
-        //$(selectedBooths).each(function (index, item) {
-        //    let boothTemplate = `<div class="form-fields-wrapper">
-        //                              <p class="booth-type-holder"><strong>Booth Type:</strong> <span class="booth-type">${item.boothType}</span></p>
-        //                              <span class="booth-holder">${item.btnBooth}</span>
-        //                              <button type="button" class="btn btn-change-booth btn-change-js ml-4">Change Booth <i class="fa fa-edit"></i></button>
-        //                        </div>`;
-        //    $('.form-row-selected-booth').find('.form-row-body').append(boothTemplate);
-        //});
-
-        if (selectedBooths.length > 0) {
-            //let singleLineTemplate = `<div class="form-fields-wrapper">
-            //                              <p class="booth-type-holder"><strong>Booth:</strong> <span class="booth-type">${selectedBooths.map(el => el.boothType + ": " + el.boothNumber).join(", ")}</span></p>                     
-            //                              <button type="button" class="btn btn-change-booth btn-change-js ml-4">Change Booth <i class="fa fa-edit"></i></button>
-            //                          </div>`;
-
-            let singleLineTemplate = `<div class="form-fields-wrapper">
-                                          <p class="booth-type-holder"><strong>Booth Type:</strong> <span class="booth-type">${selectedBooths.map(el => el.boothType).join(", ")}</span></p>
-                                          <span class="booth-holder">${selectedBooths.map(el => el.btnBooth).join(" ")}</span>
-                                          <button type="button" class="btn btn-change-booth btn-change-js ml-4">Change Booth <i class="fa fa-edit"></i></button>
-                                     </div>`;
-
-            $('.form-row-selected-booth').find('.form-row-body').append(singleLineTemplate);
-        }
-    }
-
-    function showTicketSummary() {
-        $(".ticket-summary-table table tbody .booth-row").remove();
-        $(selectedBooths).each(function (index, item) {
-            let row = `<tr id='row-${item.boothNumber}' class="price-row ticket-price-row booth-row row-${item.boothNumber}">
-                                    <td>
-                                        <input type="hidden" name="EventBoothKeys" value="${item.eventBoothKey}" />
-                                        <span class="row-number">${index + 1}.</span>
-                                        <span class="ticket-text"> ${item.boothNumber} - ${item.boothType} </span>
-                                        <span> X </span>
-                                        <span class="row-quantity">1</span>
-                                    </td>
+            let row = `<tr id='row-${item}'>
+                                    <td>${item} - ${boothType}</td>
                                     <th>
                                         <span class="">
                                             <span class="currency">$</span>
-                                            <span class="amount">${item.price}</span>
+                                            <span class="amount">${price}</span>
+                                        </span>
+                                    </th>
+                                </tr>`;
+            $(".ticket-summary-table table tbody").html(row);
+            let tenMinutes = 60 * 10;
+            display = document.querySelector('.js-timer');
+            clearInterval(timerFunction);
+            start_tmer(600);
+            if(self.closest('.form-row').find('.btn-next-js').hasClass('disabled')){
+                self.closest('.form-row').find('.btn-next-js').removeClass('disabled');
+            }
+
+            let amount = 0;
+            $('.ticket-summary-table tbody tr').each(function (index, value) {
+                amount += parseInt($(this).find('.amount').text());
+            });
+
+            totalPrice = amount;
+            $('.total-price .amount').text(totalPrice);
+            $('#total-price').val(totalPrice);
+
+            $(".card-info-area").toggleClass("hide");
+            $('.btn-reg').text('Payment');
+        }
+    });
+
+    $(".js-booth").click(function () {
+        let self = $(this);
+
+        if(!self.hasClass('selected')){
+            $('.js-timer-block').hide();
+            setTimeout(function () {
+                $(".js-timer-block").show();
+            },1000);
+            let item = $(this).data("key");
+            $('.js-booth').removeClass('selected');
+            $('.js-booth').parent().removeClass('child-selected');
+            $(this).toggleClass("selected");
+            self.parent().toggleClass('child-selected');
+            if ($(this).hasClass("selected")) {
+                tickets.push(item);
+
+                let row = `<tr id='row-${item}'>
+                                    <td>${item} - ${boothType}</td>
+                                    <th>
+                                        <span class="">
+                                            <span class="currency">$</span>
+                                            <span class="amount">${price}</span>
                                         </span>
                                     </th>
                                 </tr>`;
 
-            $(".ticket-summary-table table tbody").prepend(row);
-        });
-
-        serialTicketSummary();
-        calculateTotal();
-
-        //if (self.closest('.form-row').find('.btn-next-js').hasClass('disabled')) {
-        //    self.closest('.form-row').find('.btn-next-js').removeClass('disabled');
-        //}
-
-        let amount = 0;
-        $('.ticket-summary-table tbody tr').each(function (index, value) {
-            amount += parseInt($(this).find('.amount').text());
-        });
-
-        totalPrice = amount;
-        $('.total-price .amount').text(totalPrice);
-        $('#total-price').val(totalPrice);
-
-        // $(".card-info-area").toggleClass("hide");
-        // $('.btn-reg').text('Payment');
-    }
-
-    function afterTermsCheck() {
-        if ($('#terms-check').prop('checked') === true) {
-            $('.loader-div').addClass('active');
-            setTimeout(function (e) {
-                $('.terms-wrapper .form-row').removeClass('active');
-                $('.booth-selection .form-row').addClass('active');
-                $('.loader-div').removeClass('active');
-            }, 600);
-        }
-    }
-
-    function adSelection(checkSelector, addOrRemove) {
-        let adPrice = checkSelector.data('price'),
-            adRow = checkSelector.data('type'),
-            adName = checkSelector.data('text');
-        if (adName.length > 15) {
-            adName = adName.substring(0, 15) + "...";
-        }
-
-        let adRowTr = `<tr id='row-adtype-${adRow}' class="price-row ticket-price-row row-adtype-${adRow}">
-                                                            <td class="tr-ticket-text">
-                                                                <span class="row-number">1.</span>
-                                                                <span class="ticket-text"> ${adName} </span>
-                                                                <span> X </span>
-                                                                <span class="row-quantity">1</span>
-                                                            </td>
-                                                            <th>
-                                                                <span class="">
-                                                                    <span class="currency">$</span>
-                                                                    <span class="amount">${adPrice}</span>
-                                                                </span>
-                                                            </th>
-                                                        </tr>`;
-        $('.row-adtype-' + adRow).remove();
-        if (addOrRemove == 'add') {
-            $('.ticket-summary-table .table tbody').append(adRowTr);
-        }
-        return true;
-    }
-
-    function calculateTotal() {
-        let totalPrice = 0,
-            sidebarPriceRow = $('.sidebar-block .price-row');
-
-        sidebarPriceRow.each(function (i, obj) {
-            totalPrice = totalPrice + parseInt($(obj).find('.amount').text());
-        });
-
-        console.log('total price: ' + totalPrice);
-        $('#total-price').val(totalPrice);
-        $('.ticket-summary-table .total-price .amount').html(totalPrice);
-    }
-
-    function serialTicketSummary() {
-        let sidebarPriceRow = $('.sidebar-block .price-row');
-        sidebarPriceRow.each(function (i, obj) {
-            $(obj).find('.row-number').html(i + 1 + ".");
-        });
-    }
-
-
-    function clearBooth() {
-        if (selectedBooths.length > 0) {
-            $(selectedBooths).each(function (index, item) {
-                if (item.boothNumber != null) {
-                    $('.loader-div').addClass('active');
-                    // remove from reservation table
-                    removeReservation(item.eventBoothKey, item.boothNumber).then((data) => {
-                        if (data.isSuccess) {
-                            booth.server.send(item.boothNumber, true);
-                        }
-                    }).catch((error) => {
-                        console.log(error);
-                    });
+                $(".ticket-summary-table table tbody").html();
+                $(".ticket-summary-table table tbody").append(row);
+                let tenMinutes = 60 * 10;
+                display = document.querySelector('.js-timer');
+//                startTimer(tenMinutes, display);
+                clearInterval(timerFunction);
+                start_tmer(600);
+                self.closest('.form-fields-wrapper').addClass('booth-selected');
+                $('.ad-type').show();
+                if(self.closest('.form-row').find('.btn-next-js').hasClass('disabled')){
+                    self.closest('.form-row').find('.btn-next-js').removeClass('disabled');
                 }
+            } else {
+                tickets.pop($(this).data("key"));
+                $(".ticket-summary-table table tbody tr#row-" + item).remove();
+            }
+
+            let amount = 0;
+            $('.ticket-summary-table tbody tr').each(function (index, value) {
+                amount += parseInt($(this).find('.amount').text());
             });
 
-            updateMiniBooth();
+            totalPrice = amount;
+            $('.total-price .amount').text(totalPrice);
+            $('#total-price').val(totalPrice);
 
-            $("#boothTable tbody").empty();
-            setTimeout(function (e) {
-                $('.loader-div').removeClass('active');
-            }, 400);
-
-            $('.js-timer-block').hide();
-            $('.after-booth-selection').hide();
-            $('.booth-selection').show();
-            $('.booth-selection .form-row').addClass('active');
+            $(".card-info-area").toggleClass("hide");
+            $('.btn-reg').text('Payment');
+            console.log(tickets);
+            //$.each(ticketQuantity, function (index, value) {
+            //    totalTicket += parseInt(value);
+            //});
         }
 
-        selectedBooths = [];
+    });
+
+
+    //==== TICKET ROW 2
+    for(let i=0; i<5; i++) {
+        $('.ticket-map-left .ticket-map-row.row-2, .ticket-map-left .ticket-map-row.row-11').append('<span class="column-gap"></span>');
     }
+
+    for(let i=0; i<36; i++){
+        $('.ticket-map-left .ticket-map-row.row-2, .ticket-map-left .ticket-map-row.row-11').append('<span class="btn-gap"></span>');
+    }
+
+    $('.ticket-map-left .ticket-map-row.row-2').append('<div class="btn-holder">' +
+        '<button type="button" class="btn btn-sponsorship-aisle on-edge" data-id="1304">1304</button> ' +
+        '</div>');
+
+
+    //==== TICKET ROW 5
+    for(let i=0; i<3; i++) {
+        $('.ticket-map-left .ticket-map-row.row-5').append('<span class="column-gap"></span>');
+    }
+    for(let i=0; i<19; i++){
+        $('.ticket-map-left .ticket-map-row.row-5').append('<span class="btn-gap"></span>');
+    }
+    $('.ticket-map-left .ticket-map-row.row-5').append('<div class="btn-holder">' +
+        '<button type="button" class="btn btn-prime-a on-edge" data-id="1310">1310</button> ' +
+        '</div>');
+
+    $('.ticket-map-left .ticket-map-row.row-11').append('<div class="btn-holder">' +
+        '<button type="button" class="btn btn-prime-a on-edge" data-id="1310">1322</button> ' +
+        '</div>');
+
+    for(let i=1; i<19; i++){
+        $('.ticket-map-row.row-'+3*i+' .column-gap').next().append('<span class="fire-exits"></span>');
+        if(i===1){
+            $('.ticket-map-row.row-1 .column-gap').next().append('<span class="fire-exits bottom-row"></span>');
+        }
+    }
+
+
+    if(!btnMapSelector.next().hasClass('btn')){
+        btnMapSelector.addClass('on-edge');
+    }
+
+    $('.btn-reg').click(function () {
+        let self = $(this);
+        $('.loader-div').addClass('active');
+        setTimeout(function (e) {
+            $('.registration-form-wrapper').hide();
+            $('.thank-wrapper').show();
+            $('.loader-div').removeClass('active');
+        }, 400);
+
+    });
+
+
 
     let timer = 60 * 10,
         display = document.querySelector('.js-timer');
@@ -655,16 +294,88 @@ $(function ($) {
 
             display.textContent = minutes + ":" + seconds;
 
-            if (timer == 0) {
-                clearInterval(timerFunction);
-                display.textContent = "";
-
-                clearBooth();
-            }
-
             if (--timer < 0) {
-                timer = timer;
+                timer = duration;
             }
         }, 1000);
     }
 });
+
+/**
+ * Integrated google map place api to autocomplete address
+ */
+function initMap() {
+    let addressFieldsSelector = document.getElementsByClassName('street-address-js');
+    for (let i = 0; i < addressFieldsSelector.length; i++) {
+        let addressField = addressFieldsSelector[i];
+        const addressBlockSelector = addressField.closest('.address-autocomplete-block-js');
+        // Create the autocomplete object
+        const autocomplete = new google.maps.places.Autocomplete(addressField);
+
+        // Set the fields to retrieve from the Places API
+        // autocomplete.setFields(['formatted_address']);
+        autocomplete.setFields(['address_components', 'formatted_address']);
+
+        addressBlockSelector.querySelector('.input-city-js').value = '';
+        addressBlockSelector.querySelector('.input-state-js').value = '';
+        addressBlockSelector.querySelector('.input-country-js').value = '';
+        addressBlockSelector.querySelector('.input-postal-code-js').value = '';
+
+        // When a place is selected, populate the address fields in your form
+        autocomplete.addListener('place_changed', function() {
+            const place = autocomplete.getPlace();
+            if (!place.formatted_address) {
+                console.log('No address available for this place.');
+                loaderEnable(loaderDivClass);
+                fetchCountries();
+                return;
+            }
+
+            // Do something with the selected address
+            // Retrieve the country, state, and city names from the address components
+            let streetNumber, routeName, streetAddress, countryName, stateName, cityName, postalCode;
+            for (const component of place.address_components) {
+                if (component.types.includes('country')) {
+                    countryName = component.long_name;
+                } else if (component.types.includes('administrative_area_level_1')) {
+                    stateName = component.long_name;
+                } else if (component.types.includes('locality') || component.types.includes('postal_town')) {
+                    cityName = component.long_name;
+                }else if (component.types.includes('administrative_area_level_3')){
+                    if(!cityName) cityName = component.long_name;
+                }else if(component.types.includes('postal_code')){
+                    postalCode = component.long_name;
+                } else if(component.types.includes('street_number')){
+                    streetNumber = component.long_name;
+                }else if(component.types.includes('route')){
+                    routeName = component.long_name;
+                }
+            }
+
+            // streetAddress = streetNumber && routeName ? streetNumber+" "+routeName : place.formatted_address.split(',')[0];
+            streetAddress = place.formatted_address.split(',')[0];
+
+            if(cityName){
+                addressBlockSelector.querySelector('.input-city-js').value = cityName;
+                addressBlockSelector.querySelector('.input-city-js').closest('.form-group.required-group').classList.add('field-validated');
+            }
+            if(stateName) {
+                addressBlockSelector.querySelector('.input-state-js').value = stateName;
+                addressBlockSelector.querySelector('.input-state-js').closest('.form-group.required-group').classList.add('field-validated');
+            }
+            if(countryName) {
+                addressBlockSelector.querySelector('.input-country-js').value = countryName;
+                addressBlockSelector.querySelector('.input-country-js').closest('.form-group.required-group').classList.add('field-validated');
+            }
+            if(postalCode) {
+                addressBlockSelector.querySelector('.input-postal-code-js').value = postalCode;
+                addressBlockSelector.querySelector('.input-postal-code-js').closest('.form-group.required-group').classList.add('field-validated');
+            }
+            if(streetAddress) {
+                addressBlockSelector.querySelector('.street-address-js').value = streetAddress;
+                addressBlockSelector.querySelector('.street-address-js').closest('.form-group.required-group').classList.add('field-validated');
+            }
+
+        });
+    }
+}

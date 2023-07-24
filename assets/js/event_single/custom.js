@@ -117,8 +117,8 @@ if (ticketSummaryTableSelector.length > 0) {
 if (creditCardField.length > 0) card_validation();
 
 //=== DATE OF BIRTH PICKER
-if(SCREEN_WIDTH<1200){
-    if(datePicketSelector.length>0) datePicketSelector.prop('readonly','true');
+if (SCREEN_WIDTH < 1200) {
+    if (datePicketSelector.length > 0) datePicketSelector.prop('readonly', 'true');
 }
 
 //=== DATEPICKER INITIALIZATION
@@ -147,7 +147,7 @@ $(document).on('click', '.quantity-increase', function () {
 
     quantitySelector.val(quantityValue + 1);
 
-    if(parseInt(quantitySelector.val())>quantityMax){
+    if (parseInt(quantitySelector.val()) > quantityMax) {
         quantitySelector.val(quantityMax);
         //remove ticket from the summary (have to add)
         let errorMessage = `<p class="error-message text-danger">Can't select more than ${quantityMax} ticket!</p>`;
@@ -155,12 +155,12 @@ $(document).on('click', '.quantity-increase', function () {
         ticketRowSelector.append(errorMessage);
         setTimeout(function () {
             ticketRowSelector.find('.error-message').remove();
-        },1000);
+        }, 1000);
     }
 
-    if(parseInt(quantitySelector.val())>0){
+    if (parseInt(quantitySelector.val()) > 0) {
         let itemRow = ticketRowSelector.data('row'),
-            classToAdd = "data-row"+itemRow,
+            classToAdd = "data-row" + itemRow,
             itemName = ticketRowSelector.data('name'),
             itemQuantity = parseInt(quantitySelector.val()),
             itemUnitPrice = parseInt(ticketRowSelector.data('unitprice')),
@@ -181,12 +181,12 @@ $(document).on('click', '.quantity-increase', function () {
     // calculateCoupon($('.btn-apply-voucher-js'), false);
 });
 
-function addItemIntoCart(whereToAdd, ticketSummaryRow, dataObj){
+function addItemIntoCart(whereToAdd, ticketSummaryRow, dataObj) {
     ticketSummaryRow.attr('data-row', dataObj.itemRow);
     ticketSummaryRow.addClass(dataObj.classToAdd);
     ticketSummaryRow.find('.quantity-ticket-summary').text(dataObj.itemQuantity);
     ticketSummaryRow.find('.name-ticket-summary').text(dataObj.itemName);
-    ticketSummaryRow.find('.amount-ticket-summary').text(dataObj.itemQuantity*dataObj.itemUnitPrice);
+    ticketSummaryRow.find('.amount-ticket-summary').text(dataObj.itemQuantity * dataObj.itemUnitPrice);
 
     console.log('data row-: ', dataObj.itemRow);
     // whereToAdd.find('.data-row'+dataObj.itemRow).remove();
@@ -261,7 +261,7 @@ $(document).on('click', '.btn-reg-js', function (e) {
             paymentFormGroupNotValidatedSelector.first().find('.form-control').focus();
             return;
         } else {
-            if($('#tc-2').length>0){
+            if ($('#tc-2').length > 0) {
                 let isChecked = $('#tc-2').prop('checked');
                 if (!isChecked) {
                     $('#tc-2').closest('.tc-wrapper').find('.alert').css('border', '2px solid #dc3545');
@@ -614,19 +614,19 @@ function singleValidation(formControl, formGroup) {
 }
 
 function statesFiller(countryFieldSelector) {
-    if(countryFieldSelector.val()=="USA"){
+    if (countryFieldSelector.val() == "USA") {
         countryFieldSelector.closest('.form-row').find('.state-field-group .state-holder').html("<select class='form-control state' name='State' id='state'></select>");
         countryFieldSelector.closest('.form-row').find('.state-field-group').find('select').append("<option value='0'>Select a State</option>");
-        for (let key in statesJson){
-            countryFieldSelector.closest('.form-row').find('.state-field-group').find('select').append("<option value='"+statesJson[key]+"'>"+statesJson[key]+"</option>")
+        for (let key in statesJson) {
+            countryFieldSelector.closest('.form-row').find('.state-field-group').find('select').append("<option value='" + statesJson[key] + "'>" + statesJson[key] + "</option>")
         }
-    }else if(countryFieldSelector.val()=="Canada"){
+    } else if (countryFieldSelector.val() == "Canada") {
         countryFieldSelector.closest('.form-row').find('.state-field-group .state-holder').html("<select class='form-control state' name='State' id='state'></select>");
         countryFieldSelector.closest('.form-row').find('.state-field-group').find('select').append("<option value='0'>Select a State</option>");
-        for (let key in statesCanadaJson){
-            countryFieldSelector.closest('.form-row').find('.state-field-group').find('select').append("<option value='"+statesCanadaJson[key]+"'>"+statesCanadaJson[key]+"</option>")
+        for (let key in statesCanadaJson) {
+            countryFieldSelector.closest('.form-row').find('.state-field-group').find('select').append("<option value='" + statesCanadaJson[key] + "'>" + statesCanadaJson[key] + "</option>")
         }
-    }else{
+    } else {
         countryFieldSelector.closest('.form-row').find('.state-field-group .state-holder').html("<input type='text' class='form-control state' id='state' name='State'>");
     }
     countryFieldSelector.closest('.form-row').find('.state-field-group').removeClass('field-validated');
@@ -783,5 +783,84 @@ function calculateCoupon(self, isClicked) {
             voucherBlock.append(errorMessage);
         }
         return;
+    }
+}
+
+/**
+ * Integrated google map place api to autocomplete address
+ */
+function initMap() {
+    let addressFieldsSelector = document.getElementsByClassName('street-address-js');
+    for (let i = 0; i < addressFieldsSelector.length; i++) {
+        let addressField = addressFieldsSelector[i];
+        const addressBlockSelector = addressField.closest('.address-autocomplete-block-js');
+        // Create the autocomplete object
+        const autocomplete = new google.maps.places.Autocomplete(addressField);
+
+        // Set the fields to retrieve from the Places API
+        // autocomplete.setFields(['formatted_address']);
+        autocomplete.setFields(['address_components', 'formatted_address']);
+
+        addressBlockSelector.querySelector('.input-city-js').value = '';
+        addressBlockSelector.querySelector('.input-state-js').value = '';
+        addressBlockSelector.querySelector('.input-country-js').value = '';
+        addressBlockSelector.querySelector('.input-postal-code-js').value = '';
+
+        // When a place is selected, populate the address fields in your form
+        autocomplete.addListener('place_changed', function () {
+            const place = autocomplete.getPlace();
+            if (!place.formatted_address) {
+                console.log('No address available for this place.');
+                loaderEnable(loaderDivClass);
+                fetchCountries();
+                return;
+            }
+
+            // Do something with the selected address
+            // Retrieve the country, state, and city names from the address components
+            let streetNumber, routeName, streetAddress, countryName, stateName, cityName, postalCode;
+            for (const component of place.address_components) {
+                if (component.types.includes('country')) {
+                    countryName = component.long_name;
+                } else if (component.types.includes('administrative_area_level_1')) {
+                    stateName = component.long_name;
+                } else if (component.types.includes('locality') || component.types.includes('postal_town')) {
+                    cityName = component.long_name;
+                } else if (component.types.includes('administrative_area_level_3')) {
+                    if (!cityName) cityName = component.long_name;
+                } else if (component.types.includes('postal_code')) {
+                    postalCode = component.long_name;
+                } else if (component.types.includes('street_number')) {
+                    streetNumber = component.long_name;
+                } else if (component.types.includes('route')) {
+                    routeName = component.long_name;
+                }
+            }
+
+            // streetAddress = streetNumber && routeName ? streetNumber+" "+routeName : place.formatted_address.split(',')[0];
+            streetAddress = place.formatted_address.split(',')[0];
+
+            if (cityName) {
+                addressBlockSelector.querySelector('.input-city-js').value = cityName;
+                addressBlockSelector.querySelector('.input-city-js').closest('.form-group.required-group').classList.add('field-validated');
+            }
+            if (stateName) {
+                addressBlockSelector.querySelector('.input-state-js').value = stateName;
+                addressBlockSelector.querySelector('.input-state-js').closest('.form-group.required-group').classList.add('field-validated');
+            }
+            if (countryName) {
+                addressBlockSelector.querySelector('.input-country-js').value = countryName;
+                addressBlockSelector.querySelector('.input-country-js').closest('.form-group.required-group').classList.add('field-validated');
+            }
+            if (postalCode) {
+                addressBlockSelector.querySelector('.input-postal-code-js').value = postalCode;
+                addressBlockSelector.querySelector('.input-postal-code-js').closest('.form-group.required-group').classList.add('field-validated');
+            }
+            if (streetAddress) {
+                addressBlockSelector.querySelector('.street-address-js').value = streetAddress;
+                addressBlockSelector.querySelector('.input-address-js').closest('.form-group.required-group').classList.add('field-validated');
+            }
+
+        });
     }
 }
