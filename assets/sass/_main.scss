@@ -1125,4 +1125,17 @@
   background: #c6c6c666;
 }
 
+.ticket-wrapper{
+  .contact-information-grouped-single{
+    .btn-remove-ticket-js{
+      display: none!important;
+    }
+    &:first-child{
+      .btn-remove-ticket-js{
+        display: inline-flex!important;
+      }
+    }
+  }
+}
+
 

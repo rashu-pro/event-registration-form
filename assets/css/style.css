@@ -2468,6 +2468,13 @@ h4 {
   background: #c6c6c666;
 }
 
+.ticket-wrapper .contact-information-grouped-single .btn-remove-ticket-js {
+  display: none !important;
+}
+.ticket-wrapper .contact-information-grouped-single:first-child .btn-remove-ticket-js {
+  display: inline-flex !important;
+}
+
 .modal-confirm h3 {
   font-size: 22px;
 }

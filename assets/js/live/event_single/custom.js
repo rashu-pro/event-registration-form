@@ -3,6 +3,53 @@
  */
 let totalPrice = 0,
     totalTicketCount = 0;
+
+// ON DOCUMENT READY
+
+/**
+ * If thers any special character available in the 
+ * --ticket type string it will be replace
+ * -- with the character's unicode
+ */
+$('.cart-table .quantity-wrap').each(function (i, element) {
+    replaceSpecialCharacterWithUnicode($(element), 'ticket-type');
+})
+
+$('.cart-table tr td:last-child span').each(function (i, element) {
+    replaceSpecialCharacterWithUnicode(element, 'class');
+})
+
+$('.ticket-summary-table tbody tr span span').each(function (i, element) {
+    replaceSpecialCharacterWithUnicode(element, 'class');
+})
+
+$('.ticket-summary-table tbody tr th span').each(function (i, element) {
+    replaceSpecialCharacterWithUnicode(element, 'class');
+})
+
+function replaceSpecialCharacterWithUnicode(element, attributeName) {
+    let ticketType = $(element).attr(attributeName);
+
+    ticketType = ticketType.replace(/[^\w\s-]/g, function (character) {
+        return convertToUnicode(character);
+    });
+    $(element).attr(attributeName, ticketType);
+    
+    // let specialCharacter = ticketType.match(/[^\w\s-]/);
+    // if (specialCharacter) {
+    //     let currentString = specialCharacter['input'];
+    //     ticketType = currentString.replace(specialCharacter[0], convertToUnicode(specialCharacter[0]));
+    //     $(element).attr(attributeName, ticketType);
+    // }
+}
+
+function convertToUnicode(character) {
+    var unicode = character.charCodeAt(0).toString(16).toUpperCase();
+    return unicode;
+}
+//=====.END
+
+
 $('.quantity-increase').on('click', function () {
     let self = $(this),
         quantitySelector = self.closest('.quantity-wrap').find('.form-control'),
@@ -36,7 +83,7 @@ $('.quantity-wrap .form-control').on('keyup', function () {
         quantityValue = quantitySelector.val(),
         quantityMax = parseInt(self.data('max'));
 
-    if(self.val() === ''){
+    if (self.val() === '') {
         self.val(0);
     }
 
@@ -98,18 +145,18 @@ $(document).on('change', '.ticket-category-checkbox', function () {
         itemName = self.data('name'),
         itemDataRow = self.data('row'),
         itemPrice = parseInt(self.data('unitprice')),
-        classToAdd = "data-row"+itemRow;
+        classToAdd = "data-row" + itemRow;
 
     let tableRow = `<tr class="ticket-price data-row${itemDataRow}">
             <td><span class="row-counter">1.</span>&nbsp;<span class="text-capitalize">${itemName}</span></td>
             <th><span class="currency">$&nbsp;</span><span class="amount">${itemPrice}</span></th></tr>`;
-    if(self.is(':checked')){
+    if (self.is(':checked')) {
         $('.ticket-checkbox-wrapper').find('.error-message').remove();
-        $('.ticket-summary-table tbody .ticket-price.data-row'+itemDataRow).remove();
+        $('.ticket-summary-table tbody .ticket-price.data-row' + itemDataRow).remove();
         $('.ticket-summary-table tbody').append(tableRow);
-    }else{
+    } else {
         console.log('unchecked');
-        $('.ticket-summary-table tbody .ticket-price.data-row'+itemDataRow).remove();
+        $('.ticket-summary-table tbody .ticket-price.data-row' + itemDataRow).remove();
     }
 
     ticket_row_number();
@@ -159,15 +206,15 @@ $(document).on('click', '.btn-reg-js', function (e) {
         }
     }
 
-    if(ticketCategoryCheckbox.length>0){
+    if (ticketCategoryCheckbox.length > 0) {
         let checkedCategory = 0;
         ticketCategoryCheckbox.each(function (i, obj) {
-            if($(obj).is(':checked')){
-                checkedCategory +=1;
+            if ($(obj).is(':checked')) {
+                checkedCategory += 1;
                 $(obj).focus();
             }
         });
-        if(checkedCategory<1){
+        if (checkedCategory < 1) {
             let animationDuration = 400;
             $('html, body').animate({
                 scrollTop: $("#ticket-checkbox-wrapper").offset().top
@@ -194,7 +241,7 @@ $(document).on('click', '.btn-reg-js', function (e) {
             paymentFormGroupNotValidatedSelector.first().find('.form-control').focus();
             return;
         } else {
-            if($('#tc-2').length>0){
+            if ($('#tc-2').length > 0) {
                 let isChecked = $('#tc-2').prop('checked');
                 if (!isChecked) {
                     $('#tc-2').closest('.tc-wrapper').find('.alert').css('border', '2px solid #dc3545');
@@ -550,19 +597,19 @@ function singleValidation(formControl, formGroup) {
 }
 
 function statesFiller(countryFieldSelector) {
-    if(countryFieldSelector.val()=="USA"){
+    if (countryFieldSelector.val() == "USA") {
         countryFieldSelector.closest('.form-row').find('.state-field-group .state-holder').html("<select class='form-control state' name='State' id='state'></select>");
         countryFieldSelector.closest('.form-row').find('.state-field-group').find('select').append("<option value='0'>Select a State</option>");
-        for (let key in statesJson){
-            countryFieldSelector.closest('.form-row').find('.state-field-group').find('select').append("<option value='"+statesJson[key]+"'>"+statesJson[key]+"</option>")
+        for (let key in statesJson) {
+            countryFieldSelector.closest('.form-row').find('.state-field-group').find('select').append("<option value='" + statesJson[key] + "'>" + statesJson[key] + "</option>")
         }
-    }else if(countryFieldSelector.val()=="Canada"){
+    } else if (countryFieldSelector.val() == "Canada") {
         countryFieldSelector.closest('.form-row').find('.state-field-group .state-holder').html("<select class='form-control state' name='State' id='state'></select>");
         countryFieldSelector.closest('.form-row').find('.state-field-group').find('select').append("<option value='0'>Select a State</option>");
-        for (let key in statesCanadaJson){
-            countryFieldSelector.closest('.form-row').find('.state-field-group').find('select').append("<option value='"+statesCanadaJson[key]+"'>"+statesCanadaJson[key]+"</option>")
+        for (let key in statesCanadaJson) {
+            countryFieldSelector.closest('.form-row').find('.state-field-group').find('select').append("<option value='" + statesCanadaJson[key] + "'>" + statesCanadaJson[key] + "</option>")
         }
-    }else{
+    } else {
         countryFieldSelector.closest('.form-row').find('.state-field-group .state-holder').html("<input type='text' class='form-control state' id='state' name='State'>");
     }
     countryFieldSelector.closest('.form-row').find('.state-field-group').removeClass('field-validated');
@@ -692,11 +739,11 @@ function ticket_row_number() {
 function showPaymentForm(totalAmount) {
     if (totalAmount > 0) {
         $('#card-info-area').show();
-      //  $('.btn-reg').text('Payment');
+        //  $('.btn-reg').text('Payment');
         $('.btn-reg').addClass('btn-payment');
     } else {
         $('#card-info-area').attr('style', 'display:none;');
-      //  $('.btn-reg').text('Register');
+        //  $('.btn-reg').text('Register');
         $('.btn-reg').removeClass('btn-payment');
     }
 }
@@ -705,8 +752,8 @@ function showPaymentForm(totalAmount) {
 //======== DATE OF BIRTH PICKER ============//
 const screenWidth = screen.width;
 console.log(screenWidth);
-if(screenWidth<1200){
-    $('.date-picker-js').prop('readonly','true');
+if (screenWidth < 1200) {
+    $('.date-picker-js').prop('readonly', 'true');
 }
 const currentYear = new Date().getFullYear();
 $(document).on('focus', '.date-picker-js', function (e) {
@@ -743,12 +790,12 @@ function selectWithOtherOption(selector) {
     }
 }
 
-if($('.field-trip-state-house-court-house-visit').length>0){
+if ($('.field-trip-state-house-court-house-visit').length > 0) {
     $('#tc-2').prop('checked', true);
     $('.field-trip-state-house-court-house-visit .tc-wrapper').hide();
 }
 
-if($('.field-trip-bowling').length>0){
+if ($('.field-trip-bowling').length > 0) {
     $('#tc-2').prop('checked', true);
     $('.field-trip-bowling .tc-wrapper').hide();
 }

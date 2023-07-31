@@ -1319,6 +1319,9 @@ $(document).on('click', '.btn-generate-ticket-js', function (e){
         //== GENERATES TICKET
         $(ticketQuantitySelector).each(function (i, element){
             let quantity = parseInt($(element).val());
+            let attendeeNumber = parseInt($(element).attr('data-limit'));
+            let dataRow = parseInt($(element).closest('.table-row').attr('data-row'));
+            console.log('data-rwo: ', dataRow);
             if(!quantity){
                 return;
             }
@@ -1326,7 +1329,8 @@ $(document).on('click', '.btn-generate-ticket-js', function (e){
 
             let ticketText = $(element).closest('.table-row').find('.ticket-name-js').attr('data-name');
             let price = parseInt($(element).val()) * parseInt($(element).closest('.table-row').find('.per-price .amount').text());
-            let ticketSummaryRow = `<div class="ticket-summary-row">
+            let perPrice = parseInt($(element).closest('.table-row').find('.per-price .amount').text());
+            let ticketSummaryRow = `<div class="ticket-summary-row" data-row="${dataRow}">
                                                 <span class="ticket-number d-inline-block" style="position: relative"><span class="ticket-number-js">${quantity}</span> ticket${quantity>1?'s':''}</span>
                                                 <p class="mb-1">${ticketText}</p>
                                                 <p class="mb-2">$<span class="amount">${$(element).closest('.table-row').find('.per-price .amount').text()}</span> X <span class="quantity">${quantity}</span> = <strong>$<span class="subtotal">${price}</span></strong></p>
@@ -1336,22 +1340,33 @@ $(document).on('click', '.btn-generate-ticket-js', function (e){
 
 
             $('.ticket-wrapper-js').append($('.ticket-html-wrapper-js .form-row-js').clone());
-            $('.ticket-wrapper-js .form-row-js').last().attr('data-row', i);
+            $('.ticket-wrapper-js .form-row-js').last().attr('data-row', dataRow);
             $('.ticket-wrapper-js .form-row-js').last().attr('data-key', ticketCategoryKey);
             $('.ticket-wrapper-js .form-row-js').last().attr('data-limit', $(element).attr('data-limit'));
             $('.ticket-wrapper-js .form-row-js').last().find('.ticket-row-title-js').html(ticketText);
             if(parseInt($(element).attr('data-limit'))<2){
                 $('.ticket-wrapper-js .form-row-js').last().removeClass('ticket-pack');
             }
+
             for(let j=1; j<=quantity; j++){
-                $('.ticket-wrapper-js .form-row-js[data-row='+i+'] .single-ticket-wrapper-js').append($('.single-ticket-html-js .single-ticket-js').clone());
-                $('.ticket-wrapper-js .form-row-js[data-row='+i+'] .single-ticket-wrapper-js .single-ticket-js .ticket-category-key').val(ticketCategoryKey);
-                // $('.ticket-wrapper-js .form-row-js[data-row='+i+'] .single-ticket-wrapper-js .single-ticket-js .attendee-wrapper').last().find('.form-group').removeClass('field-validated');
-                // $('.ticket-wrapper-js .form-row-js[data-row='+i+'] .single-ticket-wrapper-js .single-ticket-js .attendee-wrapper').last().find('.form-group').removeClass('field-invalid');
-                // $('.ticket-wrapper-js .form-row-js[data-row='+i+'] .single-ticket-wrapper-js .single-ticket-js .attendee-wrapper').last().find('.error-message').remove();
+                $('.ticket-wrapper-js .form-row-js[data-row='+dataRow+'] .single-ticket-wrapper-js').append(`<div class="ticket-wrapper"></div>`);
+                for(let k=1; k<=attendeeNumber; k++){
+                    $('.ticket-wrapper-js .form-row-js[data-row='+dataRow+'] .single-ticket-wrapper-js .ticket-wrapper').last().append($('.single-ticket-html-js .single-ticket-js').clone());
+                    $('.ticket-wrapper-js .form-row-js[data-row='+dataRow+'] .single-ticket-wrapper-js .single-ticket-js .ticket-category-key').val(ticketCategoryKey);
+                    // $('.ticket-wrapper-js .form-row-js[data-row='+dataRow+'] .single-ticket-wrapper-js .single-ticket-js .attendee-wrapper').last().find('.form-group').removeClass('field-validated');
+                    // $('.ticket-wrapper-js .form-row-js[data-row='+dataRow+'] .single-ticket-wrapper-js .single-ticket-js .attendee-wrapper').last().find('.form-group').removeClass('field-invalid');
+                    // $('.ticket-wrapper-js .form-row-js[data-row='+dataRow+'] .single-ticket-wrapper-js .single-ticket-js .attendee-wrapper').last().find('.error-message').remove();
+
+                    //=== ADDS TICKET REMOVE BUTTON
+                    $('.ticket-wrapper-js .form-row-js[data-row='+dataRow+'] .single-ticket-wrapper-js .single-ticket-js').last().find('.attendee-wrapper .attendee-wrapper-head .action-btn-wrapper').append($('.remove-ticket-btn-wrapper-html .btn-remove-ticket-js').clone());
+                    $('.ticket-wrapper-js .form-row-js[data-row='+dataRow+'] .single-ticket-wrapper-js .single-ticket-js').last().find('.attendee-wrapper .attendee-wrapper-head .action-btn-wrapper .btn-remove-ticket-js').attr('data-row', dataRow);
+                    $('.ticket-wrapper-js .form-row-js[data-row='+dataRow+'] .single-ticket-wrapper-js .single-ticket-js').last().find('.attendee-wrapper .attendee-wrapper-head .action-btn-wrapper .btn-remove-ticket-js').attr('data-price', perPrice);
+                }
+
             }
-            $('.ticket-wrapper-js .form-row-js[data-row='+i+'] .ticket-count-js').html(quantity);
-            updateAttendeeNumber(i);
+
+            $('.ticket-wrapper-js .form-row-js[data-row='+dataRow+'] .ticket-count-js').html(quantity);
+            updateAttendeeNumber(dataRow);
         })
 
         $('.ticket-summary-js').append($('.update-ticket-information-warning-html-js .update-ticket-information-wrapper').clone());
@@ -1361,6 +1376,28 @@ $(document).on('click', '.btn-generate-ticket-js', function (e){
         $('.billing-information-wrapper-js').removeClass('d-none');
         pageLoader.removeClass('active');
     },600)
+})
+
+$(document).on('click', '.add-another-ticket-js', function (e){
+    e.preventDefault();
+    let self = $(this);
+    let dataRow = self.closest('.form-row-js').attr('data-row');
+    let quantity = parseInt(self.closest('.form-row-js').find('.form-row-head .ticket-count-js').text());
+    let perPrice = $('.cart-table-js .table-row[data-row='+dataRow+'] .per-price .amount').text();
+
+    let clonedDiv = self.closest('.form-row-js').find('.ticket-wrapper').first().clone();
+
+    clonedDiv.find('.form-group').removeClass('field-validated');
+    clonedDiv.find('.form-group').removeClass('field-invalid');
+    clonedDiv.find('.error-message').remove();
+    clonedDiv.find('.form-control').val('');
+    clonedDiv.css('display','none');
+    self.closest('.form-row-js').find('.single-ticket-wrapper-js').append(clonedDiv);
+    clonedDiv.slideDown();
+
+    quantity = quantity + 1
+    addTicket(dataRow, quantity, perPrice);
+    updateAttendeeNumber(dataRow);
 })
 
 $(document).on('click', '.add-more-attendee-js', function (e){
@@ -1398,6 +1435,58 @@ $(document).on('click', '.btn-remove-js', function (e){
         attendeeLimit(dataRow, dataLimit);
     });
 })
+
+$(document).on('click', '.btn-remove-ticket-js', function (e){
+    e.preventDefault();
+    let self = $(this);
+    let ticketCardSelector = self.closest('.ticket-wrapper');
+    let dataRow = self.attr('data-row');
+    let quantity = parseInt(self.closest('.form-row-js').find('.ticket-count-js').text()) - 1;
+    let perPrice = self.attr('data-price');
+
+    removeTicket(dataRow, quantity, perPrice, ticketCardSelector);
+})
+
+function removeTicket(dataRow, quantity, perPrice, ticketCardSelector){
+    updateTicketRelationInformation(dataRow, quantity, perPrice);
+    //=== REMOVES TICKET CARD
+    ticketCardSelector.slideUp('300', function (){
+        ticketCardSelector.remove();
+    })
+
+    setTimeout(function (){
+        updateAttendeeNumber(dataRow);
+        if(quantity<1){
+            $('.form-row-js[data-row='+dataRow+']').remove();
+            $('.ticket-summary-js .ticket-summary-row[data-row='+dataRow+']').remove();
+            $('.ticket-summary-table .ticket-price-row[data-row='+dataRow+']').remove();
+        }
+    },500)
+
+    //=== CART CALCULATION
+    calculateTotal();
+}
+
+function updateTicketRelationInformation(dataRow, quantity, perPrice){
+    let totalPrice = quantity*perPrice;
+    //=== TICKET SUMMARY UPDATE
+    $('.ticket-summary-js .ticket-summary-row[data-row='+dataRow+'] .quantity').text(quantity);
+    $('.ticket-summary-js .ticket-summary-row[data-row='+dataRow+'] .ticket-number-js').text(quantity);
+    $('.ticket-summary-js .ticket-summary-row[data-row='+dataRow+'] .subtotal').text(totalPrice);
+
+    $('.cart-table-js .table-row[data-row='+dataRow+'] .ticket-quantity-js').val(quantity);
+    $('.cart-table-js .table-row[data-row='+dataRow+'] .price-subtotal .amount').text(totalPrice);
+    $('.form-row-js[data-row='+dataRow+'] .ticket-count-js').text(quantity);
+
+    //=== TICket CART SUMMARY TABLE DATA UPDATE
+    $('.ticket-summary-table .ticket-price-row[data-row='+dataRow+'] .amount').text(totalPrice);
+}
+
+function addTicket(dataRow, quantity, perPrice){
+    updateTicketRelationInformation(dataRow, quantity, perPrice);
+    //=== CART CALCULATION
+    calculateTotal();
+}
 
 $(document).on('click', '.update-ticket-information-js', function (e){
     e.preventDefault();
@@ -1465,10 +1554,19 @@ function goToTheSection(element){
  * @param rowNumber
  */
 function updateAttendeeNumber(rowNumber){
-    $('.form-row-js[data-row='+rowNumber+']').each(function (i, element){
+    $('.form-row-js[data-row='+rowNumber+'] .ticket-wrapper').each(function (i, element){
+        //=== UPDATE TICKET NUMBER
+        $(element).find('.ticket-number-js').html(i+1);
+        if($(element).closest('.form-row-js').attr('data-limit')<2){
+            // $(element).find('.ticket-number-js').html(1);
+        }
+
+        //=== IF THERE'S ONLY ONE ATTENDEE SHOW 'ATTENDEE INFORMATION'
+        if($(element).closest('.form-row-js').attr('data-limit')<2) return;
+
+        //=== UPDATE ATTENDEE NUMBER PER TICKET
         $(element).find('.attendee-wrapper').each(function (j, element){
-            $(element).find('.attendee-number-js').html(1);
-            $(element).find('.ticket-number-js').html(j+1);
+            $(element).find('.attendee-number-js').html(j+1);
         })
     })
 }
@@ -1481,7 +1579,7 @@ function addTicketSummaryAndCalculateTotalPrice() {
     $('.ticket-summary-table tbody').html('');
     $(ticketQuantitySelector).each(function (i, element){
         let ticketText = $(element).closest('.table-row').find('.ticket-name-js').attr('data-name');
-        let dataRow = i;
+        let dataRow = parseInt($(element).closest('.table-row').attr('data-row'));
         let price = parseInt($(element).val()) * parseInt($(element).closest('.table-row').find('.per-price .amount').text());
         let row = `<tr id='row-${ticketText}' class='price-row ticket-price-row price-${dataRow}' data-row="${dataRow}">
                                     <td class="tr-ticket-text">
