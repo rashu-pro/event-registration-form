@@ -46,7 +46,7 @@
 
     <!-- ====== BANNER ====== -->
     <div class="main-banner style-new">
-        <img src="assets/images/banner-event-isla.jpg" alt="professional development week">
+        <img src="https://res.cloudinary.com/secure-api/image/upload/v1689673965/daana/event-image/ijqn29denvasymic5fez.jpg" alt="professional development week">
         <div class="main-banner-content">
             <div class="main-banner-content-wrapper">
                 <div class="container">
@@ -121,7 +121,10 @@
                                                         <div class="col-md-5">
                                                             <p class="m-0 ticket-name-js" data-name="Single">Single</p>
 
-                                                            <input type="hidden" name="TicketCategoryKeys[]" class="ticket-category-key" value="3cfa31f6-61f7-409e-b5d5-f004470805zzz">
+                                                            <input type="hidden"
+                                                                   name="TicketCategoryKeys[]"
+                                                                   class="ticket-category-key"
+                                                                   value="3cfa31f6-61f7-409e-b5d5-f004470805zzz">
                                                         </div>
 
                                                         <div class="col-md-2">
@@ -132,7 +135,11 @@
                                                         </div>
 
                                                         <div class="col-8 col-md-3">
-                                                            <div class="quantity-wrap" ticket-type="below-10">
+                                                            <div class="quantity-wrap"
+                                                                 data-minimum="1"
+                                                                 data-maximum="50"
+                                                                 data-attendee-is-required="1">
+
                                                                 <div class="input-group">
                                                                     <div class="input-group-prepend">
                                                                         <button type="button" class="input-group-text quantity-decrease">-</button>
@@ -160,7 +167,10 @@
                                                         <div class="col-md-5">
                                                             <p class="m-0 ticket-name-js" data-name="Couple">Couple</p>
 
-                                                            <input type="hidden" name="TicketCategoryKeys[]" class="ticket-category-key" value="3cfa31f6-61f7-409e-b5d5-f004470805zzz">
+                                                            <input type="hidden"
+                                                                   name="TicketCategoryKeys[]"
+                                                                   class="ticket-category-key"
+                                                                   value="3cfa31f6-61f7-409e-b5d5-f004470805zzz">
                                                         </div>
 
                                                         <div class="col-md-2">
@@ -171,7 +181,10 @@
                                                         </div>
 
                                                         <div class="col-8 col-md-3">
-                                                            <div class="quantity-wrap" ticket-type="below-10">
+                                                            <div class="quantity-wrap"
+                                                                 data-minimum="1"
+                                                                 data-maximum="50"
+                                                                 data-attendee-is-required="1">
                                                                 <div class="input-group">
                                                                     <div class="input-group-prepend">
                                                                         <button type="button" class="input-group-text quantity-decrease">-</button>
@@ -210,7 +223,10 @@
                                                         </div>
 
                                                         <div class="col-8 col-md-3">
-                                                            <div class="quantity-wrap" ticket-type="below-10">
+                                                            <div class="quantity-wrap"
+                                                                 data-minimum="1"
+                                                                 data-maximum="50"
+                                                                 data-attendee-is-required="0">
                                                                 <div class="input-group">
                                                                     <div class="input-group-prepend">
                                                                         <button type="button" class="input-group-text quantity-decrease">-</button>
@@ -267,6 +283,41 @@
                             <div class="form-body ticket-wrapper-js mb-4" id="form-body">
 
                             </div>
+
+                            <!-- ====== ADDON TICKET ====== -->
+                            <div class="addon-ticket-wrapper addon-ticket-wrapper-js d-none">
+                                <div class="addon-ticket-holder addon-ticket-js">
+                                    <div class="alert alert-success">
+                                        <h4 class="pb-1 mb-0 title">Addon Ticket Title</h4>
+                                        <h5 class="mt-1 text-danger text-medium"><strong class="per-price">$<span class="amount">120</span> </strong></h5>
+
+                                        <div class="quantity-wrap mt-3"
+                                             data-text="Addon Ticket Title"
+                                             data-minimum="1"
+                                             data-maximum="50"
+                                             data-row="101"
+                                             data-price="120">
+
+                                            <input type="hidden"
+                                                   name="TicketCategoryKeys[]"
+                                                   class="ticket-category-key"
+                                                   value="3cfa31f6-61f7-409e-b5d5-f004470805zzz">
+
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <button type="button" class="input-group-text addon-quantity-decrease">-</button>
+                                                </div>
+                                                <input type="number" class="form-control addon-ticket-quantity-js" value="0" data-limit="10">
+                                                <div class="input-group-append">
+                                                    <button type="button" class="input-group-text addon-quantity-increase">+</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
 
 
                             <!-- ===== BILLING INFORMATION ==== -->
@@ -397,7 +448,6 @@
 
                                 </div>
                             </div>
-
 
                         </div>
 
@@ -644,30 +694,15 @@
                                     <div class="sidebar-block-description">
 
                                         <div class="tc-wrapper mt-2">
-                                            <div class="alert alert-danger">
-                                                <p class="m-0 font-600">
-                                                    For ISLA Code of Conduct
-                                                    <a id="terms-1" class="terms-link-js" data-input="terms-input-1" href="#" target="_blank">Click Here</a>
-                                                    <input type="hidden" id="terms-input-1" class="terms-link-input">
-                                                </p>
-                                            </div>
-
-                                            <div class="alert alert-danger">
-                                                <p class="m-0 font-600">
-                                                    For Waiver, Terms & Conditions
-                                                    <a id="terms-2" class="terms-link-js" data-input="terms-input-2" href="#" target="_blank">Click Here</a>
-                                                    <input type="hidden" id="terms-input-2" class="terms-link-input">
-                                                </p>
-                                            </div>
-
                                             <div class="alert alert-primary alert-round-border">
-
-                                                <div class="mt-2 mb-0 d-flex">
-                                                    <input type="checkbox" id="tc-2" class="tc checkbox-default">
-                                                    <label for="tc-2"
-                                                           style="font-size: 14px;color: #000; font-weight: 600;padding-left: 10px">
-                                                        I Have Read ISLA Code of Conduct </label>
+                                                <div class="mb-0 ">
+                                                    <input type="checkbox" id="tc-2" class="tc">
+                                                    <label for="tc-2" style="font-size: 14px;display: inline;color: #000; font-weight: 600;">
+                                                        I read and I agree to the
+                                                        <a id="terms-1" class="terms-link-js" data-input="terms-input-822bdff6-efed-4d49-9033-bec4bc51db9a" href="javascript:void(0)" data-toggle="modal" data-target="#modal-terms-822bdff6-efed-4d49-9033-bec4bc51db9a">Terms and Conditions</a>
+                                                    </label>
                                                 </div>
+
                                             </div>
                                         </div>
                                         <button type="button" class="btn btn-primary btn-block btn-event-register">
@@ -695,7 +730,7 @@
                         (317) 854 0207 </p>
                 </div>
                 <div class="col-md-12 col-lg-6">
-                    <p class="text-center text-md-center text-lg-right m-0">&copy; ISNA. All Rights Reserved, 2022 </p>
+                    <p class="text-center text-md-center text-lg-right m-0">&copy; DAANA. All Rights Reserved, 2022 </p>
                 </div>
             </div>
         </div>
@@ -753,6 +788,23 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                     <button type="button" class="btn btn-primary btn-proceed">Proceed</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL TERMS & CONDITIONS -->
+    <div class="modal" id="modal-terms-822bdff6-efed-4d49-9033-bec4bc51db9a" tabindex="-1" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-lg modal-show-docs">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title font-600">DAANA International Convention Commemorating 40 years of DCMS formation</h5>
+                </div>
+                <div class="modal-body">
+                    <iframe id="iframe-terms" src="https://res.cloudinary.com/secure-api/image/upload/v1690370721/sunday-school/daana/misc-documents/s767m20xg7mpiiwsbano.pdf" width="100%" height="800" allow="autoplay"></iframe>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success btn-agree-terms" data-target="#tc-2" data-dismiss="modal">I Agree</button>
                 </div>
             </div>
         </div>
@@ -833,7 +885,7 @@
                 <div class="row mt-3">
                     <!-- first name -->
                     <div class="col-sm-6 col-md-6 col-lg-6">
-                        <div class="form-group">
+                        <div class="form-group required-group">
                             <label class="form-control-label">First
                                 Name <span
                                         class="required-mark">*</span></label>
@@ -845,7 +897,7 @@
 
                     <!-- last name -->
                     <div class="col-sm-6 col-md-6 col-lg-6">
-                        <div class="form-group">
+                        <div class="form-group required-group">
                             <label class="form-control-label">Last
                                 Name <span
                                         class="required-mark">*</span></label>
@@ -857,7 +909,7 @@
 
                     <!--email-->
                     <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-                        <div class="form-group email-field">
+                        <div class="form-group required-group email-field">
                             <label class="form-control-label">Email <span
                                     class="required-mark">*</span></label>
                             <input type="email" name="TicketHolderEmail[]"

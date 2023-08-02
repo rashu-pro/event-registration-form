@@ -116,10 +116,16 @@ let ticketHtml = `
 
 $('.quantity-increase').on('click', function () {
     let self = $(this),
-        quantitySelector = self.closest('.quantity-wrap').find('.form-control'),
-        quantityValue = quantitySelector.val();
+      quantitySelector = self.closest('.quantity-wrap').find('.form-control'),
+      ticketText = self.closest('.quantity-wrap').data('ticket-text'),
+      dataMinimum = self.closest('.quantity-wrap').data('minimum'),
+      dataMaximum = self.closest('.quantity-wrap').data('maximum');
+    if(quantitySelector.val()<=0){
+        quantitySelector.val(dataMinimum-1);
+    }
+    let quantityValue = quantitySelector.val();
 
-    if (quantityValue < 10) {
+    if (quantityValue < dataMaximum) {
         quantitySelector.val(parseInt(quantityValue) + 1);
     }
 
@@ -133,11 +139,18 @@ $('.quantity-increase').on('click', function () {
 
 $('.quantity-decrease').on('click', function () {
     let self = $(this),
-        quantitySelector = self.closest('.quantity-wrap').find('.form-control'),
-        quantityValue = quantitySelector.val();
+      quantitySelector = self.closest('.quantity-wrap').find('.form-control'),
+      ticketText = self.closest('.quantity-wrap').data('ticket-text'),
+      dataMinimum = self.closest('.quantity-wrap').data('minimum'),
+      dataMaximum = self.closest('.quantity-wrap').data('maximum');
 
-    if (quantityValue > 0) {
+    let quantityValue = quantitySelector.val();
+
+    if (quantityValue > dataMinimum-1) {
         quantitySelector.val(parseInt(quantityValue) - 1);
+    }
+    if(quantityValue<=dataMinimum){
+        quantitySelector.val(0);
     }
 
     updateSubtotal(quantitySelector);
@@ -148,13 +161,134 @@ $('.quantity-decrease').on('click', function () {
      **/
 });
 
-$('.quantity-wrap .form-control').on('change', function () {
-    let self = $(this);
-    if(!self.val()) self.val('0');
+$('.quantity-wrap .ticket-quantity-js').on('change', function () {
+    let self = $(this),
+      quantitySelector = self.closest('.quantity-wrap').find('.form-control'),
+      quantityValue = quantitySelector.val(),
+      ticketText = self.closest('.quantity-wrap').data('ticket-text'),
+      dataMinimum = self.closest('.quantity-wrap').data('minimum'),
+      dataMaximum = self.closest('.quantity-wrap').data('maximum'),
+      warningMessage = '';
+    if(parseInt(quantityValue) < parseInt(dataMinimum)){
+        warningMessage = `<p class="error-message text-danger">Select at least ${dataMinimum} ticket. </p>`;
+    }else{
+        warningMessage = `<p class="error-message text-danger">Select no more than ${dataMaximum} ticket. </p>`;
+    }
+    if (parseInt(quantityValue) < parseInt(dataMinimum) || parseInt(quantityValue) > parseInt(dataMaximum)) {
+        quantitySelector.val(0);
+        self.closest('tr').find('.error-message').remove();
+        self.closest('tr').append(warningMessage);
+    }
     updateSubtotal(self);
     // collectData(self);
     // calculateCoupon($('.btn-apply-voucher-js'), false);
 });
+
+//=== ADDON TICKET CLICK ACTION
+$('.addon-quantity-increase').on('click', function () {
+    let self = $(this),
+      quantitySelector = self.closest('.quantity-wrap').find('.form-control'),
+      ticketText = self.closest('.quantity-wrap').data('ticket-text'),
+      dataMinimum = self.closest('.quantity-wrap').data('minimum'),
+      dataMaximum = self.closest('.quantity-wrap').data('maximum');
+    if(quantitySelector.val()<=0){
+        quantitySelector.val(dataMinimum-1);
+    }
+    let quantityValue = quantitySelector.val();
+
+    if (quantityValue < dataMaximum) {
+        quantitySelector.val(parseInt(quantityValue) + 1);
+    }
+
+    ticketSummaryInTheCart($('.addon-ticket-quantity-js'));
+});
+
+$('.addon-quantity-decrease').on('click', function () {
+    let self = $(this),
+      quantitySelector = self.closest('.quantity-wrap').find('.form-control'),
+      ticketText = self.closest('.quantity-wrap').data('ticket-text'),
+      dataMinimum = self.closest('.quantity-wrap').data('minimum'),
+      dataMaximum = self.closest('.quantity-wrap').data('maximum');
+
+    let quantityValue = quantitySelector.val();
+
+    if (quantityValue > dataMinimum-1) {
+        quantitySelector.val(parseInt(quantityValue) - 1);
+    }
+    if(quantityValue<=dataMinimum){
+        quantitySelector.val(0);
+    }
+
+    ticketSummaryInTheCart($('.addon-ticket-quantity-js'));
+});
+
+$('.quantity-wrap .addon-ticket-quantity-js').on('change', function () {
+    let self = $(this),
+      quantitySelector = self.closest('.quantity-wrap').find('.form-control'),
+      quantityValue = quantitySelector.val(),
+      ticketText = self.closest('.quantity-wrap').data('ticket-text'),
+      dataMinimum = self.closest('.quantity-wrap').data('minimum'),
+      dataMaximum = self.closest('.quantity-wrap').data('maximum'),
+      warningMessage = '';
+    if(parseInt(quantityValue) < parseInt(dataMinimum)){
+        warningMessage = `<p class="error-message text-danger">Select at least ${dataMinimum} ticket. </p>`;
+    }else{
+        warningMessage = `<p class="error-message text-danger">Select no more than ${dataMaximum} ticket. </p>`;
+    }
+    if (parseInt(quantityValue) < parseInt(dataMinimum) || parseInt(quantityValue) > parseInt(dataMaximum)) {
+        quantitySelector.val(0);
+        self.closest('tr').find('.error-message').remove();
+        self.closest('tr').append(warningMessage);
+    }
+    ticketSummaryInTheCart($('.addon-ticket-quantity-js'));
+});
+
+//=== I agree button click action
+$(document).on('click', '.btn-agree-terms', function (){
+    let self = $(this);
+    $(self.attr('data-target')).prop('checked', true);
+})
+
+/**
+ * Adds ticket int cart summary
+ * @param ticketQuantitySelector
+ */
+function ticketSummaryInTheCart(ticketQuantitySelector){
+    let ticketText = ticketQuantitySelector.closest('.quantity-wrap').attr('data-text');
+    let ticketSummaryHtmlString = '';
+    ticketQuantitySelector.each(function (i, element){
+        let quantity = parseInt($(element).val());
+        if(!quantity){
+            ticketSummaryHtmlString += '';
+            return;
+        }
+
+        $(element).closest('.quantity-wrap').find('.ticket-category-key').addClass('ticket-selected');
+        let dataRow = $(element).closest('.quantity-wrap').attr('data-row');
+        let price = parseInt($(element).closest('.quantity-wrap').attr('data-price'));
+        let totalPrice = price * quantity;
+
+        ticketSummaryHtmlString += `<tr id='row-${dataRow}' class='price-row addon-price-row ticket-price-row price-${dataRow}' data-row="${dataRow}">
+                                    <td class="tr-ticket-text">
+                                        ${ticketText}
+                                    </td>
+                                    <th>
+                                        <span class="">
+                                            <span class="currency">$</span>
+                                            <span class="amount">${totalPrice}</span>
+                                        </span>
+                                    </th>
+                                </tr>`;
+    })
+
+    $('.ticket-summary-table tbody .addon-price-row').remove();
+    if(ticketSummaryHtmlString || ticketSummaryHtmlString === ''){
+        $('.ticket-summary-table tbody').append(ticketSummaryHtmlString);
+    }
+
+    calculateTotal();
+}
+
 
 $('.btn-event-register').on('click', function () {
     let self = $(this),
@@ -575,10 +709,6 @@ $('.payment-information .zip-code-plain').on('keyup', function (e) {
         self.addClass('invalid');
     }
 });
-
-
-
-
 
 //===== DEFINITION FOR FUNCTIONS
 function card_validation() {
@@ -1321,7 +1451,6 @@ $(document).on('click', '.btn-generate-ticket-js', function (e){
             let quantity = parseInt($(element).val());
             let attendeeNumber = parseInt($(element).attr('data-limit'));
             let dataRow = parseInt($(element).closest('.table-row').attr('data-row'));
-            console.log('data-rwo: ', dataRow);
             if(!quantity){
                 return;
             }
@@ -1344,6 +1473,7 @@ $(document).on('click', '.btn-generate-ticket-js', function (e){
             $('.ticket-wrapper-js .form-row-js').last().attr('data-key', ticketCategoryKey);
             $('.ticket-wrapper-js .form-row-js').last().attr('data-limit', $(element).attr('data-limit'));
             $('.ticket-wrapper-js .form-row-js').last().find('.ticket-row-title-js').html(ticketText);
+
             if(parseInt($(element).attr('data-limit'))<2){
                 $('.ticket-wrapper-js .form-row-js').last().removeClass('ticket-pack');
             }
@@ -1353,9 +1483,12 @@ $(document).on('click', '.btn-generate-ticket-js', function (e){
                 for(let k=1; k<=attendeeNumber; k++){
                     $('.ticket-wrapper-js .form-row-js[data-row='+dataRow+'] .single-ticket-wrapper-js .ticket-wrapper').last().append($('.single-ticket-html-js .single-ticket-js').clone());
                     $('.ticket-wrapper-js .form-row-js[data-row='+dataRow+'] .single-ticket-wrapper-js .single-ticket-js .ticket-category-key').val(ticketCategoryKey);
-                    // $('.ticket-wrapper-js .form-row-js[data-row='+dataRow+'] .single-ticket-wrapper-js .single-ticket-js .attendee-wrapper').last().find('.form-group').removeClass('field-validated');
-                    // $('.ticket-wrapper-js .form-row-js[data-row='+dataRow+'] .single-ticket-wrapper-js .single-ticket-js .attendee-wrapper').last().find('.form-group').removeClass('field-invalid');
-                    // $('.ticket-wrapper-js .form-row-js[data-row='+dataRow+'] .single-ticket-wrapper-js .single-ticket-js .attendee-wrapper').last().find('.error-message').remove();
+
+                    //=== Removes required-group class from the form group if the attendee information is not required
+                    if(!parseInt($(element).closest('.quantity-wrap').attr('data-attendee-is-required'))){
+                        console.log('attendee information not required!');
+                        $('.ticket-wrapper-js .form-row-js').last().find('.form-group').removeClass('required-group');
+                    }
 
                     //=== ADDS TICKET REMOVE BUTTON
                     $('.ticket-wrapper-js .form-row-js[data-row='+dataRow+'] .single-ticket-wrapper-js .single-ticket-js').last().find('.attendee-wrapper .attendee-wrapper-head .action-btn-wrapper').append($('.remove-ticket-btn-wrapper-html .btn-remove-ticket-js').clone());
@@ -1371,8 +1504,10 @@ $(document).on('click', '.btn-generate-ticket-js', function (e){
 
         $('.ticket-summary-js').append($('.update-ticket-information-warning-html-js .update-ticket-information-wrapper').clone());
         addTicketSummaryAndCalculateTotalPrice();
+        ticketSummaryInTheCart($('.addon-ticket-quantity-js'));
         changeTicketUtitlity();
 
+        $('.addon-ticket-wrapper').removeClass('d-none');
         $('.billing-information-wrapper-js').removeClass('d-none');
         pageLoader.removeClass('active');
     },600)
@@ -1761,7 +1896,7 @@ function initMap() {
             }
             if(streetAddress) {
                 addressBlockSelector.querySelector('.street-address-js').value = streetAddress;
-                addressBlockSelector.querySelector('.input-address-js').closest('.form-group.required-group').classList.add('field-validated');
+                addressBlockSelector.querySelector('.street-address-js').closest('.form-group.required-group').classList.add('field-validated');
             }
 
         });
