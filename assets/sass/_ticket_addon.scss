@@ -18,3 +18,26 @@
     }
   }
 }
+
+.addon-box{
+  background: #fbf8f8;
+  padding: 12px 20px;
+  border-bottom:1px solid #ddd;
+  @media (min-width:768px){
+    padding: 14px 25px;
+  }
+}
+
+.addon-tckets-box{
+  border-radius:15px;
+  overflow: hidden;
+  background: #fbf8f8;
+  border:1px solid #ddd;
+}
+.addon-holder-head{
+  padding:15px;
+  border-bottom:2px solid #ddd;
+  @media (min-width:768px){
+    padding: 15px 25px;
+  }
+}
