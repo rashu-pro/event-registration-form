@@ -116,12 +116,12 @@ let ticketHtml = `
 
 $('.quantity-increase').on('click', function () {
     let self = $(this),
-      quantitySelector = self.closest('.quantity-wrap').find('.form-control'),
-      ticketText = self.closest('.quantity-wrap').data('ticket-text'),
-      dataMinimum = self.closest('.quantity-wrap').data('minimum'),
-      dataMaximum = self.closest('.quantity-wrap').data('maximum');
-    if(quantitySelector.val()<=0){
-        quantitySelector.val(dataMinimum-1);
+        quantitySelector = self.closest('.quantity-wrap').find('.form-control'),
+        ticketText = self.closest('.quantity-wrap').data('ticket-text'),
+        dataMinimum = self.closest('.quantity-wrap').data('minimum'),
+        dataMaximum = self.closest('.quantity-wrap').data('maximum');
+    if (quantitySelector.val() <= 0) {
+        quantitySelector.val(dataMinimum - 1);
     }
     let quantityValue = quantitySelector.val();
 
@@ -139,17 +139,17 @@ $('.quantity-increase').on('click', function () {
 
 $('.quantity-decrease').on('click', function () {
     let self = $(this),
-      quantitySelector = self.closest('.quantity-wrap').find('.form-control'),
-      ticketText = self.closest('.quantity-wrap').data('ticket-text'),
-      dataMinimum = self.closest('.quantity-wrap').data('minimum'),
-      dataMaximum = self.closest('.quantity-wrap').data('maximum');
+        quantitySelector = self.closest('.quantity-wrap').find('.form-control'),
+        ticketText = self.closest('.quantity-wrap').data('ticket-text'),
+        dataMinimum = self.closest('.quantity-wrap').data('minimum'),
+        dataMaximum = self.closest('.quantity-wrap').data('maximum');
 
     let quantityValue = quantitySelector.val();
 
-    if (quantityValue > dataMinimum-1) {
+    if (quantityValue > dataMinimum - 1) {
         quantitySelector.val(parseInt(quantityValue) - 1);
     }
-    if(quantityValue<=dataMinimum){
+    if (quantityValue <= dataMinimum) {
         quantitySelector.val(0);
     }
 
@@ -163,15 +163,15 @@ $('.quantity-decrease').on('click', function () {
 
 $('.quantity-wrap .ticket-quantity-js').on('change', function () {
     let self = $(this),
-      quantitySelector = self.closest('.quantity-wrap').find('.form-control'),
-      quantityValue = quantitySelector.val(),
-      ticketText = self.closest('.quantity-wrap').data('ticket-text'),
-      dataMinimum = self.closest('.quantity-wrap').data('minimum'),
-      dataMaximum = self.closest('.quantity-wrap').data('maximum'),
-      warningMessage = '';
-    if(parseInt(quantityValue) < parseInt(dataMinimum)){
+        quantitySelector = self.closest('.quantity-wrap').find('.form-control'),
+        quantityValue = quantitySelector.val(),
+        ticketText = self.closest('.quantity-wrap').data('ticket-text'),
+        dataMinimum = self.closest('.quantity-wrap').data('minimum'),
+        dataMaximum = self.closest('.quantity-wrap').data('maximum'),
+        warningMessage = '';
+    if (parseInt(quantityValue) < parseInt(dataMinimum)) {
         warningMessage = `<p class="error-message text-danger">Select at least ${dataMinimum} ticket. </p>`;
-    }else{
+    } else {
         warningMessage = `<p class="error-message text-danger">Select no more than ${dataMaximum} ticket. </p>`;
     }
     if (parseInt(quantityValue) < parseInt(dataMinimum) || parseInt(quantityValue) > parseInt(dataMaximum)) {
@@ -187,12 +187,12 @@ $('.quantity-wrap .ticket-quantity-js').on('change', function () {
 //=== ADDON TICKET CLICK ACTION
 $('.addon-quantity-increase').on('click', function () {
     let self = $(this),
-      quantitySelector = self.closest('.quantity-wrap').find('.form-control'),
-      ticketText = self.closest('.quantity-wrap').data('data-text'),
-      dataMinimum = self.closest('.quantity-wrap').data('minimum'),
-      dataMaximum = self.closest('.quantity-wrap').data('maximum');
-    if(quantitySelector.val()<=0){
-        quantitySelector.val(dataMinimum-1);
+        quantitySelector = self.closest('.quantity-wrap').find('.form-control'),
+        ticketText = self.closest('.quantity-wrap').data('data-text'),
+        dataMinimum = self.closest('.quantity-wrap').data('minimum'),
+        dataMaximum = self.closest('.quantity-wrap').data('maximum');
+    if (quantitySelector.val() <= 0) {
+        quantitySelector.val(dataMinimum - 1);
     }
     let quantityValue = quantitySelector.val();
 
@@ -205,17 +205,17 @@ $('.addon-quantity-increase').on('click', function () {
 
 $('.addon-quantity-decrease').on('click', function () {
     let self = $(this),
-      quantitySelector = self.closest('.quantity-wrap').find('.form-control'),
-      ticketText = self.closest('.quantity-wrap').data('ticket-text'),
-      dataMinimum = self.closest('.quantity-wrap').data('minimum'),
-      dataMaximum = self.closest('.quantity-wrap').data('maximum');
+        quantitySelector = self.closest('.quantity-wrap').find('.form-control'),
+        ticketText = self.closest('.quantity-wrap').data('ticket-text'),
+        dataMinimum = self.closest('.quantity-wrap').data('minimum'),
+        dataMaximum = self.closest('.quantity-wrap').data('maximum');
 
     let quantityValue = quantitySelector.val();
 
-    if (quantityValue > dataMinimum-1) {
+    if (quantityValue > dataMinimum - 1) {
         quantitySelector.val(parseInt(quantityValue) - 1);
     }
-    if(quantityValue<=dataMinimum){
+    if (quantityValue <= dataMinimum) {
         quantitySelector.val(0);
     }
 
@@ -224,15 +224,15 @@ $('.addon-quantity-decrease').on('click', function () {
 
 $('.quantity-wrap .addon-ticket-quantity-js').on('change', function () {
     let self = $(this),
-      quantitySelector = self.closest('.quantity-wrap').find('.form-control'),
-      quantityValue = quantitySelector.val(),
-      ticketText = self.closest('.quantity-wrap').data('ticket-text'),
-      dataMinimum = self.closest('.quantity-wrap').data('minimum'),
-      dataMaximum = self.closest('.quantity-wrap').data('maximum'),
-      warningMessage = '';
-    if(parseInt(quantityValue) < parseInt(dataMinimum)){
+        quantitySelector = self.closest('.quantity-wrap').find('.form-control'),
+        quantityValue = quantitySelector.val(),
+        ticketText = self.closest('.quantity-wrap').data('ticket-text'),
+        dataMinimum = self.closest('.quantity-wrap').data('minimum'),
+        dataMaximum = self.closest('.quantity-wrap').data('maximum'),
+        warningMessage = '';
+    if (parseInt(quantityValue) < parseInt(dataMinimum)) {
         warningMessage = `<p class="error-message text-danger">Select at least ${dataMinimum} ticket. </p>`;
-    }else{
+    } else {
         warningMessage = `<p class="error-message text-danger">Select no more than ${dataMaximum} ticket. </p>`;
     }
     if (parseInt(quantityValue) < parseInt(dataMinimum) || parseInt(quantityValue) > parseInt(dataMaximum)) {
@@ -244,7 +244,7 @@ $('.quantity-wrap .addon-ticket-quantity-js').on('change', function () {
 });
 
 //=== I agree button click action
-$(document).on('click', '.btn-agree-terms', function (){
+$(document).on('click', '.btn-agree-terms', function () {
     let self = $(this);
     $(self.attr('data-target')).prop('checked', true);
 })
@@ -256,10 +256,10 @@ $(document).on('click', '.btn-agree-terms', function (){
 function ticketSummaryInTheCart(ticketQuantitySelector) {
     let ticketText;
     let ticketSummaryHtmlString = '';
-    ticketQuantitySelector.each(function (i, element){
+    ticketQuantitySelector.each(function (i, element) {
         let quantity = parseInt($(element).val());
         ticketText = $(element).closest('.quantity-wrap').attr('data-text')
-        if(!quantity){
+        if (!quantity) {
             ticketSummaryHtmlString += '';
             return;
         }
@@ -283,7 +283,7 @@ function ticketSummaryInTheCart(ticketQuantitySelector) {
     })
 
     $('.ticket-summary-table tbody .addon-price-row').remove();
-    if(ticketSummaryHtmlString || ticketSummaryHtmlString === ''){
+    if (ticketSummaryHtmlString || ticketSummaryHtmlString === '') {
         $('.ticket-summary-table tbody').append(ticketSummaryHtmlString);
     }
 
@@ -316,7 +316,7 @@ $('.btn-event-register').on('click', function () {
     let isChecked = $('#tc-2').prop('checked');
 
     //=== CHECK WHETHER AT LEAST A TICKET INFORMATION IS BEING FILLED UP
-    if($('.ticket-wrapper-js .form-row-js').length<1){
+    if ($('.ticket-wrapper-js .form-row-js').length < 1) {
         $('.ticket-information-js .warning-message').remove();
         goToTheSection('.ticket-information-js');
         let errorMessage = $('.ticket-info-foot-js').attr('data-error-message');
@@ -325,31 +325,31 @@ $('.btn-event-register').on('click', function () {
         return;
     }
 
-    if(notValidatedField.length>0){
+    if (notValidatedField.length > 0) {
         //=== Contact Fields Validation Needed
         focusToNotValidFields(notValidatedField);
         return;
     }
 
-    if(notValidatedBillingFields>0){
+    if (notValidatedBillingFields > 0) {
         //=== Billing Fields Validation Needed
         focusToNotValidFields(notValidatedBillingFieldsSelector);
         return;
     }
 
-    if(parseInt($('.grand-total-price .amount').text())>0 && !$('#bill-later').prop('checked')){
+    if (parseInt($('.grand-total-price .amount').text()) > 0 && !$('#bill-later').prop('checked')) {
         if ((paymentFields) != paymentValidFields) {
             //=== Payment Fields Validation Needed
             paymentFieldNotValidatdSelector.first().focus();
             return;
         }
     }
-    if(!isChecked){
+    if (!isChecked) {
         //=== Terms & Condition Field Validation Needed
-        $('#tc-2').closest('.tc-wrapper').find('.alert').css('border','2px solid #dc3545');
+        $('#tc-2').closest('.tc-wrapper').find('.alert').css('border', '2px solid #dc3545');
         setTimeout(function () {
-            $('#tc-2').closest('.tc-wrapper').find('.alert').css('border','1px solid #084298');
-        },300);
+            $('#tc-2').closest('.tc-wrapper').find('.alert').css('border', '1px solid #084298');
+        }, 300);
         return;
     }
     registrationConfirmation();
@@ -482,7 +482,7 @@ $(document).on('click', '.btn-delete-ticket-js', function (e) {
 $('.btn-delete-row-confirm').on('click', function () {
     let self = $(this);
     deleteRow(self.closest('.modal-confirm').attr('data-row'));
-    $('#confirm-modal-delete').modal('hide');    
+    $('#confirm-modal-delete').modal('hide');
 });
 
 
@@ -931,7 +931,7 @@ function calculateTotalPrice(mainParent) {
                                     </th>
                                 </tr>`;
 
-    $(ticketQuantitySelector).each(function (i, element){
+    $(ticketQuantitySelector).each(function (i, element) {
         let ticketText = $(element).closest('tr').find('.ticket-name-js').attr('data-name');
         let dataRow = i;
         let price = parseInt($(element).val()) * parseInt($(element).closest('tr').find('.per-price .amount').text())
@@ -946,7 +946,7 @@ function calculateTotalPrice(mainParent) {
                                         </span>
                                     </th>
                                 </tr>`;
-        if(parseInt($(element).val())){
+        if (parseInt($(element).val())) {
             $('.ticket-summary-table tbody').append(row);
         }
     })
@@ -997,11 +997,11 @@ function calculateTotal() {
     let totalPrice = 0,
         sidebarPriceRow = $('.sidebar-block .price-row'),
         sidebarTicketPriceRow = $('.sidebar-block .ticket-price-row'),
-      processingFees = 0;
+        processingFees = 0;
 
     let ticketCount = 0;
-    $('.cart-table-js .ticket-quantity-js').each(function (i, element){
-        if(!$(element).val()) return;
+    $('.cart-table-js .ticket-quantity-js').each(function (i, element) {
+        if (!$(element).val()) return;
         ticketCount += parseInt($(element).val());
     })
 
@@ -1013,7 +1013,7 @@ function calculateTotal() {
 
     $('.processing-fees-tr-js').hide();
     $('.processing-fees-tr-js .amount').html(processingFees);
-    if(totalPrice>0){
+    if (totalPrice > 0) {
         processingFees = calculateProcessingFees(totalPrice);
         $('.processing-fees-tr-js').show();
         $('.processing-fees-tr-js .amount').html(processingFees);
@@ -1032,7 +1032,7 @@ function calculateGrandTotal() {
     let totalPrice = parseInt($('.ticket-summary-table .total-price .amount').html()),
         //processingFees = parseFloat($('.processing-fees-tr-js .amount').text()),
         processingFees = 0;
-        voucherPrice = parseInt($('.ticket-summary-table .voucher-price .amount').html());
+    voucherPrice = parseInt($('.ticket-summary-table .voucher-price .amount').html());
 
     if (totalPrice === voucherPrice) {
         $('.processing-fees-tr-js .amount').text(0);
@@ -1043,17 +1043,17 @@ function calculateGrandTotal() {
     //changed by Emdad
     //Update total price hidden field
     $('#sub-total-price').val(totalPrice);
-    $('#total-price').val(grandTotalPrice);    
+    $('#total-price').val(grandTotalPrice);
 
     $('.ticket-summary-table .grand-total-price .amount').html(grandTotalPrice);
-    if(grandTotalPrice<=0){
+    if (grandTotalPrice <= 0) {
         $('#payment-information').hide();
-    }else{
+    } else {
         $('#payment-information').show();
     }
     return grandTotalPrice;
 
-    
+
 }
 
 //=== UPDATE TICKET PRICE AFTER ADD ANOTHER PERSON ACTION
@@ -1426,17 +1426,17 @@ function updateTicketQuantity(dataRow) {
 let carTableSelector = '.cart-table-js';
 let ticketQuantitySelector = '.ticket-quantity-js';
 
-$(document).on('click', '.btn-generate-ticket-js', function (e){
+$(document).on('click', '.btn-generate-ticket-js', function (e) {
     e.preventDefault();
     let self = $(this);
     let totalTicket = 0;
-    $(ticketQuantitySelector).each(function (i, element){
+    $(ticketQuantitySelector).each(function (i, element) {
         totalTicket += parseInt($(element).val());
     });
 
     $('.ticket-information-js .warning-message').remove();
     $(carTableSelector).find('.error-message').remove();
-    if (!totalTicket){
+    if (!totalTicket) {
         $(carTableSelector).append('<p class="error-message text-danger">Please select a ticket</p>');
         $('.ticket-quantity-js').first().focus();
         return;
@@ -1444,16 +1444,16 @@ $(document).on('click', '.btn-generate-ticket-js', function (e){
 
     pageLoader.addClass('active');
 
-    setTimeout(function (){
+    setTimeout(function () {
         $('.ticket-wrapper-js').html('');
         $('.ticket-summary-js').html('');
 
         //== GENERATES TICKET
-        $(ticketQuantitySelector).each(function (i, element){
+        $(ticketQuantitySelector).each(function (i, element) {
             let quantity = parseInt($(element).val());
             let attendeeNumber = parseInt($(element).attr('data-limit'));
             let dataRow = parseInt($(element).closest('.table-row').attr('data-row'));
-            if(!quantity){
+            if (!quantity) {
                 return;
             }
             $(element).closest('.table-row').find('.ticket-category-key').addClass('ticket-selected');
@@ -1462,7 +1462,7 @@ $(document).on('click', '.btn-generate-ticket-js', function (e){
             let price = parseInt($(element).val()) * parseInt($(element).closest('.table-row').find('.per-price .amount').text());
             let perPrice = parseInt($(element).closest('.table-row').find('.per-price .amount').text());
             let ticketSummaryRow = `<div class="ticket-summary-row" data-row="${dataRow}">
-                                                <span class="ticket-number d-inline-block" style="position: relative"><span class="ticket-number-js">${quantity}</span> ticket${quantity>1?'s':''}</span>
+                                                <span class="ticket-number d-inline-block" style="position: relative"><span class="ticket-number-js">${quantity}</span> ticket${quantity > 1 ? 's' : ''}</span>
                                                 <p class="mb-1">${ticketText}</p>
                                                 <p class="mb-2">$<span class="amount">${$(element).closest('.table-row').find('.per-price .amount').text()}</span> X <span class="quantity">${quantity}</span> = <strong>$<span class="subtotal">${price}</span></strong></p>
                                             </div>`;
@@ -1476,31 +1476,31 @@ $(document).on('click', '.btn-generate-ticket-js', function (e){
             $('.ticket-wrapper-js .form-row-js').last().attr('data-limit', $(element).attr('data-limit'));
             $('.ticket-wrapper-js .form-row-js').last().find('.ticket-row-title-js').html(ticketText);
 
-            if(parseInt($(element).attr('data-limit'))<2){
+            if (parseInt($(element).attr('data-limit')) < 2) {
                 $('.ticket-wrapper-js .form-row-js').last().removeClass('ticket-pack');
             }
 
-            for(let j=1; j<=quantity; j++){
-                $('.ticket-wrapper-js .form-row-js[data-row='+dataRow+'] .single-ticket-wrapper-js').append(`<div class="ticket-wrapper"></div>`);
-                for(let k=1; k<=attendeeNumber; k++){
-                    $('.ticket-wrapper-js .form-row-js[data-row='+dataRow+'] .single-ticket-wrapper-js .ticket-wrapper').last().append($('.single-ticket-html-js .single-ticket-js').clone());
-                    $('.ticket-wrapper-js .form-row-js[data-row='+dataRow+'] .single-ticket-wrapper-js .single-ticket-js .ticket-category-key').val(ticketCategoryKey);
+            for (let j = 1; j <= quantity; j++) {
+                $('.ticket-wrapper-js .form-row-js[data-row=' + dataRow + '] .single-ticket-wrapper-js').append(`<div class="ticket-wrapper"></div>`);
+                for (let k = 1; k <= attendeeNumber; k++) {
+                    $('.ticket-wrapper-js .form-row-js[data-row=' + dataRow + '] .single-ticket-wrapper-js .ticket-wrapper').last().append($('.single-ticket-html-js .single-ticket-js').clone());
+                    $('.ticket-wrapper-js .form-row-js[data-row=' + dataRow + '] .single-ticket-wrapper-js .single-ticket-js .ticket-category-key').val(ticketCategoryKey);
 
                     //=== Removes required-group class from the form group if the attendee information is not required
-                    if(!parseInt($(element).closest('.quantity-wrap').attr('data-attendee-is-required'))){
+                    if (!parseInt($(element).closest('.quantity-wrap').attr('data-attendee-is-required'))) {
                         console.log('attendee information not required!');
                         $('.ticket-wrapper-js .form-row-js').last().find('.form-group').removeClass('required-group');
                     }
 
                     //=== ADDS TICKET REMOVE BUTTON
-                    $('.ticket-wrapper-js .form-row-js[data-row='+dataRow+'] .single-ticket-wrapper-js .single-ticket-js').last().find('.attendee-wrapper .attendee-wrapper-head .action-btn-wrapper').append($('.remove-ticket-btn-wrapper-html .btn-remove-ticket-js').clone());
-                    $('.ticket-wrapper-js .form-row-js[data-row='+dataRow+'] .single-ticket-wrapper-js .single-ticket-js').last().find('.attendee-wrapper .attendee-wrapper-head .action-btn-wrapper .btn-remove-ticket-js').attr('data-row', dataRow);
-                    $('.ticket-wrapper-js .form-row-js[data-row='+dataRow+'] .single-ticket-wrapper-js .single-ticket-js').last().find('.attendee-wrapper .attendee-wrapper-head .action-btn-wrapper .btn-remove-ticket-js').attr('data-price', perPrice);
+                    $('.ticket-wrapper-js .form-row-js[data-row=' + dataRow + '] .single-ticket-wrapper-js .single-ticket-js').last().find('.attendee-wrapper .attendee-wrapper-head .action-btn-wrapper').append($('.remove-ticket-btn-wrapper-html .btn-remove-ticket-js').clone());
+                    $('.ticket-wrapper-js .form-row-js[data-row=' + dataRow + '] .single-ticket-wrapper-js .single-ticket-js').last().find('.attendee-wrapper .attendee-wrapper-head .action-btn-wrapper .btn-remove-ticket-js').attr('data-row', dataRow);
+                    $('.ticket-wrapper-js .form-row-js[data-row=' + dataRow + '] .single-ticket-wrapper-js .single-ticket-js').last().find('.attendee-wrapper .attendee-wrapper-head .action-btn-wrapper .btn-remove-ticket-js').attr('data-price', perPrice);
                 }
 
             }
 
-            $('.ticket-wrapper-js .form-row-js[data-row='+dataRow+'] .ticket-count-js').html(quantity);
+            $('.ticket-wrapper-js .form-row-js[data-row=' + dataRow + '] .ticket-count-js').html(quantity);
             updateAttendeeNumber(dataRow);
         })
 
@@ -1509,18 +1509,19 @@ $(document).on('click', '.btn-generate-ticket-js', function (e){
         ticketSummaryInTheCart($('.addon-ticket-quantity-js'));
         changeTicketUtitlity();
 
+        $('.addon-holder-js').removeClass('d-none');
         $('.addon-ticket-wrapper').removeClass('d-none');
         $('.billing-information-wrapper-js').removeClass('d-none');
         pageLoader.removeClass('active');
-    },600)
+    }, 600)
 })
 
-$(document).on('click', '.add-another-ticket-js', function (e){
+$(document).on('click', '.add-another-ticket-js', function (e) {
     e.preventDefault();
     let self = $(this);
     let dataRow = self.closest('.form-row-js').attr('data-row');
     let quantity = parseInt(self.closest('.form-row-js').find('.form-row-head .ticket-count-js').text());
-    let perPrice = $('.cart-table-js .table-row[data-row='+dataRow+'] .per-price .amount').text();
+    let perPrice = $('.cart-table-js .table-row[data-row=' + dataRow + '] .per-price .amount').text();
 
     let clonedDiv = self.closest('.form-row-js').find('.ticket-wrapper').first().clone();
 
@@ -1528,7 +1529,7 @@ $(document).on('click', '.add-another-ticket-js', function (e){
     clonedDiv.find('.form-group').removeClass('field-invalid');
     clonedDiv.find('.error-message').remove();
     clonedDiv.find('.form-control').val('');
-    clonedDiv.css('display','none');
+    clonedDiv.css('display', 'none');
     self.closest('.form-row-js').find('.single-ticket-wrapper-js').append(clonedDiv);
     clonedDiv.slideDown();
 
@@ -1537,7 +1538,7 @@ $(document).on('click', '.add-another-ticket-js', function (e){
     updateAttendeeNumber(dataRow);
 })
 
-$(document).on('click', '.add-more-attendee-js', function (e){
+$(document).on('click', '.add-more-attendee-js', function (e) {
     e.preventDefault();
     let self = $(this);
     let dataRow = self.closest('.form-row-js').attr('data-row');
@@ -1550,30 +1551,30 @@ $(document).on('click', '.add-more-attendee-js', function (e){
     let removeBtn = $('.remove-btn-wrapper-html .btn-remove-js').clone();
     removeBtn.attr('data-remove', '.attendee-wrapper');
     clonedDiv.find('.form-control').val('');
-    clonedDiv.find('.attendee-number-js').html(parseInt(clonedDiv.find('.attendee-number-js').text())+1);
+    clonedDiv.find('.attendee-number-js').html(parseInt(clonedDiv.find('.attendee-number-js').text()) + 1);
     clonedDiv.find('.attendee-wrapper-head').append(removeBtn);
 
-    clonedDiv.css('display','none');
+    clonedDiv.css('display', 'none');
 
     self.closest('.single-ticket-js').find('.attendee-wrapper-box-js').append(clonedDiv);
     clonedDiv.slideDown();
     attendeeLimit(dataRow, dataLimit);
 })
 
-$(document).on('click', '.btn-remove-js', function (e){
+$(document).on('click', '.btn-remove-js', function (e) {
     e.preventDefault();
     let self = $(this);
     let dataRow = self.closest('.form-row-js').attr('data-row');
     let dataLimit = self.closest('.form-row-js').attr('data-limit');
 
     let divToRemove = self.attr('data-remove');
-    self.closest(divToRemove).slideUp(500, function (){
+    self.closest(divToRemove).slideUp(500, function () {
         self.closest(divToRemove).remove();
         attendeeLimit(dataRow, dataLimit);
     });
 })
 
-$(document).on('click', '.btn-remove-ticket-js', function (e){
+$(document).on('click', '.btn-remove-ticket-js', function (e) {
     e.preventDefault();
     let self = $(this);
     let ticketCardSelector = self.closest('.ticket-wrapper');
@@ -1584,48 +1585,48 @@ $(document).on('click', '.btn-remove-ticket-js', function (e){
     removeTicket(dataRow, quantity, perPrice, ticketCardSelector);
 })
 
-function removeTicket(dataRow, quantity, perPrice, ticketCardSelector){
+function removeTicket(dataRow, quantity, perPrice, ticketCardSelector) {
     updateTicketRelationInformation(dataRow, quantity, perPrice);
     //=== REMOVES TICKET CARD
-    ticketCardSelector.slideUp('300', function (){
+    ticketCardSelector.slideUp('300', function () {
         ticketCardSelector.remove();
     })
 
-    setTimeout(function (){
+    setTimeout(function () {
         updateAttendeeNumber(dataRow);
-        if(quantity<1){
-            $('.form-row-js[data-row='+dataRow+']').remove();
-            $('.ticket-summary-js .ticket-summary-row[data-row='+dataRow+']').remove();
-            $('.ticket-summary-table .ticket-price-row[data-row='+dataRow+']').remove();
+        if (quantity < 1) {
+            $('.form-row-js[data-row=' + dataRow + ']').remove();
+            $('.ticket-summary-js .ticket-summary-row[data-row=' + dataRow + ']').remove();
+            $('.ticket-summary-table .ticket-price-row[data-row=' + dataRow + ']').remove();
         }
-    },500)
+    }, 500)
 
     //=== CART CALCULATION
     calculateTotal();
 }
 
-function updateTicketRelationInformation(dataRow, quantity, perPrice){
-    let totalPrice = quantity*perPrice;
+function updateTicketRelationInformation(dataRow, quantity, perPrice) {
+    let totalPrice = quantity * perPrice;
     //=== TICKET SUMMARY UPDATE
-    $('.ticket-summary-js .ticket-summary-row[data-row='+dataRow+'] .quantity').text(quantity);
-    $('.ticket-summary-js .ticket-summary-row[data-row='+dataRow+'] .ticket-number-js').text(quantity);
-    $('.ticket-summary-js .ticket-summary-row[data-row='+dataRow+'] .subtotal').text(totalPrice);
+    $('.ticket-summary-js .ticket-summary-row[data-row=' + dataRow + '] .quantity').text(quantity);
+    $('.ticket-summary-js .ticket-summary-row[data-row=' + dataRow + '] .ticket-number-js').text(quantity);
+    $('.ticket-summary-js .ticket-summary-row[data-row=' + dataRow + '] .subtotal').text(totalPrice);
 
-    $('.cart-table-js .table-row[data-row='+dataRow+'] .ticket-quantity-js').val(quantity);
-    $('.cart-table-js .table-row[data-row='+dataRow+'] .price-subtotal .amount').text(totalPrice);
-    $('.form-row-js[data-row='+dataRow+'] .ticket-count-js').text(quantity);
+    $('.cart-table-js .table-row[data-row=' + dataRow + '] .ticket-quantity-js').val(quantity);
+    $('.cart-table-js .table-row[data-row=' + dataRow + '] .price-subtotal .amount').text(totalPrice);
+    $('.form-row-js[data-row=' + dataRow + '] .ticket-count-js').text(quantity);
 
     //=== TICket CART SUMMARY TABLE DATA UPDATE
-    $('.ticket-summary-table .ticket-price-row[data-row='+dataRow+'] .amount').text(totalPrice);
+    $('.ticket-summary-table .ticket-price-row[data-row=' + dataRow + '] .amount').text(totalPrice);
 }
 
-function addTicket(dataRow, quantity, perPrice){
+function addTicket(dataRow, quantity, perPrice) {
     updateTicketRelationInformation(dataRow, quantity, perPrice);
     //=== CART CALCULATION
     calculateTotal();
 }
 
-$(document).on('click', '.update-ticket-information-js', function (e){
+$(document).on('click', '.update-ticket-information-js', function (e) {
     e.preventDefault();
     $('.cart-table-js .quantity-wrap .form-control').val('0');
     $('.cart-table-js .quantity-wrap .form-control').trigger('change');
@@ -1639,15 +1640,19 @@ $(document).on('click', '.update-ticket-information-js', function (e){
     $('.voucher-tr .amount').text(0);
 
     $('.ticket-wrapper-js').empty();
+
+    $('.addon-ticket-quantity-js').val(0);
+    $('.addon-holder-js').addClass('d-none');
+    $('.addon-ticket-wrapper').addClass('d-none');
     goToTheSection('.ticket-information-js');
     addTicketSummaryAndCalculateTotalPrice();
-    setTimeout(function (){
+    setTimeout(function () {
         calculateTotal();
-    },600)
+    }, 600)
 
 })
 
-$(document).on('change', '#bill-later', function (){
+$(document).on('change', '#bill-later', function () {
     let self = $(this);
     billMeLaterToggle(self);
 })
@@ -1658,14 +1663,14 @@ calculateTotal();
  * Toggles payment form on bill me later checkbox state
  * @param element
  */
-function billMeLaterToggle(element){
+function billMeLaterToggle(element) {
     $('.payment-form-wrapper-js').slideUp();
-    if(element.prop('checked')) return;
+    if (element.prop('checked')) return;
 
     $('.payment-form-wrapper-js').slideDown();
 }
 
-function changeTicketUtitlity(){
+function changeTicketUtitlity() {
     $('.cart-table-js').addClass('d-none');
     $('.ticket-info-foot-js').addClass('d-none');
     $('.ticket-summary-js').removeClass('d-none');
@@ -1677,7 +1682,7 @@ function changeTicketUtitlity(){
  * Goes to the desired section
  * @param element
  */
-function goToTheSection(element){
+function goToTheSection(element) {
     // Get the target <div> element
     let targetDiv = $(element);
     let offsetTop = targetDiv.offset().top;
@@ -1690,20 +1695,20 @@ function goToTheSection(element){
  * Updates attendee number per ticket
  * @param rowNumber
  */
-function updateAttendeeNumber(rowNumber){
-    $('.form-row-js[data-row='+rowNumber+'] .ticket-wrapper').each(function (i, element){
+function updateAttendeeNumber(rowNumber) {
+    $('.form-row-js[data-row=' + rowNumber + '] .ticket-wrapper').each(function (i, element) {
         //=== UPDATE TICKET NUMBER
-        $(element).find('.ticket-number-js').html(i+1);
-        if($(element).closest('.form-row-js').attr('data-limit')<2){
+        $(element).find('.ticket-number-js').html(i + 1);
+        if ($(element).closest('.form-row-js').attr('data-limit') < 2) {
             // $(element).find('.ticket-number-js').html(1);
         }
 
         //=== IF THERE'S ONLY ONE ATTENDEE SHOW 'ATTENDEE INFORMATION'
-        if($(element).closest('.form-row-js').attr('data-limit')<2) return;
+        if ($(element).closest('.form-row-js').attr('data-limit') < 2) return;
 
         //=== UPDATE ATTENDEE NUMBER PER TICKET
-        $(element).find('.attendee-wrapper').each(function (j, element){
-            $(element).find('.attendee-number-js').html(j+1);
+        $(element).find('.attendee-wrapper').each(function (j, element) {
+            $(element).find('.attendee-number-js').html(j + 1);
         })
     })
 }
@@ -1714,7 +1719,7 @@ function updateAttendeeNumber(rowNumber){
  */
 function addTicketSummaryAndCalculateTotalPrice() {
     $('.ticket-summary-table tbody').html('');
-    $(ticketQuantitySelector).each(function (i, element){
+    $(ticketQuantitySelector).each(function (i, element) {
         let ticketText = $(element).closest('.table-row').find('.ticket-name-js').attr('data-name');
         let dataRow = parseInt($(element).closest('.table-row').attr('data-row'));
         let price = parseInt($(element).val()) * parseInt($(element).closest('.table-row').find('.per-price .amount').text());
@@ -1729,7 +1734,7 @@ function addTicketSummaryAndCalculateTotalPrice() {
                                         </span>
                                     </th>
                                 </tr>`;
-        if(parseInt($(element).val())){
+        if (parseInt($(element).val())) {
             $('.ticket-summary-table tbody').append(row);
         }
     })
@@ -1794,7 +1799,7 @@ function calculateProcessingFees(totalPrice) {
  * Updates subtotal on quantity change
  * @param quantityElementSelector
  */
-function updateSubtotal(quantityElement){
+function updateSubtotal(quantityElement) {
     let quantity = parseInt($(quantityElement).val());
     let perPrice = parseInt($(quantityElement).closest('.table-row').find('.per-price').find('.amount').text());
     let totalPrice = quantity * perPrice;
@@ -1817,14 +1822,14 @@ function showPaymentForm(totalAmount) {
     }
 }
 
-function attendeeLimit(dataRow, limit){
-    if($('.form-row-js[data-row='+dataRow+'] .attendee-wrapper').length>=limit){
-        $('.form-row-js[data-row='+dataRow+'] .add-more-attendee-js').removeClass('d-inline-flex');
-        $('.form-row-js[data-row='+dataRow+'] .add-more-attendee-js').hide();
+function attendeeLimit(dataRow, limit) {
+    if ($('.form-row-js[data-row=' + dataRow + '] .attendee-wrapper').length >= limit) {
+        $('.form-row-js[data-row=' + dataRow + '] .add-more-attendee-js').removeClass('d-inline-flex');
+        $('.form-row-js[data-row=' + dataRow + '] .add-more-attendee-js').hide();
         return;
     }
 
-    $('.form-row-js[data-row='+dataRow+'] .add-more-attendee-js').addClass('d-inline-flex');
+    $('.form-row-js[data-row=' + dataRow + '] .add-more-attendee-js').addClass('d-inline-flex');
 }
 
 /**
@@ -1848,7 +1853,7 @@ function initMap() {
         addressBlockSelector.querySelector('.input-postal-code-js').value = '';
 
         // When a place is selected, populate the address fields in your form
-        autocomplete.addListener('place_changed', function() {
+        autocomplete.addListener('place_changed', function () {
             const place = autocomplete.getPlace();
             if (!place.formatted_address) {
                 console.log('No address available for this place.');
@@ -1867,13 +1872,13 @@ function initMap() {
                     stateName = component.long_name;
                 } else if (component.types.includes('locality') || component.types.includes('postal_town')) {
                     cityName = component.long_name;
-                }else if (component.types.includes('administrative_area_level_3')){
-                    if(!cityName) cityName = component.long_name;
-                }else if(component.types.includes('postal_code')){
+                } else if (component.types.includes('administrative_area_level_3')) {
+                    if (!cityName) cityName = component.long_name;
+                } else if (component.types.includes('postal_code')) {
                     postalCode = component.long_name;
-                } else if(component.types.includes('street_number')){
+                } else if (component.types.includes('street_number')) {
                     streetNumber = component.long_name;
-                }else if(component.types.includes('route')){
+                } else if (component.types.includes('route')) {
                     routeName = component.long_name;
                 }
             }
@@ -1881,23 +1886,23 @@ function initMap() {
             // streetAddress = streetNumber && routeName ? streetNumber+" "+routeName : place.formatted_address.split(',')[0];
             streetAddress = place.formatted_address.split(',')[0];
 
-            if(cityName){
+            if (cityName) {
                 addressBlockSelector.querySelector('.input-city-js').value = cityName;
                 addressBlockSelector.querySelector('.input-city-js').closest('.form-group.required-group').classList.add('field-validated');
             }
-            if(stateName) {
+            if (stateName) {
                 addressBlockSelector.querySelector('.input-state-js').value = stateName;
                 addressBlockSelector.querySelector('.input-state-js').closest('.form-group.required-group').classList.add('field-validated');
             }
-            if(countryName) {
+            if (countryName) {
                 addressBlockSelector.querySelector('.input-country-js').value = countryName;
                 addressBlockSelector.querySelector('.input-country-js').closest('.form-group.required-group').classList.add('field-validated');
             }
-            if(postalCode) {
+            if (postalCode) {
                 addressBlockSelector.querySelector('.input-postal-code-js').value = postalCode;
                 addressBlockSelector.querySelector('.input-postal-code-js').closest('.form-group.required-group').classList.add('field-validated');
             }
-            if(streetAddress) {
+            if (streetAddress) {
                 addressBlockSelector.querySelector('.street-address-js').value = streetAddress;
                 addressBlockSelector.querySelector('.street-address-js').closest('.form-group.required-group').classList.add('field-validated');
             }

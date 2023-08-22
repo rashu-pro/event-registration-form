@@ -1138,6 +1138,14 @@ h4 {
     padding: 15px 25px;
   }
 }
+.addon-holder-foot {
+  padding: 15px;
+}
+@media (min-width: 768px) {
+  .addon-holder-foot {
+    padding: 15px 25px;
+  }
+}
 
 .cart-table .table {
   width: 550px;
