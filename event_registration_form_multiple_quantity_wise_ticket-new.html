@@ -259,7 +259,8 @@
 
                                         </div>
 
-                                        <div class="form-row-foot ticket-info-foot-js ticket-info-foot" data-error-message="Please select at least a ticket and press continue button to fill up ticket information.">
+                                        <div class="form-row-foot ticket-info-foot-js ticket-info-foot"
+                                             data-error-message="Please select at least a ticket and press continue button to fill up ticket information.">
                                             <div class="row justify-content-center">
                                                 <div class="col-md-9">
                                                     <div class="">
@@ -282,6 +283,51 @@
                             <!-- ====== FORM BODY ====== -->
                             <div class="form-body ticket-wrapper-js mb-4" id="form-body">
 
+                            </div>
+
+                            <!-- ====== EMAIL VERIFICATION WRAPPER ====== -->
+                            <div class="addon-holder email-information-wrapper-js mb-4 d-none">
+                                <div class="addon-ticket-holder addon-ticket-js">
+                                    <div class="form-row-head">
+                                        <div class="form-row-head-inner">
+                                            <h3 class="form-row-title text-center"><span>Email Verification</span></h3>
+                                        </div>
+                                    </div>
+                                    <div class="form-row-body">
+                                        <div class="form-fields-wrapper">
+                                            <div class="address-inner">
+                                                <div class="row">
+                                                    <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+                                                        <div class="form-group email-field required-group">
+                                                            <label class="form-control-label">
+                                                                Email <span class="required-mark">*</span>
+                                                            </label>
+                                                            <input type="email" name="Email"
+                                                                   id="email"
+                                                                   class="form-control email mask-email"
+                                                                   data-validation="email">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+                                                        <div class="form-group email-field required-group">
+                                                            <label class="form-control-label">
+                                                                Confirm Email <span class="required-mark">*</span>
+                                                            </label>
+                                                            <input type="email" name="ConfirmEmail"
+                                                                   id="confirmEmail"
+                                                                   class="form-control email mask-email"
+                                                                   data-validation="email">
+                                                            <span id="confirmEmailError" class="form-text text-danger" style="display: none;">Emails do not match.</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <span id="memberInfo" class="form-text text-success" style="display: none;"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                             <!-- ====== ADDON TICKET ====== -->
@@ -447,7 +493,9 @@
 
                                 </div>
 
-                                <div class="addon-holder-foot addon-holder-foot-js">
+                                <div class="addon-holder-foot addon-holder-foot-js"
+                                     data-checked="0"
+                                     data-error-message="Click continue button to add information for addon ticket.">
                                     <div class="text-center">
                                         <a href="javascript:void(0)"
                                            class="btn btn-dark btn-generate-addon-ticket-js"
@@ -581,14 +629,13 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
 
-                                    <div class="form-row-foot">
-                                        <div class="alert alert-success">
-                                            <p class="price-note">Your current total for <span
-                                                    class="ticket-count"></span> tickets is: $<span
-                                                    class="total-price"></span></p>
-                                        </div>
-
+                                <div class="form-row-foot">
+                                    <div class="alert alert-success">
+                                        <p class="price-note">Your current total for <span
+                                                class="ticket-count"></span> tickets is: $<span
+                                                class="total-price"></span></p>
                                     </div>
 
                                 </div>
@@ -1263,7 +1310,7 @@
 <script src="assets/plugins/input_mask/jquery.inputmask.min.js"></script>
 
 <!--<script src="assets/js/custom.js?v=1.2.1"></script>-->
-<script src="assets/js/live/event_multiple/quantity-wise-ticket/bulk-registration/custom.js?v=2.0.0"></script>
+<script src="assets/js/live/event_multiple/quantity-wise-ticket/bulk-registration/custom.js?v=2.0.1"></script>
 <!-- google map api -->
 <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRIIew-eQp2QjI5mRLFOE-qoUnl-qKC38&libraries=places&callback=initMap"></script>
 

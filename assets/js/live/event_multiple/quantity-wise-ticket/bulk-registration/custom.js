@@ -371,33 +371,46 @@ $('.btn-event-register').on('click', function () {
         return;
     }
 
+    //=== CHECK IF ANY ADDON TICKET SELECTED WHICH NEEDS ATTENDEE INFORMATION
+    let addonTicketSelected = 0;
+    let addonTicketChecked = parseInt($('.addon-holder-foot-js').attr('data-checked'));
+    $('.addon-ticket-quantity-js').each(function (i, element){
+        if(parseInt($(element).val())>0 && $(element).closest('.quantity-wrap').attr('data-info-required')){
+            addonTicketSelected += 1;
+        }
+    })
+    if(addonTicketSelected>0 && !addonTicketChecked){
+        $('.addon-holder-js .warning-message').remove();
+        goToTheSection('.addon-holder-foot-js');
+        let errorMessage = $('.addon-holder-foot-js').attr('data-error-message');
+        let errorMessageHtml = `<p class="m-0 mt-3 warning-message text-danger text-center">${errorMessage}</p>`;
+        $('.addon-holder-foot-js').append(errorMessageHtml);
+        $('.addon-holder-foot-js').attr('data-checked', 1);
+        return;
+    }
+
+    //=== Contact Fields Validation Needed
     if (notValidatedField.length > 0) {
-        //=== Contact Fields Validation Needed
         focusToNotValidFields(notValidatedField);
         return;
     }
 
+    //=== Billing Fields Validation Needed
     if (notValidatedEmailFields > 0) {
-        //=== Billing Fields Validation Needed
         focusToNotValidFields(notValidatedEmailFieldsSelector);
         return;
     }
 
-    if (notValidatedBillingFields > 0) {
-        //=== Billing Fields Validation Needed
-        focusToNotValidFields(notValidatedBillingFieldsSelector);
-        return;
-    }
-
+    //=== Payment Fields Validation Needed
     if (parseInt($('.grand-total-price .amount').text()) > 0 && !$('#bill-later').prop('checked')) {
         if ((paymentFields) != paymentValidFields) {
-            //=== Payment Fields Validation Needed
             paymentFieldNotValidatdSelector.first().focus();
             return;
         }
     }
+
+    //=== Terms & Condition Field Validation Needed
     if (!isChecked) {
-        //=== Terms & Condition Field Validation Needed
         $('#tc-2').closest('.tc-wrapper').find('.alert').css('border', '2px solid #dc3545');
         setTimeout(function () {
             $('#tc-2').closest('.tc-wrapper').find('.alert').css('border', '1px solid #084298');
@@ -1867,6 +1880,8 @@ function updateAddonTicketOption(){
 
     $('.addon-holder-foot-js').removeClass('d-none');
     $('.addon-ticket-summary-js').addClass('d-none');
+
+    $('.addon-holder-foot-js').attr('data-checked', 0);
 
     $('.addon-ticket-info-collection-wrapper-js').empty();
 }

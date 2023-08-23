@@ -1,0 +1,1040 @@
+﻿@model SecureAPI.Models.Events.EventRegistration
+@using SecureAPI.Models.Documents;
+@using SecureAPI.Helpers;
+
+@{
+    Layout = "~/Areas/EventManagement/Views/Shared/_LayoutBulk.cshtml";
+    string slug = "";
+    int addOnRowCount = 1;
+    if (!string.IsNullOrEmpty(Model.CompanySlug))
+    {
+        slug = Model.CompanySlug;
+    }
+
+    var formatedEventDate = "";
+    if (Model.EventView != null)
+    {
+        formatedEventDate = DateTimeHelper.GetFormatedDate(Model.EventView.StartDateTime, Model.EventView.EndDateTime);
+    }
+}
+
+<!-- ====== BANNER ====== -->
+<div class="main-banner style-new">
+    @if (Model.EventView != null)
+    {
+        <img src="@Model.EventView.Image" alt="@Model.EventView.Title">
+    }
+    <div class="main-banner-content">
+        <div class="main-banner-content-wrapper">
+            <div class="container">
+                <div class="main-banner-content-section">
+                    @if (Model.EventView != null)
+                    {
+                        <h3 class="banner-title">@Model.EventView.Title</h3>
+                    }
+                    <div class="banner-details">
+                        @if (ViewBag.CompanyTitle != null)
+                        {
+                            <p>@ViewBag.CompanyTitle</p>
+                        }
+
+                        @if (Model.EventView != null)
+                        {
+                            <p>@Model.EventView.Location</p>
+                        }
+
+                        <span class="badge badge-secondary text-medium">
+                            @formatedEventDate
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="main-wrapper style-new container">
+
+    <!-- FORM WRAPPER -->
+    <div class="registration-form-wrapper">
+
+        <!-- ====== MAIN BODY ====== -->
+        <div class="main-body">
+            <form method="post" id="reg-bulk">
+                <div class="row">
+
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-8">
+
+                        <!-- ====== TICKET SELECTION WRAPPER ====== -->
+
+                        <div class="ticket-information ticket-information-js">
+                            <div class="form-row">
+                                <div class="form-row-head">
+                                    <div class="form-row-head-inner">
+                                        <h3 class="form-row-title">Ticket Information</h3>
+                                    </div>
+                                </div>
+
+                                <div class="form-row-body">
+                                    @if (Model.TicketCategories.Any())
+                                    {
+                                        int count = 1;
+                                        <div class="cart-table cart-table-js">
+                                            <div class="table-div">
+
+                                                <div class="table-row table-row-head d-none d-md-block">
+                                                    <div class="row align-items-center">
+                                                        <div class="col-md-5">
+                                                            <strong>Ticket Category</strong>
+                                                        </div>
+
+                                                        <div class="col-md-2">
+                                                            <div class="text-left mb-2 mb-md-0">
+                                                                <strong>Price</strong>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-8 col-md-3">
+                                                            <strong>Quantity</strong>
+                                                        </div>
+
+                                                        <div class="col-4 col-md-2">
+                                                            <div class="text-right">
+                                                                <strong>Subtotal</strong>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                @foreach (var category in Model.TicketCategories.Where(e => !e.IsAddOn && !e.IsSoldOut))
+                                                {
+
+                                                    int maxQty = (category.TicketLimit - category.SoldQuantity);
+                                                    int IsAttendeeInformationRequired = category.IsAttendeeInformationRequired ? 1 : 0;
+
+                                                    int minQty = (int)category.MinimumTicket;
+                                                    if (category.MinimumTicket > maxQty)
+                                                    {
+                                                        minQty = maxQty;
+                                                    }
+                                                    if (maxQty > 10)
+                                                    {
+                                                        maxQty = 10;
+                                                    }
+
+                                                    <div class="table-row" data-row="@count">
+                                                        <div class="row align-items-center">
+                                                            <div class="col-md-5">
+                                                                <p class="m-0 ticket-name-js" data-name="@category.Title">@category.Title</p>
+                                                                <p class="m-0 text-info" style="font-size: 14px">@category.Description</p>
+                                                                <input type="hidden" name="TicketCategoryKeys[]" class="ticket-category-key" value="@category.UniqueKey" />
+                                                            </div>
+
+                                                            <div class="col-md-2">
+                                                                <div class="text-left per-price mb-2 mb-md-0">
+                                                                    <span class="currency">$</span>
+                                                                    <span class="amount">@category.Price</span>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-8 col-md-3">
+                                                                <div class="quantity-wrap"
+                                                                     data-minimum="1"
+                                                                     data-maximum="50"
+                                                                     data-attendee-is-required=@IsAttendeeInformationRequired>
+                                                                    <div class="input-group mb-3">
+                                                                        <div class="input-group-prepend">
+                                                                            <button type="button" class="input-group-text quantity-decrease">-</button>
+                                                                        </div>
+                                                                        <input data-max="@maxQty" data-min="@minQty" name="TicketQuantities[]" type="number" class="form-control ticket-quantity-js" value="0" data-limit="@minQty">
+                                                                        <div class="input-group-append">
+                                                                            <button type="button" class="input-group-text quantity-increase">+</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-4 col-md-2">
+                                                                <div class="text-right price-subtotal">
+                                                                    <span class="currency">$</span>
+                                                                    <span class="amount">0</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    count++;
+                                                }
+                                            </div>
+                                        </div>
+
+                                        <div class="ticket-summary ticket-summary-js d-none">
+                                        </div>
+
+                                        <div class="form-row-foot ticket-info-foot-js ticket-info-foot" data-error-message="Please select at least a ticket and press continue button to fill up ticket information.">
+                                            <div class="text-center">
+                                                <a href="javascript:void(0)" class="btn btn-dark btn-generate-ticket-js" data-update-text="Update Ticket Information">
+                                                    <span class="btn-text">Continue</span>
+                                                    <img src="~/Content/event-management-assets/individual-multiple-assets/images/down.png" style="margin-right:0;margin-left:6px;top:0">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ====== FORM BODY ====== -->
+                        <div class="form-body ticket-wrapper-js mb-4" id="form-body">
+                        </div>
+                        <!--email-->
+                        <div class="addon-holder email-information-wrapper-js mb-4 d-none">
+                            <div class="addon-ticket-holder addon-ticket-js">
+                                <div class="form-row-head">
+                                    <div class="form-row-head-inner">
+                                        <h3 class="form-row-title text-center"><span>Email Verification</span></h3>
+                                    </div>
+                                </div>
+                                <div class="form-row-body">
+                                    <div class="form-fields-wrapper">
+                                        <div class="address-inner">
+                                            <div class="row">
+                                                <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+                                                    <div class="form-group email-field required-group">
+                                                        <label class="form-control-label">
+                                                            Email <span class="required-mark">*</span>
+                                                        </label>
+                                                        <input type="email" name="Email"
+                                                               id="email"
+                                                               class="form-control email mask-email"
+                                                               data-validation="email">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+                                                    <div class="form-group email-field required-group">
+                                                        <label class="form-control-label">
+                                                            Confirm Email <span class="required-mark">*</span>
+                                                        </label>
+                                                        <input type="email" name="ConfirmEmail"
+                                                               id="confirmEmail"
+                                                               class="form-control email mask-email"
+                                                               data-validation="email">
+                                                        <span id="confirmEmailError" class="form-text text-danger" style="display: none;">Emails do not match.</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <span id="memberInfo" class="form-text text-success" style="display: none;"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--AddOn Ticket-->
+                        <div class="addon-holder addon-tckets-box addon-holder-js mb-4 d-none">
+                            <div class="addon-holder-head">
+                                <h3 class="form-row-title">Addon Tickets</h3>
+                            </div>
+
+                            @foreach (var category in Model.TicketCategories.Where(e => e.IsAddOn && !e.IsSoldOut))
+                            {
+                                string className = category.IsMembershipAddOn ? "addon-ticket-wrapper addon-ticket-wrapper-member-js d-none" :
+                                                                                "addon-ticket-wrapper addon-ticket-wrapper-js d-none";
+
+                                int IsAttendeeInformationRequired = category.IsAttendeeInformationRequired ? 1 : 0;
+
+                                <!-- ====== ADDON TICKET ====== -->
+                                <div class="@className">
+                                    <div class="addon-ticket-holder addon-ticket-js">
+                                        <div class="addon-box">
+                                            <h4 class="pb-1 mb-0 title">@category.Title</h4>
+                                            <h5 class="mt-1 text-danger text-medium"><strong class="per-price">$<span class="amount">@category.Price</span> </strong></h5>
+
+                                            <div class="quantity-wrap mt-3"
+                                                 data-text="@category.Title"
+                                                 data-minimum="1"
+                                                 data-maximum="50"
+                                                 data-row="@addOnRowCount"
+                                                 data-price=@category.Price
+                                                 data-attendee-is-required=@IsAttendeeInformationRequired
+                                                 data-info-required="1">
+
+                                                <input type="hidden"
+                                                       name="AddOnTicketCategoryKey[]"
+                                                       class="ticket-addOn-key"
+                                                       value=@category.UniqueKey>
+
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <button type="button" class="input-group-text addon-quantity-decrease">-</button>
+                                                    </div>
+                                                    <input type="number" class="form-control addon-ticket-quantity-js" name="AddOnTicketCount[]" value="0" data-limit=@category.MinimumTicket>
+                                                    <div class="input-group-append">
+                                                        <button type="button" class="input-group-text addon-quantity-increase">+</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                addOnRowCount++;
+                            }
+                            <!-- ====== ADDON TICKET SUMMARY ====== -->
+                            <div class="ticket-summary addon-ticket-summary-js d-none"></div>
+                            <div class="addon-holder-foot addon-holder-foot-js">
+                                <div class="text-center">
+                                    <a href="javascript:void(0)"
+                                       class="btn btn-dark btn-generate-addon-ticket-js"
+                                       data-update-text="Update Addon Ticket Information">
+                                        <span class="btn-text">Continue</span>
+                                        <img src="~/Content/event-management-assets/individual-multiple-assets/images/down.png" alt="down" style="margin-right:0;margin-left:6px;top:0">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ====== ADDON TICKET INFORMATION COLLECTION WRAPPER ====== -->
+                        <div class="form-body addon-ticket-info-collection-wrapper-js mb-4" id="addon-form-body"></div>
+                        
+                        <!-- ===== BILLING INFORMATION ==== -->
+                        <div class="form-row billing-information-wrapper billing-information-wrapper-js mt-4 d-none">
+
+                            <div class="form-row-head">
+                                <div class="form-row-head-inner">
+                                    <h3 class="form-row-title text-center"><span>Billing Information</span></h3>
+                                </div>
+                            </div>
+
+                            <div class="form-row-body">
+                                <div class="form-fields-wrapper">
+                                    <div class="address-inner">
+                                        <div class="row">
+                                            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                                <div class="form-group">
+                                                    <label class="form-control-label">Organization Name</label>
+                                                    <input type="text" name="BusinessName" class="form-control">
+                                                </div>
+                                            </div>
+                                            <!-- first name -->
+                                            <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+                                                <div class="form-group required-group">
+                                                    <label class="form-control-label">
+                                                        First Name <span class="required-mark">*</span>
+                                                    </label>
+                                                    <input type="text"
+                                                           name="FirstName"
+                                                           class="form-control first-name mask-text">
+                                                </div>
+                                            </div>
+
+                                            <!-- last name -->
+                                            <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+                                                <div class="form-group required-group">
+                                                    <label class="form-control-label">
+                                                        Last Name <span class="required-mark">*</span>
+                                                    </label>
+                                                    <input type="text"
+                                                           name="LastName"
+                                                           class="form-control last-name">
+                                                </div>
+                                            </div>
+                                            <!--phone number-->
+                                            <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+                                                <div class="form-group required-group">
+                                                    <label class="form-control-label">
+                                                        Phone Number
+                                                        <span class="required-mark">*</span>
+                                                    </label>
+                                                    <input type="text"
+                                                           name="Phone"
+                                                           class="form-control phone-number-mask">
+                                                </div>
+                                            </div>
+
+                                            <!-- ADDRESS AUTOCOMPLETE BLOCK -->
+                                            <div class="col-md-12">
+                                                <div class="address-autocomplete-block-js">
+                                                    <div class="row">
+                                                        <!--address-->
+                                                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                                            <div class="form-group required-group">
+                                                                <label class="form-control-label">
+                                                                    Street Address <span class="required-mark">*</span>
+                                                                </label>
+                                                                <input name="AddressLine1" type="text"
+                                                                       class="form-control street-address-pin street-address-js">
+                                                            </div>
+                                                        </div>
+
+                                                        <!--country-->
+                                                        <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+                                                            <div class="form-group required-group">
+                                                                <label class="form-control-label">
+                                                                    Country <span class="required-mark">*</span>
+                                                                </label>
+                                                                <input name="Country" class="form-control input-country-js">
+                                                            </div>
+                                                        </div>
+
+                                                        <!--state-->
+                                                        <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                                            <div class="form-group required-group state-field-group">
+                                                                <label class="form-control-label">
+                                                                    State <span class="required-mark">*</span>
+                                                                </label>
+                                                                <input class="form-control input-state-js"
+                                                                       name="State">
+                                                            </div>
+                                                        </div>
+
+                                                        <!--city-->
+                                                        <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                                            <div class="form-group required-group">
+                                                                <label class="form-control-label">
+                                                                    City <span class="required-mark">*</span>
+                                                                </label>
+                                                                <input name="City" type="text" class="form-control input-city-js">
+                                                            </div>
+                                                        </div>
+
+                                                        <!--zipcode-->
+                                                        <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                                            <div class="form-group required-group zip-code-field">
+                                                                <label class="form-control-label">
+                                                                    ZIP Code <span class="required-mark">*</span>
+                                                                </label>
+                                                                <input name="ZipCode" type="text" class="form-control input-postal-code-js zip-code">
+                                                            </div>
+                                                        </div>
+                                                        <!--visa invitation-->
+                                                        <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                                            <div class="form-group visa-invitation-field">
+                                                                <div class="mb-0 d-flex">
+                                                                    <input type="checkbox" id="IsVisaInvitationRequired" name="IsVisaInvitationRequired" class="tc checkbox-default" style="flex:0 0 1.2rem" data-gtm-form-interact-field-id="1" value="true">
+                                                                    <input type="hidden" name="IsVisaInvitationRequired" value="false">
+                                                                    <label for="IsVisaInvitationRequired" style="padding-left:10px; font-size: 14px;display: inline;color: #000; font-weight: 600;">Visa Invitation Required ?</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row-foot">
+                                    <div class="alert alert-success">
+                                        <p class="price-note">
+                                            Your current total for <span class="ticket-count"></span> tickets is: $<span class="total-price"></span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-4">
+
+                            <!-- ====== SIDEBAR ====== -->
+                            <div class="sidebar">
+                                @if (!string.IsNullOrEmpty(Model.EventView.BigDetails))
+                                {
+                                    <div class="sidebar-block">
+                                        <h3 class="sidebar-block-title">Announcement</h3>
+                                        <div class="sidebar-block-description">
+                                            @Html.Raw(Model.EventView.BigDetails)
+                                        </div>
+                                    </div>
+                                }
+
+                                <div class="sidebar-block">
+                                    <h3 class="sidebar-block-title">Ticket Summary</h3>
+                                    <div class="sidebar-block-description">
+                                        <div class="table-responsive ticket-summary-table pb-3">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-left">
+                                                            <span class="row-number">#</span> Ticket
+                                                            Category
+                                                        </th>
+                                                        <th class="text-right">Price</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody></tbody>
+                                                <tfoot>
+                                                    <tr class="bg-white">
+                                                        <td>Total</td>
+                                                        <th>
+                                                            <span class="total-price">
+                                                                <span class="currency">$</span>
+                                                                <span class="amount">0</span>
+                                                            </span>
+                                                        </th>
+                                                    </tr>
+                                                    <tr class="bg-white d-none" id="member_discount">
+                                                        <td>Discount</td>
+                                                        <th>
+                                                            <span class="discount">
+                                                                <span class="currency">$</span>
+                                                                <span class="discount_amount">0</span>
+                                                            </span>
+                                                        </th>
+                                                    </tr>
+
+                                                    @if (ViewBag.ProcessingFeeByAttendee)
+                                                    {
+                                                        <tr class="bg-grey processing-fees-tr processing-fees-tr-js" style="background: #f4f3f3;vertical-align: middle;display: none">
+                                                            <td style="vertical-align: middle">
+                                                                <p class="m-0" style="font-size:16px;">Processing Fees </p>
+                                                                <p class="m-0 text-info" style="font-size:14px;font-weight: 400">Rate: 2.2% + 30cents</p>
+                                                            </td>
+                                                            <th style="vertical-align: middle">
+                                                                <span class="processing-price">
+                                                                    <span class="currency">$</span>
+                                                                    <span class="amount">0</span>
+                                                                </span>
+                                                            </th>
+                                                        </tr>
+                                                    }
+
+                                                    <tr class="bg-white voucher-tr">
+                                                        <td>Coupon <span class="voucher-code-text"></span> </td>
+                                                        <th>
+                                                            <span class="voucher-price">
+                                                                <span class="calculate-sign">(-) &nbsp;</span>
+                                                                <span class="currency">$</span>
+                                                                <span class="amount">0</span>
+                                                            </span>
+                                                        </th>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <th class="text-right">Grand Total</th>
+                                                        <th class="">
+                                                            <span class="grand-total-price">
+                                                                <span class="currency">$</span>
+                                                                <span class="amount">0</span>
+                                                            </span>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                        <div class="voucher-block">
+                                            <div class="input-group p-3">
+                                                <input type="text" class="form-control" name="CouponCode" placeholder="Coupon Code">
+                                                <div class="input-group-append">
+                                                    <button type="button" class="btn btn-primary input-group-text btn-apply-voucher-js">Apply Coupon</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="sidebar-block" id="payment-information">
+                                    <h3 class="sidebar-block-title">Payment Information</h3>
+                                    <div class="sidebar-block-description payment-information">
+                                        @if (Model.EventView.AllowInvoicing)
+                                        {
+                                            <div class="bill-me-later-wrapper">
+                                                <div class="d-flex checkbox-div">
+                                                    @Html.CheckBoxFor(model => model.PayLater, new { id = "bill-later", @class = "checkbox-default checkbox-md" })
+                                                    <label class="font-semibold mb-0" for="bill-later"> Bill me later using an invoice</label>
+                                                </div>
+                                            </div>
+                                        }
+                                        <div class="payment-form-wrapper-js">
+                                            <div class="row pt-3">
+                                                <div class="col-12">
+                                                    <div class="form-group">
+                                                        <div class="card-image">
+                                                            <img src="~/Content/event-management-assets/individual-multiple-assets/images/credit_card_all_.png" class="img-fluid">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="form-group">
+                                                        <label for="txtCardHolderName" class="field-label form-control-label required-sign"> <span class="lable-text">Name on Card</span> <span class="text-danger">*</span></label>
+                                                        <input id="txtCardHolderName" name="CardHolderName" type="text" class="form-control field-normal cc-name field-empty">
+                                                        <span class="text-warning card-holder-name-validation validation"></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label form-control-label required-sign" for="creditcardnumber">
+                                                            <span class="lable-text">Card Number</span>
+                                                            <span class="text-danger">*</span>
+                                                        </label>
+                                                        <div class="cc-number-holder">
+                                                            <input type="text" name="CreditCardNumber" class="form-control field-normal format-card-number cc-number" id="creditcardnumber" required="" maxlength="16">
+                                                            <div class="cc-card-identity">
+                                                                <img src="~/Content/event-management-assets/individual-multiple-assets/images/card_mockup.png">
+                                                            </div>
+                                                        </div>
+
+                                                        <span class="text-warning card-number-validation validation"></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label for="txtExpiryMonth" class="field-label">
+                                                            <span class="lable-text">Exp MM</span>
+                                                            <span class="text-danger">*</span>
+                                                        </label>
+                                                        <select id="txtExpiryMonth" name="CreditCardExpireMonth" class="form-control field-normal cc-month" required="">
+                                                            <option value="0">Select Month</option>
+                                                            <option value="01">01</option>
+                                                            <option value="02">02</option>
+                                                            <option value="03">03</option>
+                                                            <option value="04">04</option>
+                                                            <option value="05">05</option>
+                                                            <option value="06">06</option>
+                                                            <option value="07">07</option>
+                                                            <option value="08">08</option>
+                                                            <option value="09">09</option>
+                                                            <option value="10">10</option>
+                                                            <option value="11">11</option>
+                                                            <option value="12">12</option>
+                                                        </select>
+                                                    </div>
+                                                    <span class="text-warning expiry-month-validation validation"></span>
+                                                </div>
+
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label for="txtExpiryYear" class="field-label form-label">
+                                                            <span class="lable-text">Exp YY</span>
+                                                            <span class="text-danger">*</span>
+                                                        </label>
+                                                        <select id="txtExpiryYear" name="CreditCardExpireYear" class="form-control field-normal cc-year" required="">
+                                                            <option value="0">Select Year</option>
+                                                            <option value="2023">2023</option>
+                                                            <option value="2024">2024</option>
+                                                            <option value="2025">2025</option>
+                                                            <option value="2026">2026</option>
+                                                            <option value="2027">2027</option>
+                                                            <option value="2028">2028</option>
+                                                            <option value="2029">2029</option>
+                                                            <option value="2030">2030</option>
+                                                            <option value="2031">2031</option>
+                                                            <option value="2032">2032</option>
+                                                            <option value="2033">2033</option>
+                                                        </select>
+                                                        <span class="text-warning expiry-year-validation validation"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label for="txtCvc" class="field-label required-sign">
+                                                            <span class="lable-text">CVV</span>
+                                                            <span class="text-danger">*</span>
+                                                        </label>
+                                                        <input id="txtCvc" name="CVV" type="text" class="form-control field-normal format-cvv cc-cvc mask-cvv">
+                                                        <span class="text-warning cvv-validation validation"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="form-group zip-code-field">
+                                                        <label class="form-label">ZIP Code <span class="required-mark">*</span></label>
+                                                        <input type="text" id="txtZipCode" name="BillingZipCode" class="form-control zip-code-plain">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                @Html.HiddenFor(model => model.Token, new { id = "hdnToken" })
+                                @Html.HiddenFor(model => model.CompanyKey, new { id = "hdnCompanyKey" })
+                                @Html.HiddenFor(model => model.CompanyName, new { id = "hdnCompanyName" })
+                                @Html.HiddenFor(model => model.CompanySlug, new { id = "hdnCompanySlug" })
+                                @Html.HiddenFor(model => model.IsLive, new { id = "hdnCompanyIsLive" })
+                                @Html.HiddenFor(model => model.PaymentProductId, new { id = "paymentProductId" })
+                                @Html.HiddenFor(model => model.PaymentGateway)
+                                <input type="hidden" name="TotalPrice" id="total-price" />
+                                <input type="hidden" name="SubTotalPrice" id="sub-total-price" />
+                                <input type="hidden" name="EventKey" id="event-key" value="@Model.EventKey" />
+                                <input type="hidden" name="EventName" id="event-key" value="@Model.EventName" />
+                                <input type="hidden" name="TicketQuantity" id="ticket-quantity" value="1" />
+                                <input type="hidden" name="CsrlPrice" id="csrl-price" />
+                                <input type="hidden" name="DiscountAmount" id="discount-total-amount" />
+
+                                <div class="sidebar-block">
+                                    <div class="sidebar-block-description">
+
+                                        <div class="tc-wrapper mt-2">
+                                            @if (ViewBag.CdnDocument != null)
+                                            {
+                                                int count = 0;
+                                                foreach (CdnDocument doc in ViewBag.CdnDocument)
+                                                {
+                                                    <div class="alert alert-danger">
+                                                        <p class="m-0 font-600">
+                                                            @doc.Name
+                                                            <a id="terms-1" class="terms-link-js" data-input="terms-input-@count" href="javascript:void(0)" target="_blank" data-toggle="modal" data-target="#modal-terms-@doc.UniqueKey">Click Here</a>
+                                                            <input type="hidden" id="terms-input-@count" class="terms-link-input">
+                                                        </p>
+                                                    </div>
+                                                    count++;
+                                                }
+                                            }
+
+                                            <div class="alert alert-primary alert-round-border">
+                                                <div class="mb-0 d-flex">
+                                                    <input type="checkbox" id="tc-2" class="tc checkbox-default" style="flex:0 0 1.2rem">
+                                                    <label for="tc-2" style="padding-left:10px; font-size: 14px;display: inline;color: #000; font-weight: 600;">I agree to the @slug.ToUpper() Terms and Conditions.</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn btn-primary btn-block btn-event-register">Submit Registration</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+</form>
+        </div>
+    </div>
+</div>
+<!-- MODAL (TERMS AND CONDITIONS) -->
+@if (ViewBag.CdnDocument != null)
+{
+    foreach (CdnDocument doc in ViewBag.CdnDocument)
+    {
+        <!-- MODAL TERMS & CONDITIONS -->
+        <div class="modal" id="modal-terms-@doc.UniqueKey" tabindex="-1" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog modal-lg modal-show-docs">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title font-600">@doc.Name</h5>
+                    </div>
+                    <div class="modal-body">
+                        <iframe id="iframe-terms" src="@doc.URL" width="100%" height="800" allow="autoplay"></iframe>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-dismiss="modal">I Agree</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+@section Scripts{
+
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+
+    <script type="text/javascript">
+    $('document').ready(function () {
+
+        Stripe.setPublishableKey('@Model.Config.PublicKey');
+
+        $('#confirmEmail').blur(function () {
+            var email = $('#email').val();
+            var confirmEmail = $('#confirmEmail').val();
+
+            if (email !== confirmEmail) {
+                $('#confirmEmailError').css('display', 'block');
+                $('.btn-event-register').prop('disabled', true);
+            } else {
+                $('#confirmEmailError').css('display', 'none');
+                $('.btn-event-register').prop('disabled', false);
+            }
+        });
+
+        $('#email').blur(function () {
+
+            var email = $('#email').val();
+            var confirmEmail = $('#confirmEmail').val();
+            let discountTd = $('#member_discount td:first-child');
+            let totalAmount = parseInt($('.total-price .amount').text());
+            let discountAmount = 0;
+            if (email !== confirmEmail) {
+                $('#confirmEmailError').css('display', 'block');
+                $('.btn-event-register').prop('disabled', true);
+            } else {
+                $('#confirmEmailError').css('display', 'none');
+                $('.btn-event-register').prop('disabled', false);
+            }
+            $('.loader-div').addClass('active');
+            $('#loading').show();
+            $('.addon-holder-js').removeClass('d-none');
+            $('.addon-ticket-wrapper').removeClass('d-none');
+            $.ajax({
+                url: "@Url.Action("IsMembershipExists", "EventRegistration")",
+                type: "POST",
+                dataType: 'json',
+                data: { slug:"@slug", email: $('#email').val()},
+                success: function (response) {
+                    if (response.result) {
+                        
+                        var discountPercentage = response.data.DiscountPercentage;
+                        $('#memberInfo').html(`Great!! We see that you are an active 
+                                              member of ${response.data.CompanyNickName}.Your membership type is ${response.data.MembershipTypeName}.`);
+                        $('#memberInfo').css('display', 'block');
+                        if (discountPercentage > 0) {
+                            $('#member_discount').removeClass('d-none');
+                            discountTd.html(`Discount (${response.data.DiscountPercentage} %)`);
+                            discountAmount = (totalAmount * (discountPercentage / 100.00)).toFixed(2);
+                            $('.discount_amount').html(discountAmount);
+                        }
+                        else {
+                            discountTd.html('');
+                            $('.discount_amount').html(0);
+                            $('#member_discount').addClass('d-none');
+                        }
+                        
+                        $('.addon-ticket-wrapper-member-js').addClass('d-none');
+                        //$('.addon-ticket-wrapper').addClass('d-none');
+
+                    } else {
+                        $('#memberInfo').html('');
+                        discountTd.html('');
+                        $('.discount_amount').html(0);
+                        $('#member_discount').addClass('d-none');
+                        $('#memberInfo').css('display', 'none');
+
+                        $('.addon-ticket-wrapper-member-js').removeClass('d-none');
+                        //$('.addon-ticket-wrapper').removeClass('d-none');
+                    }
+                    grandTotal = totalAmount - discountAmount < 0 ? 0 : totalAmount - discountAmount;
+                    $('.ticket-summary-table .grand-total-price .amount').html(grandTotal);
+                    $('.billing-information-wrapper .price-note .total-price').html(grandTotal);
+                },
+            });
+            $('.loader-div').removeClass('active');
+            $('#loading').hide();
+        });
+
+        function stripeCharge() {
+
+            Stripe.card.createToken(
+                {
+                    number: $('#creditcardnumber').val(),
+                    cvc: $('#txtCvc').val(),
+                    exp_month: $("#txtExpiryMonth").val(),
+                    exp_year: $('#txtExpiryYear').val(),
+                    name: $('#txtCardHolderName').val(),
+                    address_line1: $('#address-line1').val(),
+                    address_city: $('#city').val(),
+                    address_state: $('#state').val(),
+                    address_zip: $('#zipcode').val(),
+                }, stripeResponseHandler);
+        }
+
+        function stripeResponseHandler(status, response) {
+            var $form = $('#event-reg-form');
+
+            if (response.error) {
+                // Show the errors on the form
+                alert(response.error.message);
+                $('.loader-div').removeClass('active');
+                $('#loading').hide();
+            } else {
+                // response contains id and card, which contains additional card details
+                var token = response.id;
+                // Insert the token into the form so it gets submitted to the server
+                $('#hdnToken').val(token);
+                // and submit
+                var html = '<span id="loading"><img src="/Content/AdminTheme/img/ajax-loader.gif"></span>';
+                $('.btn-payment').html(html);
+
+                submitReg();
+                // $form.get(0).submit();
+            }
+        }
+
+        function submitReg() {
+            console.log('in submit method');
+            //  $('#confirm-modal').modal('hide');
+            // $('.loader-div').addClass('active');
+
+            var valdata = $('#reg-bulk').serialize();
+            $.ajax({
+                url: "@Url.Action("RegistrationBulk", "EventRegistration")",
+                type: "POST",
+                dataType: 'json',
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                data: valdata,
+                success: function (response) {
+                    if (response.result) {
+                        console.log(response);
+                        toastr.success(response.message);
+                        window.location.href = response.data;
+                    } else {
+                        toastr.error(response.message);
+                        $('.loader-div').removeClass('active');
+                    }
+                },
+
+            });
+        }
+
+        $('.btn-proceed').on('click', function () {
+            console.log('clicked');
+            let self = $(this);
+            $('#confirm-modal-proceed').modal('hide');
+            $('.loader-div').addClass('active');
+            var amount = $('#total-price').val();
+            console.log('in submit');
+            if (amount > 0) {
+                if ($('#bill-later').prop('checked')) {
+                    submitReg();
+                }
+                else {
+                    if ($("#PaymentGateway").val() == "STRIPE") {
+                        stripeCharge();
+                    } else {  // Authorize.Net
+                        submitReg();
+                    }
+                }
+            } else {
+                submitReg();
+            }
+        });
+
+        //===== APPLY COUPON ACTION
+        $(document).on('click', '.btn-apply-voucher-js', function (e) {
+            e.preventDefault();
+            calculateCoupon($(this), true);
+        });
+
+        $(document).on('keyup', '.voucher-block input.form-control', function (e) {
+            e.preventDefault();
+            let self = $(this);
+            if (self.val().length > 0) {
+                self.closest('.voucher-block').find('.error-message').remove();
+            }
+        });
+        //===== APPLY COUPON ACTION END
+    });
+
+    function calculateCoupon(self, isClicked) {
+        if (parseInt($('.subtotal-price .amount').html()) <= 0) {
+            singleValidation($('.ticket-type-js'));
+            return;
+        }
+
+        let voucherBlock = self.closest('.voucher-block'),
+            voucherCode = voucherBlock.find('input.form-control').val();
+
+        if (voucherCode === '') {
+            $('.voucher-tr').hide();
+            $('.voucher-price .amount').html(0);
+            calculateGrandTotal();
+            let errorMessage = `<p class="error-message text-danger m-0">Enter your coupon code</p>`;
+            voucherBlock.find('.error-message').remove();
+            if (isClicked) {
+                voucherBlock.append(errorMessage);
+            }
+            return;
+        }
+
+        $('.loader-div').addClass('active');
+        let voucherPrice = 0;
+        validateCoupon()
+            .then((data) => {
+                $('.loader-div').removeClass('active');
+                if (data.isSuccess) {
+                    if (data.discountAmount > 0) {
+                        voucherBlock.find('.error-message').remove();
+                        voucherPrice = data.discountAmount;
+                        setTimeout(function () {
+                            $('.voucher-tr').show();
+                            $('.voucher-code-text').html('- ' + voucherCode);
+                            $('.voucher-price .amount').html(voucherPrice);
+                            calculateGrandTotal();
+                        }, 600);
+                    }
+                    else {
+                        let errorMessage = `<p class="error-message text-danger m-0">Coupon code is expired.</p>`;
+                        voucherBlock.find('.error-message').remove();
+                        if (isClicked) {
+                            voucherBlock.append(errorMessage);
+                        }
+
+                        $('.voucher-code-text').html('');
+                        $('.voucher-price .amount').html('0');
+                        $('.voucher-tr').hide();
+                        calculateGrandTotal();
+                    }
+                } else {
+                    let errorMessage = `<p class="error-message text-danger m-0">Invalid coupon code</p>`;
+                    voucherBlock.find('.error-message').remove();
+                    if (isClicked) {
+                        voucherBlock.append(errorMessage);
+                    }
+
+                    $('.voucher-code-text').html('');
+                    $('.voucher-price .amount').html('0');
+                    $('.voucher-tr').hide();
+                    calculateGrandTotal();
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+                $('.loader-div').removeClass('active');
+            });
+    }
+
+    function validateCoupon() {
+        var ticketQtyArry = $("input[name='TicketQuantities[]']").map(function () { return $(this).val(); }).get();
+        var ticketQty = 0;
+        $.each(ticketQtyArry, function () { ticketQty += parseFloat(this) || 0; });
+
+        let amount = 0,
+            csrlPrice = 0,
+            sidebarCsrlPriceRow = $(".sidebar-block .csrl-price");
+
+        sidebarCsrlPriceRow.each(function (i, obj) {
+            csrlPrice += parseInt($(obj).find(".amount").text());
+        });
+
+       //amount = $('#total-price').val();
+        amount = $('#sub-total-price').val();
+        if (csrlPrice > 0) {
+            amount -= csrlPrice;
+            $('#csrl-price').val(csrlPrice);
+        }
+
+       // console.log("Amount: " + amount);
+       // console.log("CSRL: " + csrlPrice);
+        var ticketCategoryKeys = $("input[name='TicketCategoryKeys[]']").map(function () { return $(this).val(); }).get();
+        console.log(ticketCategoryKeys);
+
+        var data =
+        {
+            CompanyKey: $("#hdnCompanyKey").val(),
+            EventKey: $("#event-key").val(),
+            CouponCode: $("input[name='CouponCode']").val(),
+            Amount: amount,
+            ticketQty: ticketQty,
+            ticketCategoryKeys: ticketCategoryKeys
+        };
+        console.log(data);
+
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                url: "@Url.Action("ValidateCoupon", "EventRegistration")",
+                type: "POST",
+                dataType: 'json',
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                data: data,
+                success: function (data) {
+                    resolve(data)
+                },
+                error: function (error) {
+                    reject(error)
+                },
+            })
+        })
+    }
+    </script>
+
+    <script>
+        function registrationConfirmation() {
+            $('#confirm-modal-proceed').modal('show');
+        }
+    </script>
+}
