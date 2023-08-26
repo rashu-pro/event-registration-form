@@ -358,7 +358,6 @@ $('.btn-event-register').on('click', function () {
         notValidatedEmailFieldsSelector = $('.email-information-wrapper-js .required-group:not(.field-validated)'),
         notValidatedEmailFields = notValidatedEmailFieldsSelector.length;
 
-
     let isChecked = $('#tc-2').prop('checked');
 
     //=== CHECK WHETHER AT LEAST A TICKET INFORMATION IS BEING FILLED UP
@@ -401,6 +400,11 @@ $('.btn-event-register').on('click', function () {
         return;
     }
 
+    if (notValidatedBillingFields > 0) {
+        focusToNotValidFields(notValidatedBillingFieldsSelector);
+        return;
+    }
+
     //=== Payment Fields Validation Needed
     if (parseInt($('.grand-total-price .amount').text()) > 0 && !$('#bill-later').prop('checked')) {
         if ((paymentFields) != paymentValidFields) {
@@ -417,6 +421,9 @@ $('.btn-event-register').on('click', function () {
         }, 300);
         return;
     }
+
+    let loaderMessage = `<p class="alert alert-warning loader-message loader-message-js">Once you click proceed, the process may take up to two minutes. Please wait and DO NOT close your browser until you see the confirmation page.</p>`;
+    pageLoader.append(loaderMessage);
     registrationConfirmation();
 
 });
