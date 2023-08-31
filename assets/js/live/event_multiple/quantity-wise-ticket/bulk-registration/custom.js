@@ -373,12 +373,15 @@ $('.btn-event-register').on('click', function () {
     //=== CHECK IF ANY ADDON TICKET SELECTED WHICH NEEDS ATTENDEE INFORMATION
     let addonTicketSelected = 0;
     let addonTicketChecked = parseInt($('.addon-holder-foot-js').attr('data-checked'));
+    let addonFormRow = $('.addon-ticket-info-collection-wrapper-js .form-row').length;
     $('.addon-ticket-quantity-js').each(function (i, element){
         if(parseInt($(element).val())>0 && $(element).closest('.quantity-wrap').attr('data-info-required')){
             addonTicketSelected += 1;
         }
     })
-    if(addonTicketSelected>0 && !addonTicketChecked){
+
+
+    if(addonTicketSelected>0 && !addonFormRow){
         $('.addon-holder-js .warning-message').remove();
         goToTheSection('.addon-holder-foot-js');
         let errorMessage = $('.addon-holder-foot-js').attr('data-error-message');
@@ -390,12 +393,14 @@ $('.btn-event-register').on('click', function () {
 
     //=== Contact Fields Validation Needed
     if (notValidatedField.length > 0) {
+        console.log('contact field!');
         focusToNotValidFields(notValidatedField);
         return;
     }
 
     //=== Billing Fields Validation Needed
     if (notValidatedEmailFields > 0) {
+        console.log('billing field!');
         focusToNotValidFields(notValidatedEmailFieldsSelector);
         return;
     }
@@ -422,8 +427,11 @@ $('.btn-event-register').on('click', function () {
         return;
     }
 
+    pageLoader.find('.loader-message-js').remove();
+
     let loaderMessage = `<p class="alert alert-warning loader-message loader-message-js">Once you click proceed, the process may take up to two minutes. Please wait and DO NOT close your browser until you see the confirmation page.</p>`;
     pageLoader.append(loaderMessage);
+
     registrationConfirmation();
 
 });
@@ -1617,6 +1625,8 @@ $(document).on('click', '.btn-generate-ticket-js', function (e) {
 
         $('.addon-holder-js').removeClass('d-none');
         $('.addon-ticket-wrapper').removeClass('d-none');
+        //== HIDE THE MEMBERSHIP ADDON TICKETS INITIALY. AFTER EMAIL VERIFICATION THE MEMBERSHIP ADDON TICKET WILL SHOW.
+        $('.addon-ticket-wrapper-member-js').addClass('d-none');
         $('.billing-information-wrapper-js').removeClass('d-none');
         $('.email-information-wrapper-js').removeClass('d-none');
         pageLoader.removeClass('active');
@@ -1703,7 +1713,11 @@ $(document).on('click', '.btn-generate-addon-ticket-js', function (e){
 
                         // populate info wrapper by attendee number
                         for (let k=1; k<=attendeeNumber; k++){
-                            addOnTicketWrapperSelector.find('.form-row-js[data-row=' + dataRow + '] .single-ticket-wrapper-js .ticket-wrapper').last().append($('.single-ticket-html-js .single-ticket-js').clone());
+                            if(parseInt($(element).closest('.quantity-wrap').attr('data-attendee-differ'))){
+                                addOnTicketWrapperSelector.find('.form-row-js[data-row=' + dataRow + '] .single-ticket-wrapper-js .ticket-wrapper').last().append($('.addon-single-ticket-html-js .single-ticket-js').clone());
+                            }else{
+                                addOnTicketWrapperSelector.find('.form-row-js[data-row=' + dataRow + '] .single-ticket-wrapper-js .ticket-wrapper').last().append($('.single-ticket-html-js .single-ticket-js').clone());
+                            }
                             addOnTicketWrapperSelector.find('.form-row-js[data-row=' + dataRow + '] .single-ticket-wrapper-js .single-ticket-js .ticket-category-key').val(ticketCategoryKey);
 
                             //=== Removes required-group class from the form group if the attendee information is not required
