@@ -10,6 +10,10 @@ let J = Payment.J,
     pageLoader = $('.loader-div'),
     bannerHeight = $('.main-banner').height();
 
+let ticketDiscountAmount = 0;
+let addOnDiscountAmount = 0;
+let totalTicketDiscountAmount = 0;
+
 let ticketHtml = `
 <div class="form-row form-row-ticket-individual active">
     <div class="form-row-head">
@@ -327,7 +331,8 @@ function ticketSummaryInTheCart(ticketQuantitySelector) {
     let discountTd = $('#member_discount td:first-child').html(); // Discount (10 %)
     let discountPercentage = parseFloat(discountTd.replace(/[^\d.]/g, "")); // extract int value from string
     if (discountPercentage > 0) {
-        let discount_amount = totalPrice * (discountPercentage / 100.00).toFixed(2);
+        //let discount_amount = totalPrice * (discountPercentage / 100.00).toFixed(2);
+        discount_amount = totalTicketDiscountAmount * (discountPercentage / 100.00).toFixed(2);
         $('.discount_amount').html(discount_amount);
     }
     
@@ -1101,7 +1106,7 @@ function calculateTotal() {
 
     $('.processing-fees-tr-js').hide();
     $('.processing-fees-tr-js .amount').html(processingFees);
-    if (totalPrice > 0) {
+    if (totalPrice > 0 && $('.processing-fees-tr-js').length>0) {
         processingFees = calculateProcessingFees(totalPrice);
         $('.processing-fees-tr-js').show();
         $('.processing-fees-tr-js .amount').html(processingFees);
@@ -1130,9 +1135,8 @@ function calculateTotal() {
 
 function calculateGrandTotal() {
     let totalPrice = parseInt($('.ticket-summary-table .total-price .amount').html()),
-        //processingFees = parseFloat($('.processing-fees-tr-js .amount').text()),
-        processingFees = 0,
-      voucherPrice = parseInt($('.ticket-summary-table .voucher-price .amount').html());
+      processingFees = $('.processing-fees-tr-js').length>0 ? parseFloat($('.processing-fees-tr-js .amount').text()) : 0,
+      voucherPrice = $('.ticket-summary-table .voucher-price').length>0 ? parseInt($('.ticket-summary-table .voucher-price .amount').html()) : 0;
 
     if (totalPrice === voucherPrice) {
         $('.processing-fees-tr-js .amount').text(0);
@@ -1149,23 +1153,26 @@ function calculateGrandTotal() {
     let discountPercentage = parseFloat(discountTd.replace(/[^\d.]/g, "")); // extract int value from string
     let discount_amount = 0;
     if (discountPercentage > 0) {
-        discount_amount = totalPrice * (discountPercentage / 100.00).toFixed(2);
+        //discount_amount = totalPrice * (discountPercentage / 100.00).toFixed(2);
+        discount_amount = totalTicketDiscountAmount * (discountPercentage / 100.00).toFixed(2);
         $('.discount_amount').html(discount_amount);
     }
+
+    let totalDiscountAmount = voucherPrice + discount_amount;
+    $('#discount-total-amount').val(totalDiscountAmount);
 
     let grandTotalPrice = parseFloat((totalPrice + processingFees) - (voucherPrice + discount_amount)).toFixed(2);
 
     $('#total-price').val(grandTotalPrice);
 
     $('.ticket-summary-table .grand-total-price .amount').html(grandTotalPrice);
+    $('.billing-information-wrapper-js .price-note .total-price').html(grandTotalPrice);
     if (grandTotalPrice <= 0) {
         $('#payment-information').hide();
     } else {
         $('#payment-information').show();
     }
     return grandTotalPrice;
-
-
 }
 
 //=== UPDATE TICKET PRICE AFTER ADD ANOTHER PERSON ACTION
@@ -1234,7 +1241,7 @@ $(document).on('change', '.csrl-field', function (e) {
         totalCsrlTicketPrice = parseInt(self.attr('data-price')) * parseInt(self.val());
 
     let clonedCsrlSummaryRow = $('.csrl-price-html-wrapper .csrl-price').clone();
-    console.log(clonedCsrlSummaryRow);
+    //console.log(clonedCsrlSummaryRow);
     clonedCsrlSummaryRow.addClass('csrl-price-' + dataRow);
     clonedCsrlSummaryRow.find('.csrl-quantity').html(self.val());
     clonedCsrlSummaryRow.find('.amount').html(totalCsrlTicketPrice);
@@ -1243,7 +1250,7 @@ $(document).on('change', '.csrl-field', function (e) {
 
         $('.csrl-price-' + dataRow).remove();
         if ($('.ticket-summary-table .price-' + dataRow).length > 0) {
-            console.log('csrl quantity', self.val());
+            //console.log('csrl quantity', self.val());
             $('.ticket-summary-table .price-' + dataRow).after(clonedCsrlSummaryRow);
         } else {
             $('.ticket-summary-table tbody').append(clonedCsrlSummaryRow);
@@ -1434,7 +1441,7 @@ function ticketGroupManipulation(ticketDataGroup, ticketDataGroup2, typeSelector
     if (ticketDataGroup == "couple") {
         ticketDataGroup = 2;
     }
-    console.log('couple: ' + ticketDataGroup2);
+    //console.log('couple: ' + ticketDataGroup2);
     for (let i = 1; i <= parseInt(ticketDataGroup); i++) {
         let attrName = "grouped-gender-" + i + dataRow,
             genderMaleId = "grouped-gender-male-" + i + dataRow,
@@ -1544,6 +1551,7 @@ $(document).on('click', '.btn-generate-ticket-js', function (e) {
     e.preventDefault();
     let self = $(this);
     let totalTicket = 0;
+    ticketDiscountAmount = 0;
     $(ticketQuantitySelector).each(function (i, element) {
         totalTicket += parseInt($(element).val());
     });
@@ -1556,6 +1564,7 @@ $(document).on('click', '.btn-generate-ticket-js', function (e) {
         return;
     }
 
+
     pageLoader.addClass('active');
 
     setTimeout(function () {
@@ -1566,6 +1575,9 @@ $(document).on('click', '.btn-generate-ticket-js', function (e) {
         $(ticketQuantitySelector).each(function (i, element) {
             let quantity = parseInt($(element).val());
             let attendeeNumber = parseInt($(element).attr('data-limit'));
+            let isDiscountable = parseInt($(element).closest('.quantity-wrap').attr('discountable')) == 1 ? true : false;
+            let isBatchNoNeeded = parseInt($(element).closest('.quantity-wrap').attr('batch-no-required')) == 1 ? true : false;
+            
             let dataRow = parseInt($(element).closest('.table-row').attr('data-row'));
             if (!quantity) {
                 return;
@@ -1575,6 +1587,9 @@ $(document).on('click', '.btn-generate-ticket-js', function (e) {
             let ticketText = $(element).closest('.table-row').find('.ticket-name-js').attr('data-name');
             let price = parseInt($(element).val()) * parseInt($(element).closest('.table-row').find('.per-price .amount').text());
             let perPrice = parseInt($(element).closest('.table-row').find('.per-price .amount').text());
+            if (isDiscountable && quantity>0) {
+                ticketDiscountAmount += price;
+            }
             let ticketSummaryRow = `<div class="ticket-summary-row" data-row="${dataRow}">
                                                 <span class="ticket-number d-inline-block" style="position: relative"><span class="ticket-number-js">${quantity}</span> ticket${quantity > 1 ? 's' : ''}</span>
                                                 <p class="mb-1">${ticketText}</p>
@@ -1602,14 +1617,33 @@ $(document).on('click', '.btn-generate-ticket-js', function (e) {
 
                     //=== Removes required-group class from the form group if the attendee information is not required
                     if (!parseInt($(element).closest('.quantity-wrap').attr('data-attendee-is-required'))) {
-                        console.log('attendee information not required!');
+                        //console.log('attendee information not required!');
                         $('.ticket-wrapper-js .form-row-js').last().find('.form-group').removeClass('required-group');
+                    }
+
+                    if (isBatchNoNeeded) {
+                        $('.ticket-wrapper-js .form-row-js[data-row=' + dataRow + '] .single-ticket-wrapper-js .single-ticket-js .batch-no-field').removeClass('d-none');
                     }
 
                     //=== ADDS TICKET REMOVE BUTTON
                     $('.ticket-wrapper-js .form-row-js[data-row=' + dataRow + '] .single-ticket-wrapper-js .single-ticket-js').last().find('.attendee-wrapper .attendee-wrapper-head .action-btn-wrapper').append($('.remove-ticket-btn-wrapper-html .btn-remove-ticket-js').clone());
                     $('.ticket-wrapper-js .form-row-js[data-row=' + dataRow + '] .single-ticket-wrapper-js .single-ticket-js').last().find('.attendee-wrapper .attendee-wrapper-head .action-btn-wrapper .btn-remove-ticket-js').attr('data-row', dataRow);
                     $('.ticket-wrapper-js .form-row-js[data-row=' + dataRow + '] .single-ticket-wrapper-js .single-ticket-js').last().find('.attendee-wrapper .attendee-wrapper-head .action-btn-wrapper .btn-remove-ticket-js').attr('data-price', perPrice);
+                }
+
+                //=== Keeps only first attendee information required
+                if(parseInt($(element).closest('.quantity-wrap').attr('data-attendee-is-required-only-one'))){
+                    $('.ticket-wrapper-js .form-row-js[data-row=' + dataRow + '] .single-ticket-wrapper-js .single-ticket-js').first().find('.form-group').addClass('required-group');
+                }
+
+                //=== Add is alumnai checkbox for spouse information for DAANA
+                if($(element).closest('.quantity-wrap').attr('data-ticket-type')==='couple'){
+                    $('.ticket-wrapper-js .form-row-js[data-row=' + dataRow + '] .single-ticket-wrapper-js .single-ticket-js').last().find('.batch-number-group-js').addClass('d-none');
+                    $('.ticket-wrapper-js .form-row-js[data-row=' + dataRow + '] .single-ticket-wrapper-js .single-ticket-js').last().find('.batch-number-group-js').removeClass('required-group');
+
+                    $('.ticket-wrapper-js .form-row-js[data-row=' + dataRow + '] .single-ticket-wrapper-js .single-ticket-js').last().find('.is-alumnai-js').removeClass('d-none');
+                    $('.ticket-wrapper-js .form-row-js[data-row=' + dataRow + '] .single-ticket-wrapper-js .single-ticket-js').last().find('.is-alumnai-checkbox-js').attr('id', 'is-alumnai'+dataRow);
+                    $('.ticket-wrapper-js .form-row-js[data-row=' + dataRow + '] .single-ticket-wrapper-js .single-ticket-js').last().find('.is-alumnai-label').attr('for', 'is-alumnai'+dataRow);
                 }
 
             }
@@ -1630,8 +1664,8 @@ $(document).on('click', '.btn-generate-ticket-js', function (e) {
         $('.billing-information-wrapper-js').removeClass('d-none');
         $('.email-information-wrapper-js').removeClass('d-none');
         pageLoader.removeClass('active');
+        totalTicketDiscountAmount = ticketDiscountAmount;
     }, 600)
-
     
 })
 
@@ -1639,14 +1673,14 @@ $(document).on('click', '.btn-generate-ticket-js', function (e) {
 $(document).on('click', '.btn-generate-addon-ticket-js', function (e){
     e.preventDefault();
     let self = $(this),
-      totalTicket = 0;
-
+        totalTicket = 0;
+    addOnDiscountAmount = 0;
     $(addonTicketQuantitySelector).each(function (i, element){
         if(parseInt($(element).closest('.quantity-wrap').attr('data-info-required'))){
             totalTicket += parseInt($(element).val());
         }
     })
-    console.log('total addon ticket: ', totalTicket);
+    //console.log('total addon ticket: ', totalTicket);
 
     // removes all the warning message from addon ticket div
     $('.addon-holder-js .warning-message').remove();
@@ -1671,6 +1705,7 @@ $(document).on('click', '.btn-generate-addon-ticket-js', function (e){
             let attendeeNumber = parseInt($(element).attr('data-limit'));
             // console.log('attendee number: ', attendeeNumber);
             let dataRow = parseInt($(element).closest('.quantity-wrap').attr('data-row'));
+            console.log(dataRow);
             // console.log('data row: ', dataRow);
             let ticketTitle = $(element).closest('.quantity-wrap').attr('data-text');
             // console.log('ticket title: ', ticketTitle);
@@ -1680,6 +1715,11 @@ $(document).on('click', '.btn-generate-addon-ticket-js', function (e){
             // console.log('total price: ', price);
             let ticketCategoryKey = $(element).closest('.quantity-wrap').find('.ticket-addOn-key').val();
             // console.log('ticket category key: ', ticketCategoryKey);
+            let isDiscountable = parseInt($(element).closest('.quantity-wrap').attr('discountable')) == 1 ? true : false;
+            let isBatchNoRequired = parseInt($(element).closest('.quantity-wrap').attr('batch-no-required')) == 1 ? true : false;
+            if (isDiscountable && quantity > 0) {
+                addOnDiscountAmount += price;
+            }
 
             // if quantity is greater than 0
             if(quantity){
@@ -1726,6 +1766,9 @@ $(document).on('click', '.btn-generate-addon-ticket-js', function (e){
                                 addOnTicketWrapperSelector.find('.form-row-js').last().find('.form-group').removeClass('required-group');
                             }
                         }
+                        if (isBatchNoRequired) {                            
+                            addOnTicketWrapperSelector.find('.form-row-js[data-row=' + dataRow + '] .single-ticket-wrapper-js  .single-ticket-js .batch-no-field').removeClass('d-none');
+                        }
                     }
 
                     // set ticket count number
@@ -1739,10 +1782,15 @@ $(document).on('click', '.btn-generate-addon-ticket-js', function (e){
 
         changeAddonTicketUtitlity();
         pageLoader.removeClass('active');
+        totalTicketDiscountAmount = ticketDiscountAmount + addOnDiscountAmount;
 
     }, 600)
 
+    
+
 })
+
+
 
 $(document).on('click', '.add-another-ticket-js', function (e) {
     e.preventDefault();
@@ -1879,6 +1927,7 @@ $(document).on('click', '.update-ticket-information-js', function (e) {
 
     goToTheSection('.ticket-information-js');
     addTicketSummaryAndCalculateTotalPrice();
+    totalTicketDiscountAmount = 0;
 
     setTimeout(function () {
         calculateTotal();
@@ -1889,8 +1938,14 @@ $(document).on('click', '.update-ticket-information-js', function (e) {
 //=== UPDATE ADDON TICKET INFORMATION BUTTON CLICK ACTION
 $(document).on('click', '.update-addon-ticket-information-js', function (e){
     e.preventDefault();
+    $('.voucher-tr').hide();
+    $('.voucher-block .form-control').val('');
+    $('.voucher-tr .amount').text(0);
+    $('.discount_amount').text(0);
+
     updateAddonTicketOption();
     calculateTotal();
+    totalTicketDiscountAmount = ticketDiscountAmount;
 })
 
 function updateAddonTicketOption(){
@@ -1910,6 +1965,13 @@ function updateAddonTicketOption(){
 $(document).on('change', '#bill-later', function () {
     let self = $(this);
     billMeLaterToggle(self);
+})
+
+//=== IS ALUMNAI CHECKBOX CHANGE EVENT
+$(document).on('change', '.is-alumnai-checkbox-js', function(){
+    let self = $(this);
+    self.closest('.batch-no-field').find('.batch-number-group-js').toggleClass('d-none');
+    self.closest('.batch-no-field').find('.batch-number-group-js').toggleClass('required-group');
 })
 
 calculateTotal();
@@ -1973,6 +2035,11 @@ function updateAttendeeNumber(rowNumber) {
         $(element).find('.attendee-wrapper').each(function (j, element) {
             $(element).find('.attendee-number-js').html(j + 1);
         })
+
+        //=== ADD SPOUSE TEXT AFTER ATTENDEE NUMBER WHEN ITS A COUPLE TICKET TYPE
+        if($('.table-row[data-row='+rowNumber+'] .quantity-wrap').attr('data-ticket-type')==='couple'){
+            $(element).find('.attendee-number-js').last().append(' (Spouse)');
+        }
     })
 }
 
@@ -2056,8 +2123,7 @@ function calculateProcessingFees(totalPrice) {
     let rate = 0.022;  // 2.2% expressed as a decimal
     let fixedFee = 0.30;  // $0.30
 
-    //let processingFees = totalPrice * rate + fixedFee + 1;
-    let processingFees = 0;
+    let processingFees = totalPrice * rate + fixedFee + 1;
     return processingFees.toFixed(2);  // Rounded to 2 decimal places
 }
 
