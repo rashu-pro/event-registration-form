@@ -1,5 +1,6 @@
 /**
- * Created by Rashu on 07-03-22.
+ * Created by Rashu on 07-03-2022.
+ * Last Updated on 05-09-2023
  */
 
 let J = Payment.J,
@@ -207,14 +208,14 @@ $('.addon-quantity-increase').on('click', function () {
     }
 
     totalQty = parseInt(quantityValue) + 1;
-    
+
 
     ticketSummaryInTheCart($('.addon-ticket-quantity-js'));
 
     if (attendeeInfoRequired) {
         var attendeeWrapper = $(".single-ticket-js").find(".attendee-wrapper").last().clone();
         var addonText = self.closest('.quantity-wrap').attr("data-text");
-        
+
         //var dataRow = self.closest('.quantity-wrap').attr("data-text");
         //debugger;
         //$('.addon-wrapper-js').append($('.ticket-html-wrapper-js .form-row-js').clone());
@@ -224,14 +225,14 @@ $('.addon-quantity-increase').on('click', function () {
 
         $(".addon-wrapper-js").append(attendeeWrapper);
         $(".addon-attendee-js").removeClass("d-none");
-       
+
         $(".addon-attendee-js").find(".ticket-row-title-js").html(addonText);
         var a = $(".addon-attendee-js").find(".ticket-number-js");
         a.removeClass("ticket-number-js").addClass("addon-number-js-" + ticketCount);
         $(".addon-number-js-" + ticketCount).html(ticketCount);
     }
     ticketCount++;
-    
+
 });
 
 $('.addon-quantity-decrease').on('click', function () {
@@ -308,7 +309,7 @@ function ticketSummaryInTheCart(ticketQuantitySelector) {
         let dataRow = $(element).closest('.quantity-wrap').attr('data-row');
         let price = parseInt($(element).closest('.quantity-wrap').attr('data-price'));
         totalPrice = price * quantity;
-        
+
 
         ticketSummaryHtmlString += `<tr id='row-${dataRow}' class='price-row addon-price-row ticket-price-row price-${dataRow}' data-row="${dataRow}">
                                     <td class="tr-ticket-text">
@@ -335,7 +336,7 @@ function ticketSummaryInTheCart(ticketQuantitySelector) {
         discount_amount = totalTicketDiscountAmount * (discountPercentage / 100.00).toFixed(2);
         $('.discount_amount').html(discount_amount);
     }
-    
+
     calculateTotal();
 }
 
@@ -379,14 +380,14 @@ $('.btn-event-register').on('click', function () {
     let addonTicketSelected = 0;
     let addonTicketChecked = parseInt($('.addon-holder-foot-js').attr('data-checked'));
     let addonFormRow = $('.addon-ticket-info-collection-wrapper-js .form-row').length;
-    $('.addon-ticket-quantity-js').each(function (i, element){
-        if(parseInt($(element).val())>0 && $(element).closest('.quantity-wrap').attr('data-info-required')){
+    $('.addon-ticket-quantity-js').each(function (i, element) {
+        if (parseInt($(element).val()) > 0 && $(element).closest('.quantity-wrap').attr('data-info-required')) {
             addonTicketSelected += 1;
         }
     })
 
 
-    if(addonTicketSelected>0 && !addonFormRow){
+    if (addonTicketSelected > 0 && !addonFormRow) {
         $('.addon-holder-js .warning-message').remove();
         goToTheSection('.addon-holder-foot-js');
         let errorMessage = $('.addon-holder-foot-js').attr('data-error-message');
@@ -1106,7 +1107,7 @@ function calculateTotal() {
 
     $('.processing-fees-tr-js').hide();
     $('.processing-fees-tr-js .amount').html(processingFees);
-    if (totalPrice > 0 && $('.processing-fees-tr-js').length>0) {
+    if (totalPrice > 0 && $('.processing-fees-tr-js').length > 0) {
         processingFees = calculateProcessingFees(totalPrice);
         $('.processing-fees-tr-js').show();
         $('.processing-fees-tr-js .amount').html(processingFees);
@@ -1135,8 +1136,8 @@ function calculateTotal() {
 
 function calculateGrandTotal() {
     let totalPrice = parseInt($('.ticket-summary-table .total-price .amount').html()),
-      processingFees = $('.processing-fees-tr-js').length>0 ? parseFloat($('.processing-fees-tr-js .amount').text()) : 0,
-      voucherPrice = $('.ticket-summary-table .voucher-price').length>0 ? parseInt($('.ticket-summary-table .voucher-price .amount').html()) : 0;
+        processingFees = $('.processing-fees-tr-js').length > 0 ? parseFloat($('.processing-fees-tr-js .amount').text()) : 0,
+        voucherPrice = $('.ticket-summary-table .voucher-price').length > 0 ? parseInt($('.ticket-summary-table .voucher-price .amount').html()) : 0;
 
     if (totalPrice === voucherPrice) {
         $('.processing-fees-tr-js .amount').text(0);
@@ -1144,7 +1145,7 @@ function calculateGrandTotal() {
     }
     // processingFees = processingFees.toFixed(2);
     // debugger;
-    
+
     //changed by Emdad
     //Update total price hidden field
     $('#sub-total-price').val(totalPrice);
@@ -1167,6 +1168,9 @@ function calculateGrandTotal() {
 
     $('.ticket-summary-table .grand-total-price .amount').html(grandTotalPrice);
     $('.billing-information-wrapper-js .price-note .total-price').html(grandTotalPrice);
+    //this line of code will show the amount in confirm modal
+    $('.amount-to-be-paid').html(grandTotalPrice);
+
     if (grandTotalPrice <= 0) {
         $('#payment-information').hide();
     } else {
@@ -1577,7 +1581,7 @@ $(document).on('click', '.btn-generate-ticket-js', function (e) {
             let attendeeNumber = parseInt($(element).attr('data-limit'));
             let isDiscountable = parseInt($(element).closest('.quantity-wrap').attr('discountable')) == 1 ? true : false;
             let isBatchNoNeeded = parseInt($(element).closest('.quantity-wrap').attr('batch-no-required')) == 1 ? true : false;
-            
+
             let dataRow = parseInt($(element).closest('.table-row').attr('data-row'));
             if (!quantity) {
                 return;
@@ -1587,7 +1591,7 @@ $(document).on('click', '.btn-generate-ticket-js', function (e) {
             let ticketText = $(element).closest('.table-row').find('.ticket-name-js').attr('data-name');
             let price = parseInt($(element).val()) * parseInt($(element).closest('.table-row').find('.per-price .amount').text());
             let perPrice = parseInt($(element).closest('.table-row').find('.per-price .amount').text());
-            if (isDiscountable && quantity>0) {
+            if (isDiscountable && quantity > 0) {
                 ticketDiscountAmount += price;
             }
             let ticketSummaryRow = `<div class="ticket-summary-row" data-row="${dataRow}">
@@ -1632,18 +1636,18 @@ $(document).on('click', '.btn-generate-ticket-js', function (e) {
                 }
 
                 //=== Keeps only first attendee information required
-                if(parseInt($(element).closest('.quantity-wrap').attr('data-attendee-is-required-only-one'))){
+                if (parseInt($(element).closest('.quantity-wrap').attr('data-attendee-is-required-only-one'))) {
                     $('.ticket-wrapper-js .form-row-js[data-row=' + dataRow + '] .single-ticket-wrapper-js .single-ticket-js').first().find('.form-group').addClass('required-group');
                 }
 
                 //=== Add is alumnai checkbox for spouse information for DAANA
-                if($(element).closest('.quantity-wrap').attr('data-ticket-type')==='couple'){
+                if ($(element).closest('.quantity-wrap').attr('data-ticket-type') === 'couple') {
                     $('.ticket-wrapper-js .form-row-js[data-row=' + dataRow + '] .single-ticket-wrapper-js .single-ticket-js').last().find('.batch-number-group-js').addClass('d-none');
                     $('.ticket-wrapper-js .form-row-js[data-row=' + dataRow + '] .single-ticket-wrapper-js .single-ticket-js').last().find('.batch-number-group-js').removeClass('required-group');
 
                     $('.ticket-wrapper-js .form-row-js[data-row=' + dataRow + '] .single-ticket-wrapper-js .single-ticket-js').last().find('.is-alumnai-js').removeClass('d-none');
-                    $('.ticket-wrapper-js .form-row-js[data-row=' + dataRow + '] .single-ticket-wrapper-js .single-ticket-js').last().find('.is-alumnai-checkbox-js').attr('id', 'is-alumnai'+dataRow);
-                    $('.ticket-wrapper-js .form-row-js[data-row=' + dataRow + '] .single-ticket-wrapper-js .single-ticket-js').last().find('.is-alumnai-label').attr('for', 'is-alumnai'+dataRow);
+                    $('.ticket-wrapper-js .form-row-js[data-row=' + dataRow + '] .single-ticket-wrapper-js .single-ticket-js').last().find('.is-alumnai-checkbox-js').attr('id', 'is-alumnai' + dataRow+'-'+j);
+                    $('.ticket-wrapper-js .form-row-js[data-row=' + dataRow + '] .single-ticket-wrapper-js .single-ticket-js').last().find('.is-alumnai-label').attr('for', 'is-alumnai' + dataRow+'-'+j);
                 }
 
             }
@@ -1666,17 +1670,17 @@ $(document).on('click', '.btn-generate-ticket-js', function (e) {
         pageLoader.removeClass('active');
         totalTicketDiscountAmount = ticketDiscountAmount;
     }, 600)
-    
+
 })
 
 //=== GENERATES ADDON TICKET
-$(document).on('click', '.btn-generate-addon-ticket-js', function (e){
+$(document).on('click', '.btn-generate-addon-ticket-js', function (e) {
     e.preventDefault();
     let self = $(this),
         totalTicket = 0;
     addOnDiscountAmount = 0;
-    $(addonTicketQuantitySelector).each(function (i, element){
-        if(parseInt($(element).closest('.quantity-wrap').attr('data-info-required'))){
+    $(addonTicketQuantitySelector).each(function (i, element) {
+        if (parseInt($(element).closest('.quantity-wrap').attr('data-info-required'))) {
             totalTicket += parseInt($(element).val());
         }
     })
@@ -1687,19 +1691,19 @@ $(document).on('click', '.btn-generate-addon-ticket-js', function (e){
 
     // if theres no addon ticket which required attendee information
     //-- is selected then break here
-    if(!totalTicket){
+    if (!totalTicket) {
         return;
     }
 
     pageLoader.addClass('active');
 
     let addOnTicketWrapperSelector = $('.addon-ticket-info-collection-wrapper-js');
-    setTimeout(function (){
+    setTimeout(function () {
         addOnTicketWrapperSelector.html('');
         $('.addon-ticket-summary-js').html('');
 
         //=== generates addon ticket information collection wrapper
-        $(addonTicketQuantitySelector).each(function (i, element){
+        $(addonTicketQuantitySelector).each(function (i, element) {
             let quantity = parseInt($(element).val());
             // console.log('quantity: ', quantity);
             let attendeeNumber = parseInt($(element).attr('data-limit'));
@@ -1722,7 +1726,7 @@ $(document).on('click', '.btn-generate-addon-ticket-js', function (e){
             }
 
             // if quantity is greater than 0
-            if(quantity){
+            if (quantity) {
                 let ticketSummaryRow = `<div class="ticket-summary-row" data-row="${dataRow}">
                                                 <span class="ticket-number d-inline-block" style="position: relative"><span class="ticket-number-js">${quantity}</span> ticket${quantity > 1 ? 's' : ''}</span>
                                                 <p class="mb-1">${ticketTitle}</p>
@@ -1732,7 +1736,7 @@ $(document).on('click', '.btn-generate-addon-ticket-js', function (e){
                 $('.addon-ticket-summary-js').append(ticketSummaryRow);
                 // console.log("---------------");
 
-                if(parseInt($(element).closest('.quantity-wrap').attr('data-info-required'))){
+                if (parseInt($(element).closest('.quantity-wrap').attr('data-info-required'))) {
                     $(element).closest('.quantity-wrap').find('.ticket-addOn-key').addClass('ticket-selected');
 
                     // adds the info collection div into the wrapper
@@ -1748,14 +1752,14 @@ $(document).on('click', '.btn-generate-addon-ticket-js', function (e){
                     }
 
                     // populate attendee info collector div into wrapper
-                    for(let j=1; j<=quantity; j++){
+                    for (let j = 1; j <= quantity; j++) {
                         addOnTicketWrapperSelector.find('.form-row-js[data-row=' + dataRow + '] .single-ticket-wrapper-js').append(`<div class="ticket-wrapper"></div>`);
 
                         // populate info wrapper by attendee number
-                        for (let k=1; k<=attendeeNumber; k++){
-                            if(parseInt($(element).closest('.quantity-wrap').attr('data-attendee-differ'))){
+                        for (let k = 1; k <= attendeeNumber; k++) {
+                            if (parseInt($(element).closest('.quantity-wrap').attr('data-attendee-differ'))) {
                                 addOnTicketWrapperSelector.find('.form-row-js[data-row=' + dataRow + '] .single-ticket-wrapper-js .ticket-wrapper').last().append($('.addon-single-ticket-html-js .single-ticket-js').clone());
-                            }else{
+                            } else {
                                 addOnTicketWrapperSelector.find('.form-row-js[data-row=' + dataRow + '] .single-ticket-wrapper-js .ticket-wrapper').last().append($('.single-ticket-html-js .single-ticket-js').clone());
                             }
                             addOnTicketWrapperSelector.find('.form-row-js[data-row=' + dataRow + '] .single-ticket-wrapper-js .single-ticket-js .ticket-category-key').val(ticketCategoryKey);
@@ -1766,7 +1770,7 @@ $(document).on('click', '.btn-generate-addon-ticket-js', function (e){
                                 addOnTicketWrapperSelector.find('.form-row-js').last().find('.form-group').removeClass('required-group');
                             }
                         }
-                        if (isBatchNoRequired) {                            
+                        if (isBatchNoRequired) {
                             addOnTicketWrapperSelector.find('.form-row-js[data-row=' + dataRow + '] .single-ticket-wrapper-js  .single-ticket-js .batch-no-field').removeClass('d-none');
                         }
                     }
@@ -1784,9 +1788,13 @@ $(document).on('click', '.btn-generate-addon-ticket-js', function (e){
         pageLoader.removeClass('active');
         totalTicketDiscountAmount = ticketDiscountAmount + addOnDiscountAmount;
 
+        if (addOnDiscountAmount > 0) {
+            $('.verify-email').trigger('click');
+        }
+
     }, 600)
 
-    
+
 
 })
 
@@ -1936,7 +1944,7 @@ $(document).on('click', '.update-ticket-information-js', function (e) {
 })
 
 //=== UPDATE ADDON TICKET INFORMATION BUTTON CLICK ACTION
-$(document).on('click', '.update-addon-ticket-information-js', function (e){
+$(document).on('click', '.update-addon-ticket-information-js', function (e) {
     e.preventDefault();
     $('.voucher-tr').hide();
     $('.voucher-block .form-control').val('');
@@ -1948,7 +1956,7 @@ $(document).on('click', '.update-addon-ticket-information-js', function (e){
     totalTicketDiscountAmount = ticketDiscountAmount;
 })
 
-function updateAddonTicketOption(){
+function updateAddonTicketOption() {
     $('.addon-holder-js .quantity-wrap .form-control').val('0');
     $('.addon-holder-js .quantity-wrap .form-control').trigger('change');
     $('.addon-ticket-wrapper-js').removeClass('d-none');
@@ -1960,6 +1968,11 @@ function updateAddonTicketOption(){
     $('.addon-holder-foot-js').attr('data-checked', 0);
 
     $('.addon-ticket-info-collection-wrapper-js').empty();
+
+    let discountTd = $('#member_discount td:first-child');
+    discountTd.html('');
+    $('.discount_amount').html(0);
+    $('#member_discount').addClass('d-none');
 }
 
 $(document).on('change', '#bill-later', function () {
@@ -1968,10 +1981,13 @@ $(document).on('change', '#bill-later', function () {
 })
 
 //=== IS ALUMNAI CHECKBOX CHANGE EVENT
-$(document).on('change', '.is-alumnai-checkbox-js', function(){
+$(document).on('change', '.is-alumnai-checkbox-js', function () {
     let self = $(this);
-    self.closest('.batch-no-field').find('.batch-number-group-js').toggleClass('d-none');
-    self.closest('.batch-no-field').find('.batch-number-group-js').toggleClass('required-group');
+    let commonAncestor = self.closest('.is-alumnai-js').parent();
+    //self.closest('.batch-no-field').find('.batch-number-group-js').toggleClass('d-none');
+    //self.closest('.batch-no-field').find('.batch-number-group-js').toggleClass('required-group');
+    commonAncestor.find('.batch-no-field .batch-number-group-js').toggleClass('d-none');
+    commonAncestor.find('.batch-no-field .batch-number-group-js').toggleClass('required-group');
 })
 
 calculateTotal();
@@ -2037,7 +2053,7 @@ function updateAttendeeNumber(rowNumber) {
         })
 
         //=== ADD SPOUSE TEXT AFTER ATTENDEE NUMBER WHEN ITS A COUPLE TICKET TYPE
-        if($('.table-row[data-row='+rowNumber+'] .quantity-wrap').attr('data-ticket-type')==='couple'){
+        if ($('.table-row[data-row=' + rowNumber + '] .quantity-wrap').attr('data-ticket-type') === 'couple') {
             $(element).find('.attendee-number-js').last().append(' (Spouse)');
         }
     })
@@ -2069,7 +2085,7 @@ function addTicketSummaryAndCalculateTotalPrice() {
         }
 
 
-        
+
     })
 
     //changed by emdad
@@ -2110,7 +2126,7 @@ function addTicketSummaryAndCalculateTotalPrice() {
         }
     }
      **/
-    
+
     calculateTotal();
 }
 

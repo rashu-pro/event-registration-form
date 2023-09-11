@@ -1,0 +1,22 @@
+.sign-plus{
+    display: none;
+}
+
+.collapse {
+    .sign {
+        &-minus {
+            display: none;
+        }
+    }
+}
+
+.collapsed {
+    .sign {
+        &-plus {
+            display: inline-block;
+        }
+        &-minus{
+            display: none;
+        }
+    }
+}
